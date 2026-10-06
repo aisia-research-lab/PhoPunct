@@ -1,6 +1,6 @@
 # Data
 
-Place the corpus here (this directory's contents are git-ignored):
+Please unzip two ZIP files to extract two folders: `News` and `Novels`. Place the corpus here (this directory's contents are git-ignored):
 
 ```
 data/punctuation/
