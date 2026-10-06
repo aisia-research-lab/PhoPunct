@@ -177,6 +177,8 @@ is complete.
 
 ## Citation
 
+If you use the data, code, or other resources provided in this repository in your research or work, please cite the following paper:
+
 ```bibtex
 @inproceedings{nguyen2026phopunct,
   title     = {{PhoPunct: A Large-Scale Benchmark of Transformer Architectures for Vietnamese Punctuation Restoration}},
@@ -185,6 +187,7 @@ is complete.
   year      = {2026}
 }
 ```
+We appreciate proper attribution when using or building upon the resources released with this repository.
 
 ## License
 
