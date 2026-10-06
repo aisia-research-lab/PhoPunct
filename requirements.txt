@@ -1,0 +1,10 @@
+# Equivalence-tested locally with: Python 3.10, torch 2.4.1, transformers 4.57.6, pytorch-crf 0.7.2,
+# scikit-learn 1.7.1, pandas 2.3.3, numpy 1.26.4, sentencepiece 0.2.1.
+# Paper runs: CUDA + fp16 on a single RTX 3090 / 3090 Ti (24 GB).
+torch>=2.6  # transformers refuses .bin checkpoints (ViBERT, PhoBERT) with older torch
+transformers>=4.40
+pytorch-crf==0.7.2
+scikit-learn>=1.3
+pandas>=2.0
+numpy>=1.24
+sentencepiece>=0.1.99

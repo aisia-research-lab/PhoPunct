@@ -1,0 +1,321 @@
+08/10/2026 05:16:57 - INFO - __main__ - === XLM-R + Bi-LSTM + CRF | backbone=xlm-roberta-base ===
+08/10/2026 05:16:57 - INFO - __main__ - {
+  "model_key": "xlmr",
+  "use_bilstm": true,
+  "data_dir": "/root/phopunct/data/punctuation/Novels",
+  "output_dir": "/root/phopunct/outputs/xlmr_bilstm_novels",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/10/2026 05:16:57 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/config.json "HTTP/1.1 200 OK"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/10/2026 05:16:57 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/10/2026 05:16:58 - INFO - httpx - HTTP Request: GET https://huggingface.co/xlm-roberta-base/resolve/main/config.json "HTTP/1.1 200 OK"
+08/10/2026 05:16:58 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+08/10/2026 05:16:58 - INFO - httpx - HTTP Request: GET https://huggingface.co/xlm-roberta-base/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+08/10/2026 05:16:58 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/xlm-roberta-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/10/2026 05:16:59 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FacebookAI/xlm-roberta-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/10/2026 05:16:59 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/xlm-roberta-base/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/10/2026 05:16:59 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FacebookAI/xlm-roberta-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/10/2026 05:16:59 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/sentencepiece.bpe.model "HTTP/1.1 200 OK"
+08/10/2026 05:17:00 - INFO - httpx - HTTP Request: GET https://huggingface.co/xlm-roberta-base/resolve/main/sentencepiece.bpe.model "HTTP/1.1 200 OK"
+08/10/2026 05:17:01 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/tokenizer.json "HTTP/1.1 200 OK"
+08/10/2026 05:17:02 - INFO - httpx - HTTP Request: GET https://huggingface.co/xlm-roberta-base/resolve/main/tokenizer.json "HTTP/1.1 200 OK"
+08/10/2026 05:17:03 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+08/10/2026 05:17:03 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/special_tokens_map.json "HTTP/1.1 404 Not Found"
+08/10/2026 05:17:04 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+08/10/2026 05:17:06 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/xlm-roberta-base "HTTP/1.1 307 Temporary Redirect"
+08/10/2026 05:17:06 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FacebookAI/xlm-roberta-base "HTTP/1.1 200 OK"
+08/10/2026 05:17:06 - INFO - __main__ - Đang nạp dữ liệu train...
+08/10/2026 05:17:17 - INFO - punc_dataset_word - convert_examples_to_features: 11447 examples -> 11447 features (0 rỗng bị bỏ, 2 bị truncate)
+08/10/2026 05:17:18 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/10/2026 05:17:20 - INFO - punc_dataset_word - convert_examples_to_features: 3032 examples -> 3032 features (0 rỗng bị bỏ, 0 bị truncate)
+08/10/2026 05:17:21 - INFO - __main__ - Train: 11447 features | Valid: 3032 features
+08/10/2026 05:17:21 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/config.json "HTTP/1.1 200 OK"
+08/10/2026 05:17:22 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+08/10/2026 05:17:22 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FacebookAI/xlm-roberta-base/xet-read-token/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089 "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2959.04it/s]
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: xlm-roberta-base
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/root/phopunct/baseline_lstm_crf.py:232: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+/root/phopunct/baseline_lstm_crf.py:259: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+08/10/2026 05:18:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 50/716 loss=184.2722
+08/10/2026 05:18:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 100/716 loss=64.1253
+08/10/2026 05:18:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 150/716 loss=59.7702
+08/10/2026 05:19:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 200/716 loss=49.5609
+08/10/2026 05:19:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 250/716 loss=39.4719
+08/10/2026 05:19:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 300/716 loss=39.3172
+08/10/2026 05:20:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 350/716 loss=34.5591
+08/10/2026 05:20:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 400/716 loss=31.6860
+08/10/2026 05:20:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 450/716 loss=37.8467
+08/10/2026 05:21:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 500/716 loss=32.6162
+08/10/2026 05:21:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 550/716 loss=36.6194
+08/10/2026 05:21:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 600/716 loss=27.7691
+08/10/2026 05:22:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 650/716 loss=25.3586
+08/10/2026 05:22:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 700/716 loss=24.0959
+08/10/2026 05:22:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 1 xong sau 287.4s, avg_loss=54.6081
+08/10/2026 05:22:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 1 - Valid macro F1 = 0.4009
+              precision    recall  f1-score   support
+
+      PERIOD     0.6988    0.6040    0.6480     17715
+       COMMA     0.5780    0.5399    0.5583     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.6755    0.6980    0.6866      3868
+      EXCLAM     0.4690    0.5656    0.5128      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6131    0.5815    0.5969     41733
+   macro avg     0.4036    0.4013    0.4009     41733
+weighted avg     0.6169    0.5815    0.5968     41733
+
+08/10/2026 05:22:54 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.4009
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 05:23:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 34/716 loss=31.8576
+08/10/2026 05:23:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 84/716 loss=21.0652
+08/10/2026 05:23:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 134/716 loss=19.4420
+08/10/2026 05:24:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 184/716 loss=22.0274
+08/10/2026 05:24:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 234/716 loss=27.1784
+08/10/2026 05:24:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 284/716 loss=19.6312
+08/10/2026 05:25:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 334/716 loss=20.7501
+08/10/2026 05:25:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 384/716 loss=20.2985
+08/10/2026 05:25:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 434/716 loss=18.2475
+08/10/2026 05:26:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 484/716 loss=18.8701
+08/10/2026 05:26:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 534/716 loss=20.2771
+08/10/2026 05:26:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 584/716 loss=20.0035
+08/10/2026 05:27:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 634/716 loss=14.6960
+08/10/2026 05:27:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 684/716 loss=22.3550
+08/10/2026 05:27:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 2 xong sau 286.5s, avg_loss=22.8146
+08/10/2026 05:27:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 2 - Valid macro F1 = 0.4423
+              precision    recall  f1-score   support
+
+      PERIOD     0.7265    0.6352    0.6778     17715
+       COMMA     0.6539    0.6235    0.6384     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7725    0.7567    0.7645      3868
+      EXCLAM     0.4794    0.7130    0.5733      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6514    0.6498    0.6506     41733
+   macro avg     0.4387    0.4547    0.4423     41733
+weighted avg     0.6636    0.6498    0.6517     41733
+
+08/10/2026 05:28:08 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.4423
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 05:28:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 18/716 loss=14.9795
+08/10/2026 05:28:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 68/716 loss=17.3710
+08/10/2026 05:28:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 118/716 loss=20.1797
+08/10/2026 05:29:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 168/716 loss=17.7041
+08/10/2026 05:29:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 218/716 loss=22.2155
+08/10/2026 05:29:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 268/716 loss=16.1337
+08/10/2026 05:30:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 318/716 loss=17.5308
+08/10/2026 05:30:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 368/716 loss=17.0866
+08/10/2026 05:30:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 418/716 loss=18.8967
+08/10/2026 05:31:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 468/716 loss=18.8868
+08/10/2026 05:31:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 518/716 loss=16.1414
+08/10/2026 05:31:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 568/716 loss=18.3361
+08/10/2026 05:32:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 618/716 loss=20.1875
+08/10/2026 05:32:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 668/716 loss=16.3838
+08/10/2026 05:32:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 3 xong sau 287.4s, avg_loss=18.7461
+08/10/2026 05:33:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 3 - Valid macro F1 = 0.4547
+              precision    recall  f1-score   support
+
+      PERIOD     0.7748    0.6111    0.6832     17715
+       COMMA     0.6616    0.6567    0.6591     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8049    0.7883    0.7965      3868
+      EXCLAM     0.4963    0.7245    0.5891      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6755    0.6549    0.6650     41733
+   macro avg     0.4563    0.4634    0.4547     41733
+weighted avg     0.6921    0.6549    0.6661     41733
+
+08/10/2026 05:33:23 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.4547
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 05:33:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2/716 loss=16.5738
+08/10/2026 05:33:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 52/716 loss=15.6734
+08/10/2026 05:34:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 102/716 loss=18.5262
+08/10/2026 05:34:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 152/716 loss=23.8919
+08/10/2026 05:34:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 202/716 loss=16.2889
+08/10/2026 05:35:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 252/716 loss=16.7085
+08/10/2026 05:35:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 302/716 loss=15.7501
+08/10/2026 05:35:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 352/716 loss=15.3469
+08/10/2026 05:36:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 402/716 loss=16.9357
+08/10/2026 05:36:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 452/716 loss=14.6646
+08/10/2026 05:36:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 502/716 loss=14.3773
+08/10/2026 05:37:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 552/716 loss=18.2589
+08/10/2026 05:37:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 602/716 loss=16.1777
+08/10/2026 05:37:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 652/716 loss=15.9641
+08/10/2026 05:38:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 702/716 loss=15.2302
+08/10/2026 05:38:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 4 xong sau 293.0s, avg_loss=16.5180
+08/10/2026 05:38:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 4 - Valid macro F1 = 0.4579
+              precision    recall  f1-score   support
+
+      PERIOD     0.7553    0.6432    0.6948     17715
+       COMMA     0.7031    0.6369    0.6684     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7389    0.8544    0.7925      3868
+      EXCLAM     0.4979    0.7291    0.5918      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6789    0.6691    0.6739     41733
+   macro avg     0.4492    0.4773    0.4579     41733
+weighted avg     0.6913    0.6691    0.6740     41733
+
+08/10/2026 05:38:45 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.4579
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 05:38:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 36/716 loss=14.2158
+08/10/2026 05:39:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 86/716 loss=12.6839
+08/10/2026 05:39:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 136/716 loss=18.0277
+08/10/2026 05:40:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 186/716 loss=14.3186
+08/10/2026 05:40:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 236/716 loss=14.4787
+08/10/2026 05:40:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 286/716 loss=11.1702
+08/10/2026 05:41:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 336/716 loss=15.4932
+08/10/2026 05:41:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 386/716 loss=12.1215
+08/10/2026 05:41:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 436/716 loss=17.0493
+08/10/2026 05:42:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 486/716 loss=17.1106
+08/10/2026 05:42:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 536/716 loss=14.2292
+08/10/2026 05:42:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 586/716 loss=20.3738
+08/10/2026 05:43:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 636/716 loss=15.1413
+08/10/2026 05:43:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 686/716 loss=14.4650
+08/10/2026 05:43:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 5 xong sau 292.8s, avg_loss=15.0059
+08/10/2026 05:43:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 5 - Valid macro F1 = 0.4598
+              precision    recall  f1-score   support
+
+      PERIOD     0.7708    0.6185    0.6863     17715
+       COMMA     0.6741    0.6779    0.6760     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7771    0.8335    0.8043      3868
+      EXCLAM     0.4831    0.7647    0.5921      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6704    0.6753    0.6728     41733
+   macro avg     0.4508    0.4824    0.4598     41733
+weighted avg     0.6898    0.6753    0.6740     41733
+
+08/10/2026 05:44:07 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.4598
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 05:44:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 20/716 loss=18.4086
+08/10/2026 05:44:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 70/716 loss=14.7405
+08/10/2026 05:44:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 120/716 loss=16.0528
+08/10/2026 05:45:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 170/716 loss=13.2430
+08/10/2026 05:45:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 220/716 loss=14.0454
+08/10/2026 05:45:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 270/716 loss=12.3423
+08/10/2026 05:46:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 320/716 loss=15.5366
+08/10/2026 05:46:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 370/716 loss=12.1205
+08/10/2026 05:46:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 420/716 loss=16.6476
+08/10/2026 05:47:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 470/716 loss=12.0719
+08/10/2026 05:47:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 520/716 loss=15.0235
+08/10/2026 05:48:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 570/716 loss=15.4863
+08/10/2026 05:48:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 620/716 loss=12.8513
+08/10/2026 05:48:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 670/716 loss=14.6903
+08/10/2026 05:48:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 6 xong sau 291.8s, avg_loss=13.8373
+08/10/2026 05:49:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 6 - Valid macro F1 = 0.4690
+              precision    recall  f1-score   support
+
+      PERIOD     0.7690    0.6567    0.7085     17715
+       COMMA     0.7025    0.6562    0.6785     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8155    0.8250    0.8202      3868
+      EXCLAM     0.5200    0.7285    0.6069      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6974    0.6781    0.6877     41733
+   macro avg     0.4678    0.4777    0.4690     41733
+weighted avg     0.7074    0.6781    0.6880     41733
+
+08/10/2026 05:49:28 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.4690
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 05:49:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4/716 loss=13.8469
+08/10/2026 05:49:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 54/716 loss=11.0429
+08/10/2026 05:50:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 104/716 loss=10.7640
+08/10/2026 05:50:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 154/716 loss=12.8843
+08/10/2026 05:50:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 204/716 loss=12.7710
+08/10/2026 05:51:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 254/716 loss=14.1406
+08/10/2026 05:51:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 304/716 loss=11.0415
+08/10/2026 05:51:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 354/716 loss=8.5871
+08/10/2026 05:52:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 404/716 loss=16.9399
+08/10/2026 05:52:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 454/716 loss=11.2105
+08/10/2026 05:52:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 504/716 loss=13.4594
+08/10/2026 05:53:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 554/716 loss=14.4392
+08/10/2026 05:53:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 604/716 loss=12.8364
+08/10/2026 05:53:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 654/716 loss=13.9292
+08/10/2026 05:54:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 704/716 loss=14.1419
+08/10/2026 05:54:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 7 xong sau 291.6s, avg_loss=13.0739
+08/10/2026 05:54:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 7 - Valid macro F1 = 0.4680
+              precision    recall  f1-score   support
+
+      PERIOD     0.7641    0.6517    0.7034     17715
+       COMMA     0.7065    0.6554    0.6800     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8085    0.8338    0.8209      3868
+      EXCLAM     0.5022    0.7565    0.6036      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6892    0.6809    0.6850     41733
+   macro avg     0.4635    0.4829    0.4680     41733
+weighted avg     0.7032    0.6809    0.6858     41733
+
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 05:54:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 38/716 loss=9.8417
+08/10/2026 05:55:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 88/716 loss=14.5238
+08/10/2026 05:55:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 138/716 loss=11.6762
+08/10/2026 05:56:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 188/716 loss=14.8388
+08/10/2026 05:56:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 238/716 loss=11.1291
+08/10/2026 05:56:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 288/716 loss=12.7067
+08/10/2026 05:57:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 338/716 loss=10.1270
+08/10/2026 05:57:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 388/716 loss=13.4087
+08/10/2026 05:57:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 438/716 loss=10.0112
+08/10/2026 05:58:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 488/716 loss=12.1049
+08/10/2026 05:58:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 538/716 loss=12.9115
+08/10/2026 05:58:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 588/716 loss=10.9821
+08/10/2026 05:59:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 638/716 loss=13.0268
+08/10/2026 05:59:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 688/716 loss=12.0312
+08/10/2026 05:59:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 8 xong sau 298.2s, avg_loss=12.5361
+08/10/2026 05:59:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 8 - Valid macro F1 = 0.4685
+              precision    recall  f1-score   support
+
+      PERIOD     0.7682    0.6479    0.7029     17715
+       COMMA     0.6909    0.6734    0.6821     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8016    0.8441    0.8223      3868
+      EXCLAM     0.5049    0.7511    0.6039      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6865    0.6852    0.6858     41733
+   macro avg     0.4609    0.4861    0.4685     41733
+weighted avg     0.6998    0.6852    0.6865     41733
+
+08/10/2026 06:00:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Train xong. Best macro F1 = 0.4690. Checkpoint tại /root/phopunct/outputs/xlmr_bilstm_novels

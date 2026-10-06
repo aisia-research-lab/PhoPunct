@@ -1,0 +1,311 @@
+08/11/2026 19:19:14 - INFO - __main__ - === BERT + CRF | backbone=NlpHUST/vibert4news-base-cased ===
+08/11/2026 19:19:14 - INFO - __main__ - {
+  "model_key": "bert",
+  "use_bilstm": false,
+  "data_dir": "/root/phopunct/data/punctuation/Novels",
+  "output_dir": "/root/phopunct/outputs/bert_novels",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/11/2026 19:19:15 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/NlpHUST/vibert4news-base-cased/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 19:19:15 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 19:19:15 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/NlpHUST/vibert4news-base-cased/befb49562f91b9c916740927393dfc7b0908b22f/tokenizer_config.json "HTTP/1.1 200 OK"
+08/11/2026 19:19:15 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/NlpHUST/vibert4news-base-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/11/2026 19:19:15 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/NlpHUST/vibert4news-base-cased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/11/2026 19:19:15 - INFO - __main__ - Đang nạp dữ liệu train...
+08/11/2026 19:19:26 - INFO - punc_dataset_word - convert_examples_to_features: 11447 examples -> 11447 features (0 rỗng bị bỏ, 31 bị truncate)
+08/11/2026 19:19:27 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/11/2026 19:19:30 - INFO - punc_dataset_word - convert_examples_to_features: 3032 examples -> 3032 features (0 rỗng bị bỏ, 0 bị truncate)
+08/11/2026 19:19:30 - INFO - __main__ - Train: 11447 features | Valid: 3032 features
+08/11/2026 19:19:30 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/NlpHUST/vibert4news-base-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 19:19:30 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/NlpHUST/vibert4news-base-cased/befb49562f91b9c916740927393dfc7b0908b22f/config.json "HTTP/1.1 200 OK"
+08/11/2026 19:19:30 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/NlpHUST/vibert4news-base-cased/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3810.57it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: NlpHUST/vibert4news-base-cased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/root/phopunct/baseline_lstm_crf.py:247: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+/root/phopunct/baseline_lstm_crf.py:274: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+08/11/2026 19:19:52 - INFO - __main__ - [BERT + CRF] epoch 1 step 50/716 loss=86.5925
+08/11/2026 19:20:12 - INFO - __main__ - [BERT + CRF] epoch 1 step 100/716 loss=52.2402
+08/11/2026 19:20:32 - INFO - __main__ - [BERT + CRF] epoch 1 step 150/716 loss=41.6016
+08/11/2026 19:20:53 - INFO - __main__ - [BERT + CRF] epoch 1 step 200/716 loss=38.2845
+08/11/2026 19:21:13 - INFO - __main__ - [BERT + CRF] epoch 1 step 250/716 loss=31.4177
+08/11/2026 19:21:34 - INFO - __main__ - [BERT + CRF] epoch 1 step 300/716 loss=32.3116
+08/11/2026 19:21:54 - INFO - __main__ - [BERT + CRF] epoch 1 step 350/716 loss=35.1047
+08/11/2026 19:22:15 - INFO - __main__ - [BERT + CRF] epoch 1 step 400/716 loss=29.4261
+08/11/2026 19:22:35 - INFO - __main__ - [BERT + CRF] epoch 1 step 450/716 loss=32.5664
+08/11/2026 19:22:55 - INFO - __main__ - [BERT + CRF] epoch 1 step 500/716 loss=23.4465
+08/11/2026 19:23:16 - INFO - __main__ - [BERT + CRF] epoch 1 step 550/716 loss=28.2393
+08/11/2026 19:23:36 - INFO - __main__ - [BERT + CRF] epoch 1 step 600/716 loss=23.2817
+08/11/2026 19:23:57 - INFO - __main__ - [BERT + CRF] epoch 1 step 650/716 loss=24.6737
+08/11/2026 19:24:18 - INFO - __main__ - [BERT + CRF] epoch 1 step 700/716 loss=24.3578
+08/11/2026 19:24:24 - INFO - __main__ - [BERT + CRF] Epoch 1 xong sau 293.3s, avg_loss=46.4840
+08/11/2026 19:24:43 - INFO - __main__ - [BERT + CRF] Epoch 1 - Valid macro F1 = 0.4077
+              precision    recall  f1-score   support
+
+      PERIOD     0.6792    0.6160    0.6460     17715
+       COMMA     0.6764    0.5051    0.5783     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7307    0.6768    0.7027      3868
+      EXCLAM     0.4999    0.5405    0.5194      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6492    0.5696    0.6068     41733
+   macro avg     0.4310    0.3897    0.4077     41733
+weighted avg     0.6499    0.5696    0.6049     41733
+
+08/11/2026 19:24:46 - INFO - __main__ - -> [BERT + CRF] best checkpoint mới, macro F1 = 0.4077
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:25:00 - INFO - __main__ - [BERT + CRF] epoch 2 step 34/716 loss=22.7478
+08/11/2026 19:25:21 - INFO - __main__ - [BERT + CRF] epoch 2 step 84/716 loss=21.2488
+08/11/2026 19:25:41 - INFO - __main__ - [BERT + CRF] epoch 2 step 134/716 loss=25.3506
+08/11/2026 19:26:02 - INFO - __main__ - [BERT + CRF] epoch 2 step 184/716 loss=18.6131
+08/11/2026 19:26:23 - INFO - __main__ - [BERT + CRF] epoch 2 step 234/716 loss=20.2544
+08/11/2026 19:26:43 - INFO - __main__ - [BERT + CRF] epoch 2 step 284/716 loss=15.2457
+08/11/2026 19:27:04 - INFO - __main__ - [BERT + CRF] epoch 2 step 334/716 loss=15.1965
+08/11/2026 19:27:24 - INFO - __main__ - [BERT + CRF] epoch 2 step 384/716 loss=23.2391
+08/11/2026 19:27:44 - INFO - __main__ - [BERT + CRF] epoch 2 step 434/716 loss=22.4492
+08/11/2026 19:28:04 - INFO - __main__ - [BERT + CRF] epoch 2 step 484/716 loss=23.2333
+08/11/2026 19:28:24 - INFO - __main__ - [BERT + CRF] epoch 2 step 534/716 loss=20.2260
+08/11/2026 19:28:44 - INFO - __main__ - [BERT + CRF] epoch 2 step 584/716 loss=16.5682
+08/11/2026 19:29:05 - INFO - __main__ - [BERT + CRF] epoch 2 step 634/716 loss=15.5406
+08/11/2026 19:29:25 - INFO - __main__ - [BERT + CRF] epoch 2 step 684/716 loss=19.4614
+08/11/2026 19:29:39 - INFO - __main__ - [BERT + CRF] Epoch 2 xong sau 292.3s, avg_loss=20.7854
+08/11/2026 19:29:58 - INFO - __main__ - [BERT + CRF] Epoch 2 - Valid macro F1 = 0.4407
+              precision    recall  f1-score   support
+
+      PERIOD     0.7416    0.5895    0.6569     17715
+       COMMA     0.6641    0.6254    0.6442     13356
+       COLON     1.0000    0.0125    0.0247       320
+       QMARK     0.7500    0.7740    0.7618      3868
+      EXCLAM     0.4547    0.7168    0.5564      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6470    0.6333    0.6401     41733
+   macro avg     0.6018    0.4530    0.4407     41733
+weighted avg     0.6750    0.6333    0.6420     41733
+
+08/11/2026 19:30:02 - INFO - __main__ - -> [BERT + CRF] best checkpoint mới, macro F1 = 0.4407
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:30:09 - INFO - __main__ - [BERT + CRF] epoch 3 step 18/716 loss=16.9586
+08/11/2026 19:30:30 - INFO - __main__ - [BERT + CRF] epoch 3 step 68/716 loss=16.4001
+08/11/2026 19:30:50 - INFO - __main__ - [BERT + CRF] epoch 3 step 118/716 loss=18.6315
+08/11/2026 19:31:10 - INFO - __main__ - [BERT + CRF] epoch 3 step 168/716 loss=19.0302
+08/11/2026 19:31:30 - INFO - __main__ - [BERT + CRF] epoch 3 step 218/716 loss=17.9475
+08/11/2026 19:31:49 - INFO - __main__ - [BERT + CRF] epoch 3 step 268/716 loss=13.4390
+08/11/2026 19:32:09 - INFO - __main__ - [BERT + CRF] epoch 3 step 318/716 loss=15.3826
+08/11/2026 19:32:29 - INFO - __main__ - [BERT + CRF] epoch 3 step 368/716 loss=21.7619
+08/11/2026 19:32:48 - INFO - __main__ - [BERT + CRF] epoch 3 step 418/716 loss=17.5170
+08/11/2026 19:33:08 - INFO - __main__ - [BERT + CRF] epoch 3 step 468/716 loss=15.4238
+08/11/2026 19:33:27 - INFO - __main__ - [BERT + CRF] epoch 3 step 518/716 loss=13.6026
+08/11/2026 19:33:47 - INFO - __main__ - [BERT + CRF] epoch 3 step 568/716 loss=15.3774
+08/11/2026 19:34:07 - INFO - __main__ - [BERT + CRF] epoch 3 step 618/716 loss=16.0229
+08/11/2026 19:34:27 - INFO - __main__ - [BERT + CRF] epoch 3 step 668/716 loss=17.1462
+08/11/2026 19:34:45 - INFO - __main__ - [BERT + CRF] Epoch 3 xong sau 283.2s, avg_loss=16.5876
+08/11/2026 19:35:04 - INFO - __main__ - [BERT + CRF] Epoch 3 - Valid macro F1 = 0.4630
+              precision    recall  f1-score   support
+
+      PERIOD     0.7336    0.6463    0.6872     17715
+       COMMA     0.6774    0.6393    0.6578     13356
+       COLON     0.7222    0.0406    0.0769       320
+       QMARK     0.8379    0.7229    0.7761      3868
+      EXCLAM     0.4959    0.6979    0.5798      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6716    0.6544    0.6629     41733
+   macro avg     0.5778    0.4578    0.4630     41733
+weighted avg     0.6883    0.6544    0.6646     41733
+
+08/11/2026 19:35:08 - INFO - __main__ - -> [BERT + CRF] best checkpoint mới, macro F1 = 0.4630
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:35:09 - INFO - __main__ - [BERT + CRF] epoch 4 step 2/716 loss=11.7821
+08/11/2026 19:35:29 - INFO - __main__ - [BERT + CRF] epoch 4 step 52/716 loss=15.9217
+08/11/2026 19:35:49 - INFO - __main__ - [BERT + CRF] epoch 4 step 102/716 loss=18.0003
+08/11/2026 19:36:09 - INFO - __main__ - [BERT + CRF] epoch 4 step 152/716 loss=14.0127
+08/11/2026 19:36:29 - INFO - __main__ - [BERT + CRF] epoch 4 step 202/716 loss=13.8891
+08/11/2026 19:36:49 - INFO - __main__ - [BERT + CRF] epoch 4 step 252/716 loss=15.3610
+08/11/2026 19:37:09 - INFO - __main__ - [BERT + CRF] epoch 4 step 302/716 loss=13.6677
+08/11/2026 19:37:29 - INFO - __main__ - [BERT + CRF] epoch 4 step 352/716 loss=9.9067
+08/11/2026 19:37:49 - INFO - __main__ - [BERT + CRF] epoch 4 step 402/716 loss=16.1184
+08/11/2026 19:38:08 - INFO - __main__ - [BERT + CRF] epoch 4 step 452/716 loss=14.7501
+08/11/2026 19:38:28 - INFO - __main__ - [BERT + CRF] epoch 4 step 502/716 loss=13.4519
+08/11/2026 19:38:48 - INFO - __main__ - [BERT + CRF] epoch 4 step 552/716 loss=13.4458
+08/11/2026 19:39:07 - INFO - __main__ - [BERT + CRF] epoch 4 step 602/716 loss=12.1892
+08/11/2026 19:39:27 - INFO - __main__ - [BERT + CRF] epoch 4 step 652/716 loss=15.2595
+08/11/2026 19:39:47 - INFO - __main__ - [BERT + CRF] epoch 4 step 702/716 loss=12.4148
+08/11/2026 19:39:53 - INFO - __main__ - [BERT + CRF] Epoch 4 xong sau 284.7s, avg_loss=13.9985
+08/11/2026 19:40:12 - INFO - __main__ - [BERT + CRF] Epoch 4 - Valid macro F1 = 0.4859
+              precision    recall  f1-score   support
+
+      PERIOD     0.7535    0.6451    0.6951     17715
+       COMMA     0.6821    0.6515    0.6665     13356
+       COLON     0.7333    0.1031    0.1808       320
+       QMARK     0.7685    0.8120    0.7897      3868
+      EXCLAM     0.5210    0.6623    0.5832      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6849    0.6611    0.6728     41733
+   macro avg     0.5764    0.4790    0.4859     41733
+weighted avg     0.6957    0.6611    0.6733     41733
+
+08/11/2026 19:40:16 - INFO - __main__ - -> [BERT + CRF] best checkpoint mới, macro F1 = 0.4859
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:40:30 - INFO - __main__ - [BERT + CRF] epoch 5 step 36/716 loss=12.8948
+08/11/2026 19:40:50 - INFO - __main__ - [BERT + CRF] epoch 5 step 86/716 loss=10.5184
+08/11/2026 19:41:10 - INFO - __main__ - [BERT + CRF] epoch 5 step 136/716 loss=14.6628
+08/11/2026 19:41:30 - INFO - __main__ - [BERT + CRF] epoch 5 step 186/716 loss=12.2306
+08/11/2026 19:41:49 - INFO - __main__ - [BERT + CRF] epoch 5 step 236/716 loss=11.7186
+08/11/2026 19:42:09 - INFO - __main__ - [BERT + CRF] epoch 5 step 286/716 loss=13.2686
+08/11/2026 19:42:28 - INFO - __main__ - [BERT + CRF] epoch 5 step 336/716 loss=13.0394
+08/11/2026 19:42:48 - INFO - __main__ - [BERT + CRF] epoch 5 step 386/716 loss=11.9837
+08/11/2026 19:43:07 - INFO - __main__ - [BERT + CRF] epoch 5 step 436/716 loss=9.1360
+08/11/2026 19:43:27 - INFO - __main__ - [BERT + CRF] epoch 5 step 486/716 loss=15.8627
+08/11/2026 19:43:47 - INFO - __main__ - [BERT + CRF] epoch 5 step 536/716 loss=12.3064
+08/11/2026 19:44:06 - INFO - __main__ - [BERT + CRF] epoch 5 step 586/716 loss=12.0463
+08/11/2026 19:44:26 - INFO - __main__ - [BERT + CRF] epoch 5 step 636/716 loss=12.6713
+08/11/2026 19:44:46 - INFO - __main__ - [BERT + CRF] epoch 5 step 686/716 loss=10.6741
+08/11/2026 19:44:57 - INFO - __main__ - [BERT + CRF] Epoch 5 xong sau 281.5s, avg_loss=12.2306
+08/11/2026 19:45:16 - INFO - __main__ - [BERT + CRF] Epoch 5 - Valid macro F1 = 0.4903
+              precision    recall  f1-score   support
+
+      PERIOD     0.7439    0.6553    0.6968     17715
+       COMMA     0.6825    0.6575    0.6698     13356
+       COLON     0.5781    0.1156    0.1927       320
+       QMARK     0.7765    0.8131    0.7944      3868
+      EXCLAM     0.5101    0.6936    0.5879      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6781    0.6723    0.6752     41733
+   macro avg     0.5485    0.4892    0.4903     41733
+weighted avg     0.6897    0.6723    0.6763     41733
+
+08/11/2026 19:45:20 - INFO - __main__ - -> [BERT + CRF] best checkpoint mới, macro F1 = 0.4903
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:45:28 - INFO - __main__ - [BERT + CRF] epoch 6 step 20/716 loss=9.6279
+08/11/2026 19:45:48 - INFO - __main__ - [BERT + CRF] epoch 6 step 70/716 loss=10.8788
+08/11/2026 19:46:08 - INFO - __main__ - [BERT + CRF] epoch 6 step 120/716 loss=12.1544
+08/11/2026 19:46:28 - INFO - __main__ - [BERT + CRF] epoch 6 step 170/716 loss=9.7714
+08/11/2026 19:46:48 - INFO - __main__ - [BERT + CRF] epoch 6 step 220/716 loss=9.6184
+08/11/2026 19:47:08 - INFO - __main__ - [BERT + CRF] epoch 6 step 270/716 loss=11.5482
+08/11/2026 19:47:28 - INFO - __main__ - [BERT + CRF] epoch 6 step 320/716 loss=14.4219
+08/11/2026 19:47:47 - INFO - __main__ - [BERT + CRF] epoch 6 step 370/716 loss=14.6036
+08/11/2026 19:48:07 - INFO - __main__ - [BERT + CRF] epoch 6 step 420/716 loss=8.4183
+08/11/2026 19:48:27 - INFO - __main__ - [BERT + CRF] epoch 6 step 470/716 loss=12.7796
+08/11/2026 19:48:46 - INFO - __main__ - [BERT + CRF] epoch 6 step 520/716 loss=10.0917
+08/11/2026 19:49:06 - INFO - __main__ - [BERT + CRF] epoch 6 step 570/716 loss=10.9262
+08/11/2026 19:49:25 - INFO - __main__ - [BERT + CRF] epoch 6 step 620/716 loss=10.9106
+08/11/2026 19:49:45 - INFO - __main__ - [BERT + CRF] epoch 6 step 670/716 loss=9.8628
+08/11/2026 19:50:03 - INFO - __main__ - [BERT + CRF] Epoch 6 xong sau 282.4s, avg_loss=10.9248
+08/11/2026 19:50:22 - INFO - __main__ - [BERT + CRF] Epoch 6 - Valid macro F1 = 0.4917
+              precision    recall  f1-score   support
+
+      PERIOD     0.7670    0.6283    0.6907     17715
+       COMMA     0.6813    0.6624    0.6717     13356
+       COLON     0.6290    0.1219    0.2042       320
+       QMARK     0.7976    0.7945    0.7960      3868
+      EXCLAM     0.4978    0.7165    0.5874      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6808    0.6643    0.6724     41733
+   macro avg     0.5621    0.4872    0.4917     41733
+weighted avg     0.6995    0.6643    0.6746     41733
+
+08/11/2026 19:50:26 - INFO - __main__ - -> [BERT + CRF] best checkpoint mới, macro F1 = 0.4917
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:50:27 - INFO - __main__ - [BERT + CRF] epoch 7 step 4/716 loss=11.1819
+08/11/2026 19:50:47 - INFO - __main__ - [BERT + CRF] epoch 7 step 54/716 loss=9.7365
+08/11/2026 19:51:07 - INFO - __main__ - [BERT + CRF] epoch 7 step 104/716 loss=11.0126
+08/11/2026 19:51:26 - INFO - __main__ - [BERT + CRF] epoch 7 step 154/716 loss=9.5919
+08/11/2026 19:51:46 - INFO - __main__ - [BERT + CRF] epoch 7 step 204/716 loss=9.3735
+08/11/2026 19:52:06 - INFO - __main__ - [BERT + CRF] epoch 7 step 254/716 loss=10.2716
+08/11/2026 19:52:26 - INFO - __main__ - [BERT + CRF] epoch 7 step 304/716 loss=9.7690
+08/11/2026 19:52:47 - INFO - __main__ - [BERT + CRF] epoch 7 step 354/716 loss=7.3353
+08/11/2026 19:53:07 - INFO - __main__ - [BERT + CRF] epoch 7 step 404/716 loss=8.6581
+08/11/2026 19:53:27 - INFO - __main__ - [BERT + CRF] epoch 7 step 454/716 loss=9.6246
+08/11/2026 19:53:46 - INFO - __main__ - [BERT + CRF] epoch 7 step 504/716 loss=10.6958
+08/11/2026 19:54:06 - INFO - __main__ - [BERT + CRF] epoch 7 step 554/716 loss=9.5123
+08/11/2026 19:54:26 - INFO - __main__ - [BERT + CRF] epoch 7 step 604/716 loss=7.5145
+08/11/2026 19:54:46 - INFO - __main__ - [BERT + CRF] epoch 7 step 654/716 loss=12.1031
+08/11/2026 19:55:06 - INFO - __main__ - [BERT + CRF] epoch 7 step 704/716 loss=9.6688
+08/11/2026 19:55:11 - INFO - __main__ - [BERT + CRF] Epoch 7 xong sau 285.4s, avg_loss=9.9838
+08/11/2026 19:55:30 - INFO - __main__ - [BERT + CRF] Epoch 7 - Valid macro F1 = 0.4978
+              precision    recall  f1-score   support
+
+      PERIOD     0.7474    0.6594    0.7007     17715
+       COMMA     0.6947    0.6482    0.6706     13356
+       COLON     0.6027    0.1375    0.2239       320
+       QMARK     0.7862    0.8108    0.7983      3868
+      EXCLAM     0.5155    0.6988    0.5933      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6852    0.6718    0.6784     41733
+   macro avg     0.5577    0.4924    0.4978     41733
+weighted avg     0.6970    0.6718    0.6797     41733
+
+08/11/2026 19:55:34 - INFO - __main__ - -> [BERT + CRF] best checkpoint mới, macro F1 = 0.4978
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:55:49 - INFO - __main__ - [BERT + CRF] epoch 8 step 38/716 loss=9.4006
+08/11/2026 19:56:09 - INFO - __main__ - [BERT + CRF] epoch 8 step 88/716 loss=8.4783
+08/11/2026 19:56:28 - INFO - __main__ - [BERT + CRF] epoch 8 step 138/716 loss=10.0156
+08/11/2026 19:56:48 - INFO - __main__ - [BERT + CRF] epoch 8 step 188/716 loss=10.9239
+08/11/2026 19:57:08 - INFO - __main__ - [BERT + CRF] epoch 8 step 238/716 loss=9.7239
+08/11/2026 19:57:29 - INFO - __main__ - [BERT + CRF] epoch 8 step 288/716 loss=10.8935
+08/11/2026 19:57:49 - INFO - __main__ - [BERT + CRF] epoch 8 step 338/716 loss=6.8732
+08/11/2026 19:58:09 - INFO - __main__ - [BERT + CRF] epoch 8 step 388/716 loss=11.0291
+08/11/2026 19:58:30 - INFO - __main__ - [BERT + CRF] epoch 8 step 438/716 loss=8.2177
+08/11/2026 19:58:50 - INFO - __main__ - [BERT + CRF] epoch 8 step 488/716 loss=8.8052
+08/11/2026 19:59:10 - INFO - __main__ - [BERT + CRF] epoch 8 step 538/716 loss=10.3483
+08/11/2026 19:59:30 - INFO - __main__ - [BERT + CRF] epoch 8 step 588/716 loss=10.3583
+08/11/2026 19:59:50 - INFO - __main__ - [BERT + CRF] epoch 8 step 638/716 loss=11.0501
+08/11/2026 20:00:10 - INFO - __main__ - [BERT + CRF] epoch 8 step 688/716 loss=9.7742
+08/11/2026 20:00:22 - INFO - __main__ - [BERT + CRF] Epoch 8 xong sau 288.1s, avg_loss=9.3884
+08/11/2026 20:00:41 - INFO - __main__ - [BERT + CRF] Epoch 8 - Valid macro F1 = 0.4971
+              precision    recall  f1-score   support
+
+      PERIOD     0.7580    0.6414    0.6949     17715
+       COMMA     0.6906    0.6535    0.6715     13356
+       COLON     0.6143    0.1344    0.2205       320
+       QMARK     0.7974    0.8071    0.8023      3868
+      EXCLAM     0.5016    0.7259    0.5933      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6822    0.6698    0.6759     41733
+   macro avg     0.5603    0.4937    0.4971     41733
+weighted avg     0.6992    0.6698    0.6779     41733
+
+08/11/2026 20:00:43 - INFO - __main__ - [BERT + CRF] Train xong. Best macro F1 = 0.4978. Checkpoint tại /root/phopunct/outputs/bert_novels

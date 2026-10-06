@@ -1,0 +1,1280 @@
+08/11/2026 16:33:59 - INFO - __main__ - === mBERT + Bi-LSTM | backbone=bert-base-multilingual-cased ===
+08/11/2026 16:33:59 - INFO - __main__ - {
+  "model_key": "mbert",
+  "use_bilstm": true,
+  "data_dir": "/root/phopunct/data/punctuation/News",
+  "output_dir": "/root/phopunct/outputs/mbert_bilstm_plain_news",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/11/2026 16:33:59 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 16:33:59 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 16:33:59 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 16:34:00 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/11/2026 16:34:00 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 16:34:00 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/11/2026 16:34:00 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 16:34:00 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased "HTTP/1.1 200 OK"
+08/11/2026 16:34:00 - INFO - __main__ - Đang nạp dữ liệu train...
+08/11/2026 16:34:55 - INFO - punc_dataset_word - convert_examples_to_features: 108000 examples -> 108000 features (0 rỗng bị bỏ, 30 bị truncate)
+08/11/2026 16:35:01 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/11/2026 16:35:19 - INFO - punc_dataset_word - convert_examples_to_features: 36191 examples -> 36191 features (0 rỗng bị bỏ, 11 bị truncate)
+08/11/2026 16:35:21 - INFO - __main__ - Train: 108000 features | Valid: 36191 features
+08/11/2026 16:35:22 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/config.json "HTTP/1.1 200 OK"
+08/11/2026 16:35:22 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 8034.37it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/root/phopunct/baseline_plain.py:247: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+/root/phopunct/baseline_plain.py:274: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+08/11/2026 16:35:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 50/6750 loss=1.8132
+08/11/2026 16:35:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 100/6750 loss=1.2376
+08/11/2026 16:35:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 150/6750 loss=0.6319
+08/11/2026 16:35:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 200/6750 loss=0.4537
+08/11/2026 16:35:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 250/6750 loss=0.3567
+08/11/2026 16:35:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 300/6750 loss=0.3513
+08/11/2026 16:36:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 350/6750 loss=0.3884
+08/11/2026 16:36:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 400/6750 loss=0.3616
+08/11/2026 16:36:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 450/6750 loss=0.3621
+08/11/2026 16:36:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 500/6750 loss=0.3392
+08/11/2026 16:36:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 550/6750 loss=0.3557
+08/11/2026 16:36:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 600/6750 loss=0.3097
+08/11/2026 16:36:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 650/6750 loss=0.3054
+08/11/2026 16:36:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 700/6750 loss=0.2565
+08/11/2026 16:36:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 750/6750 loss=0.2568
+08/11/2026 16:36:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 800/6750 loss=0.1943
+08/11/2026 16:36:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 850/6750 loss=0.2107
+08/11/2026 16:37:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 900/6750 loss=0.2086
+08/11/2026 16:37:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 950/6750 loss=0.2029
+08/11/2026 16:37:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1000/6750 loss=0.2328
+08/11/2026 16:37:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1050/6750 loss=0.2407
+08/11/2026 16:37:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1100/6750 loss=0.2059
+08/11/2026 16:37:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1150/6750 loss=0.1894
+08/11/2026 16:37:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1200/6750 loss=0.2202
+08/11/2026 16:37:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1250/6750 loss=0.2303
+08/11/2026 16:37:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1300/6750 loss=0.1790
+08/11/2026 16:37:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1350/6750 loss=0.1945
+08/11/2026 16:37:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1400/6750 loss=0.1689
+08/11/2026 16:38:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1450/6750 loss=0.1960
+08/11/2026 16:38:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1500/6750 loss=0.1877
+08/11/2026 16:38:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1550/6750 loss=0.1685
+08/11/2026 16:38:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1600/6750 loss=0.1686
+08/11/2026 16:38:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1650/6750 loss=0.1567
+08/11/2026 16:38:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1700/6750 loss=0.1608
+08/11/2026 16:38:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1750/6750 loss=0.1709
+08/11/2026 16:38:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1800/6750 loss=0.1668
+08/11/2026 16:38:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1850/6750 loss=0.1596
+08/11/2026 16:38:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1900/6750 loss=0.1697
+08/11/2026 16:38:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 1950/6750 loss=0.1556
+08/11/2026 16:39:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2000/6750 loss=0.1555
+08/11/2026 16:39:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2050/6750 loss=0.1086
+08/11/2026 16:39:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2100/6750 loss=0.1388
+08/11/2026 16:39:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2150/6750 loss=0.1311
+08/11/2026 16:39:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2200/6750 loss=0.1467
+08/11/2026 16:39:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2250/6750 loss=0.1829
+08/11/2026 16:39:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2300/6750 loss=0.1556
+08/11/2026 16:39:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2350/6750 loss=0.1796
+08/11/2026 16:39:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2400/6750 loss=0.1996
+08/11/2026 16:39:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2450/6750 loss=0.2185
+08/11/2026 16:39:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2500/6750 loss=0.1776
+08/11/2026 16:40:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2550/6750 loss=0.1541
+08/11/2026 16:40:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2600/6750 loss=0.1473
+08/11/2026 16:40:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2650/6750 loss=0.1468
+08/11/2026 16:40:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2700/6750 loss=0.1429
+08/11/2026 16:40:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2750/6750 loss=0.1424
+08/11/2026 16:40:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2800/6750 loss=0.1093
+08/11/2026 16:40:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2850/6750 loss=0.1070
+08/11/2026 16:40:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2900/6750 loss=0.1330
+08/11/2026 16:40:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 2950/6750 loss=0.1201
+08/11/2026 16:40:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3000/6750 loss=0.0941
+08/11/2026 16:40:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3050/6750 loss=0.1284
+08/11/2026 16:41:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3100/6750 loss=0.1054
+08/11/2026 16:41:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3150/6750 loss=0.1439
+08/11/2026 16:41:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3200/6750 loss=0.1221
+08/11/2026 16:41:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3250/6750 loss=0.1573
+08/11/2026 16:41:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3300/6750 loss=0.1222
+08/11/2026 16:41:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3350/6750 loss=0.1744
+08/11/2026 16:41:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3400/6750 loss=0.1403
+08/11/2026 16:41:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3450/6750 loss=0.1343
+08/11/2026 16:41:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3500/6750 loss=0.1289
+08/11/2026 16:41:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3550/6750 loss=0.1502
+08/11/2026 16:41:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3600/6750 loss=0.1429
+08/11/2026 16:42:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3650/6750 loss=0.1572
+08/11/2026 16:42:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3700/6750 loss=0.1462
+08/11/2026 16:42:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3750/6750 loss=0.1604
+08/11/2026 16:42:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3800/6750 loss=0.1357
+08/11/2026 16:42:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3850/6750 loss=0.0975
+08/11/2026 16:42:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3900/6750 loss=0.1068
+08/11/2026 16:42:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 3950/6750 loss=0.1293
+08/11/2026 16:42:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4000/6750 loss=0.1250
+08/11/2026 16:42:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4050/6750 loss=0.1570
+08/11/2026 16:42:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4100/6750 loss=0.1042
+08/11/2026 16:42:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4150/6750 loss=0.1461
+08/11/2026 16:43:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4200/6750 loss=0.1462
+08/11/2026 16:43:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4250/6750 loss=0.1321
+08/11/2026 16:43:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4300/6750 loss=0.1358
+08/11/2026 16:43:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4350/6750 loss=0.1249
+08/11/2026 16:43:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4400/6750 loss=0.1216
+08/11/2026 16:43:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4450/6750 loss=0.1164
+08/11/2026 16:43:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4500/6750 loss=0.0986
+08/11/2026 16:43:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4550/6750 loss=0.1070
+08/11/2026 16:43:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4600/6750 loss=0.1077
+08/11/2026 16:43:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4650/6750 loss=0.1430
+08/11/2026 16:44:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4700/6750 loss=0.1316
+08/11/2026 16:44:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4750/6750 loss=0.1380
+08/11/2026 16:44:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4800/6750 loss=0.1375
+08/11/2026 16:44:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4850/6750 loss=0.1215
+08/11/2026 16:44:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4900/6750 loss=0.1148
+08/11/2026 16:44:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 4950/6750 loss=0.1225
+08/11/2026 16:44:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5000/6750 loss=0.1435
+08/11/2026 16:44:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5050/6750 loss=0.1094
+08/11/2026 16:44:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5100/6750 loss=0.1500
+08/11/2026 16:44:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5150/6750 loss=0.1327
+08/11/2026 16:44:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5200/6750 loss=0.1425
+08/11/2026 16:45:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5250/6750 loss=0.1534
+08/11/2026 16:45:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5300/6750 loss=0.1373
+08/11/2026 16:45:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5350/6750 loss=0.1638
+08/11/2026 16:45:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5400/6750 loss=0.1394
+08/11/2026 16:45:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5450/6750 loss=0.1202
+08/11/2026 16:45:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5500/6750 loss=0.1230
+08/11/2026 16:45:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5550/6750 loss=0.0900
+08/11/2026 16:45:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5600/6750 loss=0.1209
+08/11/2026 16:45:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5650/6750 loss=0.1267
+08/11/2026 16:45:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5700/6750 loss=0.1280
+08/11/2026 16:45:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5750/6750 loss=0.1149
+08/11/2026 16:46:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5800/6750 loss=0.1105
+08/11/2026 16:46:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5850/6750 loss=0.1133
+08/11/2026 16:46:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5900/6750 loss=0.1190
+08/11/2026 16:46:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 5950/6750 loss=0.1122
+08/11/2026 16:46:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6000/6750 loss=0.1300
+08/11/2026 16:46:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6050/6750 loss=0.1363
+08/11/2026 16:46:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6100/6750 loss=0.1160
+08/11/2026 16:46:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6150/6750 loss=0.1072
+08/11/2026 16:46:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6200/6750 loss=0.1017
+08/11/2026 16:46:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6250/6750 loss=0.1143
+08/11/2026 16:46:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6300/6750 loss=0.1185
+08/11/2026 16:47:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6350/6750 loss=0.1243
+08/11/2026 16:47:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6400/6750 loss=0.1305
+08/11/2026 16:47:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6450/6750 loss=0.1571
+08/11/2026 16:47:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6500/6750 loss=0.0905
+08/11/2026 16:47:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6550/6750 loss=0.1390
+08/11/2026 16:47:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6600/6750 loss=0.1073
+08/11/2026 16:47:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6650/6750 loss=0.1117
+08/11/2026 16:47:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6700/6750 loss=0.1346
+08/11/2026 16:47:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 6750/6750 loss=0.1099
+08/11/2026 16:47:46 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 1 xong sau 743.7s, avg_loss=0.1897
+08/11/2026 16:51:39 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 1 - Valid macro F1 = 0.3967
+              precision    recall  f1-score   support
+
+      PERIOD     0.7945    0.8016    0.7980    140159
+       COMMA     0.6804    0.6321    0.6554    162055
+       COLON     0.6046    0.2923    0.3941     10825
+       QMARK     0.5607    0.4977    0.5273      4884
+      EXCLAM     1.0000    0.0008    0.0016      2556
+   SEMICOLON     1.0000    0.0021    0.0041      1944
+
+   micro avg     0.7309    0.6835    0.7064    322423
+   macro avg     0.7734    0.3711    0.3967    322423
+weighted avg     0.7301    0.6835    0.6976    322423
+
+08/11/2026 16:51:42 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.3967
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:51:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 50/6750 loss=0.0908
+08/11/2026 16:51:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 100/6750 loss=0.0948
+08/11/2026 16:51:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 150/6750 loss=0.1035
+08/11/2026 16:52:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 200/6750 loss=0.0995
+08/11/2026 16:52:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 250/6750 loss=0.1308
+08/11/2026 16:52:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 300/6750 loss=0.0914
+08/11/2026 16:52:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 350/6750 loss=0.0896
+08/11/2026 16:52:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 400/6750 loss=0.1299
+08/11/2026 16:52:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 450/6750 loss=0.0922
+08/11/2026 16:52:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 500/6750 loss=0.1159
+08/11/2026 16:52:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 550/6750 loss=0.1256
+08/11/2026 16:52:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 600/6750 loss=0.1115
+08/11/2026 16:52:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 650/6750 loss=0.1424
+08/11/2026 16:52:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 700/6750 loss=0.1136
+08/11/2026 16:53:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 750/6750 loss=0.1067
+08/11/2026 16:53:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 800/6750 loss=0.1154
+08/11/2026 16:53:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 850/6750 loss=0.1185
+08/11/2026 16:53:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 900/6750 loss=0.1368
+08/11/2026 16:53:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 950/6750 loss=0.0777
+08/11/2026 16:53:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1000/6750 loss=0.1193
+08/11/2026 16:53:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1050/6750 loss=0.1054
+08/11/2026 16:53:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1100/6750 loss=0.1009
+08/11/2026 16:53:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1150/6750 loss=0.1225
+08/11/2026 16:53:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1200/6750 loss=0.0783
+08/11/2026 16:53:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1250/6750 loss=0.0975
+08/11/2026 16:54:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1300/6750 loss=0.1192
+08/11/2026 16:54:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1350/6750 loss=0.1111
+08/11/2026 16:54:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1400/6750 loss=0.1241
+08/11/2026 16:54:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1450/6750 loss=0.0992
+08/11/2026 16:54:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1500/6750 loss=0.1036
+08/11/2026 16:54:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1550/6750 loss=0.0966
+08/11/2026 16:54:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1600/6750 loss=0.1364
+08/11/2026 16:54:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1650/6750 loss=0.1237
+08/11/2026 16:54:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1700/6750 loss=0.0908
+08/11/2026 16:54:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1750/6750 loss=0.0973
+08/11/2026 16:55:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1800/6750 loss=0.1282
+08/11/2026 16:55:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1850/6750 loss=0.0951
+08/11/2026 16:55:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1900/6750 loss=0.1203
+08/11/2026 16:55:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 1950/6750 loss=0.0960
+08/11/2026 16:55:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2000/6750 loss=0.0845
+08/11/2026 16:55:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2050/6750 loss=0.1132
+08/11/2026 16:55:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2100/6750 loss=0.1248
+08/11/2026 16:55:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2150/6750 loss=0.1087
+08/11/2026 16:55:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2200/6750 loss=0.0913
+08/11/2026 16:55:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2250/6750 loss=0.0838
+08/11/2026 16:55:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2300/6750 loss=0.0877
+08/11/2026 16:56:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2350/6750 loss=0.0865
+08/11/2026 16:56:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2400/6750 loss=0.1096
+08/11/2026 16:56:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2450/6750 loss=0.1085
+08/11/2026 16:56:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2500/6750 loss=0.0791
+08/11/2026 16:56:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2550/6750 loss=0.1543
+08/11/2026 16:56:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2600/6750 loss=0.0776
+08/11/2026 16:56:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2650/6750 loss=0.1232
+08/11/2026 16:56:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2700/6750 loss=0.1279
+08/11/2026 16:56:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2750/6750 loss=0.1002
+08/11/2026 16:56:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2800/6750 loss=0.1175
+08/11/2026 16:56:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2850/6750 loss=0.0863
+08/11/2026 16:57:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2900/6750 loss=0.0967
+08/11/2026 16:57:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 2950/6750 loss=0.0852
+08/11/2026 16:57:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3000/6750 loss=0.1162
+08/11/2026 16:57:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3050/6750 loss=0.1056
+08/11/2026 16:57:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3100/6750 loss=0.0895
+08/11/2026 16:57:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3150/6750 loss=0.0847
+08/11/2026 16:57:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3200/6750 loss=0.0965
+08/11/2026 16:57:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3250/6750 loss=0.0951
+08/11/2026 16:57:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3300/6750 loss=0.0991
+08/11/2026 16:57:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3350/6750 loss=0.1172
+08/11/2026 16:57:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3400/6750 loss=0.0787
+08/11/2026 16:58:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3450/6750 loss=0.1059
+08/11/2026 16:58:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3500/6750 loss=0.1217
+08/11/2026 16:58:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3550/6750 loss=0.1066
+08/11/2026 16:58:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3600/6750 loss=0.1194
+08/11/2026 16:58:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3650/6750 loss=0.1227
+08/11/2026 16:58:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3700/6750 loss=0.0750
+08/11/2026 16:58:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3750/6750 loss=0.0812
+08/11/2026 16:58:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3800/6750 loss=0.0897
+08/11/2026 16:58:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3850/6750 loss=0.1051
+08/11/2026 16:58:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3900/6750 loss=0.0940
+08/11/2026 16:58:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 3950/6750 loss=0.1233
+08/11/2026 16:59:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4000/6750 loss=0.0652
+08/11/2026 16:59:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4050/6750 loss=0.0933
+08/11/2026 16:59:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4100/6750 loss=0.1135
+08/11/2026 16:59:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4150/6750 loss=0.1162
+08/11/2026 16:59:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4200/6750 loss=0.1208
+08/11/2026 16:59:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4250/6750 loss=0.1089
+08/11/2026 16:59:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4300/6750 loss=0.0901
+08/11/2026 16:59:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4350/6750 loss=0.0863
+08/11/2026 16:59:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4400/6750 loss=0.0828
+08/11/2026 16:59:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4450/6750 loss=0.0915
+08/11/2026 16:59:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4500/6750 loss=0.1125
+08/11/2026 17:00:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4550/6750 loss=0.0823
+08/11/2026 17:00:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4600/6750 loss=0.0821
+08/11/2026 17:00:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4650/6750 loss=0.1266
+08/11/2026 17:00:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4700/6750 loss=0.1093
+08/11/2026 17:00:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4750/6750 loss=0.1010
+08/11/2026 17:00:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4800/6750 loss=0.0904
+08/11/2026 17:00:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4850/6750 loss=0.1020
+08/11/2026 17:00:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4900/6750 loss=0.0816
+08/11/2026 17:00:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 4950/6750 loss=0.0792
+08/11/2026 17:00:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5000/6750 loss=0.1128
+08/11/2026 17:00:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5050/6750 loss=0.1144
+08/11/2026 17:01:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5100/6750 loss=0.1299
+08/11/2026 17:01:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5150/6750 loss=0.1018
+08/11/2026 17:01:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5200/6750 loss=0.0911
+08/11/2026 17:01:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5250/6750 loss=0.0897
+08/11/2026 17:01:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5300/6750 loss=0.0952
+08/11/2026 17:01:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5350/6750 loss=0.1040
+08/11/2026 17:01:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5400/6750 loss=0.1029
+08/11/2026 17:01:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5450/6750 loss=0.0961
+08/11/2026 17:01:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5500/6750 loss=0.0901
+08/11/2026 17:01:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5550/6750 loss=0.1066
+08/11/2026 17:01:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5600/6750 loss=0.0911
+08/11/2026 17:02:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5650/6750 loss=0.1026
+08/11/2026 17:02:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5700/6750 loss=0.0873
+08/11/2026 17:02:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5750/6750 loss=0.1377
+08/11/2026 17:02:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5800/6750 loss=0.0789
+08/11/2026 17:02:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5850/6750 loss=0.0979
+08/11/2026 17:02:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5900/6750 loss=0.0993
+08/11/2026 17:02:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 5950/6750 loss=0.0875
+08/11/2026 17:02:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6000/6750 loss=0.1053
+08/11/2026 17:02:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6050/6750 loss=0.1342
+08/11/2026 17:02:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6100/6750 loss=0.1276
+08/11/2026 17:03:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6150/6750 loss=0.1122
+08/11/2026 17:03:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6200/6750 loss=0.0959
+08/11/2026 17:03:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6250/6750 loss=0.0806
+08/11/2026 17:03:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6300/6750 loss=0.1149
+08/11/2026 17:03:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6350/6750 loss=0.1249
+08/11/2026 17:03:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6400/6750 loss=0.0980
+08/11/2026 17:03:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6450/6750 loss=0.0723
+08/11/2026 17:03:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6500/6750 loss=0.1017
+08/11/2026 17:03:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6550/6750 loss=0.0909
+08/11/2026 17:03:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6600/6750 loss=0.1121
+08/11/2026 17:03:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6650/6750 loss=0.1119
+08/11/2026 17:04:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6700/6750 loss=0.1038
+08/11/2026 17:04:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 6750/6750 loss=0.0673
+08/11/2026 17:04:06 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 2 xong sau 744.0s, avg_loss=0.1031
+08/11/2026 17:07:58 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 2 - Valid macro F1 = 0.4773
+              precision    recall  f1-score   support
+
+      PERIOD     0.8252    0.8207    0.8230    140159
+       COMMA     0.7363    0.6235    0.6752    162055
+       COLON     0.5769    0.4702    0.5181     10825
+       QMARK     0.7152    0.5070    0.5933      4884
+      EXCLAM     0.5395    0.0454    0.0837      2556
+   SEMICOLON     0.4319    0.1060    0.1702      1944
+
+   micro avg     0.7733    0.6946    0.7319    322423
+   macro avg     0.6375    0.4288    0.4773    322423
+weighted avg     0.7658    0.6946    0.7252    322423
+
+08/11/2026 17:08:02 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.4773
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 17:08:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 50/6750 loss=0.0916
+08/11/2026 17:08:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 100/6750 loss=0.1027
+08/11/2026 17:08:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 150/6750 loss=0.1132
+08/11/2026 17:08:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 200/6750 loss=0.0849
+08/11/2026 17:08:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 250/6750 loss=0.0813
+08/11/2026 17:08:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 300/6750 loss=0.0716
+08/11/2026 17:08:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 350/6750 loss=0.0759
+08/11/2026 17:08:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 400/6750 loss=0.0744
+08/11/2026 17:08:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 450/6750 loss=0.0848
+08/11/2026 17:08:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 500/6750 loss=0.0983
+08/11/2026 17:09:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 550/6750 loss=0.0541
+08/11/2026 17:09:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 600/6750 loss=0.0823
+08/11/2026 17:09:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 650/6750 loss=0.0826
+08/11/2026 17:09:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 700/6750 loss=0.0822
+08/11/2026 17:09:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 750/6750 loss=0.0878
+08/11/2026 17:09:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 800/6750 loss=0.0970
+08/11/2026 17:09:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 850/6750 loss=0.1060
+08/11/2026 17:09:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 900/6750 loss=0.0960
+08/11/2026 17:09:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 950/6750 loss=0.0786
+08/11/2026 17:09:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1000/6750 loss=0.0775
+08/11/2026 17:09:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1050/6750 loss=0.0836
+08/11/2026 17:10:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1100/6750 loss=0.0979
+08/11/2026 17:10:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1150/6750 loss=0.0766
+08/11/2026 17:10:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1200/6750 loss=0.0938
+08/11/2026 17:10:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1250/6750 loss=0.0761
+08/11/2026 17:10:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1300/6750 loss=0.0973
+08/11/2026 17:10:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1350/6750 loss=0.0933
+08/11/2026 17:10:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1400/6750 loss=0.0759
+08/11/2026 17:10:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1450/6750 loss=0.0801
+08/11/2026 17:10:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1500/6750 loss=0.0932
+08/11/2026 17:10:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1550/6750 loss=0.0986
+08/11/2026 17:10:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1600/6750 loss=0.0955
+08/11/2026 17:11:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1650/6750 loss=0.0892
+08/11/2026 17:11:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1700/6750 loss=0.0777
+08/11/2026 17:11:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1750/6750 loss=0.1098
+08/11/2026 17:11:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1800/6750 loss=0.0579
+08/11/2026 17:11:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1850/6750 loss=0.1030
+08/11/2026 17:11:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1900/6750 loss=0.0898
+08/11/2026 17:11:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 1950/6750 loss=0.0686
+08/11/2026 17:11:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2000/6750 loss=0.1047
+08/11/2026 17:11:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2050/6750 loss=0.1087
+08/11/2026 17:11:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2100/6750 loss=0.0691
+08/11/2026 17:11:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2150/6750 loss=0.1058
+08/11/2026 17:12:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2200/6750 loss=0.0635
+08/11/2026 17:12:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2250/6750 loss=0.0683
+08/11/2026 17:12:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2300/6750 loss=0.1181
+08/11/2026 17:12:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2350/6750 loss=0.0835
+08/11/2026 17:12:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2400/6750 loss=0.0807
+08/11/2026 17:12:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2450/6750 loss=0.1139
+08/11/2026 17:12:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2500/6750 loss=0.1103
+08/11/2026 17:12:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2550/6750 loss=0.0771
+08/11/2026 17:12:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2600/6750 loss=0.0940
+08/11/2026 17:12:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2650/6750 loss=0.0905
+08/11/2026 17:12:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2700/6750 loss=0.0674
+08/11/2026 17:13:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2750/6750 loss=0.0856
+08/11/2026 17:13:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2800/6750 loss=0.0668
+08/11/2026 17:13:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2850/6750 loss=0.1017
+08/11/2026 17:13:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2900/6750 loss=0.0947
+08/11/2026 17:13:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 2950/6750 loss=0.0789
+08/11/2026 17:13:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3000/6750 loss=0.0794
+08/11/2026 17:13:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3050/6750 loss=0.1047
+08/11/2026 17:13:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3100/6750 loss=0.0788
+08/11/2026 17:13:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3150/6750 loss=0.0927
+08/11/2026 17:13:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3200/6750 loss=0.0994
+08/11/2026 17:14:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3250/6750 loss=0.1052
+08/11/2026 17:14:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3300/6750 loss=0.1317
+08/11/2026 17:14:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3350/6750 loss=0.0894
+08/11/2026 17:14:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3400/6750 loss=0.0846
+08/11/2026 17:14:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3450/6750 loss=0.0798
+08/11/2026 17:14:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3500/6750 loss=0.1129
+08/11/2026 17:14:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3550/6750 loss=0.0753
+08/11/2026 17:14:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3600/6750 loss=0.0846
+08/11/2026 17:14:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3650/6750 loss=0.0943
+08/11/2026 17:14:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3700/6750 loss=0.0731
+08/11/2026 17:14:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3750/6750 loss=0.0875
+08/11/2026 17:15:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3800/6750 loss=0.0934
+08/11/2026 17:15:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3850/6750 loss=0.0903
+08/11/2026 17:15:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3900/6750 loss=0.0938
+08/11/2026 17:15:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 3950/6750 loss=0.0894
+08/11/2026 17:15:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4000/6750 loss=0.0686
+08/11/2026 17:15:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4050/6750 loss=0.0855
+08/11/2026 17:15:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4100/6750 loss=0.0957
+08/11/2026 17:15:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4150/6750 loss=0.0644
+08/11/2026 17:15:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4200/6750 loss=0.1086
+08/11/2026 17:15:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4250/6750 loss=0.0917
+08/11/2026 17:15:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4300/6750 loss=0.0831
+08/11/2026 17:16:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4350/6750 loss=0.0881
+08/11/2026 17:16:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4400/6750 loss=0.0585
+08/11/2026 17:16:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4450/6750 loss=0.1145
+08/11/2026 17:16:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4500/6750 loss=0.1254
+08/11/2026 17:16:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4550/6750 loss=0.0945
+08/11/2026 17:16:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4600/6750 loss=0.1260
+08/11/2026 17:16:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4650/6750 loss=0.1067
+08/11/2026 17:16:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4700/6750 loss=0.0687
+08/11/2026 17:16:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4750/6750 loss=0.0865
+08/11/2026 17:16:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4800/6750 loss=0.0732
+08/11/2026 17:16:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4850/6750 loss=0.0793
+08/11/2026 17:17:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4900/6750 loss=0.0849
+08/11/2026 17:17:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 4950/6750 loss=0.1186
+08/11/2026 17:17:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5000/6750 loss=0.0895
+08/11/2026 17:17:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5050/6750 loss=0.0889
+08/11/2026 17:17:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5100/6750 loss=0.0831
+08/11/2026 17:17:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5150/6750 loss=0.0747
+08/11/2026 17:17:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5200/6750 loss=0.1077
+08/11/2026 17:17:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5250/6750 loss=0.0834
+08/11/2026 17:17:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5300/6750 loss=0.1008
+08/11/2026 17:17:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5350/6750 loss=0.0985
+08/11/2026 17:17:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5400/6750 loss=0.0894
+08/11/2026 17:18:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5450/6750 loss=0.0855
+08/11/2026 17:18:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5500/6750 loss=0.0818
+08/11/2026 17:18:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5550/6750 loss=0.0924
+08/11/2026 17:18:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5600/6750 loss=0.0932
+08/11/2026 17:18:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5650/6750 loss=0.0679
+08/11/2026 17:18:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5700/6750 loss=0.0827
+08/11/2026 17:18:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5750/6750 loss=0.0896
+08/11/2026 17:18:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5800/6750 loss=0.0959
+08/11/2026 17:18:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5850/6750 loss=0.0977
+08/11/2026 17:18:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5900/6750 loss=0.0877
+08/11/2026 17:18:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 5950/6750 loss=0.0590
+08/11/2026 17:19:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6000/6750 loss=0.0771
+08/11/2026 17:19:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6050/6750 loss=0.1117
+08/11/2026 17:19:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6100/6750 loss=0.0941
+08/11/2026 17:19:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6150/6750 loss=0.1183
+08/11/2026 17:19:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6200/6750 loss=0.0884
+08/11/2026 17:19:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6250/6750 loss=0.0736
+08/11/2026 17:19:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6300/6750 loss=0.1011
+08/11/2026 17:19:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6350/6750 loss=0.0808
+08/11/2026 17:19:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6400/6750 loss=0.0738
+08/11/2026 17:19:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6450/6750 loss=0.0746
+08/11/2026 17:19:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6500/6750 loss=0.0865
+08/11/2026 17:20:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6550/6750 loss=0.0768
+08/11/2026 17:20:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6600/6750 loss=0.1176
+08/11/2026 17:20:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6650/6750 loss=0.0837
+08/11/2026 17:20:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6700/6750 loss=0.0940
+08/11/2026 17:20:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 6750/6750 loss=0.0807
+08/11/2026 17:20:26 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 3 xong sau 744.2s, avg_loss=0.0885
+08/11/2026 17:24:19 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 3 - Valid macro F1 = 0.4908
+              precision    recall  f1-score   support
+
+      PERIOD     0.8182    0.8429    0.8304    140159
+       COMMA     0.7273    0.6628    0.6935    162055
+       COLON     0.6057    0.4742    0.5319     10825
+       QMARK     0.5993    0.6593    0.6279      4884
+      EXCLAM     0.5598    0.0751    0.1325      2556
+   SEMICOLON     0.5125    0.0736    0.1287      1944
+
+   micro avg     0.7641    0.7265    0.7448    322423
+   macro avg     0.6371    0.4646    0.4908    322423
+weighted avg     0.7582    0.7265    0.7387    322423
+
+08/11/2026 17:24:22 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.4908
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 17:24:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 50/6750 loss=0.0913
+08/11/2026 17:24:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 100/6750 loss=0.0963
+08/11/2026 17:24:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 150/6750 loss=0.0820
+08/11/2026 17:24:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 200/6750 loss=0.0795
+08/11/2026 17:24:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 250/6750 loss=0.0911
+08/11/2026 17:24:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 300/6750 loss=0.0728
+08/11/2026 17:25:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 350/6750 loss=0.0714
+08/11/2026 17:25:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 400/6750 loss=0.0878
+08/11/2026 17:25:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 450/6750 loss=0.0801
+08/11/2026 17:25:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 500/6750 loss=0.0981
+08/11/2026 17:25:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 550/6750 loss=0.0780
+08/11/2026 17:25:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 600/6750 loss=0.1058
+08/11/2026 17:25:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 650/6750 loss=0.0655
+08/11/2026 17:25:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 700/6750 loss=0.0714
+08/11/2026 17:25:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 750/6750 loss=0.1155
+08/11/2026 17:25:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 800/6750 loss=0.0893
+08/11/2026 17:25:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 850/6750 loss=0.0662
+08/11/2026 17:26:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 900/6750 loss=0.0657
+08/11/2026 17:26:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 950/6750 loss=0.0472
+08/11/2026 17:26:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1000/6750 loss=0.0779
+08/11/2026 17:26:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1050/6750 loss=0.1037
+08/11/2026 17:26:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1100/6750 loss=0.1009
+08/11/2026 17:26:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1150/6750 loss=0.0905
+08/11/2026 17:26:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1200/6750 loss=0.0708
+08/11/2026 17:26:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1250/6750 loss=0.0866
+08/11/2026 17:26:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1300/6750 loss=0.1219
+08/11/2026 17:26:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1350/6750 loss=0.0702
+08/11/2026 17:26:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1400/6750 loss=0.0842
+08/11/2026 17:27:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1450/6750 loss=0.0663
+08/11/2026 17:27:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1500/6750 loss=0.0749
+08/11/2026 17:27:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1550/6750 loss=0.0792
+08/11/2026 17:27:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1600/6750 loss=0.1024
+08/11/2026 17:27:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1650/6750 loss=0.1080
+08/11/2026 17:27:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1700/6750 loss=0.0807
+08/11/2026 17:27:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1750/6750 loss=0.0708
+08/11/2026 17:27:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1800/6750 loss=0.0780
+08/11/2026 17:27:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1850/6750 loss=0.0907
+08/11/2026 17:27:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1900/6750 loss=0.0583
+08/11/2026 17:27:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 1950/6750 loss=0.0727
+08/11/2026 17:28:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2000/6750 loss=0.0786
+08/11/2026 17:28:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2050/6750 loss=0.0744
+08/11/2026 17:28:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2100/6750 loss=0.0578
+08/11/2026 17:28:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2150/6750 loss=0.0627
+08/11/2026 17:28:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2200/6750 loss=0.0587
+08/11/2026 17:28:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2250/6750 loss=0.1004
+08/11/2026 17:28:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2300/6750 loss=0.0706
+08/11/2026 17:28:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2350/6750 loss=0.0899
+08/11/2026 17:28:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2400/6750 loss=0.0642
+08/11/2026 17:28:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2450/6750 loss=0.0847
+08/11/2026 17:28:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2500/6750 loss=0.1037
+08/11/2026 17:29:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2550/6750 loss=0.1184
+08/11/2026 17:29:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2600/6750 loss=0.0842
+08/11/2026 17:29:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2650/6750 loss=0.0731
+08/11/2026 17:29:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2700/6750 loss=0.0963
+08/11/2026 17:29:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2750/6750 loss=0.0434
+08/11/2026 17:29:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2800/6750 loss=0.0938
+08/11/2026 17:29:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2850/6750 loss=0.0846
+08/11/2026 17:29:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2900/6750 loss=0.0508
+08/11/2026 17:29:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2950/6750 loss=0.1160
+08/11/2026 17:29:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3000/6750 loss=0.0912
+08/11/2026 17:29:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3050/6750 loss=0.0815
+08/11/2026 17:30:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3100/6750 loss=0.1072
+08/11/2026 17:30:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3150/6750 loss=0.1057
+08/11/2026 17:30:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3200/6750 loss=0.0721
+08/11/2026 17:30:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3250/6750 loss=0.0807
+08/11/2026 17:30:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3300/6750 loss=0.0534
+08/11/2026 17:30:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3350/6750 loss=0.0668
+08/11/2026 17:30:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3400/6750 loss=0.0660
+08/11/2026 17:30:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3450/6750 loss=0.0739
+08/11/2026 17:30:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3500/6750 loss=0.0647
+08/11/2026 17:30:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3550/6750 loss=0.1103
+08/11/2026 17:30:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3600/6750 loss=0.0902
+08/11/2026 17:31:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3650/6750 loss=0.0907
+08/11/2026 17:31:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3700/6750 loss=0.0875
+08/11/2026 17:31:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3750/6750 loss=0.0642
+08/11/2026 17:31:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3800/6750 loss=0.0974
+08/11/2026 17:31:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3850/6750 loss=0.0916
+08/11/2026 17:31:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3900/6750 loss=0.0923
+08/11/2026 17:31:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 3950/6750 loss=0.0817
+08/11/2026 17:31:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4000/6750 loss=0.0736
+08/11/2026 17:31:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4050/6750 loss=0.0995
+08/11/2026 17:31:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4100/6750 loss=0.0874
+08/11/2026 17:32:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4150/6750 loss=0.0731
+08/11/2026 17:32:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4200/6750 loss=0.0888
+08/11/2026 17:32:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4250/6750 loss=0.0937
+08/11/2026 17:32:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4300/6750 loss=0.0766
+08/11/2026 17:32:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4350/6750 loss=0.0812
+08/11/2026 17:32:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4400/6750 loss=0.0967
+08/11/2026 17:32:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4450/6750 loss=0.0740
+08/11/2026 17:32:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4500/6750 loss=0.0652
+08/11/2026 17:32:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4550/6750 loss=0.0636
+08/11/2026 17:32:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4600/6750 loss=0.0666
+08/11/2026 17:32:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4650/6750 loss=0.0649
+08/11/2026 17:33:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4700/6750 loss=0.0877
+08/11/2026 17:33:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4750/6750 loss=0.0648
+08/11/2026 17:33:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4800/6750 loss=0.0782
+08/11/2026 17:33:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4850/6750 loss=0.0742
+08/11/2026 17:33:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4900/6750 loss=0.0903
+08/11/2026 17:33:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 4950/6750 loss=0.0981
+08/11/2026 17:33:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5000/6750 loss=0.0802
+08/11/2026 17:33:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5050/6750 loss=0.0674
+08/11/2026 17:33:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5100/6750 loss=0.0777
+08/11/2026 17:33:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5150/6750 loss=0.0643
+08/11/2026 17:33:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5200/6750 loss=0.0750
+08/11/2026 17:34:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5250/6750 loss=0.0559
+08/11/2026 17:34:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5300/6750 loss=0.0594
+08/11/2026 17:34:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5350/6750 loss=0.0778
+08/11/2026 17:34:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5400/6750 loss=0.0639
+08/11/2026 17:34:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5450/6750 loss=0.0677
+08/11/2026 17:34:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5500/6750 loss=0.0660
+08/11/2026 17:34:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5550/6750 loss=0.0809
+08/11/2026 17:34:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5600/6750 loss=0.0659
+08/11/2026 17:34:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5650/6750 loss=0.0587
+08/11/2026 17:34:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5700/6750 loss=0.0930
+08/11/2026 17:34:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5750/6750 loss=0.0876
+08/11/2026 17:35:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5800/6750 loss=0.0679
+08/11/2026 17:35:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5850/6750 loss=0.0895
+08/11/2026 17:35:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5900/6750 loss=0.0463
+08/11/2026 17:35:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 5950/6750 loss=0.0919
+08/11/2026 17:35:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6000/6750 loss=0.0703
+08/11/2026 17:35:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6050/6750 loss=0.0553
+08/11/2026 17:35:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6100/6750 loss=0.0925
+08/11/2026 17:35:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6150/6750 loss=0.0569
+08/11/2026 17:35:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6200/6750 loss=0.0880
+08/11/2026 17:35:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6250/6750 loss=0.0674
+08/11/2026 17:35:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6300/6750 loss=0.1082
+08/11/2026 17:36:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6350/6750 loss=0.0908
+08/11/2026 17:36:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6400/6750 loss=0.0955
+08/11/2026 17:36:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6450/6750 loss=0.0741
+08/11/2026 17:36:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6500/6750 loss=0.0882
+08/11/2026 17:36:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6550/6750 loss=0.0769
+08/11/2026 17:36:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6600/6750 loss=0.0658
+08/11/2026 17:36:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6650/6750 loss=0.0865
+08/11/2026 17:36:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6700/6750 loss=0.0825
+08/11/2026 17:36:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 6750/6750 loss=0.0694
+08/11/2026 17:36:46 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 4 xong sau 743.9s, avg_loss=0.0788
+08/11/2026 17:40:40 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 4 - Valid macro F1 = 0.4970
+              precision    recall  f1-score   support
+
+      PERIOD     0.8275    0.8445    0.8359    140159
+       COMMA     0.7225    0.6876    0.7046    162055
+       COLON     0.6590    0.4533    0.5371     10825
+       QMARK     0.6881    0.6323    0.6590      4884
+      EXCLAM     0.6213    0.0822    0.1451      2556
+   SEMICOLON     0.5070    0.0556    0.1001      1944
+
+   micro avg     0.7687    0.7385    0.7533    322423
+   macro avg     0.6709    0.4592    0.4970    322423
+weighted avg     0.7634    0.7385    0.7473    322423
+
+08/11/2026 17:40:43 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.4970
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 17:40:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 50/6750 loss=0.0736
+08/11/2026 17:40:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 100/6750 loss=0.0545
+08/11/2026 17:41:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 150/6750 loss=0.0844
+08/11/2026 17:41:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 200/6750 loss=0.0677
+08/11/2026 17:41:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 250/6750 loss=0.0737
+08/11/2026 17:41:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 300/6750 loss=0.0749
+08/11/2026 17:41:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 350/6750 loss=0.0664
+08/11/2026 17:41:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 400/6750 loss=0.0696
+08/11/2026 17:41:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 450/6750 loss=0.0591
+08/11/2026 17:41:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 500/6750 loss=0.0542
+08/11/2026 17:41:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 550/6750 loss=0.0622
+08/11/2026 17:41:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 600/6750 loss=0.1052
+08/11/2026 17:41:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 650/6750 loss=0.0648
+08/11/2026 17:42:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 700/6750 loss=0.0828
+08/11/2026 17:42:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 750/6750 loss=0.0729
+08/11/2026 17:42:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 800/6750 loss=0.0888
+08/11/2026 17:42:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 850/6750 loss=0.0710
+08/11/2026 17:42:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 900/6750 loss=0.0525
+08/11/2026 17:42:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 950/6750 loss=0.0814
+08/11/2026 17:42:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1000/6750 loss=0.0796
+08/11/2026 17:42:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1050/6750 loss=0.0783
+08/11/2026 17:42:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1100/6750 loss=0.0463
+08/11/2026 17:42:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1150/6750 loss=0.0742
+08/11/2026 17:42:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1200/6750 loss=0.0700
+08/11/2026 17:43:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1250/6750 loss=0.0781
+08/11/2026 17:43:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1300/6750 loss=0.0607
+08/11/2026 17:43:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1350/6750 loss=0.0640
+08/11/2026 17:43:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1400/6750 loss=0.0648
+08/11/2026 17:43:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1450/6750 loss=0.0749
+08/11/2026 17:43:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1500/6750 loss=0.0540
+08/11/2026 17:43:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1550/6750 loss=0.0460
+08/11/2026 17:43:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1600/6750 loss=0.0652
+08/11/2026 17:43:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1650/6750 loss=0.0635
+08/11/2026 17:43:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1700/6750 loss=0.0869
+08/11/2026 17:43:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1750/6750 loss=0.0838
+08/11/2026 17:44:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1800/6750 loss=0.0583
+08/11/2026 17:44:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1850/6750 loss=0.0509
+08/11/2026 17:44:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1900/6750 loss=0.0754
+08/11/2026 17:44:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 1950/6750 loss=0.0663
+08/11/2026 17:44:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2000/6750 loss=0.0879
+08/11/2026 17:44:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2050/6750 loss=0.0575
+08/11/2026 17:44:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2100/6750 loss=0.0646
+08/11/2026 17:44:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2150/6750 loss=0.0923
+08/11/2026 17:44:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2200/6750 loss=0.0611
+08/11/2026 17:44:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2250/6750 loss=0.0757
+08/11/2026 17:44:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2300/6750 loss=0.0379
+08/11/2026 17:45:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2350/6750 loss=0.0607
+08/11/2026 17:45:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2400/6750 loss=0.0660
+08/11/2026 17:45:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2450/6750 loss=0.0619
+08/11/2026 17:45:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2500/6750 loss=0.0776
+08/11/2026 17:45:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2550/6750 loss=0.0696
+08/11/2026 17:45:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2600/6750 loss=0.0576
+08/11/2026 17:45:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2650/6750 loss=0.0648
+08/11/2026 17:45:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2700/6750 loss=0.0464
+08/11/2026 17:45:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2750/6750 loss=0.0868
+08/11/2026 17:45:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2800/6750 loss=0.0599
+08/11/2026 17:45:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2850/6750 loss=0.0756
+08/11/2026 17:46:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2900/6750 loss=0.0691
+08/11/2026 17:46:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 2950/6750 loss=0.0699
+08/11/2026 17:46:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3000/6750 loss=0.0789
+08/11/2026 17:46:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3050/6750 loss=0.0586
+08/11/2026 17:46:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3100/6750 loss=0.0894
+08/11/2026 17:46:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3150/6750 loss=0.0754
+08/11/2026 17:46:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3200/6750 loss=0.0845
+08/11/2026 17:46:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3250/6750 loss=0.0698
+08/11/2026 17:46:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3300/6750 loss=0.0445
+08/11/2026 17:46:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3350/6750 loss=0.0549
+08/11/2026 17:46:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3400/6750 loss=0.0805
+08/11/2026 17:47:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3450/6750 loss=0.0741
+08/11/2026 17:47:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3500/6750 loss=0.0773
+08/11/2026 17:47:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3550/6750 loss=0.0493
+08/11/2026 17:47:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3600/6750 loss=0.0714
+08/11/2026 17:47:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3650/6750 loss=0.0569
+08/11/2026 17:47:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3700/6750 loss=0.0752
+08/11/2026 17:47:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3750/6750 loss=0.0821
+08/11/2026 17:47:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3800/6750 loss=0.0547
+08/11/2026 17:47:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3850/6750 loss=0.0992
+08/11/2026 17:47:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3900/6750 loss=0.0564
+08/11/2026 17:47:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 3950/6750 loss=0.0689
+08/11/2026 17:48:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4000/6750 loss=0.0917
+08/11/2026 17:48:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4050/6750 loss=0.0679
+08/11/2026 17:48:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4100/6750 loss=0.0632
+08/11/2026 17:48:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4150/6750 loss=0.0758
+08/11/2026 17:48:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4200/6750 loss=0.0644
+08/11/2026 17:48:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4250/6750 loss=0.0609
+08/11/2026 17:48:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4300/6750 loss=0.0663
+08/11/2026 17:48:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4350/6750 loss=0.0531
+08/11/2026 17:48:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4400/6750 loss=0.0732
+08/11/2026 17:48:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4450/6750 loss=0.0714
+08/11/2026 17:48:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4500/6750 loss=0.1018
+08/11/2026 17:49:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4550/6750 loss=0.0655
+08/11/2026 17:49:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4600/6750 loss=0.0464
+08/11/2026 17:49:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4650/6750 loss=0.0915
+08/11/2026 17:49:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4700/6750 loss=0.0696
+08/11/2026 17:49:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4750/6750 loss=0.0907
+08/11/2026 17:49:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4800/6750 loss=0.0642
+08/11/2026 17:49:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4850/6750 loss=0.0534
+08/11/2026 17:49:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4900/6750 loss=0.0756
+08/11/2026 17:49:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 4950/6750 loss=0.0659
+08/11/2026 17:49:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5000/6750 loss=0.0595
+08/11/2026 17:50:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5050/6750 loss=0.0757
+08/11/2026 17:50:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5100/6750 loss=0.0707
+08/11/2026 17:50:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5150/6750 loss=0.0827
+08/11/2026 17:50:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5200/6750 loss=0.0862
+08/11/2026 17:50:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5250/6750 loss=0.0584
+08/11/2026 17:50:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5300/6750 loss=0.0752
+08/11/2026 17:50:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5350/6750 loss=0.0722
+08/11/2026 17:50:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5400/6750 loss=0.0492
+08/11/2026 17:50:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5450/6750 loss=0.0770
+08/11/2026 17:50:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5500/6750 loss=0.1216
+08/11/2026 17:50:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5550/6750 loss=0.0718
+08/11/2026 17:51:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5600/6750 loss=0.0639
+08/11/2026 17:51:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5650/6750 loss=0.0673
+08/11/2026 17:51:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5700/6750 loss=0.0733
+08/11/2026 17:51:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5750/6750 loss=0.0670
+08/11/2026 17:51:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5800/6750 loss=0.0484
+08/11/2026 17:51:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5850/6750 loss=0.0736
+08/11/2026 17:51:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5900/6750 loss=0.0620
+08/11/2026 17:51:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 5950/6750 loss=0.0699
+08/11/2026 17:51:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6000/6750 loss=0.0630
+08/11/2026 17:51:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6050/6750 loss=0.0842
+08/11/2026 17:51:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6100/6750 loss=0.0541
+08/11/2026 17:52:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6150/6750 loss=0.0814
+08/11/2026 17:52:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6200/6750 loss=0.0794
+08/11/2026 17:52:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6250/6750 loss=0.0781
+08/11/2026 17:52:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6300/6750 loss=0.0714
+08/11/2026 17:52:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6350/6750 loss=0.0515
+08/11/2026 17:52:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6400/6750 loss=0.0710
+08/11/2026 17:52:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6450/6750 loss=0.0749
+08/11/2026 17:52:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6500/6750 loss=0.0572
+08/11/2026 17:52:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6550/6750 loss=0.0688
+08/11/2026 17:52:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6600/6750 loss=0.0792
+08/11/2026 17:52:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6650/6750 loss=0.0660
+08/11/2026 17:53:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6700/6750 loss=0.0710
+08/11/2026 17:53:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 6750/6750 loss=0.0503
+08/11/2026 17:53:07 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 5 xong sau 744.1s, avg_loss=0.0713
+08/11/2026 17:57:01 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 5 - Valid macro F1 = 0.5162
+              precision    recall  f1-score   support
+
+      PERIOD     0.8221    0.8529    0.8372    140159
+       COMMA     0.7303    0.6833    0.7060    162055
+       COLON     0.6413    0.4727    0.5442     10825
+       QMARK     0.6867    0.6425    0.6638      4884
+      EXCLAM     0.5658    0.1127    0.1879      2556
+   SEMICOLON     0.4431    0.0962    0.1581      1944
+
+   micro avg     0.7697    0.7413    0.7552    322423
+   macro avg     0.6482    0.4767    0.5162    322423
+weighted avg     0.7635    0.7413    0.7496    322423
+
+08/11/2026 17:57:04 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.5162
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 17:57:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 50/6750 loss=0.0548
+08/11/2026 17:57:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 100/6750 loss=0.0617
+08/11/2026 17:57:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 150/6750 loss=0.0922
+08/11/2026 17:57:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 200/6750 loss=0.0612
+08/11/2026 17:57:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 250/6750 loss=0.0704
+08/11/2026 17:57:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 300/6750 loss=0.0498
+08/11/2026 17:57:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 350/6750 loss=0.0482
+08/11/2026 17:57:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 400/6750 loss=0.0811
+08/11/2026 17:57:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 450/6750 loss=0.0378
+08/11/2026 17:57:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 500/6750 loss=0.0496
+08/11/2026 17:58:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 550/6750 loss=0.0541
+08/11/2026 17:58:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 600/6750 loss=0.0900
+08/11/2026 17:58:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 650/6750 loss=0.0445
+08/11/2026 17:58:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 700/6750 loss=0.0575
+08/11/2026 17:58:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 750/6750 loss=0.0667
+08/11/2026 17:58:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 800/6750 loss=0.0532
+08/11/2026 17:58:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 850/6750 loss=0.0711
+08/11/2026 17:58:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 900/6750 loss=0.0706
+08/11/2026 17:58:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 950/6750 loss=0.0657
+08/11/2026 17:58:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1000/6750 loss=0.0504
+08/11/2026 17:59:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1050/6750 loss=0.0709
+08/11/2026 17:59:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1100/6750 loss=0.0578
+08/11/2026 17:59:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1150/6750 loss=0.0542
+08/11/2026 17:59:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1200/6750 loss=0.0469
+08/11/2026 17:59:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1250/6750 loss=0.0649
+08/11/2026 17:59:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1300/6750 loss=0.0583
+08/11/2026 17:59:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1350/6750 loss=0.0800
+08/11/2026 17:59:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1400/6750 loss=0.0703
+08/11/2026 17:59:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1450/6750 loss=0.0698
+08/11/2026 17:59:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1500/6750 loss=0.0763
+08/11/2026 17:59:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1550/6750 loss=0.0530
+08/11/2026 18:00:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1600/6750 loss=0.0441
+08/11/2026 18:00:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1650/6750 loss=0.0585
+08/11/2026 18:00:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1700/6750 loss=0.0472
+08/11/2026 18:00:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1750/6750 loss=0.0797
+08/11/2026 18:00:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1800/6750 loss=0.0490
+08/11/2026 18:00:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1850/6750 loss=0.0986
+08/11/2026 18:00:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1900/6750 loss=0.0683
+08/11/2026 18:00:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 1950/6750 loss=0.0594
+08/11/2026 18:00:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2000/6750 loss=0.0676
+08/11/2026 18:00:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2050/6750 loss=0.0729
+08/11/2026 18:00:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2100/6750 loss=0.0687
+08/11/2026 18:01:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2150/6750 loss=0.0806
+08/11/2026 18:01:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2200/6750 loss=0.0388
+08/11/2026 18:01:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2250/6750 loss=0.0678
+08/11/2026 18:01:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2300/6750 loss=0.0776
+08/11/2026 18:01:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2350/6750 loss=0.0731
+08/11/2026 18:01:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2400/6750 loss=0.0563
+08/11/2026 18:01:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2450/6750 loss=0.0518
+08/11/2026 18:01:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2500/6750 loss=0.0661
+08/11/2026 18:01:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2550/6750 loss=0.0626
+08/11/2026 18:01:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2600/6750 loss=0.0652
+08/11/2026 18:01:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2650/6750 loss=0.0530
+08/11/2026 18:02:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2700/6750 loss=0.0678
+08/11/2026 18:02:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2750/6750 loss=0.0680
+08/11/2026 18:02:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2800/6750 loss=0.0503
+08/11/2026 18:02:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2850/6750 loss=0.0502
+08/11/2026 18:02:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2900/6750 loss=0.0537
+08/11/2026 18:02:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 2950/6750 loss=0.0679
+08/11/2026 18:02:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3000/6750 loss=0.0689
+08/11/2026 18:02:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3050/6750 loss=0.0438
+08/11/2026 18:02:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3100/6750 loss=0.0614
+08/11/2026 18:02:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3150/6750 loss=0.0473
+08/11/2026 18:02:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3200/6750 loss=0.0886
+08/11/2026 18:03:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3250/6750 loss=0.0466
+08/11/2026 18:03:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3300/6750 loss=0.0806
+08/11/2026 18:03:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3350/6750 loss=0.0562
+08/11/2026 18:03:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3400/6750 loss=0.0691
+08/11/2026 18:03:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3450/6750 loss=0.0684
+08/11/2026 18:03:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3500/6750 loss=0.0635
+08/11/2026 18:03:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3550/6750 loss=0.0544
+08/11/2026 18:03:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3600/6750 loss=0.0604
+08/11/2026 18:03:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3650/6750 loss=0.0526
+08/11/2026 18:03:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3700/6750 loss=0.0863
+08/11/2026 18:04:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3750/6750 loss=0.0623
+08/11/2026 18:04:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3800/6750 loss=0.0802
+08/11/2026 18:04:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3850/6750 loss=0.0798
+08/11/2026 18:04:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3900/6750 loss=0.0465
+08/11/2026 18:04:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 3950/6750 loss=0.0674
+08/11/2026 18:04:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4000/6750 loss=0.0397
+08/11/2026 18:04:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4050/6750 loss=0.0797
+08/11/2026 18:04:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4100/6750 loss=0.0663
+08/11/2026 18:04:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4150/6750 loss=0.0919
+08/11/2026 18:04:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4200/6750 loss=0.0681
+08/11/2026 18:04:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4250/6750 loss=0.0522
+08/11/2026 18:05:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4300/6750 loss=0.0626
+08/11/2026 18:05:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4350/6750 loss=0.0480
+08/11/2026 18:05:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4400/6750 loss=0.0811
+08/11/2026 18:05:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4450/6750 loss=0.0717
+08/11/2026 18:05:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4500/6750 loss=0.0525
+08/11/2026 18:05:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4550/6750 loss=0.0568
+08/11/2026 18:05:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4600/6750 loss=0.0569
+08/11/2026 18:05:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4650/6750 loss=0.0578
+08/11/2026 18:05:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4700/6750 loss=0.0759
+08/11/2026 18:05:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4750/6750 loss=0.0686
+08/11/2026 18:05:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4800/6750 loss=0.0654
+08/11/2026 18:06:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4850/6750 loss=0.0661
+08/11/2026 18:06:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4900/6750 loss=0.0527
+08/11/2026 18:06:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 4950/6750 loss=0.0608
+08/11/2026 18:06:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5000/6750 loss=0.0966
+08/11/2026 18:06:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5050/6750 loss=0.0499
+08/11/2026 18:06:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5100/6750 loss=0.0636
+08/11/2026 18:06:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5150/6750 loss=0.0496
+08/11/2026 18:06:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5200/6750 loss=0.0703
+08/11/2026 18:06:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5250/6750 loss=0.0672
+08/11/2026 18:06:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5300/6750 loss=0.0868
+08/11/2026 18:07:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5350/6750 loss=0.0807
+08/11/2026 18:07:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5400/6750 loss=0.0700
+08/11/2026 18:07:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5450/6750 loss=0.0604
+08/11/2026 18:07:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5500/6750 loss=0.0711
+08/11/2026 18:07:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5550/6750 loss=0.0589
+08/11/2026 18:07:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5600/6750 loss=0.0687
+08/11/2026 18:07:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5650/6750 loss=0.0532
+08/11/2026 18:07:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5700/6750 loss=0.0789
+08/11/2026 18:07:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5750/6750 loss=0.0365
+08/11/2026 18:07:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5800/6750 loss=0.0718
+08/11/2026 18:07:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5850/6750 loss=0.0538
+08/11/2026 18:08:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5900/6750 loss=0.0670
+08/11/2026 18:08:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 5950/6750 loss=0.0565
+08/11/2026 18:08:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6000/6750 loss=0.0740
+08/11/2026 18:08:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6050/6750 loss=0.0595
+08/11/2026 18:08:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6100/6750 loss=0.0845
+08/11/2026 18:08:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6150/6750 loss=0.1181
+08/11/2026 18:08:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6200/6750 loss=0.0612
+08/11/2026 18:08:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6250/6750 loss=0.0504
+08/11/2026 18:08:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6300/6750 loss=0.0589
+08/11/2026 18:08:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6350/6750 loss=0.0623
+08/11/2026 18:08:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6400/6750 loss=0.0796
+08/11/2026 18:09:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6450/6750 loss=0.0541
+08/11/2026 18:09:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6500/6750 loss=0.0567
+08/11/2026 18:09:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6550/6750 loss=0.0582
+08/11/2026 18:09:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6600/6750 loss=0.0436
+08/11/2026 18:09:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6650/6750 loss=0.0609
+08/11/2026 18:09:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6700/6750 loss=0.0692
+08/11/2026 18:09:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 6750/6750 loss=0.0635
+08/11/2026 18:09:39 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 6 xong sau 754.8s, avg_loss=0.0652
+08/11/2026 18:13:37 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 6 - Valid macro F1 = 0.5282
+              precision    recall  f1-score   support
+
+      PERIOD     0.8253    0.8559    0.8403    140159
+       COMMA     0.7415    0.6757    0.7071    162055
+       COLON     0.6702    0.4673    0.5506     10825
+       QMARK     0.7006    0.6429    0.6705      4884
+      EXCLAM     0.5641    0.1256    0.2054      2556
+   SEMICOLON     0.4010    0.1291    0.1953      1944
+
+   micro avg     0.7779    0.7389    0.7579    322423
+   macro avg     0.6505    0.4827    0.5282    322423
+weighted avg     0.7715    0.7389    0.7521    322423
+
+08/11/2026 18:13:41 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.5282
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:13:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 50/6750 loss=0.0627
+08/11/2026 18:13:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 100/6750 loss=0.0667
+08/11/2026 18:13:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 150/6750 loss=0.0615
+08/11/2026 18:14:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 200/6750 loss=0.0462
+08/11/2026 18:14:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 250/6750 loss=0.0400
+08/11/2026 18:14:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 300/6750 loss=0.0602
+08/11/2026 18:14:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 350/6750 loss=0.0725
+08/11/2026 18:14:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 400/6750 loss=0.0616
+08/11/2026 18:14:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 450/6750 loss=0.0669
+08/11/2026 18:14:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 500/6750 loss=0.0616
+08/11/2026 18:14:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 550/6750 loss=0.0774
+08/11/2026 18:14:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 600/6750 loss=0.0905
+08/11/2026 18:14:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 650/6750 loss=0.0690
+08/11/2026 18:14:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 700/6750 loss=0.0671
+08/11/2026 18:15:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 750/6750 loss=0.0528
+08/11/2026 18:15:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 800/6750 loss=0.0643
+08/11/2026 18:15:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 850/6750 loss=0.0774
+08/11/2026 18:15:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 900/6750 loss=0.0725
+08/11/2026 18:15:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 950/6750 loss=0.0380
+08/11/2026 18:15:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1000/6750 loss=0.0587
+08/11/2026 18:15:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1050/6750 loss=0.0661
+08/11/2026 18:15:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1100/6750 loss=0.0617
+08/11/2026 18:15:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1150/6750 loss=0.0458
+08/11/2026 18:15:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1200/6750 loss=0.0847
+08/11/2026 18:15:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1250/6750 loss=0.0564
+08/11/2026 18:16:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1300/6750 loss=0.0453
+08/11/2026 18:16:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1350/6750 loss=0.0672
+08/11/2026 18:16:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1400/6750 loss=0.0552
+08/11/2026 18:16:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1450/6750 loss=0.0689
+08/11/2026 18:16:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1500/6750 loss=0.0504
+08/11/2026 18:16:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1550/6750 loss=0.0534
+08/11/2026 18:16:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1600/6750 loss=0.0498
+08/11/2026 18:16:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1650/6750 loss=0.0824
+08/11/2026 18:16:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1700/6750 loss=0.0529
+08/11/2026 18:16:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1750/6750 loss=0.0509
+08/11/2026 18:17:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1800/6750 loss=0.0564
+08/11/2026 18:17:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1850/6750 loss=0.0600
+08/11/2026 18:17:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1900/6750 loss=0.0705
+08/11/2026 18:17:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 1950/6750 loss=0.0932
+08/11/2026 18:17:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2000/6750 loss=0.0589
+08/11/2026 18:17:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2050/6750 loss=0.0604
+08/11/2026 18:17:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2100/6750 loss=0.0669
+08/11/2026 18:17:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2150/6750 loss=0.0423
+08/11/2026 18:17:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2200/6750 loss=0.0598
+08/11/2026 18:17:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2250/6750 loss=0.0567
+08/11/2026 18:17:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2300/6750 loss=0.0500
+08/11/2026 18:18:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2350/6750 loss=0.0471
+08/11/2026 18:18:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2400/6750 loss=0.0666
+08/11/2026 18:18:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2450/6750 loss=0.0618
+08/11/2026 18:18:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2500/6750 loss=0.0565
+08/11/2026 18:18:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2550/6750 loss=0.0698
+08/11/2026 18:18:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2600/6750 loss=0.0564
+08/11/2026 18:18:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2650/6750 loss=0.0484
+08/11/2026 18:18:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2700/6750 loss=0.0630
+08/11/2026 18:18:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2750/6750 loss=0.0966
+08/11/2026 18:18:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2800/6750 loss=0.0616
+08/11/2026 18:18:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2850/6750 loss=0.0613
+08/11/2026 18:19:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2900/6750 loss=0.0551
+08/11/2026 18:19:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 2950/6750 loss=0.0641
+08/11/2026 18:19:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3000/6750 loss=0.0668
+08/11/2026 18:19:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3050/6750 loss=0.0788
+08/11/2026 18:19:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3100/6750 loss=0.0731
+08/11/2026 18:19:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3150/6750 loss=0.0514
+08/11/2026 18:19:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3200/6750 loss=0.0705
+08/11/2026 18:19:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3250/6750 loss=0.0736
+08/11/2026 18:19:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3300/6750 loss=0.0516
+08/11/2026 18:19:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3350/6750 loss=0.0569
+08/11/2026 18:19:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3400/6750 loss=0.0637
+08/11/2026 18:20:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3450/6750 loss=0.0570
+08/11/2026 18:20:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3500/6750 loss=0.0436
+08/11/2026 18:20:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3550/6750 loss=0.0669
+08/11/2026 18:20:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3600/6750 loss=0.0784
+08/11/2026 18:20:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3650/6750 loss=0.0538
+08/11/2026 18:20:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3700/6750 loss=0.0524
+08/11/2026 18:20:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3750/6750 loss=0.0700
+08/11/2026 18:20:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3800/6750 loss=0.0487
+08/11/2026 18:20:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3850/6750 loss=0.0665
+08/11/2026 18:20:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3900/6750 loss=0.0566
+08/11/2026 18:20:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 3950/6750 loss=0.0721
+08/11/2026 18:21:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4000/6750 loss=0.0535
+08/11/2026 18:21:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4050/6750 loss=0.0570
+08/11/2026 18:21:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4100/6750 loss=0.0986
+08/11/2026 18:21:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4150/6750 loss=0.0726
+08/11/2026 18:21:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4200/6750 loss=0.0578
+08/11/2026 18:21:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4250/6750 loss=0.0761
+08/11/2026 18:21:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4300/6750 loss=0.0524
+08/11/2026 18:21:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4350/6750 loss=0.0405
+08/11/2026 18:21:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4400/6750 loss=0.0660
+08/11/2026 18:21:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4450/6750 loss=0.0638
+08/11/2026 18:21:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4500/6750 loss=0.0436
+08/11/2026 18:22:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4550/6750 loss=0.0575
+08/11/2026 18:22:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4600/6750 loss=0.0566
+08/11/2026 18:22:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4650/6750 loss=0.0589
+08/11/2026 18:22:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4700/6750 loss=0.0566
+08/11/2026 18:22:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4750/6750 loss=0.0780
+08/11/2026 18:22:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4800/6750 loss=0.0725
+08/11/2026 18:22:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4850/6750 loss=0.0583
+08/11/2026 18:22:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4900/6750 loss=0.0545
+08/11/2026 18:22:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4950/6750 loss=0.0394
+08/11/2026 18:22:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5000/6750 loss=0.0446
+08/11/2026 18:23:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5050/6750 loss=0.0696
+08/11/2026 18:23:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5100/6750 loss=0.0510
+08/11/2026 18:23:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5150/6750 loss=0.0414
+08/11/2026 18:23:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5200/6750 loss=0.0630
+08/11/2026 18:23:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5250/6750 loss=0.0415
+08/11/2026 18:23:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5300/6750 loss=0.0525
+08/11/2026 18:23:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5350/6750 loss=0.0697
+08/11/2026 18:23:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5400/6750 loss=0.0458
+08/11/2026 18:23:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5450/6750 loss=0.0770
+08/11/2026 18:23:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5500/6750 loss=0.0354
+08/11/2026 18:23:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5550/6750 loss=0.0794
+08/11/2026 18:24:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5600/6750 loss=0.0490
+08/11/2026 18:24:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5650/6750 loss=0.0527
+08/11/2026 18:24:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5700/6750 loss=0.0503
+08/11/2026 18:24:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5750/6750 loss=0.0660
+08/11/2026 18:24:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5800/6750 loss=0.0648
+08/11/2026 18:24:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5850/6750 loss=0.0680
+08/11/2026 18:24:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5900/6750 loss=0.0775
+08/11/2026 18:24:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 5950/6750 loss=0.0686
+08/11/2026 18:24:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6000/6750 loss=0.0508
+08/11/2026 18:24:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6050/6750 loss=0.0635
+08/11/2026 18:24:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6100/6750 loss=0.1007
+08/11/2026 18:25:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6150/6750 loss=0.0532
+08/11/2026 18:25:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6200/6750 loss=0.0834
+08/11/2026 18:25:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6250/6750 loss=0.0745
+08/11/2026 18:25:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6300/6750 loss=0.0743
+08/11/2026 18:25:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6350/6750 loss=0.0547
+08/11/2026 18:25:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6400/6750 loss=0.0711
+08/11/2026 18:25:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6450/6750 loss=0.0413
+08/11/2026 18:25:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6500/6750 loss=0.0622
+08/11/2026 18:25:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6550/6750 loss=0.0530
+08/11/2026 18:25:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6600/6750 loss=0.0610
+08/11/2026 18:25:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6650/6750 loss=0.0729
+08/11/2026 18:26:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6700/6750 loss=0.0616
+08/11/2026 18:26:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 6750/6750 loss=0.0783
+08/11/2026 18:26:08 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 7 xong sau 747.0s, avg_loss=0.0605
+08/11/2026 18:30:01 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 7 - Valid macro F1 = 0.5350
+              precision    recall  f1-score   support
+
+      PERIOD     0.8403    0.8439    0.8421    140159
+       COMMA     0.7330    0.6899    0.7108    162055
+       COLON     0.6319    0.4916    0.5530     10825
+       QMARK     0.7066    0.6489    0.6765      4884
+      EXCLAM     0.5436    0.1342    0.2152      2556
+   SEMICOLON     0.3846    0.1466    0.2123      1944
+
+   micro avg     0.7777    0.7419    0.7594    322423
+   macro avg     0.6400    0.4925    0.5350    322423
+weighted avg     0.7722    0.7419    0.7551    322423
+
+08/11/2026 18:30:05 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.5350
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:30:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 50/6750 loss=0.0632
+08/11/2026 18:30:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 100/6750 loss=0.0416
+08/11/2026 18:30:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 150/6750 loss=0.0654
+08/11/2026 18:30:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 200/6750 loss=0.0515
+08/11/2026 18:30:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 250/6750 loss=0.0459
+08/11/2026 18:30:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 300/6750 loss=0.0617
+08/11/2026 18:30:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 350/6750 loss=0.0556
+08/11/2026 18:30:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 400/6750 loss=0.0611
+08/11/2026 18:30:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 450/6750 loss=0.0546
+08/11/2026 18:30:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 500/6750 loss=0.0790
+08/11/2026 18:31:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 550/6750 loss=0.0494
+08/11/2026 18:31:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 600/6750 loss=0.0469
+08/11/2026 18:31:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 650/6750 loss=0.0472
+08/11/2026 18:31:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 700/6750 loss=0.0637
+08/11/2026 18:31:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 750/6750 loss=0.0655
+08/11/2026 18:31:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 800/6750 loss=0.0533
+08/11/2026 18:31:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 850/6750 loss=0.0754
+08/11/2026 18:31:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 900/6750 loss=0.0632
+08/11/2026 18:31:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 950/6750 loss=0.0695
+08/11/2026 18:31:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1000/6750 loss=0.0782
+08/11/2026 18:32:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1050/6750 loss=0.0640
+08/11/2026 18:32:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1100/6750 loss=0.0567
+08/11/2026 18:32:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1150/6750 loss=0.0671
+08/11/2026 18:32:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1200/6750 loss=0.0713
+08/11/2026 18:32:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1250/6750 loss=0.0531
+08/11/2026 18:32:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1300/6750 loss=0.0489
+08/11/2026 18:32:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1350/6750 loss=0.0417
+08/11/2026 18:32:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1400/6750 loss=0.0468
+08/11/2026 18:32:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1450/6750 loss=0.0468
+08/11/2026 18:32:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1500/6750 loss=0.0488
+08/11/2026 18:32:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1550/6750 loss=0.0583
+08/11/2026 18:33:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1600/6750 loss=0.0431
+08/11/2026 18:33:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1650/6750 loss=0.0447
+08/11/2026 18:33:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1700/6750 loss=0.0418
+08/11/2026 18:33:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1750/6750 loss=0.0423
+08/11/2026 18:33:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1800/6750 loss=0.0494
+08/11/2026 18:33:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1850/6750 loss=0.0691
+08/11/2026 18:33:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1900/6750 loss=0.0611
+08/11/2026 18:33:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 1950/6750 loss=0.0617
+08/11/2026 18:33:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2000/6750 loss=0.0677
+08/11/2026 18:33:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2050/6750 loss=0.0522
+08/11/2026 18:33:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2100/6750 loss=0.0451
+08/11/2026 18:34:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2150/6750 loss=0.0386
+08/11/2026 18:34:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2200/6750 loss=0.0549
+08/11/2026 18:34:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2250/6750 loss=0.0526
+08/11/2026 18:34:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2300/6750 loss=0.0547
+08/11/2026 18:34:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2350/6750 loss=0.0438
+08/11/2026 18:34:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2400/6750 loss=0.0550
+08/11/2026 18:34:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2450/6750 loss=0.0592
+08/11/2026 18:34:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2500/6750 loss=0.0471
+08/11/2026 18:34:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2550/6750 loss=0.0546
+08/11/2026 18:34:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2600/6750 loss=0.0627
+08/11/2026 18:34:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2650/6750 loss=0.0544
+08/11/2026 18:35:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2700/6750 loss=0.0563
+08/11/2026 18:35:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2750/6750 loss=0.0669
+08/11/2026 18:35:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2800/6750 loss=0.0644
+08/11/2026 18:35:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2850/6750 loss=0.0490
+08/11/2026 18:35:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2900/6750 loss=0.0603
+08/11/2026 18:35:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 2950/6750 loss=0.0637
+08/11/2026 18:35:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3000/6750 loss=0.0687
+08/11/2026 18:35:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3050/6750 loss=0.0690
+08/11/2026 18:35:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3100/6750 loss=0.0498
+08/11/2026 18:35:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3150/6750 loss=0.0358
+08/11/2026 18:35:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3200/6750 loss=0.0573
+08/11/2026 18:36:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3250/6750 loss=0.0524
+08/11/2026 18:36:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3300/6750 loss=0.0543
+08/11/2026 18:36:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3350/6750 loss=0.0421
+08/11/2026 18:36:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3400/6750 loss=0.0720
+08/11/2026 18:36:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3450/6750 loss=0.0554
+08/11/2026 18:36:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3500/6750 loss=0.0576
+08/11/2026 18:36:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3550/6750 loss=0.0822
+08/11/2026 18:36:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3600/6750 loss=0.0403
+08/11/2026 18:36:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3650/6750 loss=0.0637
+08/11/2026 18:36:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3700/6750 loss=0.0554
+08/11/2026 18:36:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3750/6750 loss=0.0770
+08/11/2026 18:37:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3800/6750 loss=0.0483
+08/11/2026 18:37:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3850/6750 loss=0.0449
+08/11/2026 18:37:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3900/6750 loss=0.0554
+08/11/2026 18:37:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 3950/6750 loss=0.0711
+08/11/2026 18:37:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4000/6750 loss=0.0627
+08/11/2026 18:37:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4050/6750 loss=0.0663
+08/11/2026 18:37:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4100/6750 loss=0.0687
+08/11/2026 18:37:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4150/6750 loss=0.0486
+08/11/2026 18:37:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4200/6750 loss=0.0612
+08/11/2026 18:37:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4250/6750 loss=0.0455
+08/11/2026 18:38:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4300/6750 loss=0.0581
+08/11/2026 18:38:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4350/6750 loss=0.0598
+08/11/2026 18:38:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4400/6750 loss=0.0595
+08/11/2026 18:38:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4450/6750 loss=0.0541
+08/11/2026 18:38:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4500/6750 loss=0.0585
+08/11/2026 18:38:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4550/6750 loss=0.0486
+08/11/2026 18:38:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4600/6750 loss=0.0748
+08/11/2026 18:38:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4650/6750 loss=0.0648
+08/11/2026 18:38:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4700/6750 loss=0.0815
+08/11/2026 18:38:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4750/6750 loss=0.0631
+08/11/2026 18:38:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4800/6750 loss=0.0603
+08/11/2026 18:39:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4850/6750 loss=0.0587
+08/11/2026 18:39:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4900/6750 loss=0.0574
+08/11/2026 18:39:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 4950/6750 loss=0.0449
+08/11/2026 18:39:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5000/6750 loss=0.0545
+08/11/2026 18:39:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5050/6750 loss=0.0408
+08/11/2026 18:39:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5100/6750 loss=0.0553
+08/11/2026 18:39:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5150/6750 loss=0.0552
+08/11/2026 18:39:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5200/6750 loss=0.0710
+08/11/2026 18:39:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5250/6750 loss=0.0773
+08/11/2026 18:39:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5300/6750 loss=0.0638
+08/11/2026 18:39:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5350/6750 loss=0.0453
+08/11/2026 18:40:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5400/6750 loss=0.0457
+08/11/2026 18:40:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5450/6750 loss=0.0566
+08/11/2026 18:40:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5500/6750 loss=0.0514
+08/11/2026 18:40:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5550/6750 loss=0.0568
+08/11/2026 18:40:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5600/6750 loss=0.0476
+08/11/2026 18:40:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5650/6750 loss=0.0740
+08/11/2026 18:40:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5700/6750 loss=0.0880
+08/11/2026 18:40:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5750/6750 loss=0.0479
+08/11/2026 18:40:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5800/6750 loss=0.0814
+08/11/2026 18:40:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5850/6750 loss=0.0528
+08/11/2026 18:40:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5900/6750 loss=0.0437
+08/11/2026 18:41:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 5950/6750 loss=0.0460
+08/11/2026 18:41:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6000/6750 loss=0.0456
+08/11/2026 18:41:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6050/6750 loss=0.0551
+08/11/2026 18:41:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6100/6750 loss=0.0449
+08/11/2026 18:41:24 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6150/6750 loss=0.0583
+08/11/2026 18:41:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6200/6750 loss=0.0455
+08/11/2026 18:41:35 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6250/6750 loss=0.0538
+08/11/2026 18:41:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6300/6750 loss=0.0716
+08/11/2026 18:41:46 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6350/6750 loss=0.0451
+08/11/2026 18:41:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6400/6750 loss=0.0535
+08/11/2026 18:41:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6450/6750 loss=0.0615
+08/11/2026 18:42:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6500/6750 loss=0.0472
+08/11/2026 18:42:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6550/6750 loss=0.0538
+08/11/2026 18:42:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6600/6750 loss=0.0494
+08/11/2026 18:42:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6650/6750 loss=0.0590
+08/11/2026 18:42:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6700/6750 loss=0.0435
+08/11/2026 18:42:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 6750/6750 loss=0.0600
+08/11/2026 18:42:30 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 8 xong sau 745.5s, avg_loss=0.0570
+08/11/2026 18:46:23 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 8 - Valid macro F1 = 0.5390
+              precision    recall  f1-score   support
+
+      PERIOD     0.8329    0.8519    0.8423    140159
+       COMMA     0.7305    0.6943    0.7119    162055
+       COLON     0.6296    0.4968    0.5554     10825
+       QMARK     0.6846    0.6671    0.6757      4884
+      EXCLAM     0.5155    0.1369    0.2164      2556
+   SEMICOLON     0.3709    0.1692    0.2324      1944
+
+   micro avg     0.7726    0.7482    0.7602    322423
+   macro avg     0.6273    0.5027    0.5390    322423
+weighted avg     0.7671    0.7482    0.7560    322423
+
+08/11/2026 18:46:27 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.5390
+08/11/2026 18:46:27 - INFO - __main__ - [mBERT + Bi-LSTM] Train xong. Best macro F1 = 0.5390. Checkpoint tại /root/phopunct/outputs/mbert_bilstm_plain_news

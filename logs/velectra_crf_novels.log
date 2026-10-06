@@ -1,0 +1,318 @@
+08/12/2026 02:42:57 - INFO - __main__ - === vELECTRA + CRF | backbone=FPTAI/velectra-base-discriminator-cased ===
+08/12/2026 02:42:57 - INFO - __main__ - {
+  "model_key": "velectra",
+  "use_bilstm": false,
+  "data_dir": "data/punctuation/Novels",
+  "output_dir": "outputs/velectra_novels",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/12/2026 02:42:58 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/12/2026 02:42:58 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/12/2026 02:42:58 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/config.json "HTTP/1.1 200 OK"
+08/12/2026 02:42:58 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+08/12/2026 02:42:58 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+08/12/2026 02:42:58 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/12/2026 02:42:59 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/12/2026 02:42:59 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+08/12/2026 02:42:59 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/vocab.txt "HTTP/1.1 200 OK"
+08/12/2026 02:42:59 - INFO - __main__ - Đang nạp dữ liệu train...
+08/12/2026 02:43:10 - INFO - punc_dataset_word - convert_examples_to_features: 11447 examples -> 11447 features (0 rỗng bị bỏ, 0 bị truncate)
+08/12/2026 02:43:11 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/12/2026 02:43:14 - INFO - punc_dataset_word - convert_examples_to_features: 3032 examples -> 3032 features (0 rỗng bị bỏ, 0 bị truncate)
+08/12/2026 02:43:14 - INFO - __main__ - Train: 11447 features | Valid: 3032 features
+08/12/2026 02:43:14 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+08/12/2026 02:43:14 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/config.json "HTTP/1.1 200 OK"
+08/12/2026 02:43:15 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+08/12/2026 02:43:15 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased "HTTP/1.1 200 OK"
+08/12/2026 02:43:15 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/commits/main "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 22689.35it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: FPTAI/velectra-base-discriminator-cased
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/root/phopunct/baseline_lstm_crf.py:247: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 02:43:16 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/discussions?p=0 "HTTP/1.1 200 OK"
+08/12/2026 02:43:16 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/commits/refs%2Fpr%2F1 "HTTP/1.1 200 OK"
+08/12/2026 02:43:16 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/refs%2Fpr%2F1/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+/root/phopunct/baseline_lstm_crf.py:274: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+08/12/2026 02:43:16 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/refs%2Fpr%2F1/model.safetensors "HTTP/1.1 302 Found"
+08/12/2026 02:43:36 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 50/716 loss=72.9256
+08/12/2026 02:43:56 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 100/716 loss=55.7237
+08/12/2026 02:44:16 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 150/716 loss=49.6110
+08/12/2026 02:44:36 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 200/716 loss=49.2422
+08/12/2026 02:44:57 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 250/716 loss=42.1041
+08/12/2026 02:45:17 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 300/716 loss=48.4587
+08/12/2026 02:45:37 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 350/716 loss=47.0223
+08/12/2026 02:45:57 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 400/716 loss=42.4955
+08/12/2026 02:46:18 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 450/716 loss=43.5042
+08/12/2026 02:46:38 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 500/716 loss=36.4983
+08/12/2026 02:46:58 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 550/716 loss=39.2920
+08/12/2026 02:47:18 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 600/716 loss=34.0592
+08/12/2026 02:47:38 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 650/716 loss=36.7323
+08/12/2026 02:47:58 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 700/716 loss=34.1779
+08/12/2026 02:48:04 - INFO - __main__ - [vELECTRA + CRF] Epoch 1 xong sau 288.9s, avg_loss=55.1323
+08/12/2026 02:48:24 - INFO - __main__ - [vELECTRA + CRF] Epoch 1 - Valid macro F1 = 0.3047
+              precision    recall  f1-score   support
+
+      PERIOD     0.5889    0.4215    0.4913     17715
+       COMMA     0.5013    0.2527    0.3360     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.5978    0.6337    0.6152      3868
+      EXCLAM     0.4885    0.3190    0.3859      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5537    0.3680    0.4421     41733
+   macro avg     0.3628    0.2711    0.3047     41733
+weighted avg     0.5415    0.3680    0.4329     41733
+
+08/12/2026 02:48:26 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.3047
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 02:48:39 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 34/716 loss=33.4079
+08/12/2026 02:49:00 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 84/716 loss=30.8050
+08/12/2026 02:49:21 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 134/716 loss=41.9766
+08/12/2026 02:49:42 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 184/716 loss=29.0564
+08/12/2026 02:50:02 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 234/716 loss=31.0647
+08/12/2026 02:50:23 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 284/716 loss=27.0203
+08/12/2026 02:50:44 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 334/716 loss=26.3145
+08/12/2026 02:51:05 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 384/716 loss=34.2199
+08/12/2026 02:51:26 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 434/716 loss=31.0523
+08/12/2026 02:51:46 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 484/716 loss=33.5491
+08/12/2026 02:52:06 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 534/716 loss=33.4172
+08/12/2026 02:52:25 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 584/716 loss=24.9915
+08/12/2026 02:52:45 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 634/716 loss=28.1848
+08/12/2026 02:53:05 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 684/716 loss=28.5489
+08/12/2026 02:53:17 - INFO - __main__ - [vELECTRA + CRF] Epoch 2 xong sau 291.5s, avg_loss=31.2883
+08/12/2026 02:53:37 - INFO - __main__ - [vELECTRA + CRF] Epoch 2 - Valid macro F1 = 0.3598
+              precision    recall  f1-score   support
+
+      PERIOD     0.6572    0.4390    0.5263     17715
+       COMMA     0.5821    0.3630    0.4471     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.6803    0.7063    0.6930      3868
+      EXCLAM     0.4106    0.6147    0.4923      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5709    0.4632    0.5115     41733
+   macro avg     0.3884    0.3538    0.3598     41733
+weighted avg     0.5919    0.4632    0.5071     41733
+
+08/12/2026 02:53:40 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.3598
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 02:53:47 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 18/716 loss=25.1168
+08/12/2026 02:54:08 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 68/716 loss=27.3363
+08/12/2026 02:54:29 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 118/716 loss=29.3485
+08/12/2026 02:54:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 168/716 loss=34.0440
+08/12/2026 02:55:11 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 218/716 loss=26.4123
+08/12/2026 02:55:31 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 268/716 loss=23.8950
+08/12/2026 02:55:51 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 318/716 loss=24.6788
+08/12/2026 02:56:11 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 368/716 loss=26.6631
+08/12/2026 02:56:31 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 418/716 loss=24.9308
+08/12/2026 02:56:52 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 468/716 loss=27.2269
+08/12/2026 02:57:13 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 518/716 loss=23.6674
+08/12/2026 02:57:34 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 568/716 loss=25.2285
+08/12/2026 02:57:54 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 618/716 loss=27.4280
+08/12/2026 02:58:15 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 668/716 loss=28.7794
+08/12/2026 02:58:34 - INFO - __main__ - [vELECTRA + CRF] Epoch 3 xong sau 294.6s, avg_loss=26.1422
+08/12/2026 02:58:54 - INFO - __main__ - [vELECTRA + CRF] Epoch 3 - Valid macro F1 = 0.3851
+              precision    recall  f1-score   support
+
+      PERIOD     0.6512    0.5121    0.5733     17715
+       COMMA     0.6026    0.4135    0.4905     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7297    0.7210    0.7254      3868
+      EXCLAM     0.4511    0.6175    0.5214      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5976    0.5122    0.5516     41733
+   macro avg     0.4058    0.3774    0.3851     41733
+weighted avg     0.6068    0.5122    0.5484     41733
+
+08/12/2026 02:58:57 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.3851
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 02:58:57 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2/716 loss=20.8958
+08/12/2026 02:59:18 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 52/716 loss=24.5824
+08/12/2026 02:59:38 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 102/716 loss=24.8711
+08/12/2026 02:59:59 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 152/716 loss=19.9552
+08/12/2026 03:00:19 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 202/716 loss=24.5938
+08/12/2026 03:00:39 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 252/716 loss=25.0681
+08/12/2026 03:00:59 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 302/716 loss=21.1239
+08/12/2026 03:01:19 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 352/716 loss=19.7478
+08/12/2026 03:01:39 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 402/716 loss=24.2575
+08/12/2026 03:01:59 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 452/716 loss=22.7574
+08/12/2026 03:02:19 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 502/716 loss=22.2934
+08/12/2026 03:02:40 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 552/716 loss=20.5716
+08/12/2026 03:03:00 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 602/716 loss=19.1965
+08/12/2026 03:03:20 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 652/716 loss=24.0097
+08/12/2026 03:03:40 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 702/716 loss=18.9052
+08/12/2026 03:03:46 - INFO - __main__ - [vELECTRA + CRF] Epoch 4 xong sau 289.3s, avg_loss=22.8350
+08/12/2026 03:04:05 - INFO - __main__ - [vELECTRA + CRF] Epoch 4 - Valid macro F1 = 0.3976
+              precision    recall  f1-score   support
+
+      PERIOD     0.6532    0.5617    0.6040     17715
+       COMMA     0.5981    0.4598    0.5199     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7100    0.7570    0.7327      3868
+      EXCLAM     0.4947    0.5686    0.5291      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6124    0.5439    0.5761     41733
+   macro avg     0.4093    0.3912    0.3976     41733
+weighted avg     0.6112    0.5439    0.5727     41733
+
+08/12/2026 03:04:08 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.3976
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 03:04:22 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 36/716 loss=20.9947
+08/12/2026 03:04:42 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 86/716 loss=21.3082
+08/12/2026 03:05:02 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 136/716 loss=23.0418
+08/12/2026 03:05:23 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 186/716 loss=20.3672
+08/12/2026 03:05:43 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 236/716 loss=17.6896
+08/12/2026 03:06:03 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 286/716 loss=21.6121
+08/12/2026 03:06:23 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 336/716 loss=20.2794
+08/12/2026 03:06:43 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 386/716 loss=21.7010
+08/12/2026 03:07:03 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 436/716 loss=19.1293
+08/12/2026 03:07:23 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 486/716 loss=22.7708
+08/12/2026 03:07:44 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 536/716 loss=19.3398
+08/12/2026 03:08:04 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 586/716 loss=22.5290
+08/12/2026 03:08:25 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 636/716 loss=19.4572
+08/12/2026 03:08:45 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 686/716 loss=18.5044
+08/12/2026 03:08:57 - INFO - __main__ - [vELECTRA + CRF] Epoch 5 xong sau 289.5s, avg_loss=20.4775
+08/12/2026 03:09:16 - INFO - __main__ - [vELECTRA + CRF] Epoch 5 - Valid macro F1 = 0.3992
+              precision    recall  f1-score   support
+
+      PERIOD     0.6620    0.5407    0.5952     17715
+       COMMA     0.5965    0.4780    0.5307     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7200    0.7603    0.7396      3868
+      EXCLAM     0.4455    0.6540    0.5300      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5969    0.5543    0.5748     41733
+   macro avg     0.4040    0.4055    0.3992     41733
+weighted avg     0.6077    0.5543    0.5732     41733
+
+08/12/2026 03:09:20 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.3992
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 03:09:28 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 20/716 loss=18.7878
+08/12/2026 03:09:48 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 70/716 loss=17.0515
+08/12/2026 03:10:08 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 120/716 loss=20.2993
+08/12/2026 03:10:28 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 170/716 loss=18.7230
+08/12/2026 03:10:48 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 220/716 loss=16.0527
+08/12/2026 03:11:08 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 270/716 loss=17.8510
+08/12/2026 03:11:28 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 320/716 loss=24.0196
+08/12/2026 03:11:49 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 370/716 loss=24.8249
+08/12/2026 03:12:09 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 420/716 loss=15.2816
+08/12/2026 03:12:29 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 470/716 loss=19.3116
+08/12/2026 03:12:50 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 520/716 loss=15.6107
+08/12/2026 03:13:10 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 570/716 loss=17.3031
+08/12/2026 03:13:30 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 620/716 loss=18.0001
+08/12/2026 03:13:50 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 670/716 loss=16.5016
+08/12/2026 03:14:09 - INFO - __main__ - [vELECTRA + CRF] Epoch 6 xong sau 289.3s, avg_loss=18.7749
+08/12/2026 03:14:28 - INFO - __main__ - [vELECTRA + CRF] Epoch 6 - Valid macro F1 = 0.4039
+              precision    recall  f1-score   support
+
+      PERIOD     0.6515    0.5661    0.6058     17715
+       COMMA     0.5979    0.4855    0.5358     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7278    0.7624    0.7447      3868
+      EXCLAM     0.4672    0.6313    0.5370      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6033    0.5642    0.5831     41733
+   macro avg     0.4074    0.4075    0.4039     41733
+weighted avg     0.6078    0.5642    0.5809     41733
+
+08/12/2026 03:14:31 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.4039
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 03:14:33 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4/716 loss=18.1442
+08/12/2026 03:14:53 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 54/716 loss=13.9703
+08/12/2026 03:15:13 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 104/716 loss=13.6034
+08/12/2026 03:15:34 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 154/716 loss=18.5379
+08/12/2026 03:15:54 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 204/716 loss=20.2393
+08/12/2026 03:16:15 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 254/716 loss=16.6843
+08/12/2026 03:16:35 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 304/716 loss=17.7221
+08/12/2026 03:16:55 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 354/716 loss=17.1490
+08/12/2026 03:17:15 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 404/716 loss=15.3563
+08/12/2026 03:17:34 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 454/716 loss=13.3975
+08/12/2026 03:17:54 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 504/716 loss=16.4342
+08/12/2026 03:18:14 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 554/716 loss=17.3494
+08/12/2026 03:18:33 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 604/716 loss=15.9456
+08/12/2026 03:18:53 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 654/716 loss=18.2905
+08/12/2026 03:19:12 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 704/716 loss=18.3912
+08/12/2026 03:19:17 - INFO - __main__ - [vELECTRA + CRF] Epoch 7 xong sau 286.0s, avg_loss=17.5245
+08/12/2026 03:19:36 - INFO - __main__ - [vELECTRA + CRF] Epoch 7 - Valid macro F1 = 0.4064
+              precision    recall  f1-score   support
+
+      PERIOD     0.6509    0.5754    0.6109     17715
+       COMMA     0.6038    0.4921    0.5422     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7226    0.7712    0.7461      3868
+      EXCLAM     0.4812    0.6130    0.5392      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6094    0.5682    0.5881     41733
+   macro avg     0.4098    0.4086    0.4064     41733
+weighted avg     0.6111    0.5682    0.5856     41733
+
+08/12/2026 03:19:39 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.4064
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 03:19:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 38/716 loss=17.7643
+08/12/2026 03:20:14 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 88/716 loss=17.7121
+08/12/2026 03:20:34 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 138/716 loss=21.2041
+08/12/2026 03:20:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 188/716 loss=19.3897
+08/12/2026 03:21:14 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 238/716 loss=15.4876
+08/12/2026 03:21:34 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 288/716 loss=20.3601
+08/12/2026 03:21:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 338/716 loss=16.6879
+08/12/2026 03:22:14 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 388/716 loss=19.6794
+08/12/2026 03:22:34 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 438/716 loss=15.7322
+08/12/2026 03:22:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 488/716 loss=17.8033
+08/12/2026 03:23:14 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 538/716 loss=17.5922
+08/12/2026 03:23:35 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 588/716 loss=16.8069
+08/12/2026 03:23:55 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 638/716 loss=18.7438
+08/12/2026 03:24:16 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 688/716 loss=15.9696
+08/12/2026 03:24:27 - INFO - __main__ - [vELECTRA + CRF] Epoch 8 xong sau 288.4s, avg_loss=16.7744
+08/12/2026 03:24:46 - INFO - __main__ - [vELECTRA + CRF] Epoch 8 - Valid macro F1 = 0.4058
+              precision    recall  f1-score   support
+
+      PERIOD     0.6559    0.5671    0.6083     17715
+       COMMA     0.5959    0.4957    0.5412     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7309    0.7647    0.7474      3868
+      EXCLAM     0.4678    0.6334    0.5382      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6046    0.5684    0.5860     41733
+   macro avg     0.4084    0.4102    0.4058     41733
+weighted avg     0.6094    0.5684    0.5841     41733
+
+08/12/2026 03:24:48 - INFO - __main__ - [vELECTRA + CRF] Train xong. Best macro F1 = 0.4064. Checkpoint tại outputs/velectra_novels

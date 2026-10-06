@@ -1,0 +1,317 @@
+08/11/2026 18:46:32 - INFO - __main__ - === vELECTRA + Bi-LSTM | backbone=FPTAI/velectra-base-discriminator-cased ===
+08/11/2026 18:46:32 - INFO - __main__ - {
+  "model_key": "velectra",
+  "use_bilstm": true,
+  "data_dir": "/root/phopunct/data/punctuation/Novels",
+  "output_dir": "/root/phopunct/outputs/velectra_bilstm_plain_novels",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/11/2026 18:46:32 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 18:46:32 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 18:46:32 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/config.json "HTTP/1.1 200 OK"
+08/11/2026 18:46:32 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+08/11/2026 18:46:33 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+08/11/2026 18:46:33 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/11/2026 18:46:33 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/11/2026 18:46:33 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 18:46:33 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/vocab.txt "HTTP/1.1 200 OK"
+08/11/2026 18:46:33 - INFO - __main__ - Đang nạp dữ liệu train...
+08/11/2026 18:46:39 - INFO - punc_dataset_word - convert_examples_to_features: 11447 examples -> 11447 features (0 rỗng bị bỏ, 0 bị truncate)
+08/11/2026 18:46:39 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/11/2026 18:46:41 - INFO - punc_dataset_word - convert_examples_to_features: 3032 examples -> 3032 features (0 rỗng bị bỏ, 0 bị truncate)
+08/11/2026 18:46:41 - INFO - __main__ - Train: 11447 features | Valid: 3032 features
+08/11/2026 18:46:41 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 18:46:41 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/config.json "HTTP/1.1 200 OK"
+08/11/2026 18:46:41 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+08/11/2026 18:46:42 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased "HTTP/1.1 200 OK"
+08/11/2026 18:46:42 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/commits/main "HTTP/1.1 200 OK"
+08/11/2026 18:46:42 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/discussions?p=0 "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 41540.29it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: FPTAI/velectra-base-discriminator-cased
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+08/11/2026 18:46:42 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/commits/refs%2Fpr%2F1 "HTTP/1.1 200 OK"
+08/11/2026 18:46:42 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/refs%2Fpr%2F1/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+/root/phopunct/baseline_plain.py:247: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:46:42 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/refs%2Fpr%2F1/model.safetensors "HTTP/1.1 302 Found"
+08/11/2026 18:46:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 50/716 loss=1.2797
+08/11/2026 18:46:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 100/716 loss=0.5294
+08/11/2026 18:46:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 150/716 loss=0.5475
+08/11/2026 18:47:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 200/716 loss=0.4835
+08/11/2026 18:47:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 250/716 loss=0.4833
+08/11/2026 18:47:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 300/716 loss=0.4743
+08/11/2026 18:47:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 350/716 loss=0.3899
+08/11/2026 18:47:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 400/716 loss=0.3958
+08/11/2026 18:47:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 450/716 loss=0.4083
+08/11/2026 18:47:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 500/716 loss=0.3591
+08/11/2026 18:47:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 550/716 loss=0.3624
+08/11/2026 18:47:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 600/716 loss=0.3486
+08/11/2026 18:47:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 650/716 loss=0.3104
+08/11/2026 18:47:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 700/716 loss=0.3012
+08/11/2026 18:47:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 1 xong sau 71.0s, avg_loss=0.5342
+08/11/2026 18:48:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 1 - Valid macro F1 = 0.2706
+              precision    recall  f1-score   support
+
+      PERIOD     0.5597    0.3631    0.4405     17715
+       COMMA     0.4876    0.1837    0.2668     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.4808    0.5969    0.5326      3868
+      EXCLAM     0.3490    0.4258    0.3836      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.4774    0.3342    0.3932     41733
+   macro avg     0.3129    0.2616    0.2706     41733
+weighted avg     0.4923    0.3342    0.3812     41733
+
+08/11/2026 18:48:14 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.2706
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:48:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 34/716 loss=0.2926
+08/11/2026 18:48:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 84/716 loss=0.3578
+08/11/2026 18:48:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 134/716 loss=0.2886
+08/11/2026 18:48:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 184/716 loss=0.3143
+08/11/2026 18:48:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 234/716 loss=0.2711
+08/11/2026 18:48:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 284/716 loss=0.3033
+08/11/2026 18:48:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 334/716 loss=0.2990
+08/11/2026 18:48:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 384/716 loss=0.3018
+08/11/2026 18:48:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 434/716 loss=0.2713
+08/11/2026 18:49:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 484/716 loss=0.2556
+08/11/2026 18:49:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 534/716 loss=0.3297
+08/11/2026 18:49:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 584/716 loss=0.2486
+08/11/2026 18:49:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 634/716 loss=0.2903
+08/11/2026 18:49:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 684/716 loss=0.2360
+08/11/2026 18:49:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 2 xong sau 71.4s, avg_loss=0.2803
+08/11/2026 18:49:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 2 - Valid macro F1 = 0.3497
+              precision    recall  f1-score   support
+
+      PERIOD     0.6233    0.4759    0.5397     17715
+       COMMA     0.5969    0.3126    0.4103     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.6147    0.7177    0.6622      3868
+      EXCLAM     0.4301    0.5586    0.4860      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5681    0.4551    0.5054     41733
+   macro avg     0.3775    0.3441    0.3497     41733
+weighted avg     0.5793    0.4551    0.4971     41733
+
+08/11/2026 18:49:46 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.3497
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:49:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 18/716 loss=0.2400
+08/11/2026 18:49:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 68/716 loss=0.2115
+08/11/2026 18:49:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 118/716 loss=0.2949
+08/11/2026 18:50:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 168/716 loss=0.2421
+08/11/2026 18:50:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 218/716 loss=0.2340
+08/11/2026 18:50:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 268/716 loss=0.2129
+08/11/2026 18:50:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 318/716 loss=0.2103
+08/11/2026 18:50:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 368/716 loss=0.1911
+08/11/2026 18:50:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 418/716 loss=0.2391
+08/11/2026 18:50:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 468/716 loss=0.2010
+08/11/2026 18:50:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 518/716 loss=0.2225
+08/11/2026 18:50:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 568/716 loss=0.2448
+08/11/2026 18:50:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 618/716 loss=0.2313
+08/11/2026 18:50:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 668/716 loss=0.2102
+08/11/2026 18:50:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 3 xong sau 71.4s, avg_loss=0.2299
+08/11/2026 18:51:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 3 - Valid macro F1 = 0.3751
+              precision    recall  f1-score   support
+
+      PERIOD     0.6583    0.4908    0.5623     17715
+       COMMA     0.5975    0.4039    0.4820     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.6603    0.7412    0.6984      3868
+      EXCLAM     0.4233    0.6351    0.5080      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5805    0.5048    0.5400     41733
+   macro avg     0.3899    0.3785    0.3751     41733
+weighted avg     0.5975    0.5048    0.5364     41733
+
+08/11/2026 18:51:19 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.3751
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:51:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2/716 loss=0.2197
+08/11/2026 18:51:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 52/716 loss=0.2288
+08/11/2026 18:51:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 102/716 loss=0.1886
+08/11/2026 18:51:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 152/716 loss=0.2160
+08/11/2026 18:51:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 202/716 loss=0.1741
+08/11/2026 18:51:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 252/716 loss=0.1690
+08/11/2026 18:51:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 302/716 loss=0.2299
+08/11/2026 18:51:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 352/716 loss=0.1605
+08/11/2026 18:51:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 402/716 loss=0.2222
+08/11/2026 18:52:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 452/716 loss=0.1805
+08/11/2026 18:52:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 502/716 loss=0.1991
+08/11/2026 18:52:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 552/716 loss=0.1722
+08/11/2026 18:52:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 602/716 loss=0.2156
+08/11/2026 18:52:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 652/716 loss=0.2035
+08/11/2026 18:52:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 702/716 loss=0.1693
+08/11/2026 18:52:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 4 xong sau 71.4s, avg_loss=0.1997
+08/11/2026 18:52:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 4 - Valid macro F1 = 0.3909
+              precision    recall  f1-score   support
+
+      PERIOD     0.6322    0.5602    0.5940     17715
+       COMMA     0.6059    0.4310    0.5037     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.6868    0.7528    0.7183      3868
+      EXCLAM     0.4587    0.6260    0.5294      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5917    0.5425    0.5661     41733
+   macro avg     0.3973    0.3950    0.3909     41733
+weighted avg     0.5970    0.5425    0.5620     41733
+
+08/11/2026 18:52:51 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.3909
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:52:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 36/716 loss=0.1620
+08/11/2026 18:53:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 86/716 loss=0.1811
+08/11/2026 18:53:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 136/716 loss=0.1739
+08/11/2026 18:53:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 186/716 loss=0.1828
+08/11/2026 18:53:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 236/716 loss=0.1738
+08/11/2026 18:53:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 286/716 loss=0.1787
+08/11/2026 18:53:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 336/716 loss=0.1767
+08/11/2026 18:53:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 386/716 loss=0.1419
+08/11/2026 18:53:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 436/716 loss=0.1740
+08/11/2026 18:53:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 486/716 loss=0.1806
+08/11/2026 18:53:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 536/716 loss=0.2334
+08/11/2026 18:53:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 586/716 loss=0.2191
+08/11/2026 18:53:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 636/716 loss=0.1667
+08/11/2026 18:54:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 686/716 loss=0.1780
+08/11/2026 18:54:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 5 xong sau 71.4s, avg_loss=0.1785
+08/11/2026 18:54:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 5 - Valid macro F1 = 0.3970
+              precision    recall  f1-score   support
+
+      PERIOD     0.6510    0.5450    0.5933     17715
+       COMMA     0.5798    0.4847    0.5280     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7005    0.7559    0.7272      3868
+      EXCLAM     0.4508    0.6535    0.5335      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5887    0.5578    0.5728     41733
+   macro avg     0.3970    0.4065    0.3970     41733
+weighted avg     0.5967    0.5578    0.5709     41733
+
+08/11/2026 18:54:24 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.3970
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:54:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 20/716 loss=0.1635
+08/11/2026 18:54:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 70/716 loss=0.1438
+08/11/2026 18:54:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 120/716 loss=0.1416
+08/11/2026 18:54:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 170/716 loss=0.1485
+08/11/2026 18:54:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 220/716 loss=0.1948
+08/11/2026 18:54:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 270/716 loss=0.1634
+08/11/2026 18:54:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 320/716 loss=0.1537
+08/11/2026 18:55:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 370/716 loss=0.1414
+08/11/2026 18:55:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 420/716 loss=0.1708
+08/11/2026 18:55:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 470/716 loss=0.1726
+08/11/2026 18:55:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 520/716 loss=0.1712
+08/11/2026 18:55:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 570/716 loss=0.1179
+08/11/2026 18:55:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 620/716 loss=0.1543
+08/11/2026 18:55:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 670/716 loss=0.1564
+08/11/2026 18:55:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 6 xong sau 71.3s, avg_loss=0.1632
+08/11/2026 18:55:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 6 - Valid macro F1 = 0.4012
+              precision    recall  f1-score   support
+
+      PERIOD     0.6576    0.5413    0.5938     17715
+       COMMA     0.5820    0.4986    0.5371     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7345    0.7438    0.7391      3868
+      EXCLAM     0.4482    0.6696    0.5370      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5923    0.5620    0.5768     41733
+   macro avg     0.4037    0.4089    0.4012     41733
+weighted avg     0.6030    0.5620    0.5757     41733
+
+08/11/2026 18:55:56 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.4012
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:55:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4/716 loss=0.1405
+08/11/2026 18:56:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 54/716 loss=0.1698
+08/11/2026 18:56:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 104/716 loss=0.1656
+08/11/2026 18:56:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 154/716 loss=0.1381
+08/11/2026 18:56:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 204/716 loss=0.1534
+08/11/2026 18:56:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 254/716 loss=0.1426
+08/11/2026 18:56:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 304/716 loss=0.1602
+08/11/2026 18:56:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 354/716 loss=0.1619
+08/11/2026 18:56:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 404/716 loss=0.1446
+08/11/2026 18:56:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 454/716 loss=0.1633
+08/11/2026 18:56:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 504/716 loss=0.1411
+08/11/2026 18:56:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 554/716 loss=0.1714
+08/11/2026 18:56:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 604/716 loss=0.1577
+08/11/2026 18:57:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 654/716 loss=0.1410
+08/11/2026 18:57:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 704/716 loss=0.1820
+08/11/2026 18:57:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 7 xong sau 71.3s, avg_loss=0.1527
+08/11/2026 18:57:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 7 - Valid macro F1 = 0.4021
+              precision    recall  f1-score   support
+
+      PERIOD     0.6515    0.5611    0.6029     17715
+       COMMA     0.5940    0.4966    0.5410     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.6913    0.7751    0.7308      3868
+      EXCLAM     0.4571    0.6541    0.5381      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5948    0.5703    0.5823     41733
+   macro avg     0.3990    0.4145    0.4021     41733
+weighted avg     0.6016    0.5703    0.5802     41733
+
+08/11/2026 18:57:28 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.4021
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 18:57:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 38/716 loss=0.1245
+08/11/2026 18:57:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 88/716 loss=0.1565
+08/11/2026 18:57:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 138/716 loss=0.1303
+08/11/2026 18:57:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 188/716 loss=0.1469
+08/11/2026 18:57:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 238/716 loss=0.1537
+08/11/2026 18:57:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 288/716 loss=0.1673
+08/11/2026 18:58:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 338/716 loss=0.1863
+08/11/2026 18:58:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 388/716 loss=0.1392
+08/11/2026 18:58:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 438/716 loss=0.1306
+08/11/2026 18:58:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 488/716 loss=0.1975
+08/11/2026 18:58:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 538/716 loss=0.1132
+08/11/2026 18:58:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 588/716 loss=0.1582
+08/11/2026 18:58:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 638/716 loss=0.1223
+08/11/2026 18:58:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 688/716 loss=0.1497
+08/11/2026 18:58:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 8 xong sau 71.5s, avg_loss=0.1463
+08/11/2026 18:58:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 8 - Valid macro F1 = 0.4046
+              precision    recall  f1-score   support
+
+      PERIOD     0.6505    0.5690    0.6070     17715
+       COMMA     0.5857    0.5022    0.5407     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7149    0.7624    0.7379      3868
+      EXCLAM     0.4677    0.6441    0.5419      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5979    0.5727    0.5850     41733
+   macro avg     0.4031    0.4129    0.4046     41733
+weighted avg     0.6023    0.5727    0.5831     41733
+
+08/11/2026 18:59:01 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.4046
+08/11/2026 18:59:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] Train xong. Best macro F1 = 0.4046. Checkpoint tại /root/phopunct/outputs/velectra_bilstm_plain_novels

@@ -1,0 +1,312 @@
+08/11/2026 16:20:08 - INFO - __main__ - === mBERT + Bi-LSTM | backbone=bert-base-multilingual-cased ===
+08/11/2026 16:20:08 - INFO - __main__ - {
+  "model_key": "mbert",
+  "use_bilstm": true,
+  "data_dir": "/root/phopunct/data/punctuation/Novels",
+  "output_dir": "/root/phopunct/outputs/mbert_bilstm_plain_novels",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/11/2026 16:20:08 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 16:20:08 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 16:20:08 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 16:20:08 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/11/2026 16:20:08 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 16:20:08 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/11/2026 16:20:09 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 16:20:09 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased "HTTP/1.1 200 OK"
+08/11/2026 16:20:09 - INFO - __main__ - Đang nạp dữ liệu train...
+08/11/2026 16:20:15 - INFO - punc_dataset_word - convert_examples_to_features: 11447 examples -> 11447 features (0 rỗng bị bỏ, 24 bị truncate)
+08/11/2026 16:20:15 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/11/2026 16:20:17 - INFO - punc_dataset_word - convert_examples_to_features: 3032 examples -> 3032 features (0 rỗng bị bỏ, 0 bị truncate)
+08/11/2026 16:20:17 - INFO - __main__ - Train: 11447 features | Valid: 3032 features
+08/11/2026 16:20:21 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/config.json "HTTP/1.1 200 OK"
+08/11/2026 16:20:21 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4836.43it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/root/phopunct/baseline_plain.py:247: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:20:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 50/716 loss=0.7697
+08/11/2026 16:20:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 100/716 loss=0.5230
+08/11/2026 16:20:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 150/716 loss=0.5403
+08/11/2026 16:20:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 200/716 loss=0.4807
+08/11/2026 16:20:49 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 250/716 loss=0.4402
+08/11/2026 16:20:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 300/716 loss=0.3983
+08/11/2026 16:21:00 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 350/716 loss=0.3527
+08/11/2026 16:21:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 400/716 loss=0.3463
+08/11/2026 16:21:11 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 450/716 loss=0.3573
+08/11/2026 16:21:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 500/716 loss=0.3247
+08/11/2026 16:21:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 550/716 loss=0.3063
+08/11/2026 16:21:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 600/716 loss=0.3054
+08/11/2026 16:21:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 650/716 loss=0.2766
+08/11/2026 16:21:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 1 step 700/716 loss=0.2704
+08/11/2026 16:21:41 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 1 xong sau 79.2s, avg_loss=0.4616
+08/11/2026 16:22:00 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 1 - Valid macro F1 = 0.3144
+              precision    recall  f1-score   support
+
+      PERIOD     0.6334    0.4204    0.5054     17715
+       COMMA     0.5031    0.3589    0.4190     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.5112    0.5783    0.5427      3868
+      EXCLAM     0.3592    0.5040    0.4195      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5107    0.4251    0.4639     41733
+   macro avg     0.3345    0.3103    0.3144     41733
+weighted avg     0.5329    0.4251    0.4639     41733
+
+08/11/2026 16:22:03 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.3144
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:22:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 34/716 loss=0.2642
+08/11/2026 16:22:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 84/716 loss=0.3144
+08/11/2026 16:22:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 134/716 loss=0.2656
+08/11/2026 16:22:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 184/716 loss=0.2640
+08/11/2026 16:22:29 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 234/716 loss=0.2401
+08/11/2026 16:22:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 284/716 loss=0.2700
+08/11/2026 16:22:40 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 334/716 loss=0.2569
+08/11/2026 16:22:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 384/716 loss=0.2686
+08/11/2026 16:22:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 434/716 loss=0.2382
+08/11/2026 16:22:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 484/716 loss=0.2148
+08/11/2026 16:23:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 534/716 loss=0.2834
+08/11/2026 16:23:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 584/716 loss=0.2196
+08/11/2026 16:23:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 634/716 loss=0.2691
+08/11/2026 16:23:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 2 step 684/716 loss=0.2156
+08/11/2026 16:23:22 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 2 xong sau 78.8s, avg_loss=0.2449
+08/11/2026 16:23:41 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 2 - Valid macro F1 = 0.3726
+              precision    recall  f1-score   support
+
+      PERIOD     0.6716    0.5170    0.5842     17715
+       COMMA     0.5966    0.4542    0.5157     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.6267    0.6476    0.6370      3868
+      EXCLAM     0.4104    0.6344    0.4984      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5776    0.5231    0.5490     41733
+   macro avg     0.3842    0.3755    0.3726     41733
+weighted avg     0.5977    0.5231    0.5493     41733
+
+08/11/2026 16:23:45 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.3726
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:23:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 18/716 loss=0.2219
+08/11/2026 16:23:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 68/716 loss=0.1777
+08/11/2026 16:23:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 118/716 loss=0.2605
+08/11/2026 16:24:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 168/716 loss=0.2013
+08/11/2026 16:24:09 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 218/716 loss=0.1989
+08/11/2026 16:24:14 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 268/716 loss=0.1765
+08/11/2026 16:24:20 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 318/716 loss=0.1926
+08/11/2026 16:24:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 368/716 loss=0.1473
+08/11/2026 16:24:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 418/716 loss=0.2123
+08/11/2026 16:24:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 468/716 loss=0.1722
+08/11/2026 16:24:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 518/716 loss=0.2114
+08/11/2026 16:24:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 568/716 loss=0.2418
+08/11/2026 16:24:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 618/716 loss=0.2050
+08/11/2026 16:24:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 3 step 668/716 loss=0.1754
+08/11/2026 16:25:03 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 3 xong sau 78.8s, avg_loss=0.2049
+08/11/2026 16:25:23 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 3 - Valid macro F1 = 0.3992
+              precision    recall  f1-score   support
+
+      PERIOD     0.7097    0.5190    0.5996     17715
+       COMMA     0.5851    0.5611    0.5729     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7408    0.6688    0.7030      3868
+      EXCLAM     0.4240    0.6712    0.5197      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.5980    0.5659    0.5815     41733
+   macro avg     0.4099    0.4033    0.3992     41733
+weighted avg     0.6229    0.5659    0.5835     41733
+
+08/11/2026 16:25:26 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.3992
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:25:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 2/716 loss=0.2100
+08/11/2026 16:25:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 52/716 loss=0.2087
+08/11/2026 16:25:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 102/716 loss=0.1749
+08/11/2026 16:25:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 152/716 loss=0.1936
+08/11/2026 16:25:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 202/716 loss=0.1531
+08/11/2026 16:25:54 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 252/716 loss=0.1220
+08/11/2026 16:25:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 302/716 loss=0.2124
+08/11/2026 16:26:05 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 352/716 loss=0.1653
+08/11/2026 16:26:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 402/716 loss=0.1833
+08/11/2026 16:26:16 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 452/716 loss=0.1697
+08/11/2026 16:26:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 502/716 loss=0.1772
+08/11/2026 16:26:27 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 552/716 loss=0.1599
+08/11/2026 16:26:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 602/716 loss=0.2160
+08/11/2026 16:26:38 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 652/716 loss=0.1826
+08/11/2026 16:26:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 4 step 702/716 loss=0.1651
+08/11/2026 16:26:45 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 4 xong sau 78.7s, avg_loss=0.1814
+08/11/2026 16:27:04 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 4 - Valid macro F1 = 0.4090
+              precision    recall  f1-score   support
+
+      PERIOD     0.6691    0.5831    0.6231     17715
+       COMMA     0.6420    0.5229    0.5764     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.6826    0.7640    0.7210      3868
+      EXCLAM     0.4454    0.6645    0.5333      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6097    0.5886    0.5990     41733
+   macro avg     0.4065    0.4224    0.4090     41733
+weighted avg     0.6218    0.5886    0.5984     41733
+
+08/11/2026 16:27:08 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.4090
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:27:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 36/716 loss=0.1531
+08/11/2026 16:27:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 86/716 loss=0.1713
+08/11/2026 16:27:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 136/716 loss=0.1629
+08/11/2026 16:27:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 186/716 loss=0.1862
+08/11/2026 16:27:34 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 236/716 loss=0.1689
+08/11/2026 16:27:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 286/716 loss=0.1744
+08/11/2026 16:27:45 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 336/716 loss=0.1720
+08/11/2026 16:27:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 386/716 loss=0.1327
+08/11/2026 16:27:56 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 436/716 loss=0.1615
+08/11/2026 16:28:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 486/716 loss=0.1584
+08/11/2026 16:28:07 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 536/716 loss=0.2077
+08/11/2026 16:28:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 586/716 loss=0.2070
+08/11/2026 16:28:18 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 636/716 loss=0.1621
+08/11/2026 16:28:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 5 step 686/716 loss=0.1686
+08/11/2026 16:28:26 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 5 xong sau 78.7s, avg_loss=0.1648
+08/11/2026 16:28:46 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 5 - Valid macro F1 = 0.4195
+              precision    recall  f1-score   support
+
+      PERIOD     0.6776    0.5984    0.6355     17715
+       COMMA     0.6355    0.5556    0.5929     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7379    0.7503    0.7440      3868
+      EXCLAM     0.4586    0.6707    0.5447      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6205    0.6053    0.6128     41733
+   macro avg     0.4183    0.4292    0.4195     41733
+weighted avg     0.6305    0.6053    0.6129     41733
+
+08/11/2026 16:28:49 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.4195
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:28:51 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 20/716 loss=0.1450
+08/11/2026 16:28:57 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 70/716 loss=0.1344
+08/11/2026 16:29:02 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 120/716 loss=0.1323
+08/11/2026 16:29:08 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 170/716 loss=0.1554
+08/11/2026 16:29:13 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 220/716 loss=0.1840
+08/11/2026 16:29:19 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 270/716 loss=0.1674
+08/11/2026 16:29:25 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 320/716 loss=0.1533
+08/11/2026 16:29:30 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 370/716 loss=0.1419
+08/11/2026 16:29:36 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 420/716 loss=0.1510
+08/11/2026 16:29:41 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 470/716 loss=0.1699
+08/11/2026 16:29:47 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 520/716 loss=0.1543
+08/11/2026 16:29:52 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 570/716 loss=0.1028
+08/11/2026 16:29:58 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 620/716 loss=0.1338
+08/11/2026 16:30:03 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 6 step 670/716 loss=0.1426
+08/11/2026 16:30:08 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 6 xong sau 78.8s, avg_loss=0.1526
+08/11/2026 16:30:28 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 6 - Valid macro F1 = 0.4212
+              precision    recall  f1-score   support
+
+      PERIOD     0.6823    0.5940    0.6351     17715
+       COMMA     0.6342    0.5671    0.5988     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7383    0.7665    0.7522      3868
+      EXCLAM     0.4511    0.6755    0.5410      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6193    0.6093    0.6143     41733
+   macro avg     0.4177    0.4338    0.4212     41733
+weighted avg     0.6309    0.6093    0.6148     41733
+
+08/11/2026 16:30:31 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.4212
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:30:31 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 4/716 loss=0.1310
+08/11/2026 16:30:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 54/716 loss=0.1559
+08/11/2026 16:30:42 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 104/716 loss=0.1529
+08/11/2026 16:30:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 154/716 loss=0.1315
+08/11/2026 16:30:53 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 204/716 loss=0.1414
+08/11/2026 16:30:59 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 254/716 loss=0.1302
+08/11/2026 16:31:04 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 304/716 loss=0.1461
+08/11/2026 16:31:10 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 354/716 loss=0.1494
+08/11/2026 16:31:15 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 404/716 loss=0.1474
+08/11/2026 16:31:21 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 454/716 loss=0.1789
+08/11/2026 16:31:26 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 504/716 loss=0.1352
+08/11/2026 16:31:32 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 554/716 loss=0.1623
+08/11/2026 16:31:37 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 604/716 loss=0.1320
+08/11/2026 16:31:43 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 654/716 loss=0.1292
+08/11/2026 16:31:48 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 7 step 704/716 loss=0.1482
+08/11/2026 16:31:50 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 7 xong sau 78.8s, avg_loss=0.1436
+08/11/2026 16:32:09 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 7 - Valid macro F1 = 0.4231
+              precision    recall  f1-score   support
+
+      PERIOD     0.6841    0.6001    0.6393     17715
+       COMMA     0.6437    0.5627    0.6005     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7304    0.7738    0.7514      3868
+      EXCLAM     0.4605    0.6749    0.5474      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6252    0.6111    0.6181     41733
+   macro avg     0.4198    0.4353    0.4231     41733
+weighted avg     0.6354    0.6111    0.6181     41733
+
+08/11/2026 16:32:12 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.4231
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 16:32:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 38/716 loss=0.1133
+08/11/2026 16:32:22 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 88/716 loss=0.1411
+08/11/2026 16:32:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 138/716 loss=0.1370
+08/11/2026 16:32:33 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 188/716 loss=0.1329
+08/11/2026 16:32:39 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 238/716 loss=0.1453
+08/11/2026 16:32:44 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 288/716 loss=0.1475
+08/11/2026 16:32:50 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 338/716 loss=0.1672
+08/11/2026 16:32:55 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 388/716 loss=0.1179
+08/11/2026 16:33:01 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 438/716 loss=0.1166
+08/11/2026 16:33:06 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 488/716 loss=0.1631
+08/11/2026 16:33:12 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 538/716 loss=0.1216
+08/11/2026 16:33:17 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 588/716 loss=0.1421
+08/11/2026 16:33:23 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 638/716 loss=0.1252
+08/11/2026 16:33:28 - INFO - __main__ - [mBERT + Bi-LSTM] epoch 8 step 688/716 loss=0.1484
+08/11/2026 16:33:31 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 8 xong sau 78.8s, avg_loss=0.1376
+08/11/2026 16:33:51 - INFO - __main__ - [mBERT + Bi-LSTM] Epoch 8 - Valid macro F1 = 0.4256
+              precision    recall  f1-score   support
+
+      PERIOD     0.6944    0.5963    0.6416     17715
+       COMMA     0.6332    0.5732    0.6017     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7465    0.7704    0.7583      3868
+      EXCLAM     0.4671    0.6752    0.5522      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6290    0.6126    0.6207     41733
+   macro avg     0.4235    0.4358    0.4256     41733
+weighted avg     0.6390    0.6126    0.6208     41733
+
+08/11/2026 16:33:54 - INFO - __main__ - -> [mBERT + Bi-LSTM] best checkpoint mới, macro F1 = 0.4256
+08/11/2026 16:33:54 - INFO - __main__ - [mBERT + Bi-LSTM] Train xong. Best macro F1 = 0.4256. Checkpoint tại /root/phopunct/outputs/mbert_bilstm_plain_novels

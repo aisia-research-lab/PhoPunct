@@ -1,0 +1,1277 @@
+08/10/2026 06:00:10 - INFO - __main__ - === XLM-R + Bi-LSTM + CRF | backbone=xlm-roberta-base ===
+08/10/2026 06:00:10 - INFO - __main__ - {
+  "model_key": "xlmr",
+  "use_bilstm": true,
+  "data_dir": "/root/phopunct/data/punctuation/News",
+  "output_dir": "/root/phopunct/outputs/xlmr_bilstm_news",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/10/2026 06:00:10 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/config.json "HTTP/1.1 200 OK"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/10/2026 06:00:10 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/10/2026 06:00:10 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+08/10/2026 06:00:11 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/xlm-roberta-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/10/2026 06:00:11 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FacebookAI/xlm-roberta-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/10/2026 06:00:11 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/xlm-roberta-base/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/10/2026 06:00:11 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FacebookAI/xlm-roberta-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/10/2026 06:00:14 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/xlm-roberta-base "HTTP/1.1 307 Temporary Redirect"
+08/10/2026 06:00:14 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FacebookAI/xlm-roberta-base "HTTP/1.1 200 OK"
+08/10/2026 06:00:14 - INFO - __main__ - Đang nạp dữ liệu train...
+08/10/2026 06:01:54 - INFO - punc_dataset_word - convert_examples_to_features: 108000 examples -> 108000 features (0 rỗng bị bỏ, 7 bị truncate)
+08/10/2026 06:02:02 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/10/2026 06:02:36 - INFO - punc_dataset_word - convert_examples_to_features: 36191 examples -> 36191 features (0 rỗng bị bỏ, 1 bị truncate)
+08/10/2026 06:02:38 - INFO - __main__ - Train: 108000 features | Valid: 36191 features
+08/10/2026 06:02:38 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/xlm-roberta-base/resolve/main/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4353.57it/s]
+[transformers] [1mXLMRobertaModel LOAD REPORT[0m from: xlm-roberta-base
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.bias              | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/root/phopunct/baseline_lstm_crf.py:232: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+/root/phopunct/baseline_lstm_crf.py:259: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+08/10/2026 06:03:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 50/6750 loss=201.1377
+08/10/2026 06:03:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 100/6750 loss=191.9209
+08/10/2026 06:03:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 150/6750 loss=134.6024
+08/10/2026 06:04:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 200/6750 loss=51.8225
+08/10/2026 06:04:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 250/6750 loss=49.5338
+08/10/2026 06:04:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 300/6750 loss=43.0394
+08/10/2026 06:05:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 350/6750 loss=34.5711
+08/10/2026 06:05:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 400/6750 loss=37.7858
+08/10/2026 06:05:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 450/6750 loss=37.4950
+08/10/2026 06:06:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 500/6750 loss=34.6127
+08/10/2026 06:06:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 550/6750 loss=31.0136
+08/10/2026 06:06:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 600/6750 loss=35.5833
+08/10/2026 06:07:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 650/6750 loss=30.3441
+08/10/2026 06:07:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 700/6750 loss=26.1787
+08/10/2026 06:07:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 750/6750 loss=23.4098
+08/10/2026 06:08:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 800/6750 loss=24.6851
+08/10/2026 06:08:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 850/6750 loss=20.2070
+08/10/2026 06:09:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 900/6750 loss=22.9164
+08/10/2026 06:09:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 950/6750 loss=20.2247
+08/10/2026 06:09:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1000/6750 loss=20.0685
+08/10/2026 06:10:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1050/6750 loss=18.9951
+08/10/2026 06:10:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1100/6750 loss=17.9837
+08/10/2026 06:10:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1150/6750 loss=18.1318
+08/10/2026 06:11:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1200/6750 loss=14.4813
+08/10/2026 06:11:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1250/6750 loss=17.9163
+08/10/2026 06:11:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1300/6750 loss=19.0092
+08/10/2026 06:12:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1350/6750 loss=17.8159
+08/10/2026 06:12:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1400/6750 loss=14.7237
+08/10/2026 06:12:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1450/6750 loss=16.4769
+08/10/2026 06:13:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1500/6750 loss=17.0369
+08/10/2026 06:13:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1550/6750 loss=15.4873
+08/10/2026 06:14:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1600/6750 loss=19.5067
+08/10/2026 06:14:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1650/6750 loss=20.7619
+08/10/2026 06:14:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1700/6750 loss=18.9844
+08/10/2026 06:15:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1750/6750 loss=17.3326
+08/10/2026 06:15:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1800/6750 loss=14.8129
+08/10/2026 06:15:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1850/6750 loss=14.4890
+08/10/2026 06:16:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1900/6750 loss=16.5498
+08/10/2026 06:16:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 1950/6750 loss=11.4786
+08/10/2026 06:16:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2000/6750 loss=10.5843
+08/10/2026 06:17:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2050/6750 loss=18.1540
+08/10/2026 06:17:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2100/6750 loss=9.2772
+08/10/2026 06:17:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2150/6750 loss=13.6124
+08/10/2026 06:18:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2200/6750 loss=14.6673
+08/10/2026 06:18:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2250/6750 loss=16.8329
+08/10/2026 06:18:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2300/6750 loss=14.5501
+08/10/2026 06:19:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2350/6750 loss=15.9808
+08/10/2026 06:19:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2400/6750 loss=9.9899
+08/10/2026 06:19:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2450/6750 loss=8.5890
+08/10/2026 06:20:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2500/6750 loss=13.1450
+08/10/2026 06:20:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2550/6750 loss=17.3286
+08/10/2026 06:21:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2600/6750 loss=15.6699
+08/10/2026 06:21:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2650/6750 loss=14.3375
+08/10/2026 06:21:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2700/6750 loss=11.1874
+08/10/2026 06:22:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2750/6750 loss=9.6110
+08/10/2026 06:22:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2800/6750 loss=10.5779
+08/10/2026 06:22:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2850/6750 loss=16.3621
+08/10/2026 06:23:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2900/6750 loss=11.0788
+08/10/2026 06:23:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 2950/6750 loss=11.4498
+08/10/2026 06:23:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3000/6750 loss=12.5748
+08/10/2026 06:24:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3050/6750 loss=12.8354
+08/10/2026 06:24:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3100/6750 loss=12.6458
+08/10/2026 06:24:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3150/6750 loss=9.5520
+08/10/2026 06:25:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3200/6750 loss=10.0885
+08/10/2026 06:25:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3250/6750 loss=10.9935
+08/10/2026 06:25:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3300/6750 loss=8.9509
+08/10/2026 06:26:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3350/6750 loss=9.7585
+08/10/2026 06:26:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3400/6750 loss=8.7229
+08/10/2026 06:27:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3450/6750 loss=15.1074
+08/10/2026 06:27:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3500/6750 loss=11.7084
+08/10/2026 06:27:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3550/6750 loss=11.9162
+08/10/2026 06:28:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3600/6750 loss=15.5941
+08/10/2026 06:28:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3650/6750 loss=10.3476
+08/10/2026 06:28:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3700/6750 loss=13.2366
+08/10/2026 06:29:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3750/6750 loss=9.2349
+08/10/2026 06:29:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3800/6750 loss=9.8312
+08/10/2026 06:29:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3850/6750 loss=11.8527
+08/10/2026 06:30:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3900/6750 loss=10.1683
+08/10/2026 06:30:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 3950/6750 loss=11.8674
+08/10/2026 06:30:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4000/6750 loss=12.8636
+08/10/2026 06:31:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4050/6750 loss=10.8099
+08/10/2026 06:31:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4100/6750 loss=9.3631
+08/10/2026 06:31:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4150/6750 loss=9.7534
+08/10/2026 06:32:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4200/6750 loss=11.2385
+08/10/2026 06:32:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4250/6750 loss=10.0237
+08/10/2026 06:33:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4300/6750 loss=7.6539
+08/10/2026 06:33:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4350/6750 loss=10.2123
+08/10/2026 06:33:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4400/6750 loss=8.9437
+08/10/2026 06:34:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4450/6750 loss=10.9658
+08/10/2026 06:34:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4500/6750 loss=10.7635
+08/10/2026 06:34:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4550/6750 loss=10.4199
+08/10/2026 06:35:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4600/6750 loss=7.9603
+08/10/2026 06:35:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4650/6750 loss=9.8142
+08/10/2026 06:35:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4700/6750 loss=7.0097
+08/10/2026 06:36:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4750/6750 loss=8.4048
+08/10/2026 06:36:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4800/6750 loss=12.6961
+08/10/2026 06:36:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4850/6750 loss=10.7987
+08/10/2026 06:37:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4900/6750 loss=12.6108
+08/10/2026 06:37:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 4950/6750 loss=14.9902
+08/10/2026 06:37:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5000/6750 loss=8.1398
+08/10/2026 06:38:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5050/6750 loss=7.7858
+08/10/2026 06:38:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5100/6750 loss=13.6497
+08/10/2026 06:39:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5150/6750 loss=8.6991
+08/10/2026 06:39:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5200/6750 loss=6.1161
+08/10/2026 06:39:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5250/6750 loss=9.2193
+08/10/2026 06:40:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5300/6750 loss=10.2108
+08/10/2026 06:40:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5350/6750 loss=13.1956
+08/10/2026 06:40:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5400/6750 loss=9.9879
+08/10/2026 06:41:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5450/6750 loss=11.1053
+08/10/2026 06:41:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5500/6750 loss=10.7804
+08/10/2026 06:41:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5550/6750 loss=9.0104
+08/10/2026 06:42:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5600/6750 loss=10.5853
+08/10/2026 06:42:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5650/6750 loss=8.9347
+08/10/2026 06:42:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5700/6750 loss=11.6651
+08/10/2026 06:43:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5750/6750 loss=11.7928
+08/10/2026 06:43:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5800/6750 loss=10.2343
+08/10/2026 06:43:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5850/6750 loss=14.1245
+08/10/2026 06:44:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5900/6750 loss=11.2378
+08/10/2026 06:44:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 5950/6750 loss=10.8887
+08/10/2026 06:45:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6000/6750 loss=8.7673
+08/10/2026 06:45:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6050/6750 loss=9.9676
+08/10/2026 06:45:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6100/6750 loss=12.3957
+08/10/2026 06:46:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6150/6750 loss=10.0106
+08/10/2026 06:46:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6200/6750 loss=10.8739
+08/10/2026 06:46:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6250/6750 loss=7.7000
+08/10/2026 06:47:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6300/6750 loss=11.1460
+08/10/2026 06:47:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6350/6750 loss=8.1373
+08/10/2026 06:47:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6400/6750 loss=9.3610
+08/10/2026 06:48:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6450/6750 loss=10.0941
+08/10/2026 06:48:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6500/6750 loss=10.0073
+08/10/2026 06:48:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6550/6750 loss=9.4802
+08/10/2026 06:49:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6600/6750 loss=9.7824
+08/10/2026 06:49:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6650/6750 loss=10.6003
+08/10/2026 06:49:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6700/6750 loss=8.6348
+08/10/2026 06:50:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 1 step 6750/6750 loss=12.7704
+08/10/2026 06:50:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 1 xong sau 2857.5s, avg_loss=19.1230
+08/10/2026 06:53:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 1 - Valid macro F1 = 0.4697
+              precision    recall  f1-score   support
+
+      PERIOD     0.8413    0.8641    0.8526    140169
+       COMMA     0.7253    0.7257    0.7255    162056
+       COLON     0.7104    0.4091    0.5192     10825
+       QMARK     0.7138    0.6744    0.6935      4884
+      EXCLAM     0.8000    0.0047    0.0093      2556
+   SEMICOLON     0.5806    0.0093    0.0182      1944
+
+   micro avg     0.7775    0.7644    0.7709    322434
+   macro avg     0.7286    0.4479    0.4697    322434
+weighted avg     0.7748    0.7644    0.7634    322434
+
+08/10/2026 06:54:05 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.4697
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 06:54:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 50/6750 loss=5.2549
+08/10/2026 06:54:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 100/6750 loss=8.4008
+08/10/2026 06:55:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 150/6750 loss=13.6844
+08/10/2026 06:55:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 200/6750 loss=8.6778
+08/10/2026 06:55:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 250/6750 loss=10.7778
+08/10/2026 06:56:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 300/6750 loss=7.7692
+08/10/2026 06:56:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 350/6750 loss=8.9581
+08/10/2026 06:56:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 400/6750 loss=9.5416
+08/10/2026 06:57:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 450/6750 loss=7.8029
+08/10/2026 06:57:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 500/6750 loss=8.2795
+08/10/2026 06:57:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 550/6750 loss=8.6840
+08/10/2026 06:58:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 600/6750 loss=8.9125
+08/10/2026 06:58:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 650/6750 loss=9.9571
+08/10/2026 06:59:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 700/6750 loss=10.0043
+08/10/2026 06:59:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 750/6750 loss=7.9476
+08/10/2026 06:59:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 800/6750 loss=9.0878
+08/10/2026 07:00:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 850/6750 loss=9.9286
+08/10/2026 07:00:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 900/6750 loss=8.8498
+08/10/2026 07:00:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 950/6750 loss=9.4909
+08/10/2026 07:01:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1000/6750 loss=7.5148
+08/10/2026 07:01:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1050/6750 loss=13.6974
+08/10/2026 07:01:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1100/6750 loss=10.8073
+08/10/2026 07:02:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1150/6750 loss=9.6430
+08/10/2026 07:02:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1200/6750 loss=10.2491
+08/10/2026 07:02:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1250/6750 loss=9.5605
+08/10/2026 07:03:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1300/6750 loss=7.9076
+08/10/2026 07:03:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1350/6750 loss=9.4728
+08/10/2026 07:03:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1400/6750 loss=8.7148
+08/10/2026 07:04:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1450/6750 loss=10.5814
+08/10/2026 07:04:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1500/6750 loss=7.4455
+08/10/2026 07:05:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1550/6750 loss=4.9051
+08/10/2026 07:05:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1600/6750 loss=8.2593
+08/10/2026 07:05:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1650/6750 loss=9.2499
+08/10/2026 07:06:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1700/6750 loss=10.1416
+08/10/2026 07:06:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1750/6750 loss=6.7268
+08/10/2026 07:06:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1800/6750 loss=9.2384
+08/10/2026 07:07:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1850/6750 loss=9.1419
+08/10/2026 07:07:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1900/6750 loss=12.3652
+08/10/2026 07:07:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 1950/6750 loss=8.7182
+08/10/2026 07:08:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2000/6750 loss=11.9052
+08/10/2026 07:08:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2050/6750 loss=8.4747
+08/10/2026 07:08:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2100/6750 loss=7.8978
+08/10/2026 07:09:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2150/6750 loss=8.2758
+08/10/2026 07:09:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2200/6750 loss=8.9129
+08/10/2026 07:09:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2250/6750 loss=9.3198
+08/10/2026 07:10:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2300/6750 loss=9.3758
+08/10/2026 07:10:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2350/6750 loss=9.1574
+08/10/2026 07:11:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2400/6750 loss=9.8465
+08/10/2026 07:11:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2450/6750 loss=11.0089
+08/10/2026 07:11:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2500/6750 loss=9.2030
+08/10/2026 07:12:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2550/6750 loss=10.2431
+08/10/2026 07:12:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2600/6750 loss=11.9791
+08/10/2026 07:12:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2650/6750 loss=8.8080
+08/10/2026 07:13:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2700/6750 loss=11.0085
+08/10/2026 07:13:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2750/6750 loss=9.3698
+08/10/2026 07:13:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2800/6750 loss=14.8916
+08/10/2026 07:14:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2850/6750 loss=9.3485
+08/10/2026 07:14:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2900/6750 loss=6.4406
+08/10/2026 07:14:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 2950/6750 loss=8.7484
+08/10/2026 07:15:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3000/6750 loss=10.9125
+08/10/2026 07:15:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3050/6750 loss=9.7727
+08/10/2026 07:15:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3100/6750 loss=9.6220
+08/10/2026 07:16:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3150/6750 loss=9.6137
+08/10/2026 07:16:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3200/6750 loss=7.6300
+08/10/2026 07:17:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3250/6750 loss=9.9050
+08/10/2026 07:17:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3300/6750 loss=9.8491
+08/10/2026 07:17:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3350/6750 loss=9.3948
+08/10/2026 07:18:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3400/6750 loss=5.4617
+08/10/2026 07:18:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3450/6750 loss=7.3292
+08/10/2026 07:18:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3500/6750 loss=8.7957
+08/10/2026 07:19:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3550/6750 loss=8.1604
+08/10/2026 07:19:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3600/6750 loss=9.4892
+08/10/2026 07:19:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3650/6750 loss=10.0654
+08/10/2026 07:20:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3700/6750 loss=7.0760
+08/10/2026 07:20:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3750/6750 loss=7.7970
+08/10/2026 07:20:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3800/6750 loss=6.4090
+08/10/2026 07:21:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3850/6750 loss=9.7501
+08/10/2026 07:21:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3900/6750 loss=8.1982
+08/10/2026 07:22:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 3950/6750 loss=7.7432
+08/10/2026 07:22:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4000/6750 loss=8.0053
+08/10/2026 07:22:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4050/6750 loss=8.6738
+08/10/2026 07:23:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4100/6750 loss=9.0213
+08/10/2026 07:23:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4150/6750 loss=9.5164
+08/10/2026 07:23:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4200/6750 loss=7.2606
+08/10/2026 07:24:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4250/6750 loss=7.8369
+08/10/2026 07:24:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4300/6750 loss=8.6344
+08/10/2026 07:24:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4350/6750 loss=9.0989
+08/10/2026 07:25:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4400/6750 loss=9.0315
+08/10/2026 07:25:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4450/6750 loss=10.2563
+08/10/2026 07:25:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4500/6750 loss=7.7545
+08/10/2026 07:26:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4550/6750 loss=9.8038
+08/10/2026 07:26:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4600/6750 loss=7.6174
+08/10/2026 07:26:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4650/6750 loss=7.9449
+08/10/2026 07:27:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4700/6750 loss=9.3369
+08/10/2026 07:27:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4750/6750 loss=4.5196
+08/10/2026 07:28:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4800/6750 loss=12.4032
+08/10/2026 07:28:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4850/6750 loss=8.7936
+08/10/2026 07:28:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4900/6750 loss=8.8536
+08/10/2026 07:29:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 4950/6750 loss=9.6886
+08/10/2026 07:29:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5000/6750 loss=10.1133
+08/10/2026 07:29:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5050/6750 loss=10.5147
+08/10/2026 07:30:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5100/6750 loss=11.0001
+08/10/2026 07:30:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5150/6750 loss=10.8093
+08/10/2026 07:30:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5200/6750 loss=8.4003
+08/10/2026 07:31:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5250/6750 loss=9.0029
+08/10/2026 07:31:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5300/6750 loss=12.5058
+08/10/2026 07:31:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5350/6750 loss=11.7898
+08/10/2026 07:32:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5400/6750 loss=9.8439
+08/10/2026 07:32:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5450/6750 loss=6.3630
+08/10/2026 07:32:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5500/6750 loss=11.7646
+08/10/2026 07:33:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5550/6750 loss=10.3660
+08/10/2026 07:33:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5600/6750 loss=8.4511
+08/10/2026 07:33:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5650/6750 loss=8.4848
+08/10/2026 07:34:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5700/6750 loss=9.5111
+08/10/2026 07:34:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5750/6750 loss=9.9280
+08/10/2026 07:34:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5800/6750 loss=8.8175
+08/10/2026 07:35:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5850/6750 loss=10.1615
+08/10/2026 07:35:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5900/6750 loss=8.7409
+08/10/2026 07:36:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 5950/6750 loss=9.1067
+08/10/2026 07:36:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6000/6750 loss=6.9573
+08/10/2026 07:36:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6050/6750 loss=7.1061
+08/10/2026 07:37:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6100/6750 loss=10.9566
+08/10/2026 07:37:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6150/6750 loss=7.7263
+08/10/2026 07:37:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6200/6750 loss=7.8491
+08/10/2026 07:38:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6250/6750 loss=6.5105
+08/10/2026 07:38:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6300/6750 loss=9.3175
+08/10/2026 07:38:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6350/6750 loss=5.6744
+08/10/2026 07:39:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6400/6750 loss=8.0609
+08/10/2026 07:39:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6450/6750 loss=9.7310
+08/10/2026 07:39:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6500/6750 loss=9.0499
+08/10/2026 07:40:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6550/6750 loss=7.0547
+08/10/2026 07:40:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6600/6750 loss=9.2350
+08/10/2026 07:40:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6650/6750 loss=7.7692
+08/10/2026 07:41:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6700/6750 loss=7.2709
+08/10/2026 07:41:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 2 step 6750/6750 loss=8.7733
+08/10/2026 07:41:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 2 xong sau 2855.4s, avg_loss=9.0143
+08/10/2026 07:45:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 2 - Valid macro F1 = 0.5350
+              precision    recall  f1-score   support
+
+      PERIOD     0.8400    0.8859    0.8623    140169
+       COMMA     0.7639    0.7070    0.7344    162056
+       COLON     0.6898    0.4959    0.5770     10825
+       QMARK     0.6806    0.7443    0.7110      4884
+      EXCLAM     0.5782    0.1142    0.1908      2556
+   SEMICOLON     0.4750    0.0782    0.1343      1944
+
+   micro avg     0.7961    0.7698    0.7827    322434
+   macro avg     0.6712    0.5043    0.5350    322434
+weighted avg     0.7900    0.7698    0.7764    322434
+
+08/10/2026 07:45:33 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.5350
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 07:45:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 50/6750 loss=8.7513
+08/10/2026 07:46:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 100/6750 loss=6.3376
+08/10/2026 07:46:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 150/6750 loss=8.6786
+08/10/2026 07:46:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 200/6750 loss=7.8198
+08/10/2026 07:47:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 250/6750 loss=6.5258
+08/10/2026 07:47:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 300/6750 loss=7.0688
+08/10/2026 07:48:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 350/6750 loss=7.8227
+08/10/2026 07:48:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 400/6750 loss=6.0659
+08/10/2026 07:48:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 450/6750 loss=8.0424
+08/10/2026 07:49:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 500/6750 loss=8.8682
+08/10/2026 07:49:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 550/6750 loss=4.8062
+08/10/2026 07:49:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 600/6750 loss=6.9303
+08/10/2026 07:50:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 650/6750 loss=8.9316
+08/10/2026 07:50:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 700/6750 loss=11.0162
+08/10/2026 07:50:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 750/6750 loss=8.4837
+08/10/2026 07:51:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 800/6750 loss=8.0725
+08/10/2026 07:51:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 850/6750 loss=7.1091
+08/10/2026 07:51:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 900/6750 loss=8.1184
+08/10/2026 07:52:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 950/6750 loss=8.1732
+08/10/2026 07:52:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1000/6750 loss=7.9998
+08/10/2026 07:53:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1050/6750 loss=6.2364
+08/10/2026 07:53:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1100/6750 loss=8.3011
+08/10/2026 07:53:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1150/6750 loss=9.0843
+08/10/2026 07:54:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1200/6750 loss=8.3264
+08/10/2026 07:54:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1250/6750 loss=7.1379
+08/10/2026 07:54:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1300/6750 loss=5.7152
+08/10/2026 07:55:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1350/6750 loss=7.9643
+08/10/2026 07:55:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1400/6750 loss=5.8399
+08/10/2026 07:55:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1450/6750 loss=8.9039
+08/10/2026 07:56:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1500/6750 loss=6.6241
+08/10/2026 07:56:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1550/6750 loss=11.0782
+08/10/2026 07:56:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1600/6750 loss=9.6510
+08/10/2026 07:57:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1650/6750 loss=6.6670
+08/10/2026 07:57:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1700/6750 loss=8.6792
+08/10/2026 07:57:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1750/6750 loss=8.3429
+08/10/2026 07:58:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1800/6750 loss=7.2693
+08/10/2026 07:58:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1850/6750 loss=9.2375
+08/10/2026 07:59:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1900/6750 loss=7.3402
+08/10/2026 07:59:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 1950/6750 loss=8.3634
+08/10/2026 07:59:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2000/6750 loss=6.8586
+08/10/2026 08:00:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2050/6750 loss=6.8400
+08/10/2026 08:00:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2100/6750 loss=7.2043
+08/10/2026 08:00:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2150/6750 loss=8.9121
+08/10/2026 08:01:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2200/6750 loss=9.9239
+08/10/2026 08:01:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2250/6750 loss=9.0092
+08/10/2026 08:01:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2300/6750 loss=8.8258
+08/10/2026 08:02:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2350/6750 loss=6.7127
+08/10/2026 08:02:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2400/6750 loss=8.9166
+08/10/2026 08:02:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2450/6750 loss=8.6447
+08/10/2026 08:03:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2500/6750 loss=8.3170
+08/10/2026 08:03:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2550/6750 loss=11.4099
+08/10/2026 08:03:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2600/6750 loss=7.5397
+08/10/2026 08:04:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2650/6750 loss=7.8862
+08/10/2026 08:04:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2700/6750 loss=6.2330
+08/10/2026 08:04:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2750/6750 loss=8.3156
+08/10/2026 08:05:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2800/6750 loss=9.6615
+08/10/2026 08:05:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2850/6750 loss=10.3413
+08/10/2026 08:05:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2900/6750 loss=7.9901
+08/10/2026 08:06:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 2950/6750 loss=7.3841
+08/10/2026 08:06:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3000/6750 loss=7.6562
+08/10/2026 08:06:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3050/6750 loss=6.8734
+08/10/2026 08:07:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3100/6750 loss=9.3346
+08/10/2026 08:07:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3150/6750 loss=8.2795
+08/10/2026 08:08:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3200/6750 loss=6.8934
+08/10/2026 08:08:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3250/6750 loss=8.5267
+08/10/2026 08:08:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3300/6750 loss=8.0744
+08/10/2026 08:09:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3350/6750 loss=8.1802
+08/10/2026 08:09:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3400/6750 loss=7.1343
+08/10/2026 08:09:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3450/6750 loss=8.1543
+08/10/2026 08:10:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3500/6750 loss=8.8583
+08/10/2026 08:10:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3550/6750 loss=7.2334
+08/10/2026 08:10:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3600/6750 loss=7.1138
+08/10/2026 08:11:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3650/6750 loss=6.5164
+08/10/2026 08:11:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3700/6750 loss=5.3943
+08/10/2026 08:11:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3750/6750 loss=6.7974
+08/10/2026 08:12:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3800/6750 loss=7.3982
+08/10/2026 08:12:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3850/6750 loss=6.6054
+08/10/2026 08:12:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3900/6750 loss=7.9104
+08/10/2026 08:13:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 3950/6750 loss=5.9735
+08/10/2026 08:13:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4000/6750 loss=9.5624
+08/10/2026 08:13:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4050/6750 loss=6.9874
+08/10/2026 08:14:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4100/6750 loss=6.8729
+08/10/2026 08:14:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4150/6750 loss=8.7669
+08/10/2026 08:14:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4200/6750 loss=6.8814
+08/10/2026 08:15:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4250/6750 loss=9.1707
+08/10/2026 08:15:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4300/6750 loss=6.6740
+08/10/2026 08:15:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4350/6750 loss=5.8903
+08/10/2026 08:16:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4400/6750 loss=9.6652
+08/10/2026 08:16:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4450/6750 loss=6.7204
+08/10/2026 08:17:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4500/6750 loss=7.2009
+08/10/2026 08:17:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4550/6750 loss=7.5581
+08/10/2026 08:17:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4600/6750 loss=9.9494
+08/10/2026 08:18:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4650/6750 loss=7.9330
+08/10/2026 08:18:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4700/6750 loss=8.4717
+08/10/2026 08:18:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4750/6750 loss=6.0200
+08/10/2026 08:19:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4800/6750 loss=7.7909
+08/10/2026 08:19:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4850/6750 loss=6.1269
+08/10/2026 08:19:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4900/6750 loss=5.9485
+08/10/2026 08:20:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 4950/6750 loss=6.7478
+08/10/2026 08:20:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5000/6750 loss=6.8378
+08/10/2026 08:20:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5050/6750 loss=6.9836
+08/10/2026 08:21:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5100/6750 loss=8.7028
+08/10/2026 08:21:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5150/6750 loss=9.5734
+08/10/2026 08:21:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5200/6750 loss=10.1381
+08/10/2026 08:22:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5250/6750 loss=6.3727
+08/10/2026 08:22:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5300/6750 loss=10.2571
+08/10/2026 08:22:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5350/6750 loss=5.4619
+08/10/2026 08:23:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5400/6750 loss=7.0830
+08/10/2026 08:23:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5450/6750 loss=9.5955
+08/10/2026 08:24:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5500/6750 loss=6.0204
+08/10/2026 08:24:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5550/6750 loss=7.5835
+08/10/2026 08:24:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5600/6750 loss=6.7398
+08/10/2026 08:25:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5650/6750 loss=8.0348
+08/10/2026 08:25:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5700/6750 loss=8.3685
+08/10/2026 08:25:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5750/6750 loss=7.1986
+08/10/2026 08:26:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5800/6750 loss=7.1731
+08/10/2026 08:26:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5850/6750 loss=6.3943
+08/10/2026 08:26:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5900/6750 loss=7.8024
+08/10/2026 08:27:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 5950/6750 loss=6.1588
+08/10/2026 08:27:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6000/6750 loss=7.3469
+08/10/2026 08:27:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6050/6750 loss=7.8059
+08/10/2026 08:28:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6100/6750 loss=8.4620
+08/10/2026 08:28:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6150/6750 loss=7.8193
+08/10/2026 08:28:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6200/6750 loss=4.7328
+08/10/2026 08:29:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6250/6750 loss=8.8500
+08/10/2026 08:29:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6300/6750 loss=4.2072
+08/10/2026 08:30:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6350/6750 loss=13.0323
+08/10/2026 08:30:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6400/6750 loss=7.5217
+08/10/2026 08:30:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6450/6750 loss=6.4502
+08/10/2026 08:31:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6500/6750 loss=5.4853
+08/10/2026 08:31:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6550/6750 loss=9.0344
+08/10/2026 08:31:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6600/6750 loss=6.8033
+08/10/2026 08:32:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6650/6750 loss=7.5294
+08/10/2026 08:32:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6700/6750 loss=9.4972
+08/10/2026 08:32:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 3 step 6750/6750 loss=6.7888
+08/10/2026 08:32:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 3 xong sau 2841.9s, avg_loss=7.8338
+08/10/2026 08:36:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 3 - Valid macro F1 = 0.5573
+              precision    recall  f1-score   support
+
+      PERIOD     0.8551    0.8791    0.8669    140169
+       COMMA     0.7646    0.7232    0.7433    162056
+       COLON     0.6622    0.5267    0.5867     10825
+       QMARK     0.7459    0.7136    0.7294      4884
+      EXCLAM     0.5814    0.1299    0.2123      2556
+   SEMICOLON     0.3956    0.1384    0.2050      1944
+
+   micro avg     0.8021    0.7760    0.7889    322434
+   macro avg     0.6675    0.5185    0.5573    322434
+weighted avg     0.7965    0.7760    0.7841    322434
+
+08/10/2026 08:36:45 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.5573
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 08:37:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 50/6750 loss=6.3860
+08/10/2026 08:37:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 100/6750 loss=4.8747
+08/10/2026 08:37:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 150/6750 loss=6.3839
+08/10/2026 08:38:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 200/6750 loss=6.4447
+08/10/2026 08:38:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 250/6750 loss=7.2498
+08/10/2026 08:38:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 300/6750 loss=5.6293
+08/10/2026 08:39:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 350/6750 loss=6.0555
+08/10/2026 08:39:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 400/6750 loss=9.0101
+08/10/2026 08:39:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 450/6750 loss=4.0255
+08/10/2026 08:40:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 500/6750 loss=8.3396
+08/10/2026 08:40:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 550/6750 loss=7.3760
+08/10/2026 08:40:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 600/6750 loss=6.8133
+08/10/2026 08:41:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 650/6750 loss=7.5124
+08/10/2026 08:41:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 700/6750 loss=7.8588
+08/10/2026 08:41:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 750/6750 loss=5.2175
+08/10/2026 08:42:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 800/6750 loss=7.9608
+08/10/2026 08:42:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 850/6750 loss=7.6402
+08/10/2026 08:43:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 900/6750 loss=4.4667
+08/10/2026 08:43:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 950/6750 loss=7.7410
+08/10/2026 08:43:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1000/6750 loss=6.3008
+08/10/2026 08:44:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1050/6750 loss=7.6177
+08/10/2026 08:44:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1100/6750 loss=5.2965
+08/10/2026 08:44:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1150/6750 loss=7.3286
+08/10/2026 08:45:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1200/6750 loss=5.2283
+08/10/2026 08:45:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1250/6750 loss=9.8590
+08/10/2026 08:45:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1300/6750 loss=8.8540
+08/10/2026 08:46:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1350/6750 loss=5.5923
+08/10/2026 08:46:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1400/6750 loss=9.2036
+08/10/2026 08:46:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1450/6750 loss=7.4519
+08/10/2026 08:47:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1500/6750 loss=8.5719
+08/10/2026 08:47:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1550/6750 loss=6.1522
+08/10/2026 08:47:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1600/6750 loss=9.4169
+08/10/2026 08:48:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1650/6750 loss=11.4470
+08/10/2026 08:48:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1700/6750 loss=6.0911
+08/10/2026 08:48:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1750/6750 loss=7.6924
+08/10/2026 08:49:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1800/6750 loss=7.7296
+08/10/2026 08:49:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1850/6750 loss=5.1080
+08/10/2026 08:49:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1900/6750 loss=7.0513
+08/10/2026 08:50:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 1950/6750 loss=7.4020
+08/10/2026 08:50:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2000/6750 loss=9.6255
+08/10/2026 08:51:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2050/6750 loss=6.0639
+08/10/2026 08:51:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2100/6750 loss=6.0959
+08/10/2026 08:51:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2150/6750 loss=5.6588
+08/10/2026 08:52:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2200/6750 loss=5.7078
+08/10/2026 08:52:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2250/6750 loss=4.4853
+08/10/2026 08:52:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2300/6750 loss=5.8588
+08/10/2026 08:53:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2350/6750 loss=6.8002
+08/10/2026 08:53:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2400/6750 loss=8.7456
+08/10/2026 08:53:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2450/6750 loss=5.4802
+08/10/2026 08:54:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2500/6750 loss=8.4983
+08/10/2026 08:54:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2550/6750 loss=5.7571
+08/10/2026 08:54:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2600/6750 loss=9.4595
+08/10/2026 08:55:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2650/6750 loss=9.2632
+08/10/2026 08:55:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2700/6750 loss=8.1811
+08/10/2026 08:55:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2750/6750 loss=4.3758
+08/10/2026 08:56:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2800/6750 loss=7.3698
+08/10/2026 08:56:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2850/6750 loss=6.5381
+08/10/2026 08:56:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2900/6750 loss=9.0184
+08/10/2026 08:57:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 2950/6750 loss=5.7523
+08/10/2026 08:57:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3000/6750 loss=6.2697
+08/10/2026 08:57:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3050/6750 loss=7.5277
+08/10/2026 08:58:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3100/6750 loss=6.8594
+08/10/2026 08:58:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3150/6750 loss=6.8946
+08/10/2026 08:59:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3200/6750 loss=7.9447
+08/10/2026 08:59:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3250/6750 loss=8.1837
+08/10/2026 08:59:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3300/6750 loss=7.0510
+08/10/2026 09:00:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3350/6750 loss=6.9833
+08/10/2026 09:00:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3400/6750 loss=5.0186
+08/10/2026 09:00:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3450/6750 loss=6.9914
+08/10/2026 09:01:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3500/6750 loss=6.5501
+08/10/2026 09:01:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3550/6750 loss=7.1710
+08/10/2026 09:01:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3600/6750 loss=4.2969
+08/10/2026 09:02:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3650/6750 loss=7.9574
+08/10/2026 09:02:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3700/6750 loss=5.2956
+08/10/2026 09:02:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3750/6750 loss=7.3663
+08/10/2026 09:03:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3800/6750 loss=7.6469
+08/10/2026 09:03:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3850/6750 loss=7.2146
+08/10/2026 09:03:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3900/6750 loss=5.7554
+08/10/2026 09:04:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 3950/6750 loss=8.2213
+08/10/2026 09:04:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4000/6750 loss=6.6412
+08/10/2026 09:05:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4050/6750 loss=8.1597
+08/10/2026 09:05:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4100/6750 loss=6.1775
+08/10/2026 09:05:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4150/6750 loss=6.9477
+08/10/2026 09:06:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4200/6750 loss=5.0608
+08/10/2026 09:06:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4250/6750 loss=5.7468
+08/10/2026 09:06:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4300/6750 loss=5.8240
+08/10/2026 09:07:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4350/6750 loss=6.8208
+08/10/2026 09:07:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4400/6750 loss=4.9979
+08/10/2026 09:07:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4450/6750 loss=6.2363
+08/10/2026 09:08:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4500/6750 loss=6.4078
+08/10/2026 09:08:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4550/6750 loss=5.3448
+08/10/2026 09:08:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4600/6750 loss=7.0587
+08/10/2026 09:09:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4650/6750 loss=7.4271
+08/10/2026 09:09:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4700/6750 loss=7.6118
+08/10/2026 09:09:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4750/6750 loss=6.5151
+08/10/2026 09:10:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4800/6750 loss=6.8497
+08/10/2026 09:10:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4850/6750 loss=6.7763
+08/10/2026 09:11:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4900/6750 loss=6.9132
+08/10/2026 09:11:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 4950/6750 loss=5.0394
+08/10/2026 09:11:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5000/6750 loss=6.7011
+08/10/2026 09:12:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5050/6750 loss=6.7636
+08/10/2026 09:12:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5100/6750 loss=5.9936
+08/10/2026 09:12:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5150/6750 loss=7.6897
+08/10/2026 09:13:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5200/6750 loss=7.1464
+08/10/2026 09:13:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5250/6750 loss=7.2542
+08/10/2026 09:13:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5300/6750 loss=9.2184
+08/10/2026 09:14:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5350/6750 loss=5.8640
+08/10/2026 09:14:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5400/6750 loss=5.4629
+08/10/2026 09:14:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5450/6750 loss=6.9837
+08/10/2026 09:15:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5500/6750 loss=6.3759
+08/10/2026 09:15:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5550/6750 loss=6.5633
+08/10/2026 09:15:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5600/6750 loss=5.3897
+08/10/2026 09:16:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5650/6750 loss=4.4276
+08/10/2026 09:16:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5700/6750 loss=6.7662
+08/10/2026 09:16:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5750/6750 loss=7.1379
+08/10/2026 09:17:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5800/6750 loss=4.5561
+08/10/2026 09:17:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5850/6750 loss=8.1018
+08/10/2026 09:18:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5900/6750 loss=5.9363
+08/10/2026 09:18:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 5950/6750 loss=7.4294
+08/10/2026 09:18:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6000/6750 loss=7.7351
+08/10/2026 09:19:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6050/6750 loss=7.2799
+08/10/2026 09:19:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6100/6750 loss=4.8574
+08/10/2026 09:19:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6150/6750 loss=5.5702
+08/10/2026 09:20:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6200/6750 loss=8.4207
+08/10/2026 09:20:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6250/6750 loss=7.7631
+08/10/2026 09:20:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6300/6750 loss=8.8400
+08/10/2026 09:21:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6350/6750 loss=7.1239
+08/10/2026 09:21:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6400/6750 loss=8.4509
+08/10/2026 09:21:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6450/6750 loss=5.7370
+08/10/2026 09:22:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6500/6750 loss=6.1534
+08/10/2026 09:22:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6550/6750 loss=5.8551
+08/10/2026 09:22:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6600/6750 loss=6.8325
+08/10/2026 09:23:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6650/6750 loss=7.4519
+08/10/2026 09:23:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6700/6750 loss=7.5632
+08/10/2026 09:23:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 4 step 6750/6750 loss=6.6593
+08/10/2026 09:23:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 4 xong sau 2831.5s, avg_loss=7.0269
+08/10/2026 09:27:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 4 - Valid macro F1 = 0.5616
+              precision    recall  f1-score   support
+
+      PERIOD     0.8441    0.8950    0.8688    140169
+       COMMA     0.7551    0.7405    0.7478    162056
+       COLON     0.6728    0.5508    0.6057     10825
+       QMARK     0.7424    0.7363    0.7393      4884
+      EXCLAM     0.5738    0.1232    0.2029      2556
+   SEMICOLON     0.4321    0.1343    0.2049      1944
+
+   micro avg     0.7928    0.7927    0.7927    322434
+   macro avg     0.6701    0.5300    0.5616    322434
+weighted avg     0.7875    0.7927    0.7879    322434
+
+08/10/2026 09:27:49 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.5616
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 09:28:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 50/6750 loss=6.1492
+08/10/2026 09:28:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 100/6750 loss=5.3175
+08/10/2026 09:28:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 150/6750 loss=5.6920
+08/10/2026 09:29:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 200/6750 loss=5.4617
+08/10/2026 09:29:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 250/6750 loss=6.9724
+08/10/2026 09:29:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 300/6750 loss=5.3056
+08/10/2026 09:30:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 350/6750 loss=7.4440
+08/10/2026 09:30:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 400/6750 loss=6.5345
+08/10/2026 09:30:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 450/6750 loss=6.9706
+08/10/2026 09:31:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 500/6750 loss=5.2182
+08/10/2026 09:31:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 550/6750 loss=5.1313
+08/10/2026 09:32:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 600/6750 loss=6.3077
+08/10/2026 09:32:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 650/6750 loss=3.9831
+08/10/2026 09:32:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 700/6750 loss=5.5008
+08/10/2026 09:33:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 750/6750 loss=6.4944
+08/10/2026 09:33:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 800/6750 loss=8.0900
+08/10/2026 09:33:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 850/6750 loss=4.5722
+08/10/2026 09:34:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 900/6750 loss=5.0806
+08/10/2026 09:34:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 950/6750 loss=6.7695
+08/10/2026 09:34:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1000/6750 loss=6.9708
+08/10/2026 09:35:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1050/6750 loss=7.0685
+08/10/2026 09:35:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1100/6750 loss=6.4297
+08/10/2026 09:35:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1150/6750 loss=5.5500
+08/10/2026 09:36:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1200/6750 loss=5.3995
+08/10/2026 09:36:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1250/6750 loss=5.6796
+08/10/2026 09:36:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1300/6750 loss=7.5868
+08/10/2026 09:37:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1350/6750 loss=5.5257
+08/10/2026 09:37:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1400/6750 loss=8.3525
+08/10/2026 09:38:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1450/6750 loss=4.5389
+08/10/2026 09:38:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1500/6750 loss=8.6454
+08/10/2026 09:38:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1550/6750 loss=6.9279
+08/10/2026 09:39:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1600/6750 loss=6.1251
+08/10/2026 09:39:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1650/6750 loss=6.7717
+08/10/2026 09:39:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1700/6750 loss=6.1956
+08/10/2026 09:40:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1750/6750 loss=5.8136
+08/10/2026 09:40:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1800/6750 loss=4.5383
+08/10/2026 09:40:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1850/6750 loss=6.4101
+08/10/2026 09:41:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1900/6750 loss=5.9324
+08/10/2026 09:41:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 1950/6750 loss=6.4275
+08/10/2026 09:42:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2000/6750 loss=6.6765
+08/10/2026 09:42:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2050/6750 loss=5.3004
+08/10/2026 09:42:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2100/6750 loss=3.7788
+08/10/2026 09:43:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2150/6750 loss=5.8645
+08/10/2026 09:43:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2200/6750 loss=5.5057
+08/10/2026 09:43:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2250/6750 loss=6.5798
+08/10/2026 09:44:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2300/6750 loss=6.5149
+08/10/2026 09:44:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2350/6750 loss=4.6617
+08/10/2026 09:44:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2400/6750 loss=5.4926
+08/10/2026 09:45:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2450/6750 loss=8.0936
+08/10/2026 09:45:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2500/6750 loss=6.1005
+08/10/2026 09:46:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2550/6750 loss=6.7468
+08/10/2026 09:46:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2600/6750 loss=5.2132
+08/10/2026 09:46:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2650/6750 loss=4.2657
+08/10/2026 09:47:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2700/6750 loss=8.3575
+08/10/2026 09:47:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2750/6750 loss=5.1200
+08/10/2026 09:47:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2800/6750 loss=6.2639
+08/10/2026 09:48:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2850/6750 loss=6.2241
+08/10/2026 09:48:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2900/6750 loss=4.5963
+08/10/2026 09:48:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 2950/6750 loss=7.0749
+08/10/2026 09:49:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3000/6750 loss=9.9101
+08/10/2026 09:49:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3050/6750 loss=9.9337
+08/10/2026 09:49:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3100/6750 loss=5.4178
+08/10/2026 09:50:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3150/6750 loss=6.9058
+08/10/2026 09:50:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3200/6750 loss=5.0712
+08/10/2026 09:50:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3250/6750 loss=5.0437
+08/10/2026 09:51:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3300/6750 loss=7.1837
+08/10/2026 09:51:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3350/6750 loss=6.3214
+08/10/2026 09:52:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3400/6750 loss=4.9353
+08/10/2026 09:52:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3450/6750 loss=4.0255
+08/10/2026 09:52:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3500/6750 loss=6.7849
+08/10/2026 09:53:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3550/6750 loss=7.6864
+08/10/2026 09:53:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3600/6750 loss=5.5454
+08/10/2026 09:53:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3650/6750 loss=6.7815
+08/10/2026 09:54:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3700/6750 loss=4.2586
+08/10/2026 09:54:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3750/6750 loss=7.7396
+08/10/2026 09:54:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3800/6750 loss=6.3041
+08/10/2026 09:55:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3850/6750 loss=5.0175
+08/10/2026 09:55:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3900/6750 loss=9.6824
+08/10/2026 09:55:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 3950/6750 loss=7.0983
+08/10/2026 09:56:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4000/6750 loss=5.5089
+08/10/2026 09:56:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4050/6750 loss=6.2699
+08/10/2026 09:56:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4100/6750 loss=5.4376
+08/10/2026 09:57:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4150/6750 loss=9.0381
+08/10/2026 09:57:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4200/6750 loss=6.6551
+08/10/2026 09:58:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4250/6750 loss=6.1681
+08/10/2026 09:58:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4300/6750 loss=6.0303
+08/10/2026 09:58:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4350/6750 loss=5.4453
+08/10/2026 09:59:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4400/6750 loss=5.9381
+08/10/2026 09:59:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4450/6750 loss=7.2286
+08/10/2026 09:59:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4500/6750 loss=7.1412
+08/10/2026 10:00:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4550/6750 loss=5.8366
+08/10/2026 10:00:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4600/6750 loss=7.8848
+08/10/2026 10:00:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4650/6750 loss=8.2462
+08/10/2026 10:01:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4700/6750 loss=4.5681
+08/10/2026 10:01:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4750/6750 loss=6.4647
+08/10/2026 10:01:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4800/6750 loss=5.0954
+08/10/2026 10:02:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4850/6750 loss=4.6971
+08/10/2026 10:02:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4900/6750 loss=3.9538
+08/10/2026 10:03:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 4950/6750 loss=6.3599
+08/10/2026 10:03:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5000/6750 loss=5.9089
+08/10/2026 10:03:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5050/6750 loss=6.3210
+08/10/2026 10:04:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5100/6750 loss=5.4074
+08/10/2026 10:04:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5150/6750 loss=7.4785
+08/10/2026 10:04:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5200/6750 loss=6.3730
+08/10/2026 10:05:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5250/6750 loss=5.7789
+08/10/2026 10:05:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5300/6750 loss=5.4677
+08/10/2026 10:05:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5350/6750 loss=6.0151
+08/10/2026 10:06:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5400/6750 loss=3.5731
+08/10/2026 10:06:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5450/6750 loss=5.9330
+08/10/2026 10:06:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5500/6750 loss=7.2408
+08/10/2026 10:07:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5550/6750 loss=4.1115
+08/10/2026 10:07:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5600/6750 loss=6.7174
+08/10/2026 10:08:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5650/6750 loss=5.9731
+08/10/2026 10:08:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5700/6750 loss=5.7813
+08/10/2026 10:08:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5750/6750 loss=7.4170
+08/10/2026 10:09:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5800/6750 loss=7.8418
+08/10/2026 10:09:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5850/6750 loss=5.9383
+08/10/2026 10:09:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5900/6750 loss=5.8230
+08/10/2026 10:10:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 5950/6750 loss=5.7875
+08/10/2026 10:10:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6000/6750 loss=4.0949
+08/10/2026 10:10:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6050/6750 loss=7.2872
+08/10/2026 10:11:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6100/6750 loss=6.6087
+08/10/2026 10:11:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6150/6750 loss=7.0440
+08/10/2026 10:11:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6200/6750 loss=7.1559
+08/10/2026 10:12:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6250/6750 loss=8.4155
+08/10/2026 10:12:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6300/6750 loss=4.2640
+08/10/2026 10:12:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6350/6750 loss=7.0939
+08/10/2026 10:13:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6400/6750 loss=6.9690
+08/10/2026 10:13:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6450/6750 loss=6.3666
+08/10/2026 10:13:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6500/6750 loss=7.1011
+08/10/2026 10:14:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6550/6750 loss=4.7043
+08/10/2026 10:14:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6600/6750 loss=6.6063
+08/10/2026 10:14:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6650/6750 loss=4.9195
+08/10/2026 10:15:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6700/6750 loss=8.2165
+08/10/2026 10:15:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 5 step 6750/6750 loss=7.0099
+08/10/2026 10:15:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 5 xong sau 2870.1s, avg_loss=6.4048
+08/10/2026 10:19:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 5 - Valid macro F1 = 0.5663
+              precision    recall  f1-score   support
+
+      PERIOD     0.8647    0.8791    0.8718    140169
+       COMMA     0.7601    0.7394    0.7496    162056
+       COLON     0.6674    0.5584    0.6081     10825
+       QMARK     0.7886    0.7027    0.7432      4884
+      EXCLAM     0.5250    0.1604    0.2457      2556
+   SEMICOLON     0.4495    0.1121    0.1795      1944
+
+   micro avg     0.8041    0.7851    0.7945    322434
+   macro avg     0.6759    0.5254    0.5663    322434
+weighted avg     0.7991    0.7851    0.7904    322434
+
+08/10/2026 10:19:29 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.5663
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 10:19:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 50/6750 loss=6.4505
+08/10/2026 10:20:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 100/6750 loss=5.5323
+08/10/2026 10:20:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 150/6750 loss=5.0690
+08/10/2026 10:20:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 200/6750 loss=7.5314
+08/10/2026 10:21:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 250/6750 loss=7.1883
+08/10/2026 10:21:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 300/6750 loss=4.1556
+08/10/2026 10:21:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 350/6750 loss=4.4029
+08/10/2026 10:22:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 400/6750 loss=5.0900
+08/10/2026 10:22:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 450/6750 loss=5.9268
+08/10/2026 10:22:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 500/6750 loss=5.5366
+08/10/2026 10:23:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 550/6750 loss=4.7919
+08/10/2026 10:23:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 600/6750 loss=3.5252
+08/10/2026 10:23:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 650/6750 loss=4.6583
+08/10/2026 10:24:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 700/6750 loss=5.3452
+08/10/2026 10:24:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 750/6750 loss=6.8012
+08/10/2026 10:25:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 800/6750 loss=7.0873
+08/10/2026 10:25:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 850/6750 loss=6.0021
+08/10/2026 10:25:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 900/6750 loss=4.4524
+08/10/2026 10:26:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 950/6750 loss=6.6837
+08/10/2026 10:26:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1000/6750 loss=6.3904
+08/10/2026 10:26:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1050/6750 loss=6.4658
+08/10/2026 10:27:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1100/6750 loss=4.8305
+08/10/2026 10:27:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1150/6750 loss=6.1368
+08/10/2026 10:27:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1200/6750 loss=6.7709
+08/10/2026 10:28:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1250/6750 loss=6.2654
+08/10/2026 10:28:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1300/6750 loss=5.2335
+08/10/2026 10:28:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1350/6750 loss=6.0092
+08/10/2026 10:29:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1400/6750 loss=5.1883
+08/10/2026 10:29:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1450/6750 loss=5.3388
+08/10/2026 10:29:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1500/6750 loss=5.4654
+08/10/2026 10:30:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1550/6750 loss=5.0173
+08/10/2026 10:30:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1600/6750 loss=8.1436
+08/10/2026 10:30:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1650/6750 loss=5.1165
+08/10/2026 10:31:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1700/6750 loss=4.0702
+08/10/2026 10:31:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1750/6750 loss=4.4082
+08/10/2026 10:31:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1800/6750 loss=4.9959
+08/10/2026 10:32:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1850/6750 loss=5.6140
+08/10/2026 10:32:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1900/6750 loss=5.2476
+08/10/2026 10:33:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 1950/6750 loss=6.1998
+08/10/2026 10:33:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2000/6750 loss=5.4408
+08/10/2026 10:33:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2050/6750 loss=4.3106
+08/10/2026 10:34:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2100/6750 loss=4.1085
+08/10/2026 10:34:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2150/6750 loss=4.2411
+08/10/2026 10:34:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2200/6750 loss=5.0969
+08/10/2026 10:35:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2250/6750 loss=8.0663
+08/10/2026 10:35:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2300/6750 loss=6.0867
+08/10/2026 10:35:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2350/6750 loss=6.1579
+08/10/2026 10:36:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2400/6750 loss=6.2762
+08/10/2026 10:36:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2450/6750 loss=6.1957
+08/10/2026 10:36:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2500/6750 loss=5.4608
+08/10/2026 10:37:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2550/6750 loss=5.9154
+08/10/2026 10:37:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2600/6750 loss=4.8057
+08/10/2026 10:37:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2650/6750 loss=5.8949
+08/10/2026 10:38:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2700/6750 loss=6.4490
+08/10/2026 10:38:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2750/6750 loss=4.4214
+08/10/2026 10:38:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2800/6750 loss=5.9699
+08/10/2026 10:39:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2850/6750 loss=4.2707
+08/10/2026 10:39:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2900/6750 loss=5.8281
+08/10/2026 10:40:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 2950/6750 loss=6.7878
+08/10/2026 10:40:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3000/6750 loss=6.8126
+08/10/2026 10:40:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3050/6750 loss=7.2650
+08/10/2026 10:41:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3100/6750 loss=8.3428
+08/10/2026 10:41:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3150/6750 loss=6.3719
+08/10/2026 10:41:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3200/6750 loss=6.2487
+08/10/2026 10:42:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3250/6750 loss=4.6050
+08/10/2026 10:42:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3300/6750 loss=5.6758
+08/10/2026 10:42:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3350/6750 loss=5.7609
+08/10/2026 10:43:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3400/6750 loss=6.5741
+08/10/2026 10:43:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3450/6750 loss=5.7606
+08/10/2026 10:43:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3500/6750 loss=6.9286
+08/10/2026 10:44:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3550/6750 loss=6.4242
+08/10/2026 10:44:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3600/6750 loss=5.8298
+08/10/2026 10:44:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3650/6750 loss=7.2913
+08/10/2026 10:45:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3700/6750 loss=5.7182
+08/10/2026 10:45:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3750/6750 loss=6.8242
+08/10/2026 10:45:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3800/6750 loss=4.5528
+08/10/2026 10:46:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3850/6750 loss=6.5572
+08/10/2026 10:46:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3900/6750 loss=5.3711
+08/10/2026 10:46:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 3950/6750 loss=7.0317
+08/10/2026 10:47:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4000/6750 loss=7.0137
+08/10/2026 10:47:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4050/6750 loss=4.4093
+08/10/2026 10:48:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4100/6750 loss=4.2244
+08/10/2026 10:48:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4150/6750 loss=5.1479
+08/10/2026 10:48:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4200/6750 loss=6.2639
+08/10/2026 10:49:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4250/6750 loss=6.2001
+08/10/2026 10:49:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4300/6750 loss=5.5192
+08/10/2026 10:49:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4350/6750 loss=6.9565
+08/10/2026 10:50:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4400/6750 loss=4.1607
+08/10/2026 10:50:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4450/6750 loss=5.9772
+08/10/2026 10:50:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4500/6750 loss=5.5271
+08/10/2026 10:51:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4550/6750 loss=4.9763
+08/10/2026 10:51:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4600/6750 loss=8.3671
+08/10/2026 10:51:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4650/6750 loss=6.6398
+08/10/2026 10:52:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4700/6750 loss=6.3324
+08/10/2026 10:52:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4750/6750 loss=6.3323
+08/10/2026 10:52:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4800/6750 loss=4.1211
+08/10/2026 10:53:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4850/6750 loss=4.7490
+08/10/2026 10:53:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4900/6750 loss=7.4675
+08/10/2026 10:53:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 4950/6750 loss=7.9211
+08/10/2026 10:54:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5000/6750 loss=5.8609
+08/10/2026 10:54:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5050/6750 loss=5.8244
+08/10/2026 10:54:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5100/6750 loss=5.5768
+08/10/2026 10:55:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5150/6750 loss=5.5222
+08/10/2026 10:55:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5200/6750 loss=6.7260
+08/10/2026 10:56:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5250/6750 loss=7.4173
+08/10/2026 10:56:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5300/6750 loss=5.8034
+08/10/2026 10:56:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5350/6750 loss=5.6195
+08/10/2026 10:57:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5400/6750 loss=5.5109
+08/10/2026 10:57:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5450/6750 loss=6.1565
+08/10/2026 10:57:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5500/6750 loss=7.0573
+08/10/2026 10:58:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5550/6750 loss=3.9263
+08/10/2026 10:58:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5600/6750 loss=7.0269
+08/10/2026 10:58:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5650/6750 loss=5.1098
+08/10/2026 10:59:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5700/6750 loss=5.5472
+08/10/2026 10:59:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5750/6750 loss=6.7801
+08/10/2026 10:59:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5800/6750 loss=6.7744
+08/10/2026 11:00:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5850/6750 loss=5.6272
+08/10/2026 11:00:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5900/6750 loss=6.1242
+08/10/2026 11:00:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 5950/6750 loss=5.8819
+08/10/2026 11:01:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6000/6750 loss=4.0339
+08/10/2026 11:01:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6050/6750 loss=5.4053
+08/10/2026 11:01:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6100/6750 loss=6.7538
+08/10/2026 11:02:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6150/6750 loss=4.0191
+08/10/2026 11:02:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6200/6750 loss=6.0722
+08/10/2026 11:02:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6250/6750 loss=5.3097
+08/10/2026 11:03:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6300/6750 loss=4.1292
+08/10/2026 11:03:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6350/6750 loss=5.3578
+08/10/2026 11:03:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6400/6750 loss=4.5088
+08/10/2026 11:04:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6450/6750 loss=4.3347
+08/10/2026 11:04:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6500/6750 loss=6.0420
+08/10/2026 11:04:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6550/6750 loss=7.4425
+08/10/2026 11:05:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6600/6750 loss=5.3529
+08/10/2026 11:05:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6650/6750 loss=7.4246
+08/10/2026 11:05:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6700/6750 loss=4.9390
+08/10/2026 11:06:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 6 step 6750/6750 loss=6.3894
+08/10/2026 11:06:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 6 xong sau 2809.4s, avg_loss=5.9112
+08/10/2026 11:10:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 6 - Valid macro F1 = 0.5754
+              precision    recall  f1-score   support
+
+      PERIOD     0.8595    0.8874    0.8732    140169
+       COMMA     0.7649    0.7354    0.7499    162056
+       COLON     0.6799    0.5566    0.6121     10825
+       QMARK     0.7715    0.7232    0.7466      4884
+      EXCLAM     0.5375    0.1569    0.2429      2556
+   SEMICOLON     0.4193    0.1564    0.2278      1944
+
+   micro avg     0.8047    0.7872    0.7959    322434
+   macro avg     0.6721    0.5360    0.5754    322434
+weighted avg     0.7994    0.7872    0.7917    322434
+
+08/10/2026 11:10:11 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.5754
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 11:10:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 50/6750 loss=5.9446
+08/10/2026 11:10:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 100/6750 loss=4.7692
+08/10/2026 11:11:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 150/6750 loss=5.2879
+08/10/2026 11:11:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 200/6750 loss=5.2429
+08/10/2026 11:11:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 250/6750 loss=5.7986
+08/10/2026 11:12:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 300/6750 loss=4.7196
+08/10/2026 11:12:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 350/6750 loss=4.1099
+08/10/2026 11:13:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 400/6750 loss=3.2254
+08/10/2026 11:13:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 450/6750 loss=6.7791
+08/10/2026 11:13:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 500/6750 loss=5.0797
+08/10/2026 11:14:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 550/6750 loss=6.3591
+08/10/2026 11:14:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 600/6750 loss=5.5296
+08/10/2026 11:14:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 650/6750 loss=3.8749
+08/10/2026 11:15:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 700/6750 loss=5.0095
+08/10/2026 11:15:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 750/6750 loss=5.9061
+08/10/2026 11:15:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 800/6750 loss=5.0020
+08/10/2026 11:16:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 850/6750 loss=5.4342
+08/10/2026 11:16:33 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 900/6750 loss=6.7006
+08/10/2026 11:16:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 950/6750 loss=5.6362
+08/10/2026 11:17:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1000/6750 loss=4.4046
+08/10/2026 11:17:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1050/6750 loss=7.0508
+08/10/2026 11:17:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1100/6750 loss=4.6313
+08/10/2026 11:18:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1150/6750 loss=5.4816
+08/10/2026 11:18:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1200/6750 loss=4.9900
+08/10/2026 11:19:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1250/6750 loss=4.5838
+08/10/2026 11:19:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1300/6750 loss=4.3672
+08/10/2026 11:19:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1350/6750 loss=4.3937
+08/10/2026 11:20:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1400/6750 loss=6.0793
+08/10/2026 11:20:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1450/6750 loss=6.0084
+08/10/2026 11:20:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1500/6750 loss=6.8201
+08/10/2026 11:21:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1550/6750 loss=5.7547
+08/10/2026 11:21:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1600/6750 loss=8.1596
+08/10/2026 11:21:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1650/6750 loss=5.6332
+08/10/2026 11:22:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1700/6750 loss=5.0394
+08/10/2026 11:22:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1750/6750 loss=5.4777
+08/10/2026 11:22:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1800/6750 loss=4.3657
+08/10/2026 11:23:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1850/6750 loss=6.2065
+08/10/2026 11:23:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1900/6750 loss=5.3190
+08/10/2026 11:23:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 1950/6750 loss=4.8202
+08/10/2026 11:24:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2000/6750 loss=7.5568
+08/10/2026 11:24:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2050/6750 loss=5.4850
+08/10/2026 11:24:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2100/6750 loss=4.9779
+08/10/2026 11:25:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2150/6750 loss=5.4182
+08/10/2026 11:25:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2200/6750 loss=4.1156
+08/10/2026 11:26:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2250/6750 loss=4.4311
+08/10/2026 11:26:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2300/6750 loss=3.9408
+08/10/2026 11:26:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2350/6750 loss=6.3520
+08/10/2026 11:27:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2400/6750 loss=4.8385
+08/10/2026 11:27:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2450/6750 loss=4.1677
+08/10/2026 11:27:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2500/6750 loss=8.0046
+08/10/2026 11:28:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2550/6750 loss=6.1200
+08/10/2026 11:28:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2600/6750 loss=4.2328
+08/10/2026 11:28:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2650/6750 loss=5.0346
+08/10/2026 11:29:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2700/6750 loss=5.7463
+08/10/2026 11:29:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2750/6750 loss=5.5663
+08/10/2026 11:29:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2800/6750 loss=3.8730
+08/10/2026 11:30:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2850/6750 loss=4.6735
+08/10/2026 11:30:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2900/6750 loss=5.5612
+08/10/2026 11:31:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 2950/6750 loss=8.8989
+08/10/2026 11:31:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3000/6750 loss=4.9723
+08/10/2026 11:31:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3050/6750 loss=5.7468
+08/10/2026 11:32:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3100/6750 loss=6.8588
+08/10/2026 11:32:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3150/6750 loss=5.2042
+08/10/2026 11:32:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3200/6750 loss=5.1583
+08/10/2026 11:33:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3250/6750 loss=4.3560
+08/10/2026 11:33:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3300/6750 loss=4.1100
+08/10/2026 11:33:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3350/6750 loss=4.1846
+08/10/2026 11:34:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3400/6750 loss=5.8302
+08/10/2026 11:34:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3450/6750 loss=4.0966
+08/10/2026 11:35:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3500/6750 loss=4.4150
+08/10/2026 11:35:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3550/6750 loss=6.4119
+08/10/2026 11:35:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3600/6750 loss=7.2336
+08/10/2026 11:36:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3650/6750 loss=5.7066
+08/10/2026 11:36:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3700/6750 loss=6.6022
+08/10/2026 11:36:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3750/6750 loss=7.2115
+08/10/2026 11:37:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3800/6750 loss=5.0650
+08/10/2026 11:37:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3850/6750 loss=5.4313
+08/10/2026 11:37:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3900/6750 loss=4.2485
+08/10/2026 11:38:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 3950/6750 loss=3.5734
+08/10/2026 11:38:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4000/6750 loss=6.1817
+08/10/2026 11:39:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4050/6750 loss=7.2587
+08/10/2026 11:39:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4100/6750 loss=6.5609
+08/10/2026 11:39:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4150/6750 loss=4.2962
+08/10/2026 11:40:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4200/6750 loss=5.2818
+08/10/2026 11:40:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4250/6750 loss=4.3334
+08/10/2026 11:40:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4300/6750 loss=6.8103
+08/10/2026 11:41:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4350/6750 loss=5.8045
+08/10/2026 11:41:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4400/6750 loss=4.5067
+08/10/2026 11:41:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4450/6750 loss=5.6176
+08/10/2026 11:42:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4500/6750 loss=5.5527
+08/10/2026 11:42:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4550/6750 loss=6.0524
+08/10/2026 11:42:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4600/6750 loss=4.7075
+08/10/2026 11:43:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4650/6750 loss=8.0146
+08/10/2026 11:43:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4700/6750 loss=4.6167
+08/10/2026 11:44:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4750/6750 loss=5.6072
+08/10/2026 11:44:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4800/6750 loss=6.2712
+08/10/2026 11:44:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4850/6750 loss=6.3018
+08/10/2026 11:45:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4900/6750 loss=4.7598
+08/10/2026 11:45:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 4950/6750 loss=7.2022
+08/10/2026 11:45:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5000/6750 loss=5.2651
+08/10/2026 11:46:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5050/6750 loss=6.5452
+08/10/2026 11:46:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5100/6750 loss=4.1161
+08/10/2026 11:46:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5150/6750 loss=5.0851
+08/10/2026 11:47:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5200/6750 loss=4.6246
+08/10/2026 11:47:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5250/6750 loss=7.1224
+08/10/2026 11:47:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5300/6750 loss=4.1852
+08/10/2026 11:48:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5350/6750 loss=5.9333
+08/10/2026 11:48:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5400/6750 loss=6.3233
+08/10/2026 11:48:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5450/6750 loss=3.9430
+08/10/2026 11:49:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5500/6750 loss=5.0309
+08/10/2026 11:49:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5550/6750 loss=9.3151
+08/10/2026 11:49:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5600/6750 loss=6.3468
+08/10/2026 11:50:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5650/6750 loss=5.2619
+08/10/2026 11:50:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5700/6750 loss=5.9892
+08/10/2026 11:50:59 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5750/6750 loss=5.5968
+08/10/2026 11:51:21 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5800/6750 loss=4.5147
+08/10/2026 11:51:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5850/6750 loss=5.4344
+08/10/2026 11:52:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5900/6750 loss=5.3965
+08/10/2026 11:52:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 5950/6750 loss=4.2778
+08/10/2026 11:52:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6000/6750 loss=5.1636
+08/10/2026 11:53:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6050/6750 loss=5.1706
+08/10/2026 11:53:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6100/6750 loss=3.8700
+08/10/2026 11:53:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6150/6750 loss=7.0012
+08/10/2026 11:54:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6200/6750 loss=5.2704
+08/10/2026 11:54:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6250/6750 loss=6.4435
+08/10/2026 11:54:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6300/6750 loss=7.6366
+08/10/2026 11:55:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6350/6750 loss=4.0169
+08/10/2026 11:55:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6400/6750 loss=5.0359
+08/10/2026 11:55:53 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6450/6750 loss=5.0578
+08/10/2026 11:56:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6500/6750 loss=4.9794
+08/10/2026 11:56:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6550/6750 loss=8.3314
+08/10/2026 11:56:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6600/6750 loss=5.4953
+08/10/2026 11:57:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6650/6750 loss=4.2191
+08/10/2026 11:57:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6700/6750 loss=6.0622
+08/10/2026 11:58:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 7 step 6750/6750 loss=4.9377
+08/10/2026 11:58:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 7 xong sau 2869.7s, avg_loss=5.5190
+08/10/2026 12:01:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 7 - Valid macro F1 = 0.5789
+              precision    recall  f1-score   support
+
+      PERIOD     0.8593    0.8881    0.8734    140169
+       COMMA     0.7708    0.7297    0.7497    162056
+       COLON     0.6815    0.5552    0.6119     10825
+       QMARK     0.7584    0.7383    0.7482      4884
+      EXCLAM     0.5205    0.1588    0.2434      2556
+   SEMICOLON     0.3868    0.1811    0.2467      1944
+
+   micro avg     0.8072    0.7850    0.7960    322434
+   macro avg     0.6629    0.5419    0.5789    322434
+weighted avg     0.8018    0.7850    0.7918    322434
+
+08/10/2026 12:01:52 - INFO - __main__ - -> [XLM-R + Bi-LSTM + CRF] best checkpoint mới, macro F1 = 0.5789
+/root/phopunct/baseline_lstm_crf.py:246: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/10/2026 12:02:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 50/6750 loss=4.4452
+08/10/2026 12:02:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 100/6750 loss=3.7379
+08/10/2026 12:02:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 150/6750 loss=4.4937
+08/10/2026 12:03:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 200/6750 loss=5.7965
+08/10/2026 12:03:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 250/6750 loss=4.8423
+08/10/2026 12:04:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 300/6750 loss=4.0201
+08/10/2026 12:04:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 350/6750 loss=7.3055
+08/10/2026 12:04:42 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 400/6750 loss=4.7421
+08/10/2026 12:05:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 450/6750 loss=6.7842
+08/10/2026 12:05:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 500/6750 loss=5.8418
+08/10/2026 12:05:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 550/6750 loss=4.4161
+08/10/2026 12:06:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 600/6750 loss=5.3287
+08/10/2026 12:06:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 650/6750 loss=5.5748
+08/10/2026 12:06:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 700/6750 loss=4.3634
+08/10/2026 12:07:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 750/6750 loss=7.0718
+08/10/2026 12:07:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 800/6750 loss=6.1030
+08/10/2026 12:07:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 850/6750 loss=5.2803
+08/10/2026 12:08:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 900/6750 loss=3.2221
+08/10/2026 12:08:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 950/6750 loss=7.1717
+08/10/2026 12:09:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1000/6750 loss=3.5391
+08/10/2026 12:09:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1050/6750 loss=5.9353
+08/10/2026 12:09:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1100/6750 loss=3.4800
+08/10/2026 12:10:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1150/6750 loss=4.6302
+08/10/2026 12:10:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1200/6750 loss=4.1350
+08/10/2026 12:10:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1250/6750 loss=3.9732
+08/10/2026 12:11:10 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1300/6750 loss=6.1243
+08/10/2026 12:11:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1350/6750 loss=4.6684
+08/10/2026 12:11:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1400/6750 loss=5.7740
+08/10/2026 12:12:16 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1450/6750 loss=5.5656
+08/10/2026 12:12:38 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1500/6750 loss=4.6364
+08/10/2026 12:13:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1550/6750 loss=4.4167
+08/10/2026 12:13:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1600/6750 loss=3.3560
+08/10/2026 12:13:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1650/6750 loss=3.9851
+08/10/2026 12:14:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1700/6750 loss=7.0284
+08/10/2026 12:14:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1750/6750 loss=4.6700
+08/10/2026 12:14:49 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1800/6750 loss=4.2144
+08/10/2026 12:15:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1850/6750 loss=6.6796
+08/10/2026 12:15:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1900/6750 loss=5.4814
+08/10/2026 12:15:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 1950/6750 loss=5.2264
+08/10/2026 12:16:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2000/6750 loss=5.0352
+08/10/2026 12:16:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2050/6750 loss=3.2829
+08/10/2026 12:16:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2100/6750 loss=5.8318
+08/10/2026 12:17:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2150/6750 loss=4.1241
+08/10/2026 12:17:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2200/6750 loss=7.2734
+08/10/2026 12:18:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2250/6750 loss=4.1851
+08/10/2026 12:18:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2300/6750 loss=4.4531
+08/10/2026 12:18:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2350/6750 loss=6.2951
+08/10/2026 12:19:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2400/6750 loss=5.6790
+08/10/2026 12:19:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2450/6750 loss=5.1978
+08/10/2026 12:19:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2500/6750 loss=6.8901
+08/10/2026 12:20:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2550/6750 loss=4.5275
+08/10/2026 12:20:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2600/6750 loss=6.0201
+08/10/2026 12:20:56 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2650/6750 loss=6.1200
+08/10/2026 12:21:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2700/6750 loss=4.4442
+08/10/2026 12:21:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2750/6750 loss=4.6357
+08/10/2026 12:22:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2800/6750 loss=6.0808
+08/10/2026 12:22:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2850/6750 loss=5.4926
+08/10/2026 12:22:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2900/6750 loss=4.9514
+08/10/2026 12:23:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 2950/6750 loss=6.1691
+08/10/2026 12:23:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3000/6750 loss=3.4087
+08/10/2026 12:23:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3050/6750 loss=6.1600
+08/10/2026 12:24:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3100/6750 loss=5.9374
+08/10/2026 12:24:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3150/6750 loss=5.3862
+08/10/2026 12:24:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3200/6750 loss=7.1727
+08/10/2026 12:25:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3250/6750 loss=5.3133
+08/10/2026 12:25:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3300/6750 loss=2.9342
+08/10/2026 12:25:54 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3350/6750 loss=4.4163
+08/10/2026 12:26:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3400/6750 loss=5.4761
+08/10/2026 12:26:37 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3450/6750 loss=4.2218
+08/10/2026 12:26:58 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3500/6750 loss=3.9117
+08/10/2026 12:27:20 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3550/6750 loss=4.4575
+08/10/2026 12:27:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3600/6750 loss=4.5929
+08/10/2026 12:28:03 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3650/6750 loss=3.7606
+08/10/2026 12:28:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3700/6750 loss=4.6054
+08/10/2026 12:28:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3750/6750 loss=7.1715
+08/10/2026 12:29:06 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3800/6750 loss=6.0801
+08/10/2026 12:29:27 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3850/6750 loss=4.9276
+08/10/2026 12:29:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3900/6750 loss=4.6706
+08/10/2026 12:30:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 3950/6750 loss=5.3235
+08/10/2026 12:30:31 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4000/6750 loss=7.0854
+08/10/2026 12:30:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4050/6750 loss=8.0152
+08/10/2026 12:31:14 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4100/6750 loss=5.5405
+08/10/2026 12:31:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4150/6750 loss=6.0094
+08/10/2026 12:31:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4200/6750 loss=4.7518
+08/10/2026 12:32:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4250/6750 loss=7.1744
+08/10/2026 12:32:41 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4300/6750 loss=6.8295
+08/10/2026 12:33:02 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4350/6750 loss=5.7111
+08/10/2026 12:33:24 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4400/6750 loss=6.2575
+08/10/2026 12:33:46 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4450/6750 loss=4.9952
+08/10/2026 12:34:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4500/6750 loss=5.0377
+08/10/2026 12:34:29 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4550/6750 loss=6.3148
+08/10/2026 12:34:51 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4600/6750 loss=4.5054
+08/10/2026 12:35:12 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4650/6750 loss=6.6405
+08/10/2026 12:35:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4700/6750 loss=5.4969
+08/10/2026 12:35:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4750/6750 loss=5.1536
+08/10/2026 12:36:17 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4800/6750 loss=8.1421
+08/10/2026 12:36:39 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4850/6750 loss=4.8406
+08/10/2026 12:37:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4900/6750 loss=4.7997
+08/10/2026 12:37:22 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 4950/6750 loss=6.1603
+08/10/2026 12:37:43 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5000/6750 loss=4.7947
+08/10/2026 12:38:04 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5050/6750 loss=3.9152
+08/10/2026 12:38:25 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5100/6750 loss=4.1383
+08/10/2026 12:38:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5150/6750 loss=6.5012
+08/10/2026 12:39:08 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5200/6750 loss=6.9737
+08/10/2026 12:39:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5250/6750 loss=4.6156
+08/10/2026 12:39:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5300/6750 loss=7.1724
+08/10/2026 12:40:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5350/6750 loss=4.8581
+08/10/2026 12:40:35 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5400/6750 loss=4.6529
+08/10/2026 12:40:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5450/6750 loss=4.2438
+08/10/2026 12:41:19 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5500/6750 loss=4.2797
+08/10/2026 12:41:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5550/6750 loss=5.6398
+08/10/2026 12:42:01 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5600/6750 loss=5.5923
+08/10/2026 12:42:23 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5650/6750 loss=6.4058
+08/10/2026 12:42:44 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5700/6750 loss=4.6788
+08/10/2026 12:43:05 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5750/6750 loss=3.1693
+08/10/2026 12:43:26 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5800/6750 loss=6.1344
+08/10/2026 12:43:47 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5850/6750 loss=4.4634
+08/10/2026 12:44:07 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5900/6750 loss=6.0329
+08/10/2026 12:44:28 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 5950/6750 loss=9.9060
+08/10/2026 12:44:48 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6000/6750 loss=5.9543
+08/10/2026 12:45:09 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6050/6750 loss=4.0130
+08/10/2026 12:45:30 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6100/6750 loss=5.6474
+08/10/2026 12:45:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6150/6750 loss=8.8246
+08/10/2026 12:46:11 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6200/6750 loss=5.3929
+08/10/2026 12:46:32 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6250/6750 loss=5.7086
+08/10/2026 12:46:52 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6300/6750 loss=4.0700
+08/10/2026 12:47:13 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6350/6750 loss=4.6301
+08/10/2026 12:47:34 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6400/6750 loss=3.8533
+08/10/2026 12:47:55 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6450/6750 loss=4.9417
+08/10/2026 12:48:15 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6500/6750 loss=5.0685
+08/10/2026 12:48:36 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6550/6750 loss=4.0304
+08/10/2026 12:48:57 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6600/6750 loss=5.3779
+08/10/2026 12:49:18 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6650/6750 loss=4.5631
+08/10/2026 12:49:40 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6700/6750 loss=5.7606
+08/10/2026 12:50:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] epoch 8 step 6750/6750 loss=6.1101
+08/10/2026 12:50:00 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 8 xong sau 2887.7s, avg_loss=5.2394
+08/10/2026 12:53:45 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Epoch 8 - Valid macro F1 = 0.5766
+              precision    recall  f1-score   support
+
+      PERIOD     0.8626    0.8848    0.8736    140169
+       COMMA     0.7613    0.7405    0.7508    162056
+       COLON     0.6763    0.5596    0.6124     10825
+       QMARK     0.7635    0.7351    0.7490      4884
+      EXCLAM     0.5191    0.1491    0.2316      2556
+   SEMICOLON     0.3882    0.1759    0.2421      1944
+
+   micro avg     0.8033    0.7890    0.7961    322434
+   macro avg     0.6618    0.5408    0.5766    322434
+weighted avg     0.7984    0.7890    0.7923    322434
+
+08/10/2026 12:53:50 - INFO - __main__ - [XLM-R + Bi-LSTM + CRF] Train xong. Best macro F1 = 0.5789. Checkpoint tại /root/phopunct/outputs/xlmr_bilstm_news

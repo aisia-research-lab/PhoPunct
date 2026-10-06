@@ -1,0 +1,334 @@
+08/09/2026 16:06:20 - INFO - __main__ - === Cấu hình chạy ===
+08/09/2026 16:06:20 - INFO - __main__ - {
+  "data_dir": "/root/phopunct/data/punctuation/Novels",
+  "model_name_or_path": "vinai/phobert-large",
+  "output_dir": "/root/phopunct/outputs/phopunct_novels",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/09/2026 16:06:20 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/09/2026 16:06:20 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/09/2026 16:06:20 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/config.json "HTTP/1.1 200 OK"
+08/09/2026 16:06:20 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/config.json "HTTP/1.1 200 OK"
+08/09/2026 16:06:20 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:21 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:21 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/vinai/phobert-large/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:21 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/vinai/phobert-large/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/09/2026 16:06:21 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+08/09/2026 16:06:21 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/vocab.txt "HTTP/1.1 200 OK"
+08/09/2026 16:06:21 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/vocab.txt "HTTP/1.1 200 OK"
+08/09/2026 16:06:22 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/bpe.codes "HTTP/1.1 307 Temporary Redirect"
+08/09/2026 16:06:22 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/bpe.codes "HTTP/1.1 200 OK"
+08/09/2026 16:06:22 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/bpe.codes "HTTP/1.1 200 OK"
+08/09/2026 16:06:22 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:22 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/special_tokens_map.json "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:23 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+08/09/2026 16:06:23 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/tokenizer.json "HTTP/1.1 200 OK"
+08/09/2026 16:06:23 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/tokenizer.json "HTTP/1.1 200 OK"
+08/09/2026 16:06:23 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:23 - INFO - __main__ - Đang nạp dữ liệu train...
+08/09/2026 16:06:34 - INFO - punc_dataset_word - convert_examples_to_features: 11447 examples -> 11447 features (0 rỗng bị bỏ, 42 bị truncate)
+08/09/2026 16:06:35 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/09/2026 16:06:38 - INFO - punc_dataset_word - convert_examples_to_features: 3032 examples -> 3032 features (0 rỗng bị bỏ, 0 bị truncate)
+08/09/2026 16:06:38 - INFO - __main__ - Train: 11447 features | Valid: 3032 features
+08/09/2026 16:06:39 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+08/09/2026 16:06:39 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/vinai/phobert-large/70e2cfcd3cce29c970aee4954ea34a32bb30afdc/config.json "HTTP/1.1 200 OK"
+08/09/2026 16:06:40 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:40 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:40 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+08/09/2026 16:06:40 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/vinai/phobert-large/xet-read-token/70e2cfcd3cce29c970aee4954ea34a32bb30afdc "HTTP/1.1 200 OK"
+08/09/2026 16:06:55 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+08/09/2026 16:06:56 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/vinai/phobert-large "HTTP/1.1 200 OK"
+08/09/2026 16:06:56 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/vinai/phobert-large/commits/main "HTTP/1.1 200 OK"
+08/09/2026 16:06:56 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/vinai/phobert-large/discussions?p=0 "HTTP/1.1 200 OK"
+08/09/2026 16:06:57 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/vinai/phobert-large/commits/refs%2Fpr%2F4 "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 23286.80it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: vinai/phobert-large
+Key                       | Status     |  | 
+--------------------------+------------+--+-
+lm_head.bias              | UNEXPECTED |  | 
+lm_head.dense.weight      | UNEXPECTED |  | 
+lm_head.dense.bias        | UNEXPECTED |  | 
+lm_head.layer_norm.weight | UNEXPECTED |  | 
+lm_head.layer_norm.bias   | UNEXPECTED |  | 
+lm_head.decoder.bias      | UNEXPECTED |  | 
+lm_head.decoder.weight    | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+08/09/2026 16:06:57 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/refs%2Fpr%2F4/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+/root/phopunct/phobert_lstm_crf.py:189: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/phobert_lstm_crf.py:203: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/09/2026 16:06:57 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/vinai/phobert-large/resolve/refs%2Fpr%2F4/model.safetensors "HTTP/1.1 302 Found"
+08/09/2026 16:06:57 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/vinai/phobert-large/xet-read-token/27b996c1f6464ad289cf879ba4f79521c3329981 "HTTP/1.1 200 OK"
+/root/phopunct/phobert_lstm_crf.py:216: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+08/09/2026 16:07:27 - INFO - __main__ - epoch 1 step 50/716 loss=175.4769
+08/09/2026 16:07:55 - INFO - __main__ - epoch 1 step 100/716 loss=60.2183
+08/09/2026 16:08:24 - INFO - __main__ - epoch 1 step 150/716 loss=59.1522
+08/09/2026 16:08:52 - INFO - __main__ - epoch 1 step 200/716 loss=59.5363
+08/09/2026 16:09:20 - INFO - __main__ - epoch 1 step 250/716 loss=43.6203
+08/09/2026 16:09:48 - INFO - __main__ - epoch 1 step 300/716 loss=39.7719
+08/09/2026 16:10:16 - INFO - __main__ - epoch 1 step 350/716 loss=38.7329
+08/09/2026 16:10:44 - INFO - __main__ - epoch 1 step 400/716 loss=31.3555
+08/09/2026 16:11:12 - INFO - __main__ - epoch 1 step 450/716 loss=26.7744
+08/09/2026 16:11:40 - INFO - __main__ - epoch 1 step 500/716 loss=26.4465
+08/09/2026 16:12:08 - INFO - __main__ - epoch 1 step 550/716 loss=29.0206
+08/09/2026 16:12:36 - INFO - __main__ - epoch 1 step 600/716 loss=26.9598
+08/09/2026 16:13:04 - INFO - __main__ - epoch 1 step 650/716 loss=22.0303
+08/09/2026 16:13:32 - INFO - __main__ - epoch 1 step 700/716 loss=21.9585
+08/09/2026 16:13:41 - INFO - __main__ - Epoch 1 xong sau 403.9s, avg_loss=52.0715
+08/09/2026 16:14:18 - INFO - __main__ - Epoch 1 - Valid macro F1 = 0.4363
+              precision    recall  f1-score   support
+
+      PERIOD     0.7932    0.5793    0.6696     17716
+       COMMA     0.6401    0.6479    0.6440     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7163    0.7655    0.7401      3868
+      EXCLAM     0.4671    0.7118    0.5640      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.6547    0.6345    0.6445     41734
+   macro avg     0.4361    0.4508    0.4363     41734
+weighted avg     0.6804    0.6345    0.6463     41734
+
+08/09/2026 16:14:25 - INFO - __main__ - -> best checkpoint mới, macro F1 = 0.4363
+/root/phopunct/phobert_lstm_crf.py:203: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/09/2026 16:14:44 - INFO - __main__ - epoch 2 step 34/716 loss=18.3194
+08/09/2026 16:15:12 - INFO - __main__ - epoch 2 step 84/716 loss=19.6008
+08/09/2026 16:15:40 - INFO - __main__ - epoch 2 step 134/716 loss=20.7727
+08/09/2026 16:16:08 - INFO - __main__ - epoch 2 step 184/716 loss=18.8530
+08/09/2026 16:16:36 - INFO - __main__ - epoch 2 step 234/716 loss=18.2445
+08/09/2026 16:17:03 - INFO - __main__ - epoch 2 step 284/716 loss=23.5118
+08/09/2026 16:17:31 - INFO - __main__ - epoch 2 step 334/716 loss=15.5309
+08/09/2026 16:17:58 - INFO - __main__ - epoch 2 step 384/716 loss=17.6327
+08/09/2026 16:18:25 - INFO - __main__ - epoch 2 step 434/716 loss=16.5059
+08/09/2026 16:18:53 - INFO - __main__ - epoch 2 step 484/716 loss=17.1157
+08/09/2026 16:19:20 - INFO - __main__ - epoch 2 step 534/716 loss=13.9794
+08/09/2026 16:19:48 - INFO - __main__ - epoch 2 step 584/716 loss=18.3880
+08/09/2026 16:20:16 - INFO - __main__ - epoch 2 step 634/716 loss=20.2097
+08/09/2026 16:20:43 - INFO - __main__ - epoch 2 step 684/716 loss=15.0580
+08/09/2026 16:21:01 - INFO - __main__ - Epoch 2 xong sau 395.8s, avg_loss=17.9733
+08/09/2026 16:21:38 - INFO - __main__ - Epoch 2 - Valid macro F1 = 0.4738
+              precision    recall  f1-score   support
+
+      PERIOD     0.7740    0.6790    0.7234     17716
+       COMMA     0.7125    0.6736    0.6925     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8190    0.8175    0.8182      3868
+      EXCLAM     0.5288    0.7172    0.6088      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.7065    0.6907    0.6985     41734
+   macro avg     0.4724    0.4812    0.4738     41734
+weighted avg     0.7144    0.6907    0.6989     41734
+
+08/09/2026 16:21:49 - INFO - __main__ - -> best checkpoint mới, macro F1 = 0.4738
+/root/phopunct/phobert_lstm_crf.py:203: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/09/2026 16:21:59 - INFO - __main__ - epoch 3 step 18/716 loss=11.8136
+08/09/2026 16:22:26 - INFO - __main__ - epoch 3 step 68/716 loss=13.9582
+08/09/2026 16:22:53 - INFO - __main__ - epoch 3 step 118/716 loss=13.8356
+08/09/2026 16:23:21 - INFO - __main__ - epoch 3 step 168/716 loss=15.8144
+08/09/2026 16:23:48 - INFO - __main__ - epoch 3 step 218/716 loss=13.9011
+08/09/2026 16:24:15 - INFO - __main__ - epoch 3 step 268/716 loss=12.8329
+08/09/2026 16:24:43 - INFO - __main__ - epoch 3 step 318/716 loss=15.5254
+08/09/2026 16:25:10 - INFO - __main__ - epoch 3 step 368/716 loss=10.2430
+08/09/2026 16:25:38 - INFO - __main__ - epoch 3 step 418/716 loss=15.7390
+08/09/2026 16:26:05 - INFO - __main__ - epoch 3 step 468/716 loss=12.9685
+08/09/2026 16:26:33 - INFO - __main__ - epoch 3 step 518/716 loss=12.7872
+08/09/2026 16:27:00 - INFO - __main__ - epoch 3 step 568/716 loss=12.0712
+08/09/2026 16:27:28 - INFO - __main__ - epoch 3 step 618/716 loss=14.3493
+08/09/2026 16:27:55 - INFO - __main__ - epoch 3 step 668/716 loss=14.3118
+08/09/2026 16:28:22 - INFO - __main__ - Epoch 3 xong sau 393.7s, avg_loss=13.7522
+08/09/2026 16:28:59 - INFO - __main__ - Epoch 3 - Valid macro F1 = 0.4810
+              precision    recall  f1-score   support
+
+      PERIOD     0.7725    0.7026    0.7359     17716
+       COMMA     0.7453    0.6720    0.7067     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.7813    0.8681    0.8224      3868
+      EXCLAM     0.5431    0.7254    0.6211      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.7172    0.7062    0.7117     41734
+   macro avg     0.4737    0.4947    0.4810     41734
+weighted avg     0.7230    0.7062    0.7111     41734
+
+08/09/2026 16:29:08 - INFO - __main__ - -> best checkpoint mới, macro F1 = 0.4810
+/root/phopunct/phobert_lstm_crf.py:203: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/09/2026 16:29:09 - INFO - __main__ - epoch 4 step 2/716 loss=16.1750
+08/09/2026 16:29:37 - INFO - __main__ - epoch 4 step 52/716 loss=9.4443
+08/09/2026 16:30:05 - INFO - __main__ - epoch 4 step 102/716 loss=8.4629
+08/09/2026 16:30:33 - INFO - __main__ - epoch 4 step 152/716 loss=9.0894
+08/09/2026 16:31:01 - INFO - __main__ - epoch 4 step 202/716 loss=11.5590
+08/09/2026 16:31:29 - INFO - __main__ - epoch 4 step 252/716 loss=10.8380
+08/09/2026 16:31:57 - INFO - __main__ - epoch 4 step 302/716 loss=10.3623
+08/09/2026 16:32:24 - INFO - __main__ - epoch 4 step 352/716 loss=10.4292
+08/09/2026 16:32:52 - INFO - __main__ - epoch 4 step 402/716 loss=11.0359
+08/09/2026 16:33:20 - INFO - __main__ - epoch 4 step 452/716 loss=15.0089
+08/09/2026 16:33:47 - INFO - __main__ - epoch 4 step 502/716 loss=9.7044
+08/09/2026 16:34:14 - INFO - __main__ - epoch 4 step 552/716 loss=13.7617
+08/09/2026 16:34:42 - INFO - __main__ - epoch 4 step 602/716 loss=10.1027
+08/09/2026 16:35:10 - INFO - __main__ - epoch 4 step 652/716 loss=11.0627
+08/09/2026 16:35:38 - INFO - __main__ - epoch 4 step 702/716 loss=8.7976
+08/09/2026 16:35:45 - INFO - __main__ - Epoch 4 xong sau 397.0s, avg_loss=11.3034
+08/09/2026 16:36:22 - INFO - __main__ - Epoch 4 - Valid macro F1 = 0.4849
+              precision    recall  f1-score   support
+
+      PERIOD     0.8048    0.6651    0.7283     17716
+       COMMA     0.7152    0.7195    0.7174     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8266    0.8627    0.8443      3868
+      EXCLAM     0.5129    0.7822    0.6196      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.7097    0.7138    0.7117     41734
+   macro avg     0.4766    0.5049    0.4849     41734
+weighted avg     0.7267    0.7138    0.7130     41734
+
+08/09/2026 16:36:32 - INFO - __main__ - -> best checkpoint mới, macro F1 = 0.4849
+/root/phopunct/phobert_lstm_crf.py:203: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/09/2026 16:36:52 - INFO - __main__ - epoch 5 step 36/716 loss=8.6392
+08/09/2026 16:37:19 - INFO - __main__ - epoch 5 step 86/716 loss=12.1220
+08/09/2026 16:37:47 - INFO - __main__ - epoch 5 step 136/716 loss=7.4300
+08/09/2026 16:38:14 - INFO - __main__ - epoch 5 step 186/716 loss=10.0750
+08/09/2026 16:38:42 - INFO - __main__ - epoch 5 step 236/716 loss=9.6186
+08/09/2026 16:39:10 - INFO - __main__ - epoch 5 step 286/716 loss=11.0350
+08/09/2026 16:39:38 - INFO - __main__ - epoch 5 step 336/716 loss=9.2966
+08/09/2026 16:40:05 - INFO - __main__ - epoch 5 step 386/716 loss=8.1338
+08/09/2026 16:40:33 - INFO - __main__ - epoch 5 step 436/716 loss=8.9970
+08/09/2026 16:41:00 - INFO - __main__ - epoch 5 step 486/716 loss=10.6184
+08/09/2026 16:41:28 - INFO - __main__ - epoch 5 step 536/716 loss=11.0881
+08/09/2026 16:41:55 - INFO - __main__ - epoch 5 step 586/716 loss=10.2335
+08/09/2026 16:42:23 - INFO - __main__ - epoch 5 step 636/716 loss=14.0430
+08/09/2026 16:42:50 - INFO - __main__ - epoch 5 step 686/716 loss=8.5382
+08/09/2026 16:43:06 - INFO - __main__ - Epoch 5 xong sau 393.9s, avg_loss=9.6621
+08/09/2026 16:43:43 - INFO - __main__ - Epoch 5 - Valid macro F1 = 0.4836
+              precision    recall  f1-score   support
+
+      PERIOD     0.7879    0.6754    0.7273     17716
+       COMMA     0.7211    0.7120    0.7165     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8103    0.8702    0.8392      3868
+      EXCLAM     0.5134    0.7781    0.6186      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.7057    0.7158    0.7107     41734
+   macro avg     0.4721    0.5060    0.4836     41734
+weighted avg     0.7199    0.7158    0.7117     41734
+
+/root/phopunct/phobert_lstm_crf.py:203: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/09/2026 16:43:58 - INFO - __main__ - epoch 6 step 20/716 loss=8.9547
+08/09/2026 16:44:26 - INFO - __main__ - epoch 6 step 70/716 loss=12.0839
+08/09/2026 16:44:53 - INFO - __main__ - epoch 6 step 120/716 loss=6.4849
+08/09/2026 16:45:20 - INFO - __main__ - epoch 6 step 170/716 loss=6.4798
+08/09/2026 16:45:48 - INFO - __main__ - epoch 6 step 220/716 loss=8.0942
+08/09/2026 16:46:16 - INFO - __main__ - epoch 6 step 270/716 loss=7.6860
+08/09/2026 16:46:43 - INFO - __main__ - epoch 6 step 320/716 loss=4.8879
+08/09/2026 16:47:10 - INFO - __main__ - epoch 6 step 370/716 loss=10.7058
+08/09/2026 16:47:38 - INFO - __main__ - epoch 6 step 420/716 loss=9.2017
+08/09/2026 16:48:06 - INFO - __main__ - epoch 6 step 470/716 loss=9.0878
+08/09/2026 16:48:34 - INFO - __main__ - epoch 6 step 520/716 loss=8.2992
+08/09/2026 16:49:02 - INFO - __main__ - epoch 6 step 570/716 loss=8.1734
+08/09/2026 16:49:29 - INFO - __main__ - epoch 6 step 620/716 loss=11.5543
+08/09/2026 16:49:57 - INFO - __main__ - epoch 6 step 670/716 loss=7.6090
+08/09/2026 16:50:22 - INFO - __main__ - Epoch 6 xong sau 395.1s, avg_loss=8.4474
+08/09/2026 16:50:59 - INFO - __main__ - Epoch 6 - Valid macro F1 = 0.4897
+              precision    recall  f1-score   support
+
+      PERIOD     0.8000    0.6821    0.7364     17716
+       COMMA     0.7119    0.7325    0.7220     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8556    0.8457    0.8506      3868
+      EXCLAM     0.5348    0.7645    0.6294      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.7177    0.7208    0.7193     41734
+   macro avg     0.4837    0.5041    0.4897     41734
+weighted avg     0.7296    0.7208    0.7200     41734
+
+08/09/2026 16:51:09 - INFO - __main__ - -> best checkpoint mới, macro F1 = 0.4897
+/root/phopunct/phobert_lstm_crf.py:203: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/09/2026 16:51:11 - INFO - __main__ - epoch 7 step 4/716 loss=7.8342
+08/09/2026 16:51:39 - INFO - __main__ - epoch 7 step 54/716 loss=5.9347
+08/09/2026 16:52:06 - INFO - __main__ - epoch 7 step 104/716 loss=6.7029
+08/09/2026 16:52:34 - INFO - __main__ - epoch 7 step 154/716 loss=7.6378
+08/09/2026 16:53:02 - INFO - __main__ - epoch 7 step 204/716 loss=11.9388
+08/09/2026 16:53:30 - INFO - __main__ - epoch 7 step 254/716 loss=5.8838
+08/09/2026 16:53:57 - INFO - __main__ - epoch 7 step 304/716 loss=7.1021
+08/09/2026 16:54:25 - INFO - __main__ - epoch 7 step 354/716 loss=5.3277
+08/09/2026 16:54:53 - INFO - __main__ - epoch 7 step 404/716 loss=8.6355
+08/09/2026 16:55:21 - INFO - __main__ - epoch 7 step 454/716 loss=7.5579
+08/09/2026 16:55:48 - INFO - __main__ - epoch 7 step 504/716 loss=6.0190
+08/09/2026 16:56:16 - INFO - __main__ - epoch 7 step 554/716 loss=5.5999
+08/09/2026 16:56:44 - INFO - __main__ - epoch 7 step 604/716 loss=6.3802
+08/09/2026 16:57:11 - INFO - __main__ - epoch 7 step 654/716 loss=6.0718
+08/09/2026 16:57:39 - INFO - __main__ - epoch 7 step 704/716 loss=8.7697
+08/09/2026 16:57:45 - INFO - __main__ - Epoch 7 xong sau 396.9s, avg_loss=7.5237
+08/09/2026 16:58:22 - INFO - __main__ - Epoch 7 - Valid macro F1 = 0.4857
+              precision    recall  f1-score   support
+
+      PERIOD     0.8168    0.6478    0.7226     17716
+       COMMA     0.7313    0.7104    0.7207     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8449    0.8578    0.8513      3868
+      EXCLAM     0.5045    0.8027    0.6196      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.7146    0.7063    0.7104     41734
+   macro avg     0.4829    0.5031    0.4857     41734
+weighted avg     0.7372    0.7063    0.7123     41734
+
+/root/phopunct/phobert_lstm_crf.py:203: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/09/2026 16:58:48 - INFO - __main__ - epoch 8 step 38/716 loss=3.8905
+08/09/2026 16:59:16 - INFO - __main__ - epoch 8 step 88/716 loss=8.0427
+08/09/2026 16:59:44 - INFO - __main__ - epoch 8 step 138/716 loss=6.8821
+08/09/2026 17:00:11 - INFO - __main__ - epoch 8 step 188/716 loss=9.2580
+08/09/2026 17:00:39 - INFO - __main__ - epoch 8 step 238/716 loss=11.1654
+08/09/2026 17:01:07 - INFO - __main__ - epoch 8 step 288/716 loss=4.7687
+08/09/2026 17:01:34 - INFO - __main__ - epoch 8 step 338/716 loss=6.6685
+08/09/2026 17:02:02 - INFO - __main__ - epoch 8 step 388/716 loss=6.3634
+08/09/2026 17:02:30 - INFO - __main__ - epoch 8 step 438/716 loss=8.1470
+08/09/2026 17:02:58 - INFO - __main__ - epoch 8 step 488/716 loss=6.8974
+08/09/2026 17:03:25 - INFO - __main__ - epoch 8 step 538/716 loss=8.8162
+08/09/2026 17:03:52 - INFO - __main__ - epoch 8 step 588/716 loss=7.4306
+08/09/2026 17:04:19 - INFO - __main__ - epoch 8 step 638/716 loss=7.6130
+08/09/2026 17:04:47 - INFO - __main__ - epoch 8 step 688/716 loss=8.5411
+08/09/2026 17:05:02 - INFO - __main__ - Epoch 8 xong sau 394.5s, avg_loss=6.9093
+08/09/2026 17:05:39 - INFO - __main__ - Epoch 8 - Valid macro F1 = 0.4876
+              precision    recall  f1-score   support
+
+      PERIOD     0.8115    0.6638    0.7302     17716
+       COMMA     0.7202    0.7189    0.7195     13356
+       COLON     0.0000    0.0000    0.0000       320
+       QMARK     0.8444    0.8547    0.8495      3868
+      EXCLAM     0.5218    0.7823    0.6260      6468
+   SEMICOLON     0.0000    0.0000    0.0000         6
+
+   micro avg     0.7174    0.7123    0.7148     41734
+   macro avg     0.4830    0.5033    0.4876     41734
+weighted avg     0.7341    0.7123    0.7160     41734
+
+08/09/2026 17:05:43 - INFO - __main__ - Train xong. Best macro F1 = 0.4897. Checkpoint tại /root/phopunct/outputs/phopunct_novels

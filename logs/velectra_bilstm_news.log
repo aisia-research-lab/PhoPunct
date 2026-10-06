@@ -1,0 +1,1283 @@
+08/11/2026 18:59:07 - INFO - __main__ - === vELECTRA + Bi-LSTM | backbone=FPTAI/velectra-base-discriminator-cased ===
+08/11/2026 18:59:07 - INFO - __main__ - {
+  "model_key": "velectra",
+  "use_bilstm": true,
+  "data_dir": "/root/phopunct/data/punctuation/News",
+  "output_dir": "/root/phopunct/outputs/velectra_bilstm_plain_news",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/11/2026 18:59:07 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 18:59:07 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/config.json "HTTP/1.1 200 OK"
+08/11/2026 18:59:07 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 18:59:07 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/11/2026 18:59:08 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+08/11/2026 18:59:08 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/11/2026 18:59:08 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/11/2026 18:59:08 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 18:59:08 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/vocab.txt "HTTP/1.1 200 OK"
+08/11/2026 18:59:08 - INFO - __main__ - Đang nạp dữ liệu train...
+08/11/2026 19:00:10 - INFO - punc_dataset_word - convert_examples_to_features: 108000 examples -> 108000 features (0 rỗng bị bỏ, 1 bị truncate)
+08/11/2026 19:00:16 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/11/2026 19:00:34 - INFO - punc_dataset_word - convert_examples_to_features: 36191 examples -> 36191 features (0 rỗng bị bỏ, 0 bị truncate)
+08/11/2026 19:00:36 - INFO - __main__ - Train: 108000 features | Valid: 36191 features
+08/11/2026 19:00:36 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+08/11/2026 19:00:36 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/config.json "HTTP/1.1 200 OK"
+08/11/2026 19:00:36 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+08/11/2026 19:00:36 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 37850.57it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: FPTAI/velectra-base-discriminator-cased
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+08/11/2026 19:00:36 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/commits/main "HTTP/1.1 200 OK"
+08/11/2026 19:00:37 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/discussions?p=0 "HTTP/1.1 200 OK"
+/root/phopunct/baseline_plain.py:247: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:00:37 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/commits/refs%2Fpr%2F1 "HTTP/1.1 200 OK"
+08/11/2026 19:00:37 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/refs%2Fpr%2F1/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+08/11/2026 19:00:37 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/refs%2Fpr%2F1/model.safetensors "HTTP/1.1 302 Found"
+08/11/2026 19:00:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 50/6750 loss=2.0882
+08/11/2026 19:00:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 100/6750 loss=1.7518
+08/11/2026 19:00:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 150/6750 loss=1.1998
+08/11/2026 19:00:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 200/6750 loss=0.6113
+08/11/2026 19:01:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 250/6750 loss=0.3752
+08/11/2026 19:01:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 300/6750 loss=0.3547
+08/11/2026 19:01:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 350/6750 loss=0.3918
+08/11/2026 19:01:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 400/6750 loss=0.3637
+08/11/2026 19:01:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 450/6750 loss=0.3657
+08/11/2026 19:01:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 500/6750 loss=0.3395
+08/11/2026 19:01:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 550/6750 loss=0.3589
+08/11/2026 19:01:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 600/6750 loss=0.3571
+08/11/2026 19:01:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 650/6750 loss=0.3756
+08/11/2026 19:01:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 700/6750 loss=0.3456
+08/11/2026 19:01:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 750/6750 loss=0.3338
+08/11/2026 19:01:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 800/6750 loss=0.2728
+08/11/2026 19:02:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 850/6750 loss=0.2889
+08/11/2026 19:02:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 900/6750 loss=0.2749
+08/11/2026 19:02:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 950/6750 loss=0.2546
+08/11/2026 19:02:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1000/6750 loss=0.2988
+08/11/2026 19:02:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1050/6750 loss=0.3042
+08/11/2026 19:02:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1100/6750 loss=0.2711
+08/11/2026 19:02:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1150/6750 loss=0.2560
+08/11/2026 19:02:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1200/6750 loss=0.2774
+08/11/2026 19:02:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1250/6750 loss=0.3011
+08/11/2026 19:02:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1300/6750 loss=0.2336
+08/11/2026 19:02:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1350/6750 loss=0.2570
+08/11/2026 19:02:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1400/6750 loss=0.2224
+08/11/2026 19:03:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1450/6750 loss=0.2573
+08/11/2026 19:03:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1500/6750 loss=0.2536
+08/11/2026 19:03:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1550/6750 loss=0.2131
+08/11/2026 19:03:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1600/6750 loss=0.2240
+08/11/2026 19:03:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1650/6750 loss=0.2075
+08/11/2026 19:03:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1700/6750 loss=0.2176
+08/11/2026 19:03:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1750/6750 loss=0.2350
+08/11/2026 19:03:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1800/6750 loss=0.2089
+08/11/2026 19:03:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1850/6750 loss=0.2202
+08/11/2026 19:03:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1900/6750 loss=0.2171
+08/11/2026 19:03:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 1950/6750 loss=0.2103
+08/11/2026 19:03:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2000/6750 loss=0.1963
+08/11/2026 19:04:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2050/6750 loss=0.1580
+08/11/2026 19:04:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2100/6750 loss=0.1755
+08/11/2026 19:04:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2150/6750 loss=0.1760
+08/11/2026 19:04:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2200/6750 loss=0.1995
+08/11/2026 19:04:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2250/6750 loss=0.2241
+08/11/2026 19:04:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2300/6750 loss=0.1938
+08/11/2026 19:04:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2350/6750 loss=0.2333
+08/11/2026 19:04:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2400/6750 loss=0.2390
+08/11/2026 19:04:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2450/6750 loss=0.2600
+08/11/2026 19:04:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2500/6750 loss=0.2228
+08/11/2026 19:04:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2550/6750 loss=0.1770
+08/11/2026 19:04:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2600/6750 loss=0.1916
+08/11/2026 19:05:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2650/6750 loss=0.1889
+08/11/2026 19:05:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2700/6750 loss=0.1639
+08/11/2026 19:05:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2750/6750 loss=0.1792
+08/11/2026 19:05:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2800/6750 loss=0.1535
+08/11/2026 19:05:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2850/6750 loss=0.1345
+08/11/2026 19:05:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2900/6750 loss=0.1570
+08/11/2026 19:05:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 2950/6750 loss=0.1721
+08/11/2026 19:05:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3000/6750 loss=0.1169
+08/11/2026 19:05:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3050/6750 loss=0.1636
+08/11/2026 19:05:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3100/6750 loss=0.1361
+08/11/2026 19:05:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3150/6750 loss=0.1857
+08/11/2026 19:05:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3200/6750 loss=0.1691
+08/11/2026 19:06:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3250/6750 loss=0.1768
+08/11/2026 19:06:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3300/6750 loss=0.1645
+08/11/2026 19:06:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3350/6750 loss=0.1897
+08/11/2026 19:06:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3400/6750 loss=0.1725
+08/11/2026 19:06:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3450/6750 loss=0.1768
+08/11/2026 19:06:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3500/6750 loss=0.1404
+08/11/2026 19:06:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3550/6750 loss=0.1600
+08/11/2026 19:06:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3600/6750 loss=0.1606
+08/11/2026 19:06:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3650/6750 loss=0.1673
+08/11/2026 19:06:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3700/6750 loss=0.1783
+08/11/2026 19:06:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3750/6750 loss=0.1786
+08/11/2026 19:06:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3800/6750 loss=0.1604
+08/11/2026 19:07:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3850/6750 loss=0.1280
+08/11/2026 19:07:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3900/6750 loss=0.1252
+08/11/2026 19:07:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 3950/6750 loss=0.1441
+08/11/2026 19:07:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4000/6750 loss=0.1265
+08/11/2026 19:07:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4050/6750 loss=0.1853
+08/11/2026 19:07:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4100/6750 loss=0.1393
+08/11/2026 19:07:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4150/6750 loss=0.1623
+08/11/2026 19:07:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4200/6750 loss=0.1674
+08/11/2026 19:07:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4250/6750 loss=0.1410
+08/11/2026 19:07:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4300/6750 loss=0.1608
+08/11/2026 19:07:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4350/6750 loss=0.1325
+08/11/2026 19:07:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4400/6750 loss=0.1211
+08/11/2026 19:08:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4450/6750 loss=0.1357
+08/11/2026 19:08:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4500/6750 loss=0.1233
+08/11/2026 19:08:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4550/6750 loss=0.1249
+08/11/2026 19:08:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4600/6750 loss=0.1264
+08/11/2026 19:08:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4650/6750 loss=0.1384
+08/11/2026 19:08:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4700/6750 loss=0.1547
+08/11/2026 19:08:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4750/6750 loss=0.1591
+08/11/2026 19:08:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4800/6750 loss=0.1513
+08/11/2026 19:08:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4850/6750 loss=0.1348
+08/11/2026 19:08:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4900/6750 loss=0.1230
+08/11/2026 19:08:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 4950/6750 loss=0.1355
+08/11/2026 19:08:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5000/6750 loss=0.1658
+08/11/2026 19:09:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5050/6750 loss=0.1395
+08/11/2026 19:09:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5100/6750 loss=0.1735
+08/11/2026 19:09:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5150/6750 loss=0.1473
+08/11/2026 19:09:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5200/6750 loss=0.1614
+08/11/2026 19:09:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5250/6750 loss=0.1626
+08/11/2026 19:09:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5300/6750 loss=0.1377
+08/11/2026 19:09:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5350/6750 loss=0.1787
+08/11/2026 19:09:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5400/6750 loss=0.1725
+08/11/2026 19:09:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5450/6750 loss=0.1382
+08/11/2026 19:09:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5500/6750 loss=0.1439
+08/11/2026 19:09:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5550/6750 loss=0.1071
+08/11/2026 19:09:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5600/6750 loss=0.1335
+08/11/2026 19:10:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5650/6750 loss=0.1425
+08/11/2026 19:10:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5700/6750 loss=0.1389
+08/11/2026 19:10:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5750/6750 loss=0.1340
+08/11/2026 19:10:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5800/6750 loss=0.1200
+08/11/2026 19:10:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5850/6750 loss=0.1401
+08/11/2026 19:10:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5900/6750 loss=0.1376
+08/11/2026 19:10:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 5950/6750 loss=0.1312
+08/11/2026 19:10:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6000/6750 loss=0.1404
+08/11/2026 19:10:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6050/6750 loss=0.1509
+08/11/2026 19:10:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6100/6750 loss=0.1179
+08/11/2026 19:10:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6150/6750 loss=0.1157
+08/11/2026 19:10:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6200/6750 loss=0.1027
+08/11/2026 19:11:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6250/6750 loss=0.1288
+08/11/2026 19:11:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6300/6750 loss=0.1334
+08/11/2026 19:11:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6350/6750 loss=0.1348
+08/11/2026 19:11:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6400/6750 loss=0.1344
+08/11/2026 19:11:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6450/6750 loss=0.1621
+08/11/2026 19:11:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6500/6750 loss=0.1211
+08/11/2026 19:11:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6550/6750 loss=0.1479
+08/11/2026 19:11:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6600/6750 loss=0.1211
+08/11/2026 19:11:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6650/6750 loss=0.1135
+08/11/2026 19:11:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6700/6750 loss=0.1485
+08/11/2026 19:11:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 1 step 6750/6750 loss=0.1175
+08/11/2026 19:11:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 1 xong sau 678.0s, avg_loss=0.2297
+08/11/2026 19:15:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 1 - Valid macro F1 = 0.4020
+              precision    recall  f1-score   support
+
+      PERIOD     0.8145    0.7658    0.7894    140170
+       COMMA     0.6721    0.5828    0.6243    162056
+       COLON     0.6102    0.3086    0.4099     10825
+       QMARK     0.6369    0.5330    0.5803      4884
+      EXCLAM     0.0000    0.0000    0.0000      2556
+   SEMICOLON     0.4211    0.0041    0.0082      1944
+
+   micro avg     0.7369    0.6443    0.6875    322435
+   macro avg     0.5258    0.3657    0.4020    322435
+weighted avg     0.7246    0.6443    0.6795    322435
+
+08/11/2026 19:15:55 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.4020
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:16:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 50/6750 loss=0.1214
+08/11/2026 19:16:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 100/6750 loss=0.1181
+08/11/2026 19:16:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 150/6750 loss=0.1056
+08/11/2026 19:16:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 200/6750 loss=0.1168
+08/11/2026 19:16:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 250/6750 loss=0.1285
+08/11/2026 19:16:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 300/6750 loss=0.0958
+08/11/2026 19:16:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 350/6750 loss=0.0924
+08/11/2026 19:16:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 400/6750 loss=0.1304
+08/11/2026 19:16:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 450/6750 loss=0.1110
+08/11/2026 19:16:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 500/6750 loss=0.1225
+08/11/2026 19:16:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 550/6750 loss=0.1456
+08/11/2026 19:16:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 600/6750 loss=0.1231
+08/11/2026 19:16:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 650/6750 loss=0.1425
+08/11/2026 19:17:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 700/6750 loss=0.1125
+08/11/2026 19:17:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 750/6750 loss=0.1024
+08/11/2026 19:17:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 800/6750 loss=0.1166
+08/11/2026 19:17:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 850/6750 loss=0.1300
+08/11/2026 19:17:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 900/6750 loss=0.1568
+08/11/2026 19:17:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 950/6750 loss=0.0851
+08/11/2026 19:17:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1000/6750 loss=0.1234
+08/11/2026 19:17:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1050/6750 loss=0.1118
+08/11/2026 19:17:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1100/6750 loss=0.1078
+08/11/2026 19:17:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1150/6750 loss=0.1136
+08/11/2026 19:17:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1200/6750 loss=0.0851
+08/11/2026 19:17:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1250/6750 loss=0.1089
+08/11/2026 19:18:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1300/6750 loss=0.1314
+08/11/2026 19:18:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1350/6750 loss=0.1054
+08/11/2026 19:18:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1400/6750 loss=0.1365
+08/11/2026 19:18:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1450/6750 loss=0.1111
+08/11/2026 19:18:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1500/6750 loss=0.1078
+08/11/2026 19:18:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1550/6750 loss=0.0949
+08/11/2026 19:18:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1600/6750 loss=0.1444
+08/11/2026 19:18:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1650/6750 loss=0.1260
+08/11/2026 19:18:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1700/6750 loss=0.0983
+08/11/2026 19:18:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1750/6750 loss=0.1164
+08/11/2026 19:18:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1800/6750 loss=0.1374
+08/11/2026 19:18:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1850/6750 loss=0.1081
+08/11/2026 19:19:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1900/6750 loss=0.1231
+08/11/2026 19:19:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 1950/6750 loss=0.0912
+08/11/2026 19:19:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2000/6750 loss=0.0883
+08/11/2026 19:19:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2050/6750 loss=0.1189
+08/11/2026 19:19:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2100/6750 loss=0.1420
+08/11/2026 19:19:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2150/6750 loss=0.1035
+08/11/2026 19:19:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2200/6750 loss=0.1020
+08/11/2026 19:19:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2250/6750 loss=0.0875
+08/11/2026 19:19:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2300/6750 loss=0.1019
+08/11/2026 19:19:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2350/6750 loss=0.0984
+08/11/2026 19:19:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2400/6750 loss=0.1108
+08/11/2026 19:19:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2450/6750 loss=0.1102
+08/11/2026 19:20:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2500/6750 loss=0.0877
+08/11/2026 19:20:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2550/6750 loss=0.1431
+08/11/2026 19:20:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2600/6750 loss=0.0851
+08/11/2026 19:20:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2650/6750 loss=0.1451
+08/11/2026 19:20:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2700/6750 loss=0.1272
+08/11/2026 19:20:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2750/6750 loss=0.1084
+08/11/2026 19:20:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2800/6750 loss=0.1283
+08/11/2026 19:20:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2850/6750 loss=0.0930
+08/11/2026 19:20:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2900/6750 loss=0.0988
+08/11/2026 19:20:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 2950/6750 loss=0.0657
+08/11/2026 19:20:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3000/6750 loss=0.1314
+08/11/2026 19:20:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3050/6750 loss=0.1033
+08/11/2026 19:21:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3100/6750 loss=0.0963
+08/11/2026 19:21:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3150/6750 loss=0.1114
+08/11/2026 19:21:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3200/6750 loss=0.1083
+08/11/2026 19:21:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3250/6750 loss=0.0927
+08/11/2026 19:21:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3300/6750 loss=0.1029
+08/11/2026 19:21:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3350/6750 loss=0.1074
+08/11/2026 19:21:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3400/6750 loss=0.0832
+08/11/2026 19:21:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3450/6750 loss=0.1313
+08/11/2026 19:21:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3500/6750 loss=0.1221
+08/11/2026 19:21:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3550/6750 loss=0.1149
+08/11/2026 19:21:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3600/6750 loss=0.1230
+08/11/2026 19:21:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3650/6750 loss=0.1384
+08/11/2026 19:22:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3700/6750 loss=0.0782
+08/11/2026 19:22:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3750/6750 loss=0.0906
+08/11/2026 19:22:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3800/6750 loss=0.0965
+08/11/2026 19:22:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3850/6750 loss=0.1144
+08/11/2026 19:22:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3900/6750 loss=0.1055
+08/11/2026 19:22:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 3950/6750 loss=0.1190
+08/11/2026 19:22:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4000/6750 loss=0.0705
+08/11/2026 19:22:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4050/6750 loss=0.1000
+08/11/2026 19:22:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4100/6750 loss=0.1276
+08/11/2026 19:22:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4150/6750 loss=0.1257
+08/11/2026 19:22:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4200/6750 loss=0.1157
+08/11/2026 19:22:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4250/6750 loss=0.1033
+08/11/2026 19:23:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4300/6750 loss=0.0960
+08/11/2026 19:23:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4350/6750 loss=0.0874
+08/11/2026 19:23:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4400/6750 loss=0.0860
+08/11/2026 19:23:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4450/6750 loss=0.0935
+08/11/2026 19:23:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4500/6750 loss=0.1165
+08/11/2026 19:23:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4550/6750 loss=0.0870
+08/11/2026 19:23:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4600/6750 loss=0.0906
+08/11/2026 19:23:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4650/6750 loss=0.1231
+08/11/2026 19:23:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4700/6750 loss=0.1062
+08/11/2026 19:23:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4750/6750 loss=0.0836
+08/11/2026 19:23:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4800/6750 loss=0.1048
+08/11/2026 19:23:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4850/6750 loss=0.1046
+08/11/2026 19:24:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4900/6750 loss=0.0924
+08/11/2026 19:24:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 4950/6750 loss=0.0894
+08/11/2026 19:24:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5000/6750 loss=0.1157
+08/11/2026 19:24:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5050/6750 loss=0.1166
+08/11/2026 19:24:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5100/6750 loss=0.1317
+08/11/2026 19:24:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5150/6750 loss=0.1031
+08/11/2026 19:24:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5200/6750 loss=0.0970
+08/11/2026 19:24:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5250/6750 loss=0.0892
+08/11/2026 19:24:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5300/6750 loss=0.0983
+08/11/2026 19:24:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5350/6750 loss=0.1189
+08/11/2026 19:24:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5400/6750 loss=0.0967
+08/11/2026 19:24:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5450/6750 loss=0.0963
+08/11/2026 19:25:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5500/6750 loss=0.0958
+08/11/2026 19:25:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5550/6750 loss=0.1060
+08/11/2026 19:25:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5600/6750 loss=0.0866
+08/11/2026 19:25:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5650/6750 loss=0.1160
+08/11/2026 19:25:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5700/6750 loss=0.0868
+08/11/2026 19:25:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5750/6750 loss=0.1583
+08/11/2026 19:25:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5800/6750 loss=0.0799
+08/11/2026 19:25:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5850/6750 loss=0.0998
+08/11/2026 19:25:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5900/6750 loss=0.1039
+08/11/2026 19:25:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 5950/6750 loss=0.1045
+08/11/2026 19:25:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6000/6750 loss=0.1087
+08/11/2026 19:25:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6050/6750 loss=0.1229
+08/11/2026 19:26:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6100/6750 loss=0.1424
+08/11/2026 19:26:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6150/6750 loss=0.1190
+08/11/2026 19:26:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6200/6750 loss=0.0907
+08/11/2026 19:26:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6250/6750 loss=0.0778
+08/11/2026 19:26:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6300/6750 loss=0.1249
+08/11/2026 19:26:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6350/6750 loss=0.1304
+08/11/2026 19:26:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6400/6750 loss=0.0942
+08/11/2026 19:26:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6450/6750 loss=0.0733
+08/11/2026 19:26:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6500/6750 loss=0.1014
+08/11/2026 19:26:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6550/6750 loss=0.1008
+08/11/2026 19:26:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6600/6750 loss=0.1046
+08/11/2026 19:26:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6650/6750 loss=0.1133
+08/11/2026 19:27:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6700/6750 loss=0.1079
+08/11/2026 19:27:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 2 step 6750/6750 loss=0.0642
+08/11/2026 19:27:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 2 xong sau 674.0s, avg_loss=0.1085
+08/11/2026 19:31:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 2 - Valid macro F1 = 0.4733
+              precision    recall  f1-score   support
+
+      PERIOD     0.8229    0.8240    0.8235    140170
+       COMMA     0.7354    0.6073    0.6652    162056
+       COLON     0.6201    0.4278    0.5063     10825
+       QMARK     0.7313    0.5756    0.6441      4884
+      EXCLAM     0.5833    0.0274    0.0523      2556
+   SEMICOLON     0.4177    0.0900    0.1481      1944
+
+   micro avg     0.7747    0.6873    0.7284    322435
+   macro avg     0.6518    0.4253    0.4733    322435
+weighted avg     0.7664    0.6873    0.7204    322435
+
+08/11/2026 19:31:10 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.4733
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:31:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 50/6750 loss=0.0903
+08/11/2026 19:31:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 100/6750 loss=0.1135
+08/11/2026 19:31:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 150/6750 loss=0.1002
+08/11/2026 19:31:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 200/6750 loss=0.0857
+08/11/2026 19:31:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 250/6750 loss=0.0720
+08/11/2026 19:31:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 300/6750 loss=0.0661
+08/11/2026 19:31:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 350/6750 loss=0.0716
+08/11/2026 19:31:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 400/6750 loss=0.0863
+08/11/2026 19:31:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 450/6750 loss=0.0952
+08/11/2026 19:32:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 500/6750 loss=0.0856
+08/11/2026 19:32:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 550/6750 loss=0.0510
+08/11/2026 19:32:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 600/6750 loss=0.0924
+08/11/2026 19:32:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 650/6750 loss=0.0686
+08/11/2026 19:32:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 700/6750 loss=0.0766
+08/11/2026 19:32:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 750/6750 loss=0.0962
+08/11/2026 19:32:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 800/6750 loss=0.0978
+08/11/2026 19:32:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 850/6750 loss=0.0999
+08/11/2026 19:32:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 900/6750 loss=0.1061
+08/11/2026 19:32:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 950/6750 loss=0.0807
+08/11/2026 19:32:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1000/6750 loss=0.0705
+08/11/2026 19:32:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1050/6750 loss=0.0712
+08/11/2026 19:33:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1100/6750 loss=0.1055
+08/11/2026 19:33:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1150/6750 loss=0.0709
+08/11/2026 19:33:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1200/6750 loss=0.0805
+08/11/2026 19:33:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1250/6750 loss=0.0836
+08/11/2026 19:33:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1300/6750 loss=0.0870
+08/11/2026 19:33:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1350/6750 loss=0.0983
+08/11/2026 19:33:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1400/6750 loss=0.0770
+08/11/2026 19:33:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1450/6750 loss=0.0776
+08/11/2026 19:33:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1500/6750 loss=0.0898
+08/11/2026 19:33:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1550/6750 loss=0.1049
+08/11/2026 19:33:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1600/6750 loss=0.1086
+08/11/2026 19:33:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1650/6750 loss=0.0887
+08/11/2026 19:34:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1700/6750 loss=0.0824
+08/11/2026 19:34:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1750/6750 loss=0.1131
+08/11/2026 19:34:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1800/6750 loss=0.0797
+08/11/2026 19:34:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1850/6750 loss=0.0983
+08/11/2026 19:34:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1900/6750 loss=0.0916
+08/11/2026 19:34:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 1950/6750 loss=0.0711
+08/11/2026 19:34:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2000/6750 loss=0.0925
+08/11/2026 19:34:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2050/6750 loss=0.1040
+08/11/2026 19:34:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2100/6750 loss=0.0725
+08/11/2026 19:34:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2150/6750 loss=0.1113
+08/11/2026 19:34:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2200/6750 loss=0.0647
+08/11/2026 19:34:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2250/6750 loss=0.0701
+08/11/2026 19:35:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2300/6750 loss=0.1119
+08/11/2026 19:35:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2350/6750 loss=0.0667
+08/11/2026 19:35:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2400/6750 loss=0.0857
+08/11/2026 19:35:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2450/6750 loss=0.1038
+08/11/2026 19:35:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2500/6750 loss=0.1188
+08/11/2026 19:35:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2550/6750 loss=0.0782
+08/11/2026 19:35:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2600/6750 loss=0.0947
+08/11/2026 19:35:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2650/6750 loss=0.1050
+08/11/2026 19:35:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2700/6750 loss=0.0646
+08/11/2026 19:35:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2750/6750 loss=0.0952
+08/11/2026 19:35:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2800/6750 loss=0.0715
+08/11/2026 19:35:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2850/6750 loss=0.1009
+08/11/2026 19:35:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2900/6750 loss=0.0734
+08/11/2026 19:36:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 2950/6750 loss=0.0794
+08/11/2026 19:36:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3000/6750 loss=0.0780
+08/11/2026 19:36:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3050/6750 loss=0.0917
+08/11/2026 19:36:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3100/6750 loss=0.0828
+08/11/2026 19:36:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3150/6750 loss=0.0881
+08/11/2026 19:36:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3200/6750 loss=0.0834
+08/11/2026 19:36:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3250/6750 loss=0.1086
+08/11/2026 19:36:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3300/6750 loss=0.1129
+08/11/2026 19:36:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3350/6750 loss=0.1095
+08/11/2026 19:36:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3400/6750 loss=0.0743
+08/11/2026 19:36:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3450/6750 loss=0.0831
+08/11/2026 19:36:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3500/6750 loss=0.1007
+08/11/2026 19:37:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3550/6750 loss=0.0681
+08/11/2026 19:37:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3600/6750 loss=0.0821
+08/11/2026 19:37:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3650/6750 loss=0.0946
+08/11/2026 19:37:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3700/6750 loss=0.0783
+08/11/2026 19:37:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3750/6750 loss=0.0896
+08/11/2026 19:37:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3800/6750 loss=0.0942
+08/11/2026 19:37:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3850/6750 loss=0.0982
+08/11/2026 19:37:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3900/6750 loss=0.0744
+08/11/2026 19:37:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 3950/6750 loss=0.0938
+08/11/2026 19:37:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4000/6750 loss=0.0698
+08/11/2026 19:37:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4050/6750 loss=0.0687
+08/11/2026 19:37:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4100/6750 loss=0.0993
+08/11/2026 19:38:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4150/6750 loss=0.0706
+08/11/2026 19:38:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4200/6750 loss=0.1034
+08/11/2026 19:38:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4250/6750 loss=0.0734
+08/11/2026 19:38:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4300/6750 loss=0.0906
+08/11/2026 19:38:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4350/6750 loss=0.0965
+08/11/2026 19:38:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4400/6750 loss=0.0571
+08/11/2026 19:38:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4450/6750 loss=0.1078
+08/11/2026 19:38:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4500/6750 loss=0.1308
+08/11/2026 19:38:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4550/6750 loss=0.0908
+08/11/2026 19:38:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4600/6750 loss=0.1376
+08/11/2026 19:38:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4650/6750 loss=0.0929
+08/11/2026 19:38:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4700/6750 loss=0.0623
+08/11/2026 19:39:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4750/6750 loss=0.0811
+08/11/2026 19:39:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4800/6750 loss=0.0719
+08/11/2026 19:39:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4850/6750 loss=0.0867
+08/11/2026 19:39:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4900/6750 loss=0.0713
+08/11/2026 19:39:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 4950/6750 loss=0.1132
+08/11/2026 19:39:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5000/6750 loss=0.0908
+08/11/2026 19:39:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5050/6750 loss=0.0906
+08/11/2026 19:39:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5100/6750 loss=0.0656
+08/11/2026 19:39:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5150/6750 loss=0.0871
+08/11/2026 19:39:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5200/6750 loss=0.1148
+08/11/2026 19:39:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5250/6750 loss=0.0743
+08/11/2026 19:39:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5300/6750 loss=0.0930
+08/11/2026 19:40:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5350/6750 loss=0.0977
+08/11/2026 19:40:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5400/6750 loss=0.0962
+08/11/2026 19:40:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5450/6750 loss=0.0839
+08/11/2026 19:40:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5500/6750 loss=0.0769
+08/11/2026 19:40:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5550/6750 loss=0.0964
+08/11/2026 19:40:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5600/6750 loss=0.0873
+08/11/2026 19:40:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5650/6750 loss=0.0789
+08/11/2026 19:40:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5700/6750 loss=0.0776
+08/11/2026 19:40:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5750/6750 loss=0.0864
+08/11/2026 19:40:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5800/6750 loss=0.0951
+08/11/2026 19:40:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5850/6750 loss=0.1077
+08/11/2026 19:40:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5900/6750 loss=0.0842
+08/11/2026 19:41:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 5950/6750 loss=0.0606
+08/11/2026 19:41:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6000/6750 loss=0.0808
+08/11/2026 19:41:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6050/6750 loss=0.1046
+08/11/2026 19:41:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6100/6750 loss=0.1136
+08/11/2026 19:41:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6150/6750 loss=0.1191
+08/11/2026 19:41:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6200/6750 loss=0.0942
+08/11/2026 19:41:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6250/6750 loss=0.0706
+08/11/2026 19:41:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6300/6750 loss=0.0945
+08/11/2026 19:41:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6350/6750 loss=0.0900
+08/11/2026 19:41:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6400/6750 loss=0.0801
+08/11/2026 19:41:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6450/6750 loss=0.0874
+08/11/2026 19:41:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6500/6750 loss=0.0852
+08/11/2026 19:42:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6550/6750 loss=0.0829
+08/11/2026 19:42:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6600/6750 loss=0.1299
+08/11/2026 19:42:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6650/6750 loss=0.0824
+08/11/2026 19:42:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6700/6750 loss=0.0842
+08/11/2026 19:42:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 3 step 6750/6750 loss=0.0840
+08/11/2026 19:42:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 3 xong sau 674.4s, avg_loss=0.0883
+08/11/2026 19:46:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 3 - Valid macro F1 = 0.4988
+              precision    recall  f1-score   support
+
+      PERIOD     0.8276    0.8392    0.8333    140170
+       COMMA     0.7223    0.6540    0.6864    162056
+       COLON     0.6151    0.4735    0.5351     10825
+       QMARK     0.6900    0.6603    0.6748      4884
+      EXCLAM     0.6316    0.0657    0.1191      2556
+   SEMICOLON     0.4204    0.0869    0.1441      1944
+
+   micro avg     0.7678    0.7205    0.7434    322435
+   macro avg     0.6511    0.4633    0.4988    322435
+weighted avg     0.7614    0.7205    0.7373    322435
+
+08/11/2026 19:46:19 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.4988
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 19:46:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 50/6750 loss=0.0789
+08/11/2026 19:46:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 100/6750 loss=0.0862
+08/11/2026 19:46:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 150/6750 loss=0.0722
+08/11/2026 19:46:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 200/6750 loss=0.0658
+08/11/2026 19:46:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 250/6750 loss=0.0802
+08/11/2026 19:46:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 300/6750 loss=0.0727
+08/11/2026 19:46:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 350/6750 loss=0.0751
+08/11/2026 19:46:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 400/6750 loss=0.0952
+08/11/2026 19:47:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 450/6750 loss=0.0789
+08/11/2026 19:47:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 500/6750 loss=0.0916
+08/11/2026 19:47:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 550/6750 loss=0.0729
+08/11/2026 19:47:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 600/6750 loss=0.0960
+08/11/2026 19:47:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 650/6750 loss=0.0640
+08/11/2026 19:47:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 700/6750 loss=0.0586
+08/11/2026 19:47:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 750/6750 loss=0.0992
+08/11/2026 19:47:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 800/6750 loss=0.0909
+08/11/2026 19:47:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 850/6750 loss=0.0630
+08/11/2026 19:47:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 900/6750 loss=0.0584
+08/11/2026 19:47:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 950/6750 loss=0.0499
+08/11/2026 19:47:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1000/6750 loss=0.0806
+08/11/2026 19:48:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1050/6750 loss=0.0882
+08/11/2026 19:48:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1100/6750 loss=0.0810
+08/11/2026 19:48:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1150/6750 loss=0.0953
+08/11/2026 19:48:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1200/6750 loss=0.0628
+08/11/2026 19:48:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1250/6750 loss=0.0882
+08/11/2026 19:48:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1300/6750 loss=0.1006
+08/11/2026 19:48:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1350/6750 loss=0.0624
+08/11/2026 19:48:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1400/6750 loss=0.0827
+08/11/2026 19:48:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1450/6750 loss=0.0662
+08/11/2026 19:48:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1500/6750 loss=0.0818
+08/11/2026 19:48:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1550/6750 loss=0.0820
+08/11/2026 19:48:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1600/6750 loss=0.1009
+08/11/2026 19:49:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1650/6750 loss=0.0776
+08/11/2026 19:49:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1700/6750 loss=0.0742
+08/11/2026 19:49:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1750/6750 loss=0.0629
+08/11/2026 19:49:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1800/6750 loss=0.0646
+08/11/2026 19:49:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1850/6750 loss=0.0946
+08/11/2026 19:49:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1900/6750 loss=0.0488
+08/11/2026 19:49:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 1950/6750 loss=0.0694
+08/11/2026 19:49:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2000/6750 loss=0.0896
+08/11/2026 19:49:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2050/6750 loss=0.0694
+08/11/2026 19:49:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2100/6750 loss=0.0713
+08/11/2026 19:49:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2150/6750 loss=0.0632
+08/11/2026 19:49:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2200/6750 loss=0.0588
+08/11/2026 19:50:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2250/6750 loss=0.0962
+08/11/2026 19:50:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2300/6750 loss=0.0655
+08/11/2026 19:50:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2350/6750 loss=0.0827
+08/11/2026 19:50:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2400/6750 loss=0.0573
+08/11/2026 19:50:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2450/6750 loss=0.0780
+08/11/2026 19:50:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2500/6750 loss=0.1125
+08/11/2026 19:50:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2550/6750 loss=0.0956
+08/11/2026 19:50:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2600/6750 loss=0.0802
+08/11/2026 19:50:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2650/6750 loss=0.0635
+08/11/2026 19:50:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2700/6750 loss=0.0913
+08/11/2026 19:50:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2750/6750 loss=0.0551
+08/11/2026 19:50:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2800/6750 loss=0.0907
+08/11/2026 19:51:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2850/6750 loss=0.0797
+08/11/2026 19:51:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2900/6750 loss=0.0517
+08/11/2026 19:51:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 2950/6750 loss=0.0969
+08/11/2026 19:51:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3000/6750 loss=0.0838
+08/11/2026 19:51:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3050/6750 loss=0.0759
+08/11/2026 19:51:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3100/6750 loss=0.1080
+08/11/2026 19:51:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3150/6750 loss=0.1036
+08/11/2026 19:51:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3200/6750 loss=0.0815
+08/11/2026 19:51:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3250/6750 loss=0.0676
+08/11/2026 19:51:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3300/6750 loss=0.0533
+08/11/2026 19:51:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3350/6750 loss=0.0723
+08/11/2026 19:51:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3400/6750 loss=0.0522
+08/11/2026 19:52:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3450/6750 loss=0.0663
+08/11/2026 19:52:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3500/6750 loss=0.0609
+08/11/2026 19:52:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3550/6750 loss=0.0998
+08/11/2026 19:52:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3600/6750 loss=0.0801
+08/11/2026 19:52:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3650/6750 loss=0.0920
+08/11/2026 19:52:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3700/6750 loss=0.0797
+08/11/2026 19:52:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3750/6750 loss=0.0669
+08/11/2026 19:52:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3800/6750 loss=0.0848
+08/11/2026 19:52:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3850/6750 loss=0.0920
+08/11/2026 19:52:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3900/6750 loss=0.0936
+08/11/2026 19:52:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 3950/6750 loss=0.0621
+08/11/2026 19:52:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4000/6750 loss=0.0643
+08/11/2026 19:53:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4050/6750 loss=0.0945
+08/11/2026 19:53:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4100/6750 loss=0.0767
+08/11/2026 19:53:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4150/6750 loss=0.0523
+08/11/2026 19:53:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4200/6750 loss=0.0846
+08/11/2026 19:53:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4250/6750 loss=0.0973
+08/11/2026 19:53:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4300/6750 loss=0.0705
+08/11/2026 19:53:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4350/6750 loss=0.0694
+08/11/2026 19:53:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4400/6750 loss=0.0938
+08/11/2026 19:53:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4450/6750 loss=0.0735
+08/11/2026 19:53:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4500/6750 loss=0.0628
+08/11/2026 19:53:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4550/6750 loss=0.0719
+08/11/2026 19:53:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4600/6750 loss=0.0656
+08/11/2026 19:54:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4650/6750 loss=0.0492
+08/11/2026 19:54:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4700/6750 loss=0.0886
+08/11/2026 19:54:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4750/6750 loss=0.0776
+08/11/2026 19:54:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4800/6750 loss=0.0722
+08/11/2026 19:54:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4850/6750 loss=0.0611
+08/11/2026 19:54:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4900/6750 loss=0.0808
+08/11/2026 19:54:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 4950/6750 loss=0.0885
+08/11/2026 19:54:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5000/6750 loss=0.0745
+08/11/2026 19:54:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5050/6750 loss=0.0665
+08/11/2026 19:54:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5100/6750 loss=0.0691
+08/11/2026 19:54:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5150/6750 loss=0.0630
+08/11/2026 19:54:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5200/6750 loss=0.0756
+08/11/2026 19:55:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5250/6750 loss=0.0631
+08/11/2026 19:55:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5300/6750 loss=0.0645
+08/11/2026 19:55:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5350/6750 loss=0.0846
+08/11/2026 19:55:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5400/6750 loss=0.0577
+08/11/2026 19:55:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5450/6750 loss=0.0520
+08/11/2026 19:55:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5500/6750 loss=0.0645
+08/11/2026 19:55:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5550/6750 loss=0.0702
+08/11/2026 19:55:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5600/6750 loss=0.0567
+08/11/2026 19:55:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5650/6750 loss=0.0771
+08/11/2026 19:55:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5700/6750 loss=0.0882
+08/11/2026 19:55:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5750/6750 loss=0.0859
+08/11/2026 19:55:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5800/6750 loss=0.0621
+08/11/2026 19:56:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5850/6750 loss=0.0982
+08/11/2026 19:56:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5900/6750 loss=0.0409
+08/11/2026 19:56:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 5950/6750 loss=0.0861
+08/11/2026 19:56:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6000/6750 loss=0.0766
+08/11/2026 19:56:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6050/6750 loss=0.0638
+08/11/2026 19:56:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6100/6750 loss=0.0847
+08/11/2026 19:56:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6150/6750 loss=0.0622
+08/11/2026 19:56:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6200/6750 loss=0.0811
+08/11/2026 19:56:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6250/6750 loss=0.0642
+08/11/2026 19:56:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6300/6750 loss=0.0959
+08/11/2026 19:56:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6350/6750 loss=0.0855
+08/11/2026 19:56:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6400/6750 loss=0.1018
+08/11/2026 19:57:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6450/6750 loss=0.0748
+08/11/2026 19:57:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6500/6750 loss=0.1065
+08/11/2026 19:57:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6550/6750 loss=0.0627
+08/11/2026 19:57:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6600/6750 loss=0.0634
+08/11/2026 19:57:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6650/6750 loss=0.0922
+08/11/2026 19:57:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6700/6750 loss=0.0747
+08/11/2026 19:57:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 4 step 6750/6750 loss=0.0659
+08/11/2026 19:57:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 4 xong sau 672.0s, avg_loss=0.0756
+08/11/2026 20:01:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 4 - Valid macro F1 = 0.5083
+              precision    recall  f1-score   support
+
+      PERIOD     0.8366    0.8411    0.8388    140170
+       COMMA     0.7235    0.6710    0.6963    162056
+       COLON     0.6410    0.4710    0.5430     10825
+       QMARK     0.7090    0.6570    0.6820      4884
+      EXCLAM     0.5349    0.0959    0.1626      2556
+   SEMICOLON     0.4643    0.0736    0.1270      1944
+
+   micro avg     0.7729    0.7299    0.7508    322435
+   macro avg     0.6515    0.4683    0.5083    322435
+weighted avg     0.7666    0.7299    0.7452    322435
+
+08/11/2026 20:01:29 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.5083
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 20:01:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 50/6750 loss=0.0699
+08/11/2026 20:01:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 100/6750 loss=0.0436
+08/11/2026 20:01:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 150/6750 loss=0.0847
+08/11/2026 20:01:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 200/6750 loss=0.0573
+08/11/2026 20:01:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 250/6750 loss=0.0679
+08/11/2026 20:01:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 300/6750 loss=0.0682
+08/11/2026 20:02:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 350/6750 loss=0.0497
+08/11/2026 20:02:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 400/6750 loss=0.0600
+08/11/2026 20:02:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 450/6750 loss=0.0529
+08/11/2026 20:02:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 500/6750 loss=0.0498
+08/11/2026 20:02:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 550/6750 loss=0.0649
+08/11/2026 20:02:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 600/6750 loss=0.0873
+08/11/2026 20:02:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 650/6750 loss=0.0610
+08/11/2026 20:02:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 700/6750 loss=0.0774
+08/11/2026 20:02:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 750/6750 loss=0.0693
+08/11/2026 20:02:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 800/6750 loss=0.0892
+08/11/2026 20:02:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 850/6750 loss=0.0598
+08/11/2026 20:02:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 900/6750 loss=0.0528
+08/11/2026 20:03:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 950/6750 loss=0.0784
+08/11/2026 20:03:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1000/6750 loss=0.0733
+08/11/2026 20:03:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1050/6750 loss=0.0724
+08/11/2026 20:03:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1100/6750 loss=0.0372
+08/11/2026 20:03:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1150/6750 loss=0.0713
+08/11/2026 20:03:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1200/6750 loss=0.0671
+08/11/2026 20:03:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1250/6750 loss=0.0741
+08/11/2026 20:03:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1300/6750 loss=0.0525
+08/11/2026 20:03:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1350/6750 loss=0.0535
+08/11/2026 20:03:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1400/6750 loss=0.0489
+08/11/2026 20:03:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1450/6750 loss=0.0843
+08/11/2026 20:03:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1500/6750 loss=0.0502
+08/11/2026 20:04:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1550/6750 loss=0.0407
+08/11/2026 20:04:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1600/6750 loss=0.0714
+08/11/2026 20:04:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1650/6750 loss=0.0632
+08/11/2026 20:04:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1700/6750 loss=0.0730
+08/11/2026 20:04:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1750/6750 loss=0.0765
+08/11/2026 20:04:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1800/6750 loss=0.0520
+08/11/2026 20:04:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1850/6750 loss=0.0451
+08/11/2026 20:04:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1900/6750 loss=0.0634
+08/11/2026 20:04:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 1950/6750 loss=0.0603
+08/11/2026 20:04:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2000/6750 loss=0.0797
+08/11/2026 20:04:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2050/6750 loss=0.0495
+08/11/2026 20:04:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2100/6750 loss=0.0584
+08/11/2026 20:05:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2150/6750 loss=0.0881
+08/11/2026 20:05:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2200/6750 loss=0.0541
+08/11/2026 20:05:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2250/6750 loss=0.0661
+08/11/2026 20:05:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2300/6750 loss=0.0395
+08/11/2026 20:05:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2350/6750 loss=0.0638
+08/11/2026 20:05:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2400/6750 loss=0.0552
+08/11/2026 20:05:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2450/6750 loss=0.0653
+08/11/2026 20:05:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2500/6750 loss=0.0693
+08/11/2026 20:05:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2550/6750 loss=0.0658
+08/11/2026 20:05:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2600/6750 loss=0.0420
+08/11/2026 20:05:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2650/6750 loss=0.0587
+08/11/2026 20:05:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2700/6750 loss=0.0442
+08/11/2026 20:06:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2750/6750 loss=0.0690
+08/11/2026 20:06:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2800/6750 loss=0.0598
+08/11/2026 20:06:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2850/6750 loss=0.0819
+08/11/2026 20:06:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2900/6750 loss=0.0702
+08/11/2026 20:06:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 2950/6750 loss=0.0736
+08/11/2026 20:06:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3000/6750 loss=0.0629
+08/11/2026 20:06:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3050/6750 loss=0.0643
+08/11/2026 20:06:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3100/6750 loss=0.0675
+08/11/2026 20:06:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3150/6750 loss=0.0847
+08/11/2026 20:06:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3200/6750 loss=0.0711
+08/11/2026 20:06:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3250/6750 loss=0.0650
+08/11/2026 20:06:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3300/6750 loss=0.0439
+08/11/2026 20:07:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3350/6750 loss=0.0525
+08/11/2026 20:07:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3400/6750 loss=0.0624
+08/11/2026 20:07:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3450/6750 loss=0.0736
+08/11/2026 20:07:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3500/6750 loss=0.0751
+08/11/2026 20:07:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3550/6750 loss=0.0431
+08/11/2026 20:07:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3600/6750 loss=0.0719
+08/11/2026 20:07:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3650/6750 loss=0.0535
+08/11/2026 20:07:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3700/6750 loss=0.0817
+08/11/2026 20:07:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3750/6750 loss=0.0871
+08/11/2026 20:07:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3800/6750 loss=0.0489
+08/11/2026 20:07:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3850/6750 loss=0.0839
+08/11/2026 20:07:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3900/6750 loss=0.0480
+08/11/2026 20:08:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 3950/6750 loss=0.0610
+08/11/2026 20:08:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4000/6750 loss=0.0977
+08/11/2026 20:08:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4050/6750 loss=0.0635
+08/11/2026 20:08:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4100/6750 loss=0.0683
+08/11/2026 20:08:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4150/6750 loss=0.0722
+08/11/2026 20:08:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4200/6750 loss=0.0750
+08/11/2026 20:08:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4250/6750 loss=0.0614
+08/11/2026 20:08:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4300/6750 loss=0.0603
+08/11/2026 20:08:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4350/6750 loss=0.0550
+08/11/2026 20:08:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4400/6750 loss=0.0622
+08/11/2026 20:08:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4450/6750 loss=0.0683
+08/11/2026 20:08:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4500/6750 loss=0.1013
+08/11/2026 20:09:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4550/6750 loss=0.0577
+08/11/2026 20:09:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4600/6750 loss=0.0407
+08/11/2026 20:09:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4650/6750 loss=0.0733
+08/11/2026 20:09:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4700/6750 loss=0.0785
+08/11/2026 20:09:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4750/6750 loss=0.0778
+08/11/2026 20:09:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4800/6750 loss=0.0698
+08/11/2026 20:09:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4850/6750 loss=0.0490
+08/11/2026 20:09:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4900/6750 loss=0.0682
+08/11/2026 20:09:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 4950/6750 loss=0.0588
+08/11/2026 20:09:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5000/6750 loss=0.0531
+08/11/2026 20:09:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5050/6750 loss=0.0608
+08/11/2026 20:09:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5100/6750 loss=0.0598
+08/11/2026 20:10:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5150/6750 loss=0.0735
+08/11/2026 20:10:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5200/6750 loss=0.0773
+08/11/2026 20:10:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5250/6750 loss=0.0599
+08/11/2026 20:10:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5300/6750 loss=0.0779
+08/11/2026 20:10:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5350/6750 loss=0.0546
+08/11/2026 20:10:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5400/6750 loss=0.0511
+08/11/2026 20:10:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5450/6750 loss=0.0651
+08/11/2026 20:10:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5500/6750 loss=0.1089
+08/11/2026 20:10:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5550/6750 loss=0.0736
+08/11/2026 20:10:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5600/6750 loss=0.0564
+08/11/2026 20:10:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5650/6750 loss=0.0620
+08/11/2026 20:10:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5700/6750 loss=0.0681
+08/11/2026 20:11:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5750/6750 loss=0.0641
+08/11/2026 20:11:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5800/6750 loss=0.0442
+08/11/2026 20:11:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5850/6750 loss=0.0696
+08/11/2026 20:11:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5900/6750 loss=0.0488
+08/11/2026 20:11:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 5950/6750 loss=0.0635
+08/11/2026 20:11:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6000/6750 loss=0.0586
+08/11/2026 20:11:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6050/6750 loss=0.0925
+08/11/2026 20:11:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6100/6750 loss=0.0506
+08/11/2026 20:11:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6150/6750 loss=0.0888
+08/11/2026 20:11:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6200/6750 loss=0.0643
+08/11/2026 20:11:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6250/6750 loss=0.0711
+08/11/2026 20:11:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6300/6750 loss=0.0637
+08/11/2026 20:12:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6350/6750 loss=0.0546
+08/11/2026 20:12:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6400/6750 loss=0.0674
+08/11/2026 20:12:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6450/6750 loss=0.0671
+08/11/2026 20:12:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6500/6750 loss=0.0499
+08/11/2026 20:12:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6550/6750 loss=0.0640
+08/11/2026 20:12:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6600/6750 loss=0.0704
+08/11/2026 20:12:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6650/6750 loss=0.0587
+08/11/2026 20:12:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6700/6750 loss=0.0719
+08/11/2026 20:12:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 5 step 6750/6750 loss=0.0555
+08/11/2026 20:12:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 5 xong sau 673.6s, avg_loss=0.0664
+08/11/2026 20:16:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 5 - Valid macro F1 = 0.5216
+              precision    recall  f1-score   support
+
+      PERIOD     0.8309    0.8493    0.8400    140170
+       COMMA     0.7299    0.6664    0.6967    162056
+       COLON     0.6334    0.4852    0.5495     10825
+       QMARK     0.7008    0.6720    0.6861      4884
+      EXCLAM     0.5078    0.1021    0.1700      2556
+   SEMICOLON     0.4434    0.1188    0.1874      1944
+
+   micro avg     0.7734    0.7321    0.7522    322435
+   macro avg     0.6410    0.4823    0.5216    322435
+weighted avg     0.7666    0.7321    0.7466    322435
+
+08/11/2026 20:16:36 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.5216
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 20:16:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 50/6750 loss=0.0526
+08/11/2026 20:16:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 100/6750 loss=0.0492
+08/11/2026 20:16:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 150/6750 loss=0.0777
+08/11/2026 20:16:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 200/6750 loss=0.0520
+08/11/2026 20:17:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 250/6750 loss=0.0578
+08/11/2026 20:17:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 300/6750 loss=0.0580
+08/11/2026 20:17:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 350/6750 loss=0.0533
+08/11/2026 20:17:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 400/6750 loss=0.0762
+08/11/2026 20:17:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 450/6750 loss=0.0364
+08/11/2026 20:17:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 500/6750 loss=0.0420
+08/11/2026 20:17:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 550/6750 loss=0.0491
+08/11/2026 20:17:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 600/6750 loss=0.0971
+08/11/2026 20:17:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 650/6750 loss=0.0364
+08/11/2026 20:17:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 700/6750 loss=0.0610
+08/11/2026 20:17:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 750/6750 loss=0.0593
+08/11/2026 20:17:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 800/6750 loss=0.0560
+08/11/2026 20:18:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 850/6750 loss=0.0661
+08/11/2026 20:18:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 900/6750 loss=0.0493
+08/11/2026 20:18:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 950/6750 loss=0.0665
+08/11/2026 20:18:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1000/6750 loss=0.0530
+08/11/2026 20:18:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1050/6750 loss=0.0679
+08/11/2026 20:18:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1100/6750 loss=0.0523
+08/11/2026 20:18:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1150/6750 loss=0.0504
+08/11/2026 20:18:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1200/6750 loss=0.0492
+08/11/2026 20:18:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1250/6750 loss=0.0493
+08/11/2026 20:18:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1300/6750 loss=0.0525
+08/11/2026 20:18:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1350/6750 loss=0.0850
+08/11/2026 20:18:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1400/6750 loss=0.0623
+08/11/2026 20:18:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1450/6750 loss=0.0684
+08/11/2026 20:19:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1500/6750 loss=0.0716
+08/11/2026 20:19:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1550/6750 loss=0.0371
+08/11/2026 20:19:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1600/6750 loss=0.0390
+08/11/2026 20:19:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1650/6750 loss=0.0463
+08/11/2026 20:19:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1700/6750 loss=0.0418
+08/11/2026 20:19:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1750/6750 loss=0.0831
+08/11/2026 20:19:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1800/6750 loss=0.0425
+08/11/2026 20:19:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1850/6750 loss=0.0927
+08/11/2026 20:19:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1900/6750 loss=0.0703
+08/11/2026 20:19:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 1950/6750 loss=0.0518
+08/11/2026 20:19:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2000/6750 loss=0.0570
+08/11/2026 20:19:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2050/6750 loss=0.0659
+08/11/2026 20:20:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2100/6750 loss=0.0651
+08/11/2026 20:20:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2150/6750 loss=0.0727
+08/11/2026 20:20:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2200/6750 loss=0.0394
+08/11/2026 20:20:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2250/6750 loss=0.0600
+08/11/2026 20:20:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2300/6750 loss=0.0734
+08/11/2026 20:20:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2350/6750 loss=0.0597
+08/11/2026 20:20:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2400/6750 loss=0.0486
+08/11/2026 20:20:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2450/6750 loss=0.0452
+08/11/2026 20:20:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2500/6750 loss=0.0579
+08/11/2026 20:20:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2550/6750 loss=0.0704
+08/11/2026 20:20:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2600/6750 loss=0.0484
+08/11/2026 20:20:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2650/6750 loss=0.0394
+08/11/2026 20:21:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2700/6750 loss=0.0590
+08/11/2026 20:21:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2750/6750 loss=0.0615
+08/11/2026 20:21:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2800/6750 loss=0.0535
+08/11/2026 20:21:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2850/6750 loss=0.0616
+08/11/2026 20:21:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2900/6750 loss=0.0505
+08/11/2026 20:21:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 2950/6750 loss=0.0553
+08/11/2026 20:21:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3000/6750 loss=0.0606
+08/11/2026 20:21:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3050/6750 loss=0.0530
+08/11/2026 20:21:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3100/6750 loss=0.0503
+08/11/2026 20:21:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3150/6750 loss=0.0586
+08/11/2026 20:21:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3200/6750 loss=0.0829
+08/11/2026 20:21:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3250/6750 loss=0.0456
+08/11/2026 20:22:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3300/6750 loss=0.0850
+08/11/2026 20:22:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3350/6750 loss=0.0558
+08/11/2026 20:22:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3400/6750 loss=0.0702
+08/11/2026 20:22:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3450/6750 loss=0.0640
+08/11/2026 20:22:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3500/6750 loss=0.0558
+08/11/2026 20:22:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3550/6750 loss=0.0527
+08/11/2026 20:22:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3600/6750 loss=0.0549
+08/11/2026 20:22:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3650/6750 loss=0.0495
+08/11/2026 20:22:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3700/6750 loss=0.0761
+08/11/2026 20:22:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3750/6750 loss=0.0632
+08/11/2026 20:22:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3800/6750 loss=0.0656
+08/11/2026 20:22:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3850/6750 loss=0.0790
+08/11/2026 20:23:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3900/6750 loss=0.0424
+08/11/2026 20:23:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 3950/6750 loss=0.0638
+08/11/2026 20:23:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4000/6750 loss=0.0321
+08/11/2026 20:23:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4050/6750 loss=0.0666
+08/11/2026 20:23:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4100/6750 loss=0.0584
+08/11/2026 20:23:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4150/6750 loss=0.0829
+08/11/2026 20:23:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4200/6750 loss=0.0586
+08/11/2026 20:23:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4250/6750 loss=0.0439
+08/11/2026 20:23:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4300/6750 loss=0.0522
+08/11/2026 20:23:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4350/6750 loss=0.0423
+08/11/2026 20:23:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4400/6750 loss=0.0769
+08/11/2026 20:23:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4450/6750 loss=0.0746
+08/11/2026 20:24:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4500/6750 loss=0.0506
+08/11/2026 20:24:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4550/6750 loss=0.0496
+08/11/2026 20:24:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4600/6750 loss=0.0561
+08/11/2026 20:24:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4650/6750 loss=0.0544
+08/11/2026 20:24:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4700/6750 loss=0.0643
+08/11/2026 20:24:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4750/6750 loss=0.0584
+08/11/2026 20:24:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4800/6750 loss=0.0705
+08/11/2026 20:24:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4850/6750 loss=0.0551
+08/11/2026 20:24:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4900/6750 loss=0.0529
+08/11/2026 20:24:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 4950/6750 loss=0.0614
+08/11/2026 20:24:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5000/6750 loss=0.0865
+08/11/2026 20:24:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5050/6750 loss=0.0499
+08/11/2026 20:25:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5100/6750 loss=0.0614
+08/11/2026 20:25:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5150/6750 loss=0.0494
+08/11/2026 20:25:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5200/6750 loss=0.0582
+08/11/2026 20:25:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5250/6750 loss=0.0463
+08/11/2026 20:25:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5300/6750 loss=0.0672
+08/11/2026 20:25:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5350/6750 loss=0.0670
+08/11/2026 20:25:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5400/6750 loss=0.0698
+08/11/2026 20:25:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5450/6750 loss=0.0572
+08/11/2026 20:25:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5500/6750 loss=0.0607
+08/11/2026 20:25:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5550/6750 loss=0.0483
+08/11/2026 20:25:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5600/6750 loss=0.0638
+08/11/2026 20:25:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5650/6750 loss=0.0475
+08/11/2026 20:26:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5700/6750 loss=0.0693
+08/11/2026 20:26:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5750/6750 loss=0.0353
+08/11/2026 20:26:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5800/6750 loss=0.0629
+08/11/2026 20:26:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5850/6750 loss=0.0597
+08/11/2026 20:26:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5900/6750 loss=0.0576
+08/11/2026 20:26:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 5950/6750 loss=0.0521
+08/11/2026 20:26:33 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6000/6750 loss=0.0543
+08/11/2026 20:26:38 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6050/6750 loss=0.0549
+08/11/2026 20:26:43 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6100/6750 loss=0.0740
+08/11/2026 20:26:48 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6150/6750 loss=0.0983
+08/11/2026 20:26:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6200/6750 loss=0.0614
+08/11/2026 20:26:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6250/6750 loss=0.0432
+08/11/2026 20:27:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6300/6750 loss=0.0543
+08/11/2026 20:27:08 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6350/6750 loss=0.0655
+08/11/2026 20:27:13 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6400/6750 loss=0.0838
+08/11/2026 20:27:18 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6450/6750 loss=0.0381
+08/11/2026 20:27:23 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6500/6750 loss=0.0619
+08/11/2026 20:27:28 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6550/6750 loss=0.0530
+08/11/2026 20:27:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6600/6750 loss=0.0477
+08/11/2026 20:27:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6650/6750 loss=0.0547
+08/11/2026 20:27:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6700/6750 loss=0.0556
+08/11/2026 20:27:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 6 step 6750/6750 loss=0.0585
+08/11/2026 20:27:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 6 xong sau 671.7s, avg_loss=0.0593
+08/11/2026 20:31:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 6 - Valid macro F1 = 0.5248
+              precision    recall  f1-score   support
+
+      PERIOD     0.8339    0.8490    0.8414    140170
+       COMMA     0.7404    0.6584    0.6970    162056
+       COLON     0.6384    0.4891    0.5538     10825
+       QMARK     0.7071    0.6697    0.6879      4884
+      EXCLAM     0.4741    0.1076    0.1754      2556
+   SEMICOLON     0.4023    0.1271    0.1931      1944
+
+   micro avg     0.7802    0.7282    0.7533    322435
+   macro avg     0.6327    0.4835    0.5248    322435
+weighted avg     0.7730    0.7282    0.7477    322435
+
+08/11/2026 20:31:41 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.5248
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 20:31:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 50/6750 loss=0.0546
+08/11/2026 20:31:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 100/6750 loss=0.0544
+08/11/2026 20:31:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 150/6750 loss=0.0492
+08/11/2026 20:32:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 200/6750 loss=0.0461
+08/11/2026 20:32:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 250/6750 loss=0.0467
+08/11/2026 20:32:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 300/6750 loss=0.0638
+08/11/2026 20:32:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 350/6750 loss=0.0660
+08/11/2026 20:32:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 400/6750 loss=0.0519
+08/11/2026 20:32:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 450/6750 loss=0.0491
+08/11/2026 20:32:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 500/6750 loss=0.0663
+08/11/2026 20:32:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 550/6750 loss=0.0577
+08/11/2026 20:32:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 600/6750 loss=0.0705
+08/11/2026 20:32:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 650/6750 loss=0.0560
+08/11/2026 20:32:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 700/6750 loss=0.0560
+08/11/2026 20:32:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 750/6750 loss=0.0367
+08/11/2026 20:33:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 800/6750 loss=0.0569
+08/11/2026 20:33:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 850/6750 loss=0.0694
+08/11/2026 20:33:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 900/6750 loss=0.0670
+08/11/2026 20:33:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 950/6750 loss=0.0397
+08/11/2026 20:33:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1000/6750 loss=0.0398
+08/11/2026 20:33:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1050/6750 loss=0.0553
+08/11/2026 20:33:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1100/6750 loss=0.0503
+08/11/2026 20:33:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1150/6750 loss=0.0475
+08/11/2026 20:33:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1200/6750 loss=0.0777
+08/11/2026 20:33:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1250/6750 loss=0.0466
+08/11/2026 20:33:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1300/6750 loss=0.0291
+08/11/2026 20:33:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1350/6750 loss=0.0576
+08/11/2026 20:34:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1400/6750 loss=0.0488
+08/11/2026 20:34:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1450/6750 loss=0.0823
+08/11/2026 20:34:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1500/6750 loss=0.0401
+08/11/2026 20:34:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1550/6750 loss=0.0453
+08/11/2026 20:34:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1600/6750 loss=0.0467
+08/11/2026 20:34:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1650/6750 loss=0.0679
+08/11/2026 20:34:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1700/6750 loss=0.0448
+08/11/2026 20:34:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1750/6750 loss=0.0508
+08/11/2026 20:34:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1800/6750 loss=0.0498
+08/11/2026 20:34:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1850/6750 loss=0.0576
+08/11/2026 20:34:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1900/6750 loss=0.0624
+08/11/2026 20:34:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 1950/6750 loss=0.0811
+08/11/2026 20:35:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2000/6750 loss=0.0627
+08/11/2026 20:35:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2050/6750 loss=0.0626
+08/11/2026 20:35:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2100/6750 loss=0.0598
+08/11/2026 20:35:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2150/6750 loss=0.0413
+08/11/2026 20:35:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2200/6750 loss=0.0456
+08/11/2026 20:35:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2250/6750 loss=0.0474
+08/11/2026 20:35:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2300/6750 loss=0.0369
+08/11/2026 20:35:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2350/6750 loss=0.0517
+08/11/2026 20:35:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2400/6750 loss=0.0598
+08/11/2026 20:35:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2450/6750 loss=0.0477
+08/11/2026 20:35:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2500/6750 loss=0.0424
+08/11/2026 20:35:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2550/6750 loss=0.0699
+08/11/2026 20:36:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2600/6750 loss=0.0412
+08/11/2026 20:36:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2650/6750 loss=0.0424
+08/11/2026 20:36:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2700/6750 loss=0.0533
+08/11/2026 20:36:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2750/6750 loss=0.0983
+08/11/2026 20:36:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2800/6750 loss=0.0573
+08/11/2026 20:36:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2850/6750 loss=0.0441
+08/11/2026 20:36:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2900/6750 loss=0.0452
+08/11/2026 20:36:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 2950/6750 loss=0.0625
+08/11/2026 20:36:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3000/6750 loss=0.0547
+08/11/2026 20:36:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3050/6750 loss=0.0781
+08/11/2026 20:36:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3100/6750 loss=0.0617
+08/11/2026 20:36:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3150/6750 loss=0.0522
+08/11/2026 20:37:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3200/6750 loss=0.0575
+08/11/2026 20:37:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3250/6750 loss=0.0638
+08/11/2026 20:37:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3300/6750 loss=0.0294
+08/11/2026 20:37:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3350/6750 loss=0.0499
+08/11/2026 20:37:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3400/6750 loss=0.0704
+08/11/2026 20:37:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3450/6750 loss=0.0440
+08/11/2026 20:37:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3500/6750 loss=0.0341
+08/11/2026 20:37:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3550/6750 loss=0.0671
+08/11/2026 20:37:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3600/6750 loss=0.0768
+08/11/2026 20:37:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3650/6750 loss=0.0499
+08/11/2026 20:37:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3700/6750 loss=0.0453
+08/11/2026 20:37:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3750/6750 loss=0.0670
+08/11/2026 20:38:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3800/6750 loss=0.0399
+08/11/2026 20:38:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3850/6750 loss=0.0564
+08/11/2026 20:38:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3900/6750 loss=0.0452
+08/11/2026 20:38:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 3950/6750 loss=0.0717
+08/11/2026 20:38:20 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4000/6750 loss=0.0417
+08/11/2026 20:38:25 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4050/6750 loss=0.0533
+08/11/2026 20:38:30 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4100/6750 loss=0.0836
+08/11/2026 20:38:35 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4150/6750 loss=0.0632
+08/11/2026 20:38:40 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4200/6750 loss=0.0563
+08/11/2026 20:38:45 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4250/6750 loss=0.0520
+08/11/2026 20:38:50 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4300/6750 loss=0.0436
+08/11/2026 20:38:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4350/6750 loss=0.0362
+08/11/2026 20:39:00 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4400/6750 loss=0.0571
+08/11/2026 20:39:05 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4450/6750 loss=0.0590
+08/11/2026 20:39:10 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4500/6750 loss=0.0379
+08/11/2026 20:39:15 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4550/6750 loss=0.0559
+08/11/2026 20:39:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4600/6750 loss=0.0586
+08/11/2026 20:39:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4650/6750 loss=0.0562
+08/11/2026 20:39:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4700/6750 loss=0.0529
+08/11/2026 20:39:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4750/6750 loss=0.0591
+08/11/2026 20:39:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4800/6750 loss=0.0743
+08/11/2026 20:39:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4850/6750 loss=0.0421
+08/11/2026 20:39:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4900/6750 loss=0.0453
+08/11/2026 20:39:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 4950/6750 loss=0.0348
+08/11/2026 20:39:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5000/6750 loss=0.0436
+08/11/2026 20:40:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5050/6750 loss=0.0615
+08/11/2026 20:40:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5100/6750 loss=0.0447
+08/11/2026 20:40:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5150/6750 loss=0.0565
+08/11/2026 20:40:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5200/6750 loss=0.0615
+08/11/2026 20:40:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5250/6750 loss=0.0363
+08/11/2026 20:40:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5300/6750 loss=0.0445
+08/11/2026 20:40:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5350/6750 loss=0.0613
+08/11/2026 20:40:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5400/6750 loss=0.0553
+08/11/2026 20:40:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5450/6750 loss=0.0607
+08/11/2026 20:40:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5500/6750 loss=0.0377
+08/11/2026 20:40:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5550/6750 loss=0.0839
+08/11/2026 20:40:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5600/6750 loss=0.0449
+08/11/2026 20:41:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5650/6750 loss=0.0537
+08/11/2026 20:41:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5700/6750 loss=0.0391
+08/11/2026 20:41:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5750/6750 loss=0.0602
+08/11/2026 20:41:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5800/6750 loss=0.0617
+08/11/2026 20:41:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5850/6750 loss=0.0779
+08/11/2026 20:41:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5900/6750 loss=0.0690
+08/11/2026 20:41:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 5950/6750 loss=0.0520
+08/11/2026 20:41:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6000/6750 loss=0.0570
+08/11/2026 20:41:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6050/6750 loss=0.0800
+08/11/2026 20:41:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6100/6750 loss=0.0961
+08/11/2026 20:41:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6150/6750 loss=0.0527
+08/11/2026 20:41:59 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6200/6750 loss=0.0716
+08/11/2026 20:42:04 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6250/6750 loss=0.0621
+08/11/2026 20:42:09 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6300/6750 loss=0.0640
+08/11/2026 20:42:14 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6350/6750 loss=0.0449
+08/11/2026 20:42:19 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6400/6750 loss=0.0613
+08/11/2026 20:42:24 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6450/6750 loss=0.0451
+08/11/2026 20:42:29 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6500/6750 loss=0.0652
+08/11/2026 20:42:34 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6550/6750 loss=0.0478
+08/11/2026 20:42:39 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6600/6750 loss=0.0491
+08/11/2026 20:42:44 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6650/6750 loss=0.0576
+08/11/2026 20:42:49 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6700/6750 loss=0.0560
+08/11/2026 20:42:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 7 step 6750/6750 loss=0.0673
+08/11/2026 20:42:54 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 7 xong sau 672.5s, avg_loss=0.0540
+08/11/2026 20:46:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 7 - Valid macro F1 = 0.5323
+              precision    recall  f1-score   support
+
+      PERIOD     0.8377    0.8452    0.8415    140170
+       COMMA     0.7224    0.6787    0.6999    162056
+       COLON     0.6036    0.5176    0.5573     10825
+       QMARK     0.7186    0.6615    0.6889      4884
+      EXCLAM     0.4658    0.1197    0.1905      2556
+   SEMICOLON     0.3927    0.1487    0.2157      1944
+
+   micro avg     0.7703    0.7378    0.7537    322435
+   macro avg     0.6235    0.4952    0.5323    322435
+weighted avg     0.7645    0.7378    0.7495    322435
+
+08/11/2026 20:46:48 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.5323
+/root/phopunct/baseline_plain.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/11/2026 20:46:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 50/6750 loss=0.0572
+08/11/2026 20:46:58 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 100/6750 loss=0.0451
+08/11/2026 20:47:03 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 150/6750 loss=0.0547
+08/11/2026 20:47:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 200/6750 loss=0.0410
+08/11/2026 20:47:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 250/6750 loss=0.0447
+08/11/2026 20:47:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 300/6750 loss=0.0494
+08/11/2026 20:47:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 350/6750 loss=0.0485
+08/11/2026 20:47:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 400/6750 loss=0.0552
+08/11/2026 20:47:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 450/6750 loss=0.0506
+08/11/2026 20:47:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 500/6750 loss=0.0683
+08/11/2026 20:47:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 550/6750 loss=0.0479
+08/11/2026 20:47:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 600/6750 loss=0.0427
+08/11/2026 20:47:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 650/6750 loss=0.0360
+08/11/2026 20:47:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 700/6750 loss=0.0555
+08/11/2026 20:48:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 750/6750 loss=0.0515
+08/11/2026 20:48:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 800/6750 loss=0.0429
+08/11/2026 20:48:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 850/6750 loss=0.0585
+08/11/2026 20:48:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 900/6750 loss=0.0501
+08/11/2026 20:48:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 950/6750 loss=0.0665
+08/11/2026 20:48:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1000/6750 loss=0.0780
+08/11/2026 20:48:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1050/6750 loss=0.0510
+08/11/2026 20:48:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1100/6750 loss=0.0459
+08/11/2026 20:48:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1150/6750 loss=0.0564
+08/11/2026 20:48:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1200/6750 loss=0.0787
+08/11/2026 20:48:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1250/6750 loss=0.0551
+08/11/2026 20:48:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1300/6750 loss=0.0388
+08/11/2026 20:49:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1350/6750 loss=0.0364
+08/11/2026 20:49:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1400/6750 loss=0.0540
+08/11/2026 20:49:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1450/6750 loss=0.0548
+08/11/2026 20:49:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1500/6750 loss=0.0528
+08/11/2026 20:49:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1550/6750 loss=0.0482
+08/11/2026 20:49:27 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1600/6750 loss=0.0387
+08/11/2026 20:49:32 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1650/6750 loss=0.0561
+08/11/2026 20:49:37 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1700/6750 loss=0.0371
+08/11/2026 20:49:42 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1750/6750 loss=0.0447
+08/11/2026 20:49:47 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1800/6750 loss=0.0481
+08/11/2026 20:49:52 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1850/6750 loss=0.0590
+08/11/2026 20:49:57 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1900/6750 loss=0.0505
+08/11/2026 20:50:02 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 1950/6750 loss=0.0550
+08/11/2026 20:50:07 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2000/6750 loss=0.0631
+08/11/2026 20:50:12 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2050/6750 loss=0.0449
+08/11/2026 20:50:17 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2100/6750 loss=0.0355
+08/11/2026 20:50:22 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2150/6750 loss=0.0379
+08/11/2026 20:50:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2200/6750 loss=0.0512
+08/11/2026 20:50:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2250/6750 loss=0.0426
+08/11/2026 20:50:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2300/6750 loss=0.0438
+08/11/2026 20:50:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2350/6750 loss=0.0388
+08/11/2026 20:50:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2400/6750 loss=0.0576
+08/11/2026 20:50:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2450/6750 loss=0.0560
+08/11/2026 20:50:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2500/6750 loss=0.0372
+08/11/2026 20:51:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2550/6750 loss=0.0545
+08/11/2026 20:51:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2600/6750 loss=0.0537
+08/11/2026 20:51:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2650/6750 loss=0.0541
+08/11/2026 20:51:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2700/6750 loss=0.0491
+08/11/2026 20:51:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2750/6750 loss=0.0666
+08/11/2026 20:51:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2800/6750 loss=0.0582
+08/11/2026 20:51:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2850/6750 loss=0.0432
+08/11/2026 20:51:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2900/6750 loss=0.0579
+08/11/2026 20:51:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 2950/6750 loss=0.0626
+08/11/2026 20:51:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3000/6750 loss=0.0569
+08/11/2026 20:51:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3050/6750 loss=0.0622
+08/11/2026 20:51:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3100/6750 loss=0.0430
+08/11/2026 20:52:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3150/6750 loss=0.0272
+08/11/2026 20:52:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3200/6750 loss=0.0537
+08/11/2026 20:52:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3250/6750 loss=0.0498
+08/11/2026 20:52:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3300/6750 loss=0.0501
+08/11/2026 20:52:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3350/6750 loss=0.0428
+08/11/2026 20:52:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3400/6750 loss=0.0691
+08/11/2026 20:52:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3450/6750 loss=0.0502
+08/11/2026 20:52:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3500/6750 loss=0.0487
+08/11/2026 20:52:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3550/6750 loss=0.0797
+08/11/2026 20:52:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3600/6750 loss=0.0356
+08/11/2026 20:52:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3650/6750 loss=0.0438
+08/11/2026 20:52:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3700/6750 loss=0.0543
+08/11/2026 20:53:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3750/6750 loss=0.0644
+08/11/2026 20:53:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3800/6750 loss=0.0388
+08/11/2026 20:53:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3850/6750 loss=0.0389
+08/11/2026 20:53:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3900/6750 loss=0.0429
+08/11/2026 20:53:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 3950/6750 loss=0.0606
+08/11/2026 20:53:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4000/6750 loss=0.0506
+08/11/2026 20:53:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4050/6750 loss=0.0640
+08/11/2026 20:53:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4100/6750 loss=0.0541
+08/11/2026 20:53:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4150/6750 loss=0.0397
+08/11/2026 20:53:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4200/6750 loss=0.0430
+08/11/2026 20:53:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4250/6750 loss=0.0473
+08/11/2026 20:53:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4300/6750 loss=0.0602
+08/11/2026 20:54:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4350/6750 loss=0.0500
+08/11/2026 20:54:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4400/6750 loss=0.0446
+08/11/2026 20:54:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4450/6750 loss=0.0447
+08/11/2026 20:54:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4500/6750 loss=0.0521
+08/11/2026 20:54:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4550/6750 loss=0.0322
+08/11/2026 20:54:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4600/6750 loss=0.0592
+08/11/2026 20:54:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4650/6750 loss=0.0593
+08/11/2026 20:54:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4700/6750 loss=0.0775
+08/11/2026 20:54:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4750/6750 loss=0.0628
+08/11/2026 20:54:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4800/6750 loss=0.0505
+08/11/2026 20:54:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4850/6750 loss=0.0587
+08/11/2026 20:54:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4900/6750 loss=0.0648
+08/11/2026 20:55:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 4950/6750 loss=0.0544
+08/11/2026 20:55:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5000/6750 loss=0.0647
+08/11/2026 20:55:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5050/6750 loss=0.0397
+08/11/2026 20:55:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5100/6750 loss=0.0451
+08/11/2026 20:55:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5150/6750 loss=0.0501
+08/11/2026 20:55:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5200/6750 loss=0.0582
+08/11/2026 20:55:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5250/6750 loss=0.0570
+08/11/2026 20:55:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5300/6750 loss=0.0552
+08/11/2026 20:55:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5350/6750 loss=0.0454
+08/11/2026 20:55:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5400/6750 loss=0.0406
+08/11/2026 20:55:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5450/6750 loss=0.0445
+08/11/2026 20:55:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5500/6750 loss=0.0416
+08/11/2026 20:56:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5550/6750 loss=0.0528
+08/11/2026 20:56:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5600/6750 loss=0.0385
+08/11/2026 20:56:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5650/6750 loss=0.0426
+08/11/2026 20:56:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5700/6750 loss=0.0729
+08/11/2026 20:56:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5750/6750 loss=0.0483
+08/11/2026 20:56:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5800/6750 loss=0.0645
+08/11/2026 20:56:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5850/6750 loss=0.0482
+08/11/2026 20:56:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5900/6750 loss=0.0343
+08/11/2026 20:56:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 5950/6750 loss=0.0426
+08/11/2026 20:56:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6000/6750 loss=0.0401
+08/11/2026 20:56:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6050/6750 loss=0.0514
+08/11/2026 20:56:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6100/6750 loss=0.0364
+08/11/2026 20:57:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6150/6750 loss=0.0505
+08/11/2026 20:57:06 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6200/6750 loss=0.0388
+08/11/2026 20:57:11 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6250/6750 loss=0.0427
+08/11/2026 20:57:16 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6300/6750 loss=0.0677
+08/11/2026 20:57:21 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6350/6750 loss=0.0437
+08/11/2026 20:57:26 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6400/6750 loss=0.0551
+08/11/2026 20:57:31 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6450/6750 loss=0.0568
+08/11/2026 20:57:36 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6500/6750 loss=0.0392
+08/11/2026 20:57:41 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6550/6750 loss=0.0437
+08/11/2026 20:57:46 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6600/6750 loss=0.0507
+08/11/2026 20:57:51 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6650/6750 loss=0.0612
+08/11/2026 20:57:56 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6700/6750 loss=0.0504
+08/11/2026 20:58:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] epoch 8 step 6750/6750 loss=0.0620
+08/11/2026 20:58:01 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 8 xong sau 673.2s, avg_loss=0.0505
+08/11/2026 21:01:53 - INFO - __main__ - [vELECTRA + Bi-LSTM] Epoch 8 - Valid macro F1 = 0.5342
+              precision    recall  f1-score   support
+
+      PERIOD     0.8356    0.8482    0.8418    140170
+       COMMA     0.7226    0.6793    0.7002    162056
+       COLON     0.6062    0.5182    0.5588     10825
+       QMARK     0.7074    0.6714    0.6889      4884
+      EXCLAM     0.4556    0.1244    0.1955      2556
+   SEMICOLON     0.3841    0.1543    0.2202      1944
+
+   micro avg     0.7693    0.7396    0.7541    322435
+   macro avg     0.6186    0.4993    0.5342    322435
+weighted avg     0.7634    0.7396    0.7500    322435
+
+08/11/2026 21:01:55 - INFO - __main__ - -> [vELECTRA + Bi-LSTM] best checkpoint mới, macro F1 = 0.5342
+08/11/2026 21:01:55 - INFO - __main__ - [vELECTRA + Bi-LSTM] Train xong. Best macro F1 = 0.5342. Checkpoint tại /root/phopunct/outputs/velectra_bilstm_plain_news

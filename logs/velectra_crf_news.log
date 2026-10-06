@@ -1,0 +1,1282 @@
+08/12/2026 03:24:55 - INFO - __main__ - === vELECTRA + CRF | backbone=FPTAI/velectra-base-discriminator-cased ===
+08/12/2026 03:24:55 - INFO - __main__ - {
+  "model_key": "velectra",
+  "use_bilstm": false,
+  "data_dir": "data/punctuation/News",
+  "output_dir": "outputs/velectra_news",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/12/2026 03:24:55 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+08/12/2026 03:24:55 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/config.json "HTTP/1.1 200 OK"
+08/12/2026 03:24:55 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/12/2026 03:24:55 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/12/2026 03:24:56 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+08/12/2026 03:24:56 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/12/2026 03:24:56 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/12/2026 03:24:56 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+08/12/2026 03:24:56 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/vocab.txt "HTTP/1.1 200 OK"
+08/12/2026 03:24:56 - INFO - __main__ - Đang nạp dữ liệu train...
+08/12/2026 03:26:34 - INFO - punc_dataset_word - convert_examples_to_features: 108000 examples -> 108000 features (0 rỗng bị bỏ, 1 bị truncate)
+08/12/2026 03:26:42 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/12/2026 03:27:14 - INFO - punc_dataset_word - convert_examples_to_features: 36191 examples -> 36191 features (0 rỗng bị bỏ, 0 bị truncate)
+08/12/2026 03:27:16 - INFO - __main__ - Train: 108000 features | Valid: 36191 features
+08/12/2026 03:27:17 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+08/12/2026 03:27:17 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FPTAI/velectra-base-discriminator-cased/f594fee501933d92d8c13285c969495681d0cc00/config.json "HTTP/1.1 200 OK"
+08/12/2026 03:27:17 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+08/12/2026 03:27:17 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 17568.42it/s]
+[transformers] [1mElectraModel LOAD REPORT[0m from: FPTAI/velectra-base-discriminator-cased
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+discriminator_predictions.dense.weight            | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.bias   | UNEXPECTED |  | 
+discriminator_predictions.dense_prediction.weight | UNEXPECTED |  | 
+discriminator_predictions.dense.bias              | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+08/12/2026 03:27:18 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/commits/main "HTTP/1.1 200 OK"
+/root/phopunct/baseline_lstm_crf.py:247: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 03:27:18 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/discussions?p=0 "HTTP/1.1 200 OK"
+08/12/2026 03:27:18 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/FPTAI/velectra-base-discriminator-cased/commits/refs%2Fpr%2F1 "HTTP/1.1 200 OK"
+08/12/2026 03:27:19 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/refs%2Fpr%2F1/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+/root/phopunct/baseline_lstm_crf.py:274: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+08/12/2026 03:27:19 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/FPTAI/velectra-base-discriminator-cased/resolve/refs%2Fpr%2F1/model.safetensors "HTTP/1.1 302 Found"
+08/12/2026 03:27:39 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 50/6750 loss=232.1814
+08/12/2026 03:27:59 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 100/6750 loss=127.4443
+08/12/2026 03:28:19 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 150/6750 loss=57.9350
+08/12/2026 03:28:40 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 200/6750 loss=43.6912
+08/12/2026 03:29:01 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 250/6750 loss=38.3346
+08/12/2026 03:29:21 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 300/6750 loss=35.8115
+08/12/2026 03:29:42 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 350/6750 loss=31.3079
+08/12/2026 03:30:02 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 400/6750 loss=30.4322
+08/12/2026 03:30:23 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 450/6750 loss=31.0955
+08/12/2026 03:30:43 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 500/6750 loss=31.9754
+08/12/2026 03:31:04 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 550/6750 loss=25.0500
+08/12/2026 03:31:25 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 600/6750 loss=30.3722
+08/12/2026 03:31:46 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 650/6750 loss=19.8415
+08/12/2026 03:32:06 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 700/6750 loss=28.1711
+08/12/2026 03:32:27 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 750/6750 loss=27.9505
+08/12/2026 03:32:48 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 800/6750 loss=20.9590
+08/12/2026 03:33:09 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 850/6750 loss=26.1247
+08/12/2026 03:33:30 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 900/6750 loss=26.4021
+08/12/2026 03:33:51 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 950/6750 loss=26.8808
+08/12/2026 03:34:12 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1000/6750 loss=25.3352
+08/12/2026 03:34:33 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1050/6750 loss=32.0675
+08/12/2026 03:34:54 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1100/6750 loss=21.8269
+08/12/2026 03:35:15 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1150/6750 loss=27.9346
+08/12/2026 03:35:35 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1200/6750 loss=24.7707
+08/12/2026 03:35:56 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1250/6750 loss=25.6619
+08/12/2026 03:36:17 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1300/6750 loss=22.5798
+08/12/2026 03:36:38 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1350/6750 loss=20.3097
+08/12/2026 03:36:59 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1400/6750 loss=22.8125
+08/12/2026 03:37:20 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1450/6750 loss=18.2494
+08/12/2026 03:37:41 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1500/6750 loss=20.5751
+08/12/2026 03:38:02 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1550/6750 loss=24.1595
+08/12/2026 03:38:23 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1600/6750 loss=18.1261
+08/12/2026 03:38:44 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1650/6750 loss=23.5347
+08/12/2026 03:39:05 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1700/6750 loss=22.1418
+08/12/2026 03:39:26 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1750/6750 loss=23.0580
+08/12/2026 03:39:48 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1800/6750 loss=21.7426
+08/12/2026 03:40:08 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1850/6750 loss=22.8913
+08/12/2026 03:40:29 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1900/6750 loss=21.9700
+08/12/2026 03:40:50 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 1950/6750 loss=24.6283
+08/12/2026 03:41:11 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2000/6750 loss=25.1590
+08/12/2026 03:41:32 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2050/6750 loss=19.3024
+08/12/2026 03:41:53 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2100/6750 loss=26.1040
+08/12/2026 03:42:15 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2150/6750 loss=20.9234
+08/12/2026 03:42:35 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2200/6750 loss=19.6202
+08/12/2026 03:42:57 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2250/6750 loss=18.8145
+08/12/2026 03:43:18 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2300/6750 loss=22.2303
+08/12/2026 03:43:38 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2350/6750 loss=21.4362
+08/12/2026 03:44:00 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2400/6750 loss=16.3526
+08/12/2026 03:44:21 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2450/6750 loss=17.8252
+08/12/2026 03:44:41 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2500/6750 loss=20.3733
+08/12/2026 03:45:02 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2550/6750 loss=15.6777
+08/12/2026 03:45:23 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2600/6750 loss=22.4575
+08/12/2026 03:45:44 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2650/6750 loss=21.7241
+08/12/2026 03:46:04 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2700/6750 loss=21.8424
+08/12/2026 03:46:26 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2750/6750 loss=16.9717
+08/12/2026 03:46:47 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2800/6750 loss=23.2412
+08/12/2026 03:47:08 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2850/6750 loss=22.5273
+08/12/2026 03:47:29 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2900/6750 loss=17.0907
+08/12/2026 03:47:49 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 2950/6750 loss=22.4280
+08/12/2026 03:48:10 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3000/6750 loss=15.1746
+08/12/2026 03:48:30 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3050/6750 loss=14.2001
+08/12/2026 03:48:52 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3100/6750 loss=19.0044
+08/12/2026 03:49:12 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3150/6750 loss=19.1510
+08/12/2026 03:49:33 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3200/6750 loss=17.3987
+08/12/2026 03:49:54 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3250/6750 loss=15.8555
+08/12/2026 03:50:15 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3300/6750 loss=15.5229
+08/12/2026 03:50:36 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3350/6750 loss=17.2717
+08/12/2026 03:50:57 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3400/6750 loss=16.2919
+08/12/2026 03:51:18 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3450/6750 loss=13.7817
+08/12/2026 03:51:39 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3500/6750 loss=16.4325
+08/12/2026 03:52:00 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3550/6750 loss=17.9692
+08/12/2026 03:52:21 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3600/6750 loss=15.4161
+08/12/2026 03:52:42 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3650/6750 loss=14.7849
+08/12/2026 03:53:02 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3700/6750 loss=16.5120
+08/12/2026 03:53:23 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3750/6750 loss=15.6798
+08/12/2026 03:53:43 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3800/6750 loss=19.5760
+08/12/2026 03:54:04 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3850/6750 loss=15.9668
+08/12/2026 03:54:24 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3900/6750 loss=17.6250
+08/12/2026 03:54:44 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 3950/6750 loss=15.0641
+08/12/2026 03:55:05 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4000/6750 loss=22.1241
+08/12/2026 03:55:25 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4050/6750 loss=20.6330
+08/12/2026 03:55:45 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4100/6750 loss=15.1610
+08/12/2026 03:56:05 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4150/6750 loss=16.0830
+08/12/2026 03:56:26 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4200/6750 loss=16.2866
+08/12/2026 03:56:46 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4250/6750 loss=14.4196
+08/12/2026 03:57:06 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4300/6750 loss=16.7024
+08/12/2026 03:57:27 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4350/6750 loss=17.5239
+08/12/2026 03:57:47 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4400/6750 loss=14.3662
+08/12/2026 03:58:07 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4450/6750 loss=16.1086
+08/12/2026 03:58:28 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4500/6750 loss=18.4860
+08/12/2026 03:58:48 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4550/6750 loss=14.7602
+08/12/2026 03:59:09 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4600/6750 loss=18.0299
+08/12/2026 03:59:29 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4650/6750 loss=12.2636
+08/12/2026 03:59:50 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4700/6750 loss=15.3057
+08/12/2026 04:00:10 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4750/6750 loss=16.2773
+08/12/2026 04:00:32 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4800/6750 loss=16.8297
+08/12/2026 04:00:54 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4850/6750 loss=19.3741
+08/12/2026 04:01:15 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4900/6750 loss=13.9646
+08/12/2026 04:01:36 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 4950/6750 loss=11.9129
+08/12/2026 04:01:57 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5000/6750 loss=13.4316
+08/12/2026 04:02:18 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5050/6750 loss=15.6287
+08/12/2026 04:02:39 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5100/6750 loss=13.7657
+08/12/2026 04:03:00 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5150/6750 loss=13.8492
+08/12/2026 04:03:20 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5200/6750 loss=14.9164
+08/12/2026 04:03:41 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5250/6750 loss=13.4438
+08/12/2026 04:04:02 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5300/6750 loss=16.3498
+08/12/2026 04:04:23 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5350/6750 loss=11.6539
+08/12/2026 04:04:43 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5400/6750 loss=15.7380
+08/12/2026 04:05:04 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5450/6750 loss=15.4549
+08/12/2026 04:05:25 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5500/6750 loss=14.3027
+08/12/2026 04:05:46 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5550/6750 loss=15.8957
+08/12/2026 04:06:06 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5600/6750 loss=15.3099
+08/12/2026 04:06:27 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5650/6750 loss=14.1839
+08/12/2026 04:06:49 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5700/6750 loss=13.4276
+08/12/2026 04:07:10 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5750/6750 loss=14.3030
+08/12/2026 04:07:30 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5800/6750 loss=13.4848
+08/12/2026 04:07:51 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5850/6750 loss=15.9179
+08/12/2026 04:08:11 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5900/6750 loss=16.2912
+08/12/2026 04:08:32 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 5950/6750 loss=16.4550
+08/12/2026 04:08:52 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6000/6750 loss=10.2187
+08/12/2026 04:09:13 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6050/6750 loss=14.3562
+08/12/2026 04:09:33 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6100/6750 loss=12.1676
+08/12/2026 04:09:54 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6150/6750 loss=14.9403
+08/12/2026 04:10:15 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6200/6750 loss=14.2589
+08/12/2026 04:10:35 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6250/6750 loss=10.3775
+08/12/2026 04:10:56 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6300/6750 loss=13.5556
+08/12/2026 04:11:17 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6350/6750 loss=9.7338
+08/12/2026 04:11:37 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6400/6750 loss=16.1976
+08/12/2026 04:11:57 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6450/6750 loss=13.2659
+08/12/2026 04:12:17 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6500/6750 loss=14.0631
+08/12/2026 04:12:38 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6550/6750 loss=14.5670
+08/12/2026 04:12:58 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6600/6750 loss=12.4674
+08/12/2026 04:13:19 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6650/6750 loss=11.8005
+08/12/2026 04:13:39 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6700/6750 loss=10.7272
+08/12/2026 04:13:59 - INFO - __main__ - [vELECTRA + CRF] epoch 1 step 6750/6750 loss=10.2285
+08/12/2026 04:13:59 - INFO - __main__ - [vELECTRA + CRF] Epoch 1 xong sau 2801.6s, avg_loss=22.4224
+08/12/2026 04:17:49 - INFO - __main__ - [vELECTRA + CRF] Epoch 1 - Valid macro F1 = 0.4350
+              precision    recall  f1-score   support
+
+      PERIOD     0.8098    0.7786    0.7939    140170
+       COMMA     0.7087    0.5564    0.6234    162056
+       COLON     0.6175    0.3228    0.4240     10825
+       QMARK     0.6639    0.5358    0.5930      4884
+      EXCLAM     0.5263    0.0548    0.0992      2556
+   SEMICOLON     0.4629    0.0417    0.0765      1944
+
+   micro avg     0.7559    0.6378    0.6918    322435
+   macro avg     0.6315    0.3817    0.4350    322435
+weighted avg     0.7460    0.6378    0.6829    322435
+
+08/12/2026 04:17:51 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.4350
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 04:18:11 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 50/6750 loss=13.4935
+08/12/2026 04:18:31 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 100/6750 loss=13.6687
+08/12/2026 04:18:51 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 150/6750 loss=11.8741
+08/12/2026 04:19:11 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 200/6750 loss=13.2439
+08/12/2026 04:19:31 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 250/6750 loss=9.6917
+08/12/2026 04:19:51 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 300/6750 loss=12.6625
+08/12/2026 04:20:11 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 350/6750 loss=12.1709
+08/12/2026 04:20:31 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 400/6750 loss=13.3007
+08/12/2026 04:20:52 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 450/6750 loss=17.9849
+08/12/2026 04:21:13 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 500/6750 loss=14.1533
+08/12/2026 04:21:34 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 550/6750 loss=10.7418
+08/12/2026 04:21:55 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 600/6750 loss=12.9754
+08/12/2026 04:22:15 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 650/6750 loss=12.0947
+08/12/2026 04:22:37 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 700/6750 loss=10.7743
+08/12/2026 04:22:58 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 750/6750 loss=13.2566
+08/12/2026 04:23:19 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 800/6750 loss=11.5973
+08/12/2026 04:23:40 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 850/6750 loss=13.5907
+08/12/2026 04:24:01 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 900/6750 loss=13.3332
+08/12/2026 04:24:22 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 950/6750 loss=13.2244
+08/12/2026 04:24:43 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1000/6750 loss=13.2493
+08/12/2026 04:25:04 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1050/6750 loss=16.8510
+08/12/2026 04:25:25 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1100/6750 loss=15.1753
+08/12/2026 04:25:46 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1150/6750 loss=12.4415
+08/12/2026 04:26:06 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1200/6750 loss=12.1964
+08/12/2026 04:26:27 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1250/6750 loss=10.5853
+08/12/2026 04:26:47 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1300/6750 loss=12.5028
+08/12/2026 04:27:07 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1350/6750 loss=12.6341
+08/12/2026 04:27:28 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1400/6750 loss=16.6205
+08/12/2026 04:27:48 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1450/6750 loss=8.7778
+08/12/2026 04:28:08 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1500/6750 loss=13.7233
+08/12/2026 04:28:28 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1550/6750 loss=12.1895
+08/12/2026 04:28:49 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1600/6750 loss=12.5801
+08/12/2026 04:29:09 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1650/6750 loss=13.5032
+08/12/2026 04:29:29 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1700/6750 loss=14.9458
+08/12/2026 04:29:49 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1750/6750 loss=12.1082
+08/12/2026 04:30:10 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1800/6750 loss=9.4073
+08/12/2026 04:30:30 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1850/6750 loss=13.7379
+08/12/2026 04:30:50 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1900/6750 loss=15.3411
+08/12/2026 04:31:10 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 1950/6750 loss=12.4981
+08/12/2026 04:31:31 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2000/6750 loss=10.4074
+08/12/2026 04:31:51 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2050/6750 loss=12.4327
+08/12/2026 04:32:12 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2100/6750 loss=11.5120
+08/12/2026 04:32:32 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2150/6750 loss=11.1830
+08/12/2026 04:32:52 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2200/6750 loss=11.4445
+08/12/2026 04:33:13 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2250/6750 loss=12.3234
+08/12/2026 04:33:33 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2300/6750 loss=12.5853
+08/12/2026 04:33:53 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2350/6750 loss=12.9771
+08/12/2026 04:34:14 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2400/6750 loss=13.9430
+08/12/2026 04:34:34 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2450/6750 loss=13.1012
+08/12/2026 04:34:54 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2500/6750 loss=12.0854
+08/12/2026 04:35:14 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2550/6750 loss=12.3801
+08/12/2026 04:35:35 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2600/6750 loss=9.8323
+08/12/2026 04:35:55 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2650/6750 loss=9.2565
+08/12/2026 04:36:15 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2700/6750 loss=12.0606
+08/12/2026 04:36:35 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2750/6750 loss=7.1074
+08/12/2026 04:36:55 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2800/6750 loss=13.8410
+08/12/2026 04:37:15 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2850/6750 loss=14.8327
+08/12/2026 04:37:35 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2900/6750 loss=9.5803
+08/12/2026 04:37:55 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 2950/6750 loss=16.0270
+08/12/2026 04:38:15 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3000/6750 loss=11.1514
+08/12/2026 04:38:35 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3050/6750 loss=10.7569
+08/12/2026 04:38:55 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3100/6750 loss=12.3067
+08/12/2026 04:39:15 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3150/6750 loss=14.9372
+08/12/2026 04:39:35 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3200/6750 loss=11.0274
+08/12/2026 04:39:55 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3250/6750 loss=11.0139
+08/12/2026 04:40:15 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3300/6750 loss=12.6607
+08/12/2026 04:40:34 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3350/6750 loss=11.7586
+08/12/2026 04:40:54 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3400/6750 loss=12.9198
+08/12/2026 04:41:14 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3450/6750 loss=10.1999
+08/12/2026 04:41:34 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3500/6750 loss=11.9740
+08/12/2026 04:41:54 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3550/6750 loss=9.7101
+08/12/2026 04:42:14 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3600/6750 loss=10.5704
+08/12/2026 04:42:35 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3650/6750 loss=10.8437
+08/12/2026 04:42:55 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3700/6750 loss=12.0002
+08/12/2026 04:43:15 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3750/6750 loss=9.3132
+08/12/2026 04:43:35 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3800/6750 loss=13.5054
+08/12/2026 04:43:55 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3850/6750 loss=11.8061
+08/12/2026 04:44:16 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3900/6750 loss=8.3965
+08/12/2026 04:44:36 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 3950/6750 loss=11.7831
+08/12/2026 04:44:56 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4000/6750 loss=16.1688
+08/12/2026 04:45:16 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4050/6750 loss=14.8539
+08/12/2026 04:45:37 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4100/6750 loss=10.1166
+08/12/2026 04:45:57 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4150/6750 loss=10.1728
+08/12/2026 04:46:17 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4200/6750 loss=11.3018
+08/12/2026 04:46:38 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4250/6750 loss=11.8389
+08/12/2026 04:46:58 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4300/6750 loss=13.2557
+08/12/2026 04:47:19 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4350/6750 loss=8.8594
+08/12/2026 04:47:39 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4400/6750 loss=13.5786
+08/12/2026 04:47:59 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4450/6750 loss=11.4832
+08/12/2026 04:48:20 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4500/6750 loss=9.9448
+08/12/2026 04:48:40 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4550/6750 loss=12.0538
+08/12/2026 04:49:00 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4600/6750 loss=10.9616
+08/12/2026 04:49:21 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4650/6750 loss=10.7830
+08/12/2026 04:49:41 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4700/6750 loss=12.3777
+08/12/2026 04:50:01 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4750/6750 loss=11.4019
+08/12/2026 04:50:22 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4800/6750 loss=9.2388
+08/12/2026 04:50:42 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4850/6750 loss=13.1182
+08/12/2026 04:51:03 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4900/6750 loss=14.0309
+08/12/2026 04:51:23 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 4950/6750 loss=9.1496
+08/12/2026 04:51:44 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5000/6750 loss=10.0088
+08/12/2026 04:52:05 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5050/6750 loss=12.3123
+08/12/2026 04:52:26 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5100/6750 loss=11.1769
+08/12/2026 04:52:47 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5150/6750 loss=13.7565
+08/12/2026 04:53:08 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5200/6750 loss=9.8989
+08/12/2026 04:53:29 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5250/6750 loss=13.3562
+08/12/2026 04:53:49 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5300/6750 loss=9.5826
+08/12/2026 04:54:10 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5350/6750 loss=10.3076
+08/12/2026 04:54:30 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5400/6750 loss=11.0471
+08/12/2026 04:54:50 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5450/6750 loss=16.3269
+08/12/2026 04:55:10 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5500/6750 loss=17.7409
+08/12/2026 04:55:31 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5550/6750 loss=11.5713
+08/12/2026 04:55:52 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5600/6750 loss=11.7805
+08/12/2026 04:56:13 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5650/6750 loss=9.5039
+08/12/2026 04:56:34 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5700/6750 loss=12.1115
+08/12/2026 04:56:54 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5750/6750 loss=11.8554
+08/12/2026 04:57:15 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5800/6750 loss=9.8946
+08/12/2026 04:57:36 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5850/6750 loss=10.5670
+08/12/2026 04:57:57 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5900/6750 loss=11.4341
+08/12/2026 04:58:18 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 5950/6750 loss=11.9216
+08/12/2026 04:58:39 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6000/6750 loss=11.2357
+08/12/2026 04:58:59 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6050/6750 loss=11.6033
+08/12/2026 04:59:20 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6100/6750 loss=11.2660
+08/12/2026 04:59:40 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6150/6750 loss=10.2684
+08/12/2026 05:00:00 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6200/6750 loss=12.4225
+08/12/2026 05:00:20 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6250/6750 loss=10.5592
+08/12/2026 05:00:40 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6300/6750 loss=11.4267
+08/12/2026 05:01:01 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6350/6750 loss=13.7331
+08/12/2026 05:01:22 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6400/6750 loss=14.2953
+08/12/2026 05:01:43 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6450/6750 loss=11.0972
+08/12/2026 05:02:04 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6500/6750 loss=10.1411
+08/12/2026 05:02:25 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6550/6750 loss=11.4562
+08/12/2026 05:02:46 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6600/6750 loss=11.2007
+08/12/2026 05:03:08 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6650/6750 loss=10.2604
+08/12/2026 05:03:29 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6700/6750 loss=11.9755
+08/12/2026 05:03:50 - INFO - __main__ - [vELECTRA + CRF] epoch 2 step 6750/6750 loss=9.1707
+08/12/2026 05:03:50 - INFO - __main__ - [vELECTRA + CRF] Epoch 2 xong sau 2758.2s, avg_loss=11.8223
+08/12/2026 05:07:38 - INFO - __main__ - [vELECTRA + CRF] Epoch 2 - Valid macro F1 = 0.4885
+              precision    recall  f1-score   support
+
+      PERIOD     0.8312    0.8164    0.8237    140170
+       COMMA     0.7187    0.6316    0.6723    162056
+       COLON     0.6366    0.4297    0.5131     10825
+       QMARK     0.7821    0.5233    0.6271      4884
+      EXCLAM     0.5812    0.0798    0.1404      2556
+   SEMICOLON     0.4296    0.0941    0.1544      1944
+
+   micro avg     0.7699    0.6959    0.7310    322435
+   macro avg     0.6632    0.4292    0.4885    322435
+weighted avg     0.7630    0.6959    0.7248    322435
+
+08/12/2026 05:07:42 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.4885
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 05:08:02 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 50/6750 loss=10.6787
+08/12/2026 05:08:22 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 100/6750 loss=10.7615
+08/12/2026 05:08:43 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 150/6750 loss=9.5737
+08/12/2026 05:09:03 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 200/6750 loss=10.1552
+08/12/2026 05:09:24 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 250/6750 loss=13.6700
+08/12/2026 05:09:43 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 300/6750 loss=8.2249
+08/12/2026 05:10:03 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 350/6750 loss=11.0859
+08/12/2026 05:10:23 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 400/6750 loss=10.1870
+08/12/2026 05:10:45 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 450/6750 loss=8.9186
+08/12/2026 05:11:05 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 500/6750 loss=6.9236
+08/12/2026 05:11:26 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 550/6750 loss=8.9622
+08/12/2026 05:11:47 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 600/6750 loss=9.1802
+08/12/2026 05:12:09 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 650/6750 loss=8.5078
+08/12/2026 05:12:30 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 700/6750 loss=10.5750
+08/12/2026 05:12:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 750/6750 loss=9.5988
+08/12/2026 05:13:11 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 800/6750 loss=10.0596
+08/12/2026 05:13:32 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 850/6750 loss=8.0438
+08/12/2026 05:13:54 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 900/6750 loss=11.3217
+08/12/2026 05:14:15 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 950/6750 loss=9.8445
+08/12/2026 05:14:36 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1000/6750 loss=11.2411
+08/12/2026 05:14:56 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1050/6750 loss=7.7484
+08/12/2026 05:15:17 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1100/6750 loss=8.9992
+08/12/2026 05:15:37 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1150/6750 loss=8.1488
+08/12/2026 05:15:58 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1200/6750 loss=9.3964
+08/12/2026 05:16:19 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1250/6750 loss=12.2885
+08/12/2026 05:16:39 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1300/6750 loss=11.9529
+08/12/2026 05:17:00 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1350/6750 loss=9.4810
+08/12/2026 05:17:21 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1400/6750 loss=8.4747
+08/12/2026 05:17:41 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1450/6750 loss=7.8047
+08/12/2026 05:18:02 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1500/6750 loss=8.6531
+08/12/2026 05:18:22 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1550/6750 loss=8.1891
+08/12/2026 05:18:42 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1600/6750 loss=8.1889
+08/12/2026 05:19:03 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1650/6750 loss=9.5780
+08/12/2026 05:19:23 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1700/6750 loss=10.2981
+08/12/2026 05:19:43 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1750/6750 loss=14.5657
+08/12/2026 05:20:03 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1800/6750 loss=8.7599
+08/12/2026 05:20:24 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1850/6750 loss=10.4729
+08/12/2026 05:20:44 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1900/6750 loss=8.1756
+08/12/2026 05:21:04 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 1950/6750 loss=11.5380
+08/12/2026 05:21:24 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2000/6750 loss=9.0350
+08/12/2026 05:21:44 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2050/6750 loss=10.6040
+08/12/2026 05:22:04 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2100/6750 loss=9.6068
+08/12/2026 05:22:24 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2150/6750 loss=12.0834
+08/12/2026 05:22:44 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2200/6750 loss=14.7629
+08/12/2026 05:23:04 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2250/6750 loss=11.2022
+08/12/2026 05:23:24 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2300/6750 loss=12.2733
+08/12/2026 05:23:45 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2350/6750 loss=14.5573
+08/12/2026 05:24:05 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2400/6750 loss=10.4941
+08/12/2026 05:24:25 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2450/6750 loss=10.5498
+08/12/2026 05:24:45 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2500/6750 loss=9.0767
+08/12/2026 05:25:05 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2550/6750 loss=9.9765
+08/12/2026 05:25:26 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2600/6750 loss=9.8401
+08/12/2026 05:25:46 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2650/6750 loss=6.0749
+08/12/2026 05:26:06 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2700/6750 loss=11.0492
+08/12/2026 05:26:26 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2750/6750 loss=14.2511
+08/12/2026 05:26:47 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2800/6750 loss=10.7211
+08/12/2026 05:27:07 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2850/6750 loss=9.2389
+08/12/2026 05:27:28 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2900/6750 loss=11.5533
+08/12/2026 05:27:48 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 2950/6750 loss=9.5948
+08/12/2026 05:28:08 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3000/6750 loss=11.8808
+08/12/2026 05:28:29 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3050/6750 loss=11.9831
+08/12/2026 05:28:49 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3100/6750 loss=9.2737
+08/12/2026 05:29:09 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3150/6750 loss=6.9522
+08/12/2026 05:29:29 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3200/6750 loss=11.7444
+08/12/2026 05:29:49 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3250/6750 loss=10.3762
+08/12/2026 05:30:10 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3300/6750 loss=10.3912
+08/12/2026 05:30:30 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3350/6750 loss=13.4022
+08/12/2026 05:30:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3400/6750 loss=9.1912
+08/12/2026 05:31:11 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3450/6750 loss=7.7168
+08/12/2026 05:31:31 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3500/6750 loss=10.0580
+08/12/2026 05:31:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3550/6750 loss=10.4023
+08/12/2026 05:32:10 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3600/6750 loss=8.5780
+08/12/2026 05:32:30 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3650/6750 loss=7.8795
+08/12/2026 05:32:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3700/6750 loss=7.3627
+08/12/2026 05:33:10 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3750/6750 loss=9.1634
+08/12/2026 05:33:30 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3800/6750 loss=6.9960
+08/12/2026 05:33:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3850/6750 loss=11.9593
+08/12/2026 05:34:10 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3900/6750 loss=11.8796
+08/12/2026 05:34:30 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 3950/6750 loss=7.5882
+08/12/2026 05:34:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4000/6750 loss=6.8764
+08/12/2026 05:35:09 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4050/6750 loss=9.7260
+08/12/2026 05:35:29 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4100/6750 loss=9.9738
+08/12/2026 05:35:49 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4150/6750 loss=11.0103
+08/12/2026 05:36:09 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4200/6750 loss=8.9753
+08/12/2026 05:36:29 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4250/6750 loss=5.9903
+08/12/2026 05:36:49 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4300/6750 loss=10.4805
+08/12/2026 05:37:09 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4350/6750 loss=7.7333
+08/12/2026 05:37:28 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4400/6750 loss=11.4196
+08/12/2026 05:37:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4450/6750 loss=9.4307
+08/12/2026 05:38:10 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4500/6750 loss=8.6548
+08/12/2026 05:38:31 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4550/6750 loss=9.3709
+08/12/2026 05:38:51 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4600/6750 loss=8.4633
+08/12/2026 05:39:11 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4650/6750 loss=13.0304
+08/12/2026 05:39:32 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4700/6750 loss=10.5833
+08/12/2026 05:39:52 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4750/6750 loss=8.8443
+08/12/2026 05:40:13 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4800/6750 loss=10.4170
+08/12/2026 05:40:34 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4850/6750 loss=7.1975
+08/12/2026 05:40:54 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4900/6750 loss=10.4161
+08/12/2026 05:41:14 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 4950/6750 loss=8.0625
+08/12/2026 05:41:35 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5000/6750 loss=8.9717
+08/12/2026 05:41:56 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5050/6750 loss=8.5561
+08/12/2026 05:42:17 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5100/6750 loss=15.4066
+08/12/2026 05:42:37 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5150/6750 loss=11.0683
+08/12/2026 05:42:58 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5200/6750 loss=16.0196
+08/12/2026 05:43:19 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5250/6750 loss=9.0950
+08/12/2026 05:43:40 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5300/6750 loss=9.0856
+08/12/2026 05:44:01 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5350/6750 loss=8.8931
+08/12/2026 05:44:22 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5400/6750 loss=13.8120
+08/12/2026 05:44:43 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5450/6750 loss=10.2079
+08/12/2026 05:45:05 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5500/6750 loss=9.5696
+08/12/2026 05:45:25 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5550/6750 loss=9.2407
+08/12/2026 05:45:46 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5600/6750 loss=7.4138
+08/12/2026 05:46:06 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5650/6750 loss=10.3580
+08/12/2026 05:46:27 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5700/6750 loss=9.7761
+08/12/2026 05:46:48 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5750/6750 loss=8.2076
+08/12/2026 05:47:08 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5800/6750 loss=9.2916
+08/12/2026 05:47:29 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5850/6750 loss=8.3388
+08/12/2026 05:47:50 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5900/6750 loss=7.8338
+08/12/2026 05:48:11 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 5950/6750 loss=9.2212
+08/12/2026 05:48:32 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6000/6750 loss=10.4327
+08/12/2026 05:48:53 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6050/6750 loss=8.8136
+08/12/2026 05:49:13 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6100/6750 loss=8.1247
+08/12/2026 05:49:34 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6150/6750 loss=10.8127
+08/12/2026 05:49:55 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6200/6750 loss=9.4312
+08/12/2026 05:50:16 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6250/6750 loss=8.6089
+08/12/2026 05:50:37 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6300/6750 loss=10.3240
+08/12/2026 05:50:58 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6350/6750 loss=9.2792
+08/12/2026 05:51:19 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6400/6750 loss=7.7622
+08/12/2026 05:51:40 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6450/6750 loss=11.4901
+08/12/2026 05:52:00 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6500/6750 loss=7.6066
+08/12/2026 05:52:21 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6550/6750 loss=9.5726
+08/12/2026 05:52:42 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6600/6750 loss=9.7280
+08/12/2026 05:53:03 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6650/6750 loss=7.5776
+08/12/2026 05:53:24 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6700/6750 loss=12.3718
+08/12/2026 05:53:45 - INFO - __main__ - [vELECTRA + CRF] epoch 3 step 6750/6750 loss=7.7399
+08/12/2026 05:53:45 - INFO - __main__ - [vELECTRA + CRF] Epoch 3 xong sau 2763.5s, avg_loss=9.6417
+08/12/2026 05:57:37 - INFO - __main__ - [vELECTRA + CRF] Epoch 3 - Valid macro F1 = 0.5204
+              precision    recall  f1-score   support
+
+      PERIOD     0.8301    0.8369    0.8335    140170
+       COMMA     0.7369    0.6423    0.6864    162056
+       COLON     0.6281    0.4660    0.5350     10825
+       QMARK     0.7053    0.6511    0.6771      4884
+      EXCLAM     0.4857    0.1127    0.1829      2556
+   SEMICOLON     0.4330    0.1363    0.2074      1944
+
+   micro avg     0.7768    0.7139    0.7440    322435
+   macro avg     0.6365    0.4742    0.5204    322435
+weighted avg     0.7695    0.7139    0.7382    322435
+
+08/12/2026 05:57:40 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.5204
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 05:58:01 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 50/6750 loss=9.3312
+08/12/2026 05:58:22 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 100/6750 loss=8.0240
+08/12/2026 05:58:42 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 150/6750 loss=10.0386
+08/12/2026 05:59:03 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 200/6750 loss=8.2474
+08/12/2026 05:59:24 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 250/6750 loss=7.9451
+08/12/2026 05:59:44 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 300/6750 loss=7.3863
+08/12/2026 06:00:05 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 350/6750 loss=8.7917
+08/12/2026 06:00:26 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 400/6750 loss=3.9980
+08/12/2026 06:00:47 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 450/6750 loss=9.4459
+08/12/2026 06:01:08 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 500/6750 loss=8.0170
+08/12/2026 06:01:29 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 550/6750 loss=6.1498
+08/12/2026 06:01:50 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 600/6750 loss=7.9101
+08/12/2026 06:02:11 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 650/6750 loss=7.0175
+08/12/2026 06:02:31 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 700/6750 loss=7.3974
+08/12/2026 06:02:51 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 750/6750 loss=10.6542
+08/12/2026 06:03:11 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 800/6750 loss=10.3283
+08/12/2026 06:03:31 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 850/6750 loss=9.3131
+08/12/2026 06:03:51 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 900/6750 loss=5.9914
+08/12/2026 06:04:11 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 950/6750 loss=7.1627
+08/12/2026 06:04:31 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1000/6750 loss=8.6492
+08/12/2026 06:04:51 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1050/6750 loss=9.0186
+08/12/2026 06:05:11 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1100/6750 loss=6.2102
+08/12/2026 06:05:31 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1150/6750 loss=7.2153
+08/12/2026 06:05:51 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1200/6750 loss=7.2352
+08/12/2026 06:06:11 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1250/6750 loss=11.7197
+08/12/2026 06:06:32 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1300/6750 loss=8.1452
+08/12/2026 06:06:52 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1350/6750 loss=7.2058
+08/12/2026 06:07:12 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1400/6750 loss=5.2808
+08/12/2026 06:07:32 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1450/6750 loss=8.7202
+08/12/2026 06:07:52 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1500/6750 loss=7.2110
+08/12/2026 06:08:14 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1550/6750 loss=11.3381
+08/12/2026 06:08:35 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1600/6750 loss=6.9945
+08/12/2026 06:08:56 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1650/6750 loss=8.7849
+08/12/2026 06:09:17 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1700/6750 loss=7.7420
+08/12/2026 06:09:39 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1750/6750 loss=10.7214
+08/12/2026 06:10:00 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1800/6750 loss=9.6444
+08/12/2026 06:10:22 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1850/6750 loss=7.6459
+08/12/2026 06:10:43 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1900/6750 loss=6.8136
+08/12/2026 06:11:04 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 1950/6750 loss=8.3986
+08/12/2026 06:11:25 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2000/6750 loss=6.6745
+08/12/2026 06:11:46 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2050/6750 loss=7.3889
+08/12/2026 06:12:07 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2100/6750 loss=7.4378
+08/12/2026 06:12:27 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2150/6750 loss=7.1606
+08/12/2026 06:12:48 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2200/6750 loss=9.8113
+08/12/2026 06:13:08 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2250/6750 loss=8.0476
+08/12/2026 06:13:29 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2300/6750 loss=8.8655
+08/12/2026 06:13:49 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2350/6750 loss=7.3708
+08/12/2026 06:14:09 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2400/6750 loss=8.2520
+08/12/2026 06:14:30 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2450/6750 loss=8.9680
+08/12/2026 06:14:50 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2500/6750 loss=6.8395
+08/12/2026 06:15:10 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2550/6750 loss=8.2459
+08/12/2026 06:15:31 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2600/6750 loss=7.6440
+08/12/2026 06:15:51 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2650/6750 loss=8.5257
+08/12/2026 06:16:11 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2700/6750 loss=5.8812
+08/12/2026 06:16:31 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2750/6750 loss=8.3573
+08/12/2026 06:16:51 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2800/6750 loss=8.7213
+08/12/2026 06:17:12 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2850/6750 loss=7.7206
+08/12/2026 06:17:32 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2900/6750 loss=6.2973
+08/12/2026 06:17:53 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 2950/6750 loss=8.9558
+08/12/2026 06:18:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3000/6750 loss=7.8713
+08/12/2026 06:18:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3050/6750 loss=7.1265
+08/12/2026 06:18:53 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3100/6750 loss=6.9982
+08/12/2026 06:19:14 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3150/6750 loss=8.6945
+08/12/2026 06:19:34 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3200/6750 loss=6.1882
+08/12/2026 06:19:54 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3250/6750 loss=9.7797
+08/12/2026 06:20:14 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3300/6750 loss=8.9154
+08/12/2026 06:20:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3350/6750 loss=7.3208
+08/12/2026 06:20:54 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3400/6750 loss=8.5962
+08/12/2026 06:21:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3450/6750 loss=5.5877
+08/12/2026 06:21:34 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3500/6750 loss=8.8068
+08/12/2026 06:21:54 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3550/6750 loss=11.7756
+08/12/2026 06:22:14 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3600/6750 loss=11.7189
+08/12/2026 06:22:34 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3650/6750 loss=8.1341
+08/12/2026 06:22:53 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3700/6750 loss=8.3593
+08/12/2026 06:23:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3750/6750 loss=5.0922
+08/12/2026 06:23:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3800/6750 loss=10.3379
+08/12/2026 06:23:54 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3850/6750 loss=7.5092
+08/12/2026 06:24:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3900/6750 loss=7.4859
+08/12/2026 06:24:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 3950/6750 loss=8.9810
+08/12/2026 06:24:53 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4000/6750 loss=8.0963
+08/12/2026 06:25:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4050/6750 loss=5.5813
+08/12/2026 06:25:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4100/6750 loss=8.3279
+08/12/2026 06:25:54 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4150/6750 loss=5.9671
+08/12/2026 06:26:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4200/6750 loss=9.1192
+08/12/2026 06:26:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4250/6750 loss=9.6659
+08/12/2026 06:26:53 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4300/6750 loss=7.1001
+08/12/2026 06:27:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4350/6750 loss=6.1289
+08/12/2026 06:27:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4400/6750 loss=6.6985
+08/12/2026 06:27:53 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4450/6750 loss=7.4870
+08/12/2026 06:28:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4500/6750 loss=8.7608
+08/12/2026 06:28:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4550/6750 loss=6.3412
+08/12/2026 06:28:53 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4600/6750 loss=8.5246
+08/12/2026 06:29:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4650/6750 loss=8.2209
+08/12/2026 06:29:33 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4700/6750 loss=8.2716
+08/12/2026 06:29:53 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4750/6750 loss=10.9731
+08/12/2026 06:30:13 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4800/6750 loss=8.6825
+08/12/2026 06:30:34 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4850/6750 loss=6.7143
+08/12/2026 06:30:54 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4900/6750 loss=8.3402
+08/12/2026 06:31:14 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 4950/6750 loss=6.2206
+08/12/2026 06:31:35 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5000/6750 loss=7.4962
+08/12/2026 06:31:55 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5050/6750 loss=9.5913
+08/12/2026 06:32:15 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5100/6750 loss=7.7432
+08/12/2026 06:32:36 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5150/6750 loss=5.8981
+08/12/2026 06:32:57 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5200/6750 loss=6.4646
+08/12/2026 06:33:17 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5250/6750 loss=8.5953
+08/12/2026 06:33:38 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5300/6750 loss=8.2994
+08/12/2026 06:33:59 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5350/6750 loss=7.9573
+08/12/2026 06:34:19 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5400/6750 loss=10.5366
+08/12/2026 06:34:40 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5450/6750 loss=5.2226
+08/12/2026 06:35:00 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5500/6750 loss=5.8858
+08/12/2026 06:35:21 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5550/6750 loss=7.6052
+08/12/2026 06:35:42 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5600/6750 loss=6.4872
+08/12/2026 06:36:02 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5650/6750 loss=7.6142
+08/12/2026 06:36:22 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5700/6750 loss=6.9294
+08/12/2026 06:36:42 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5750/6750 loss=8.2507
+08/12/2026 06:37:03 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5800/6750 loss=9.3486
+08/12/2026 06:37:23 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5850/6750 loss=10.8472
+08/12/2026 06:37:43 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5900/6750 loss=6.9870
+08/12/2026 06:38:03 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 5950/6750 loss=8.3353
+08/12/2026 06:38:24 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6000/6750 loss=8.4871
+08/12/2026 06:38:44 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6050/6750 loss=5.8208
+08/12/2026 06:39:04 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6100/6750 loss=7.6071
+08/12/2026 06:39:24 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6150/6750 loss=10.7462
+08/12/2026 06:39:44 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6200/6750 loss=9.4349
+08/12/2026 06:40:04 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6250/6750 loss=6.6194
+08/12/2026 06:40:24 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6300/6750 loss=6.4055
+08/12/2026 06:40:44 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6350/6750 loss=7.7050
+08/12/2026 06:41:03 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6400/6750 loss=8.6261
+08/12/2026 06:41:23 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6450/6750 loss=6.0792
+08/12/2026 06:41:43 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6500/6750 loss=7.5725
+08/12/2026 06:42:03 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6550/6750 loss=8.0382
+08/12/2026 06:42:24 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6600/6750 loss=6.9716
+08/12/2026 06:42:45 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6650/6750 loss=7.2498
+08/12/2026 06:43:05 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6700/6750 loss=6.8028
+08/12/2026 06:43:26 - INFO - __main__ - [vELECTRA + CRF] epoch 4 step 6750/6750 loss=9.0156
+08/12/2026 06:43:26 - INFO - __main__ - [vELECTRA + CRF] Epoch 4 xong sau 2746.1s, avg_loss=8.2611
+08/12/2026 06:47:15 - INFO - __main__ - [vELECTRA + CRF] Epoch 4 - Valid macro F1 = 0.5195
+              precision    recall  f1-score   support
+
+      PERIOD     0.8298    0.8445    0.8371    140170
+       COMMA     0.7304    0.6627    0.6949    162056
+       COLON     0.6329    0.4917    0.5535     10825
+       QMARK     0.6982    0.6581    0.6776      4884
+      EXCLAM     0.6079    0.0959    0.1656      2556
+   SEMICOLON     0.4444    0.1193    0.1882      1944
+
+   micro avg     0.7733    0.7281    0.7500    322435
+   macro avg     0.6573    0.4787    0.5195    322435
+weighted avg     0.7671    0.7281    0.7444    322435
+
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 06:47:38 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 50/6750 loss=5.7843
+08/12/2026 06:47:58 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 100/6750 loss=5.8498
+08/12/2026 06:48:19 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 150/6750 loss=7.7886
+08/12/2026 06:48:39 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 200/6750 loss=7.7100
+08/12/2026 06:49:00 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 250/6750 loss=7.4049
+08/12/2026 06:49:20 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 300/6750 loss=7.6274
+08/12/2026 06:49:40 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 350/6750 loss=5.8444
+08/12/2026 06:50:01 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 400/6750 loss=6.8504
+08/12/2026 06:50:22 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 450/6750 loss=5.7742
+08/12/2026 06:50:42 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 500/6750 loss=5.6938
+08/12/2026 06:51:03 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 550/6750 loss=9.1410
+08/12/2026 06:51:24 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 600/6750 loss=7.1907
+08/12/2026 06:51:45 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 650/6750 loss=8.9065
+08/12/2026 06:52:05 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 700/6750 loss=5.3474
+08/12/2026 06:52:26 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 750/6750 loss=7.8544
+08/12/2026 06:52:47 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 800/6750 loss=7.3041
+08/12/2026 06:53:08 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 850/6750 loss=7.3891
+08/12/2026 06:53:28 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 900/6750 loss=8.2343
+08/12/2026 06:53:48 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 950/6750 loss=7.8024
+08/12/2026 06:54:09 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1000/6750 loss=7.0439
+08/12/2026 06:54:29 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1050/6750 loss=8.5510
+08/12/2026 06:54:50 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1100/6750 loss=8.0878
+08/12/2026 06:55:10 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1150/6750 loss=6.6444
+08/12/2026 06:55:30 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1200/6750 loss=9.2326
+08/12/2026 06:55:50 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1250/6750 loss=6.5129
+08/12/2026 06:56:10 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1300/6750 loss=6.3411
+08/12/2026 06:56:30 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1350/6750 loss=6.1783
+08/12/2026 06:56:51 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1400/6750 loss=7.2068
+08/12/2026 06:57:12 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1450/6750 loss=8.3705
+08/12/2026 06:57:32 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1500/6750 loss=5.0544
+08/12/2026 06:57:52 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1550/6750 loss=8.8974
+08/12/2026 06:58:12 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1600/6750 loss=8.3451
+08/12/2026 06:58:32 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1650/6750 loss=7.8874
+08/12/2026 06:58:52 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1700/6750 loss=7.9327
+08/12/2026 06:59:12 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1750/6750 loss=9.1326
+08/12/2026 06:59:32 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1800/6750 loss=6.9583
+08/12/2026 06:59:52 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1850/6750 loss=6.6636
+08/12/2026 07:00:13 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1900/6750 loss=6.9115
+08/12/2026 07:00:33 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 1950/6750 loss=6.7463
+08/12/2026 07:00:53 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2000/6750 loss=5.1878
+08/12/2026 07:01:14 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2050/6750 loss=6.7845
+08/12/2026 07:01:33 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2100/6750 loss=10.5812
+08/12/2026 07:01:53 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2150/6750 loss=8.0115
+08/12/2026 07:02:13 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2200/6750 loss=9.3637
+08/12/2026 07:02:33 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2250/6750 loss=7.4281
+08/12/2026 07:02:53 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2300/6750 loss=5.3184
+08/12/2026 07:03:13 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2350/6750 loss=8.7128
+08/12/2026 07:03:33 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2400/6750 loss=9.1172
+08/12/2026 07:03:53 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2450/6750 loss=7.4546
+08/12/2026 07:04:13 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2500/6750 loss=7.1604
+08/12/2026 07:04:34 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2550/6750 loss=8.8230
+08/12/2026 07:04:54 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2600/6750 loss=9.7725
+08/12/2026 07:05:15 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2650/6750 loss=7.6346
+08/12/2026 07:05:35 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2700/6750 loss=7.1085
+08/12/2026 07:05:55 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2750/6750 loss=6.0816
+08/12/2026 07:06:16 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2800/6750 loss=6.1469
+08/12/2026 07:06:36 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2850/6750 loss=6.4709
+08/12/2026 07:06:57 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2900/6750 loss=4.2137
+08/12/2026 07:07:17 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 2950/6750 loss=9.5780
+08/12/2026 07:07:38 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3000/6750 loss=7.5675
+08/12/2026 07:07:58 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3050/6750 loss=5.3411
+08/12/2026 07:08:18 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3100/6750 loss=9.5932
+08/12/2026 07:08:39 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3150/6750 loss=5.5122
+08/12/2026 07:08:59 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3200/6750 loss=8.5719
+08/12/2026 07:09:20 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3250/6750 loss=8.4206
+08/12/2026 07:09:40 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3300/6750 loss=6.8822
+08/12/2026 07:10:01 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3350/6750 loss=7.4424
+08/12/2026 07:10:22 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3400/6750 loss=5.1138
+08/12/2026 07:10:43 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3450/6750 loss=6.0123
+08/12/2026 07:11:04 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3500/6750 loss=6.5542
+08/12/2026 07:11:25 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3550/6750 loss=5.9703
+08/12/2026 07:11:46 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3600/6750 loss=5.5942
+08/12/2026 07:12:07 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3650/6750 loss=11.4870
+08/12/2026 07:12:28 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3700/6750 loss=6.3324
+08/12/2026 07:12:48 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3750/6750 loss=9.2659
+08/12/2026 07:13:08 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3800/6750 loss=7.9629
+08/12/2026 07:13:29 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3850/6750 loss=11.3246
+08/12/2026 07:13:49 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3900/6750 loss=6.4932
+08/12/2026 07:14:09 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 3950/6750 loss=8.5467
+08/12/2026 07:14:30 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4000/6750 loss=9.0798
+08/12/2026 07:14:50 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4050/6750 loss=6.4290
+08/12/2026 07:15:10 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4100/6750 loss=8.2529
+08/12/2026 07:15:31 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4150/6750 loss=7.9908
+08/12/2026 07:15:51 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4200/6750 loss=6.6921
+08/12/2026 07:16:11 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4250/6750 loss=8.3657
+08/12/2026 07:16:31 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4300/6750 loss=7.3953
+08/12/2026 07:16:52 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4350/6750 loss=10.3535
+08/12/2026 07:17:13 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4400/6750 loss=6.6321
+08/12/2026 07:17:34 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4450/6750 loss=8.6957
+08/12/2026 07:17:55 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4500/6750 loss=7.8246
+08/12/2026 07:18:16 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4550/6750 loss=6.4319
+08/12/2026 07:18:36 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4600/6750 loss=8.9492
+08/12/2026 07:18:57 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4650/6750 loss=6.5940
+08/12/2026 07:19:17 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4700/6750 loss=8.8175
+08/12/2026 07:19:38 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4750/6750 loss=5.6984
+08/12/2026 07:19:59 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4800/6750 loss=7.6008
+08/12/2026 07:20:19 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4850/6750 loss=9.1543
+08/12/2026 07:20:40 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4900/6750 loss=6.4283
+08/12/2026 07:21:01 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 4950/6750 loss=9.5180
+08/12/2026 07:21:21 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5000/6750 loss=7.5648
+08/12/2026 07:21:41 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5050/6750 loss=9.0951
+08/12/2026 07:22:02 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5100/6750 loss=4.4630
+08/12/2026 07:22:23 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5150/6750 loss=6.7794
+08/12/2026 07:22:43 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5200/6750 loss=7.7580
+08/12/2026 07:23:04 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5250/6750 loss=7.1966
+08/12/2026 07:23:24 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5300/6750 loss=6.7213
+08/12/2026 07:23:44 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5350/6750 loss=5.9201
+08/12/2026 07:24:05 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5400/6750 loss=8.5888
+08/12/2026 07:24:25 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5450/6750 loss=8.5106
+08/12/2026 07:24:45 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5500/6750 loss=8.0056
+08/12/2026 07:25:05 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5550/6750 loss=7.9840
+08/12/2026 07:25:25 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5600/6750 loss=9.4613
+08/12/2026 07:25:45 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5650/6750 loss=6.4304
+08/12/2026 07:26:05 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5700/6750 loss=4.1556
+08/12/2026 07:26:25 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5750/6750 loss=6.0131
+08/12/2026 07:26:45 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5800/6750 loss=8.0716
+08/12/2026 07:27:05 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5850/6750 loss=6.4119
+08/12/2026 07:27:25 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5900/6750 loss=9.7152
+08/12/2026 07:27:45 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 5950/6750 loss=9.4141
+08/12/2026 07:28:05 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6000/6750 loss=5.3161
+08/12/2026 07:28:25 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6050/6750 loss=6.9726
+08/12/2026 07:28:44 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6100/6750 loss=6.1601
+08/12/2026 07:29:05 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6150/6750 loss=6.5526
+08/12/2026 07:29:24 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6200/6750 loss=8.9577
+08/12/2026 07:29:44 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6250/6750 loss=7.8067
+08/12/2026 07:30:04 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6300/6750 loss=6.0275
+08/12/2026 07:30:24 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6350/6750 loss=7.7415
+08/12/2026 07:30:44 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6400/6750 loss=10.5303
+08/12/2026 07:31:04 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6450/6750 loss=8.0151
+08/12/2026 07:31:24 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6500/6750 loss=6.9465
+08/12/2026 07:31:43 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6550/6750 loss=6.8686
+08/12/2026 07:32:03 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6600/6750 loss=8.0764
+08/12/2026 07:32:23 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6650/6750 loss=5.3826
+08/12/2026 07:32:43 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6700/6750 loss=5.9463
+08/12/2026 07:33:03 - INFO - __main__ - [vELECTRA + CRF] epoch 5 step 6750/6750 loss=9.5072
+08/12/2026 07:33:03 - INFO - __main__ - [vELECTRA + CRF] Epoch 5 xong sau 2746.3s, avg_loss=7.2454
+08/12/2026 07:36:53 - INFO - __main__ - [vELECTRA + CRF] Epoch 5 - Valid macro F1 = 0.5321
+              precision    recall  f1-score   support
+
+      PERIOD     0.8362    0.8418    0.8390    140170
+       COMMA     0.7284    0.6673    0.6965    162056
+       COLON     0.6327    0.4883    0.5512     10825
+       QMARK     0.6950    0.6779    0.6864      4884
+      EXCLAM     0.4550    0.1365    0.2101      2556
+   SEMICOLON     0.4325    0.1384    0.2097      1944
+
+   micro avg     0.7740    0.7299    0.7513    322435
+   macro avg     0.6300    0.4917    0.5321    322435
+weighted avg     0.7676    0.7299    0.7466    322435
+
+08/12/2026 07:36:56 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.5321
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 07:37:16 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 50/6750 loss=7.3521
+08/12/2026 07:37:37 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 100/6750 loss=4.7795
+08/12/2026 07:37:58 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 150/6750 loss=7.5764
+08/12/2026 07:38:20 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 200/6750 loss=6.4589
+08/12/2026 07:38:41 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 250/6750 loss=6.1638
+08/12/2026 07:39:02 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 300/6750 loss=5.9147
+08/12/2026 07:39:23 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 350/6750 loss=4.0185
+08/12/2026 07:39:43 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 400/6750 loss=5.9305
+08/12/2026 07:40:04 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 450/6750 loss=8.5891
+08/12/2026 07:40:25 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 500/6750 loss=5.6660
+08/12/2026 07:40:45 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 550/6750 loss=6.5688
+08/12/2026 07:41:06 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 600/6750 loss=6.9770
+08/12/2026 07:41:26 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 650/6750 loss=6.7237
+08/12/2026 07:41:47 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 700/6750 loss=6.6731
+08/12/2026 07:42:07 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 750/6750 loss=5.6344
+08/12/2026 07:42:28 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 800/6750 loss=7.1869
+08/12/2026 07:42:48 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 850/6750 loss=3.7574
+08/12/2026 07:43:09 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 900/6750 loss=5.9713
+08/12/2026 07:43:30 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 950/6750 loss=9.0978
+08/12/2026 07:43:51 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1000/6750 loss=7.8949
+08/12/2026 07:44:12 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1050/6750 loss=9.1317
+08/12/2026 07:44:33 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1100/6750 loss=7.1602
+08/12/2026 07:44:53 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1150/6750 loss=6.8608
+08/12/2026 07:45:14 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1200/6750 loss=7.3634
+08/12/2026 07:45:34 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1250/6750 loss=5.6411
+08/12/2026 07:45:55 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1300/6750 loss=6.3438
+08/12/2026 07:46:16 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1350/6750 loss=8.0253
+08/12/2026 07:46:36 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1400/6750 loss=5.6054
+08/12/2026 07:46:57 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1450/6750 loss=4.7682
+08/12/2026 07:47:17 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1500/6750 loss=8.1721
+08/12/2026 07:47:38 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1550/6750 loss=7.1148
+08/12/2026 07:47:58 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1600/6750 loss=5.6636
+08/12/2026 07:48:19 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1650/6750 loss=7.0931
+08/12/2026 07:48:40 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1700/6750 loss=6.9629
+08/12/2026 07:49:01 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1750/6750 loss=6.9535
+08/12/2026 07:49:22 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1800/6750 loss=6.5864
+08/12/2026 07:49:43 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1850/6750 loss=6.1599
+08/12/2026 07:50:04 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1900/6750 loss=7.2157
+08/12/2026 07:50:24 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 1950/6750 loss=4.5899
+08/12/2026 07:50:45 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2000/6750 loss=6.8765
+08/12/2026 07:51:05 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2050/6750 loss=5.6578
+08/12/2026 07:51:26 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2100/6750 loss=7.3158
+08/12/2026 07:51:46 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2150/6750 loss=5.8727
+08/12/2026 07:52:06 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2200/6750 loss=5.9788
+08/12/2026 07:52:27 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2250/6750 loss=6.5931
+08/12/2026 07:52:48 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2300/6750 loss=4.6812
+08/12/2026 07:53:08 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2350/6750 loss=6.2086
+08/12/2026 07:53:29 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2400/6750 loss=6.4293
+08/12/2026 07:53:49 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2450/6750 loss=6.1087
+08/12/2026 07:54:10 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2500/6750 loss=5.7681
+08/12/2026 07:54:31 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2550/6750 loss=5.7497
+08/12/2026 07:54:52 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2600/6750 loss=5.9867
+08/12/2026 07:55:13 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2650/6750 loss=4.8905
+08/12/2026 07:55:34 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2700/6750 loss=4.8354
+08/12/2026 07:55:56 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2750/6750 loss=6.0150
+08/12/2026 07:56:17 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2800/6750 loss=7.0726
+08/12/2026 07:56:38 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2850/6750 loss=6.2138
+08/12/2026 07:56:59 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2900/6750 loss=7.5524
+08/12/2026 07:57:20 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 2950/6750 loss=8.4178
+08/12/2026 07:57:41 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3000/6750 loss=5.4824
+08/12/2026 07:58:02 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3050/6750 loss=5.6838
+08/12/2026 07:58:23 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3100/6750 loss=7.0873
+08/12/2026 07:58:44 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3150/6750 loss=5.8774
+08/12/2026 07:59:06 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3200/6750 loss=6.5655
+08/12/2026 07:59:27 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3250/6750 loss=6.9480
+08/12/2026 07:59:47 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3300/6750 loss=6.3921
+08/12/2026 08:00:08 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3350/6750 loss=5.6468
+08/12/2026 08:00:29 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3400/6750 loss=6.6548
+08/12/2026 08:00:49 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3450/6750 loss=6.3331
+08/12/2026 08:01:10 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3500/6750 loss=6.2552
+08/12/2026 08:01:30 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3550/6750 loss=7.0461
+08/12/2026 08:01:50 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3600/6750 loss=4.8733
+08/12/2026 08:02:11 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3650/6750 loss=8.8681
+08/12/2026 08:02:31 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3700/6750 loss=5.3335
+08/12/2026 08:02:51 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3750/6750 loss=7.0181
+08/12/2026 08:03:12 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3800/6750 loss=6.3026
+08/12/2026 08:03:32 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3850/6750 loss=8.3033
+08/12/2026 08:03:53 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3900/6750 loss=3.6576
+08/12/2026 08:04:14 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 3950/6750 loss=7.6546
+08/12/2026 08:04:34 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4000/6750 loss=7.6413
+08/12/2026 08:04:55 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4050/6750 loss=5.8115
+08/12/2026 08:05:15 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4100/6750 loss=4.6818
+08/12/2026 08:05:36 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4150/6750 loss=5.7015
+08/12/2026 08:05:57 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4200/6750 loss=5.3456
+08/12/2026 08:06:17 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4250/6750 loss=4.2824
+08/12/2026 08:06:37 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4300/6750 loss=5.5392
+08/12/2026 08:06:57 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4350/6750 loss=7.0151
+08/12/2026 08:07:17 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4400/6750 loss=7.3303
+08/12/2026 08:07:38 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4450/6750 loss=5.9356
+08/12/2026 08:07:59 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4500/6750 loss=5.7569
+08/12/2026 08:08:20 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4550/6750 loss=5.9776
+08/12/2026 08:08:40 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4600/6750 loss=6.5015
+08/12/2026 08:09:01 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4650/6750 loss=6.4043
+08/12/2026 08:09:22 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4700/6750 loss=7.9214
+08/12/2026 08:09:43 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4750/6750 loss=8.6524
+08/12/2026 08:10:04 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4800/6750 loss=7.3639
+08/12/2026 08:10:25 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4850/6750 loss=5.8292
+08/12/2026 08:10:45 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4900/6750 loss=7.5459
+08/12/2026 08:11:06 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 4950/6750 loss=5.4211
+08/12/2026 08:11:26 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5000/6750 loss=6.5561
+08/12/2026 08:11:46 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5050/6750 loss=6.8548
+08/12/2026 08:12:07 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5100/6750 loss=4.6015
+08/12/2026 08:12:27 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5150/6750 loss=7.1695
+08/12/2026 08:12:47 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5200/6750 loss=7.5854
+08/12/2026 08:13:07 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5250/6750 loss=6.9371
+08/12/2026 08:13:28 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5300/6750 loss=6.4646
+08/12/2026 08:13:48 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5350/6750 loss=5.7480
+08/12/2026 08:14:08 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5400/6750 loss=6.2183
+08/12/2026 08:14:28 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5450/6750 loss=8.0313
+08/12/2026 08:14:48 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5500/6750 loss=6.8745
+08/12/2026 08:15:08 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5550/6750 loss=6.9929
+08/12/2026 08:15:28 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5600/6750 loss=7.0637
+08/12/2026 08:15:48 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5650/6750 loss=5.7572
+08/12/2026 08:16:08 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5700/6750 loss=6.2360
+08/12/2026 08:16:28 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5750/6750 loss=4.4514
+08/12/2026 08:16:49 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5800/6750 loss=5.8597
+08/12/2026 08:17:09 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5850/6750 loss=5.3683
+08/12/2026 08:17:29 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5900/6750 loss=8.2445
+08/12/2026 08:17:49 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 5950/6750 loss=6.3618
+08/12/2026 08:18:09 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6000/6750 loss=6.5124
+08/12/2026 08:18:29 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6050/6750 loss=6.7255
+08/12/2026 08:18:50 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6100/6750 loss=6.9960
+08/12/2026 08:19:10 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6150/6750 loss=6.7105
+08/12/2026 08:19:30 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6200/6750 loss=10.0496
+08/12/2026 08:19:50 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6250/6750 loss=8.0230
+08/12/2026 08:20:10 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6300/6750 loss=4.3967
+08/12/2026 08:20:30 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6350/6750 loss=8.1382
+08/12/2026 08:20:50 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6400/6750 loss=5.5171
+08/12/2026 08:21:10 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6450/6750 loss=5.0775
+08/12/2026 08:21:30 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6500/6750 loss=7.0892
+08/12/2026 08:21:50 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6550/6750 loss=6.9608
+08/12/2026 08:22:10 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6600/6750 loss=4.4910
+08/12/2026 08:22:30 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6650/6750 loss=6.3566
+08/12/2026 08:22:50 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6700/6750 loss=4.5234
+08/12/2026 08:23:10 - INFO - __main__ - [vELECTRA + CRF] epoch 6 step 6750/6750 loss=5.7030
+08/12/2026 08:23:10 - INFO - __main__ - [vELECTRA + CRF] Epoch 6 xong sau 2774.1s, avg_loss=6.4782
+08/12/2026 08:27:00 - INFO - __main__ - [vELECTRA + CRF] Epoch 6 - Valid macro F1 = 0.5297
+              precision    recall  f1-score   support
+
+      PERIOD     0.8449    0.8353    0.8400    140170
+       COMMA     0.7248    0.6763    0.6997    162056
+       COLON     0.6477    0.4775    0.5497     10825
+       QMARK     0.7027    0.6687    0.6853      4884
+      EXCLAM     0.4896    0.1291    0.2043      2556
+   SEMICOLON     0.4120    0.1312    0.1990      1944
+
+   micro avg     0.7760    0.7310    0.7528    322435
+   macro avg     0.6369    0.4863    0.5297    322435
+weighted avg     0.7703    0.7310    0.7485    322435
+
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 08:27:22 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 50/6750 loss=8.9288
+08/12/2026 08:27:42 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 100/6750 loss=5.1862
+08/12/2026 08:28:03 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 150/6750 loss=6.0928
+08/12/2026 08:28:23 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 200/6750 loss=5.1769
+08/12/2026 08:28:44 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 250/6750 loss=8.4077
+08/12/2026 08:29:04 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 300/6750 loss=6.6055
+08/12/2026 08:29:24 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 350/6750 loss=6.7657
+08/12/2026 08:29:44 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 400/6750 loss=7.2597
+08/12/2026 08:30:05 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 450/6750 loss=6.5612
+08/12/2026 08:30:25 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 500/6750 loss=5.1829
+08/12/2026 08:30:46 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 550/6750 loss=7.4614
+08/12/2026 08:31:06 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 600/6750 loss=6.1758
+08/12/2026 08:31:26 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 650/6750 loss=5.0530
+08/12/2026 08:31:47 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 700/6750 loss=5.1503
+08/12/2026 08:32:08 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 750/6750 loss=6.8072
+08/12/2026 08:32:28 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 800/6750 loss=5.9875
+08/12/2026 08:32:48 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 850/6750 loss=6.3715
+08/12/2026 08:33:09 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 900/6750 loss=3.7472
+08/12/2026 08:33:30 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 950/6750 loss=3.7364
+08/12/2026 08:33:50 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1000/6750 loss=4.2710
+08/12/2026 08:34:11 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1050/6750 loss=7.1452
+08/12/2026 08:34:31 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1100/6750 loss=5.6684
+08/12/2026 08:34:52 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1150/6750 loss=5.2590
+08/12/2026 08:35:12 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1200/6750 loss=5.2954
+08/12/2026 08:35:33 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1250/6750 loss=4.7995
+08/12/2026 08:35:54 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1300/6750 loss=7.9037
+08/12/2026 08:36:15 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1350/6750 loss=5.9507
+08/12/2026 08:36:35 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1400/6750 loss=6.4021
+08/12/2026 08:36:56 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1450/6750 loss=5.5877
+08/12/2026 08:37:16 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1500/6750 loss=5.6179
+08/12/2026 08:37:37 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1550/6750 loss=3.2386
+08/12/2026 08:37:58 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1600/6750 loss=6.8554
+08/12/2026 08:38:19 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1650/6750 loss=5.2240
+08/12/2026 08:38:39 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1700/6750 loss=6.0559
+08/12/2026 08:39:00 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1750/6750 loss=5.1147
+08/12/2026 08:39:21 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1800/6750 loss=8.2190
+08/12/2026 08:39:41 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1850/6750 loss=5.0525
+08/12/2026 08:40:02 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1900/6750 loss=6.7947
+08/12/2026 08:40:23 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 1950/6750 loss=5.5096
+08/12/2026 08:40:44 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2000/6750 loss=6.0917
+08/12/2026 08:41:05 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2050/6750 loss=5.8718
+08/12/2026 08:41:25 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2100/6750 loss=5.9856
+08/12/2026 08:41:46 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2150/6750 loss=5.6684
+08/12/2026 08:42:07 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2200/6750 loss=5.6792
+08/12/2026 08:42:28 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2250/6750 loss=6.0705
+08/12/2026 08:42:48 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2300/6750 loss=4.2553
+08/12/2026 08:43:09 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2350/6750 loss=6.0138
+08/12/2026 08:43:30 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2400/6750 loss=4.8899
+08/12/2026 08:43:50 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2450/6750 loss=6.7239
+08/12/2026 08:44:11 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2500/6750 loss=7.1293
+08/12/2026 08:44:32 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2550/6750 loss=5.9506
+08/12/2026 08:44:52 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2600/6750 loss=7.4409
+08/12/2026 08:45:13 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2650/6750 loss=5.4460
+08/12/2026 08:45:34 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2700/6750 loss=5.5788
+08/12/2026 08:45:55 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2750/6750 loss=7.1231
+08/12/2026 08:46:16 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2800/6750 loss=3.0853
+08/12/2026 08:46:36 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2850/6750 loss=4.9189
+08/12/2026 08:46:57 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2900/6750 loss=5.2914
+08/12/2026 08:47:17 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 2950/6750 loss=5.7036
+08/12/2026 08:47:38 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3000/6750 loss=5.6939
+08/12/2026 08:47:59 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3050/6750 loss=6.4878
+08/12/2026 08:48:19 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3100/6750 loss=4.7458
+08/12/2026 08:48:40 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3150/6750 loss=7.0657
+08/12/2026 08:49:01 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3200/6750 loss=5.3134
+08/12/2026 08:49:22 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3250/6750 loss=4.3751
+08/12/2026 08:49:42 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3300/6750 loss=7.8353
+08/12/2026 08:50:03 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3350/6750 loss=5.4899
+08/12/2026 08:50:24 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3400/6750 loss=7.9779
+08/12/2026 08:50:45 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3450/6750 loss=6.4210
+08/12/2026 08:51:05 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3500/6750 loss=6.0531
+08/12/2026 08:51:25 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3550/6750 loss=4.9087
+08/12/2026 08:51:45 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3600/6750 loss=7.8438
+08/12/2026 08:52:05 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3650/6750 loss=4.8766
+08/12/2026 08:52:25 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3700/6750 loss=7.4083
+08/12/2026 08:52:45 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3750/6750 loss=5.4747
+08/12/2026 08:53:06 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3800/6750 loss=3.9288
+08/12/2026 08:53:26 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3850/6750 loss=4.6105
+08/12/2026 08:53:47 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3900/6750 loss=7.4870
+08/12/2026 08:54:07 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 3950/6750 loss=5.2362
+08/12/2026 08:54:27 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4000/6750 loss=7.0256
+08/12/2026 08:54:48 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4050/6750 loss=5.9604
+08/12/2026 08:55:08 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4100/6750 loss=6.1665
+08/12/2026 08:55:29 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4150/6750 loss=5.1191
+08/12/2026 08:55:50 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4200/6750 loss=5.3463
+08/12/2026 08:56:12 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4250/6750 loss=6.0207
+08/12/2026 08:56:33 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4300/6750 loss=4.8127
+08/12/2026 08:56:54 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4350/6750 loss=10.4494
+08/12/2026 08:57:16 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4400/6750 loss=7.5905
+08/12/2026 08:57:36 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4450/6750 loss=7.7887
+08/12/2026 08:57:57 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4500/6750 loss=6.1738
+08/12/2026 08:58:18 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4550/6750 loss=4.4953
+08/12/2026 08:58:39 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4600/6750 loss=6.1379
+08/12/2026 08:59:00 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4650/6750 loss=8.0591
+08/12/2026 08:59:21 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4700/6750 loss=5.0521
+08/12/2026 08:59:41 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4750/6750 loss=4.9191
+08/12/2026 09:00:02 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4800/6750 loss=6.5809
+08/12/2026 09:00:22 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4850/6750 loss=6.3989
+08/12/2026 09:00:42 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4900/6750 loss=7.8311
+08/12/2026 09:01:02 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 4950/6750 loss=5.9812
+08/12/2026 09:01:22 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5000/6750 loss=6.7089
+08/12/2026 09:01:42 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5050/6750 loss=5.8212
+08/12/2026 09:02:03 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5100/6750 loss=6.1909
+08/12/2026 09:02:24 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5150/6750 loss=4.9690
+08/12/2026 09:02:44 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5200/6750 loss=6.1085
+08/12/2026 09:03:04 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5250/6750 loss=5.7483
+08/12/2026 09:03:24 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5300/6750 loss=2.7669
+08/12/2026 09:03:44 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5350/6750 loss=4.5485
+08/12/2026 09:04:04 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5400/6750 loss=4.4314
+08/12/2026 09:04:25 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5450/6750 loss=6.7169
+08/12/2026 09:04:46 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5500/6750 loss=3.7167
+08/12/2026 09:05:07 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5550/6750 loss=4.2789
+08/12/2026 09:05:27 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5600/6750 loss=5.8655
+08/12/2026 09:05:49 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5650/6750 loss=5.7847
+08/12/2026 09:06:10 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5700/6750 loss=7.5553
+08/12/2026 09:06:30 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5750/6750 loss=3.8619
+08/12/2026 09:06:50 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5800/6750 loss=5.8098
+08/12/2026 09:07:11 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5850/6750 loss=8.7002
+08/12/2026 09:07:31 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5900/6750 loss=4.5794
+08/12/2026 09:07:51 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 5950/6750 loss=6.8923
+08/12/2026 09:08:12 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6000/6750 loss=7.4093
+08/12/2026 09:08:32 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6050/6750 loss=3.9508
+08/12/2026 09:08:53 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6100/6750 loss=7.2968
+08/12/2026 09:09:14 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6150/6750 loss=6.2965
+08/12/2026 09:09:34 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6200/6750 loss=5.5109
+08/12/2026 09:09:54 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6250/6750 loss=6.3419
+08/12/2026 09:10:15 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6300/6750 loss=5.7278
+08/12/2026 09:10:36 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6350/6750 loss=6.4589
+08/12/2026 09:10:56 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6400/6750 loss=5.7152
+08/12/2026 09:11:16 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6450/6750 loss=5.5763
+08/12/2026 09:11:37 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6500/6750 loss=7.3376
+08/12/2026 09:11:58 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6550/6750 loss=6.9718
+08/12/2026 09:12:18 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6600/6750 loss=5.3256
+08/12/2026 09:12:39 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6650/6750 loss=4.4472
+08/12/2026 09:13:01 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6700/6750 loss=5.5409
+08/12/2026 09:13:22 - INFO - __main__ - [vELECTRA + CRF] epoch 7 step 6750/6750 loss=5.4377
+08/12/2026 09:13:22 - INFO - __main__ - [vELECTRA + CRF] Epoch 7 xong sau 2780.4s, avg_loss=5.8943
+08/12/2026 09:17:14 - INFO - __main__ - [vELECTRA + CRF] Epoch 7 - Valid macro F1 = 0.5384
+              precision    recall  f1-score   support
+
+      PERIOD     0.8375    0.8433    0.8404    140170
+       COMMA     0.7242    0.6768    0.6997    162056
+       COLON     0.6339    0.5011    0.5597     10825
+       QMARK     0.7144    0.6673    0.6900      4884
+      EXCLAM     0.4421    0.1420    0.2150      2556
+   SEMICOLON     0.3805    0.1605    0.2258      1944
+
+   micro avg     0.7719    0.7358    0.7534    322435
+   macro avg     0.6221    0.4985    0.5384    322435
+weighted avg     0.7660    0.7358    0.7493    322435
+
+08/12/2026 09:17:17 - INFO - __main__ - -> [vELECTRA + CRF] best checkpoint mới, macro F1 = 0.5384
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 09:17:38 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 50/6750 loss=4.8083
+08/12/2026 09:17:59 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 100/6750 loss=6.8331
+08/12/2026 09:18:19 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 150/6750 loss=6.5747
+08/12/2026 09:18:40 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 200/6750 loss=5.7818
+08/12/2026 09:19:02 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 250/6750 loss=6.1252
+08/12/2026 09:19:23 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 300/6750 loss=8.2759
+08/12/2026 09:19:44 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 350/6750 loss=6.6571
+08/12/2026 09:20:05 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 400/6750 loss=4.1158
+08/12/2026 09:20:26 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 450/6750 loss=4.7066
+08/12/2026 09:20:47 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 500/6750 loss=4.9768
+08/12/2026 09:21:07 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 550/6750 loss=5.9252
+08/12/2026 09:21:27 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 600/6750 loss=4.6539
+08/12/2026 09:21:48 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 650/6750 loss=3.9186
+08/12/2026 09:22:10 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 700/6750 loss=6.2844
+08/12/2026 09:22:31 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 750/6750 loss=4.9086
+08/12/2026 09:22:52 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 800/6750 loss=5.8755
+08/12/2026 09:23:12 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 850/6750 loss=4.7410
+08/12/2026 09:23:33 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 900/6750 loss=4.0916
+08/12/2026 09:23:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 950/6750 loss=6.5841
+08/12/2026 09:24:15 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1000/6750 loss=5.2698
+08/12/2026 09:24:36 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1050/6750 loss=5.5181
+08/12/2026 09:24:56 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1100/6750 loss=6.5022
+08/12/2026 09:25:16 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1150/6750 loss=4.1123
+08/12/2026 09:25:37 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1200/6750 loss=4.3195
+08/12/2026 09:25:57 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1250/6750 loss=4.2015
+08/12/2026 09:26:17 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1300/6750 loss=5.6086
+08/12/2026 09:26:37 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1350/6750 loss=5.5717
+08/12/2026 09:26:57 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1400/6750 loss=5.8208
+08/12/2026 09:27:18 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1450/6750 loss=4.4288
+08/12/2026 09:27:39 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1500/6750 loss=5.5377
+08/12/2026 09:28:00 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1550/6750 loss=3.4129
+08/12/2026 09:28:21 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1600/6750 loss=5.1011
+08/12/2026 09:28:41 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1650/6750 loss=4.7810
+08/12/2026 09:29:02 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1700/6750 loss=4.9086
+08/12/2026 09:29:23 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1750/6750 loss=6.6793
+08/12/2026 09:29:44 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1800/6750 loss=6.0563
+08/12/2026 09:30:05 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1850/6750 loss=4.7970
+08/12/2026 09:30:25 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1900/6750 loss=5.2483
+08/12/2026 09:30:46 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 1950/6750 loss=5.4338
+08/12/2026 09:31:06 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2000/6750 loss=5.1818
+08/12/2026 09:31:27 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2050/6750 loss=5.1112
+08/12/2026 09:31:48 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2100/6750 loss=5.1892
+08/12/2026 09:32:08 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2150/6750 loss=5.7642
+08/12/2026 09:32:28 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2200/6750 loss=6.4633
+08/12/2026 09:32:48 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2250/6750 loss=6.2986
+08/12/2026 09:33:09 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2300/6750 loss=5.6230
+08/12/2026 09:33:29 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2350/6750 loss=6.6588
+08/12/2026 09:33:49 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2400/6750 loss=5.3164
+08/12/2026 09:34:09 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2450/6750 loss=5.5445
+08/12/2026 09:34:30 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2500/6750 loss=6.2901
+08/12/2026 09:34:51 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2550/6750 loss=3.6302
+08/12/2026 09:35:11 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2600/6750 loss=5.7746
+08/12/2026 09:35:32 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2650/6750 loss=4.3150
+08/12/2026 09:35:52 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2700/6750 loss=4.5557
+08/12/2026 09:36:12 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2750/6750 loss=3.7525
+08/12/2026 09:36:33 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2800/6750 loss=5.7622
+08/12/2026 09:36:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2850/6750 loss=6.1036
+08/12/2026 09:37:14 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2900/6750 loss=6.1588
+08/12/2026 09:37:35 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 2950/6750 loss=6.0893
+08/12/2026 09:37:56 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3000/6750 loss=6.2900
+08/12/2026 09:38:17 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3050/6750 loss=4.4896
+08/12/2026 09:38:37 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3100/6750 loss=5.5343
+08/12/2026 09:38:57 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3150/6750 loss=5.9554
+08/12/2026 09:39:18 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3200/6750 loss=4.1199
+08/12/2026 09:39:38 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3250/6750 loss=3.5534
+08/12/2026 09:39:58 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3300/6750 loss=5.4742
+08/12/2026 09:40:18 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3350/6750 loss=5.5438
+08/12/2026 09:40:39 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3400/6750 loss=6.4929
+08/12/2026 09:40:59 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3450/6750 loss=5.9168
+08/12/2026 09:41:20 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3500/6750 loss=5.0466
+08/12/2026 09:41:41 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3550/6750 loss=6.0008
+08/12/2026 09:42:02 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3600/6750 loss=4.8185
+08/12/2026 09:42:23 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3650/6750 loss=4.6239
+08/12/2026 09:42:44 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3700/6750 loss=4.4848
+08/12/2026 09:43:05 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3750/6750 loss=3.9969
+08/12/2026 09:43:27 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3800/6750 loss=5.0250
+08/12/2026 09:43:47 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3850/6750 loss=6.2381
+08/12/2026 09:44:09 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3900/6750 loss=7.4267
+08/12/2026 09:44:31 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 3950/6750 loss=4.3283
+08/12/2026 09:44:52 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4000/6750 loss=4.6498
+08/12/2026 09:45:13 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4050/6750 loss=6.6409
+08/12/2026 09:45:34 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4100/6750 loss=5.6961
+08/12/2026 09:45:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4150/6750 loss=6.1091
+08/12/2026 09:46:15 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4200/6750 loss=5.5442
+08/12/2026 09:46:36 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4250/6750 loss=4.3370
+08/12/2026 09:46:57 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4300/6750 loss=4.6621
+08/12/2026 09:47:18 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4350/6750 loss=4.4357
+08/12/2026 09:47:39 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4400/6750 loss=4.6330
+08/12/2026 09:48:00 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4450/6750 loss=6.9492
+08/12/2026 09:48:21 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4500/6750 loss=4.2382
+08/12/2026 09:48:42 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4550/6750 loss=6.8724
+08/12/2026 09:49:03 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4600/6750 loss=4.8745
+08/12/2026 09:49:24 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4650/6750 loss=4.3045
+08/12/2026 09:49:44 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4700/6750 loss=4.8106
+08/12/2026 09:50:05 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4750/6750 loss=7.7757
+08/12/2026 09:50:27 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4800/6750 loss=6.8135
+08/12/2026 09:50:48 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4850/6750 loss=4.2594
+08/12/2026 09:51:09 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4900/6750 loss=3.5948
+08/12/2026 09:51:29 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 4950/6750 loss=4.5545
+08/12/2026 09:51:50 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5000/6750 loss=3.9366
+08/12/2026 09:52:10 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5050/6750 loss=3.7952
+08/12/2026 09:52:31 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5100/6750 loss=5.5310
+08/12/2026 09:52:51 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5150/6750 loss=6.8231
+08/12/2026 09:53:12 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5200/6750 loss=5.5975
+08/12/2026 09:53:33 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5250/6750 loss=4.3840
+08/12/2026 09:53:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5300/6750 loss=6.6680
+08/12/2026 09:54:15 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5350/6750 loss=6.0340
+08/12/2026 09:54:36 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5400/6750 loss=5.7065
+08/12/2026 09:54:57 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5450/6750 loss=7.2657
+08/12/2026 09:55:18 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5500/6750 loss=4.6354
+08/12/2026 09:55:39 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5550/6750 loss=5.0877
+08/12/2026 09:56:00 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5600/6750 loss=5.9794
+08/12/2026 09:56:21 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5650/6750 loss=4.3634
+08/12/2026 09:56:42 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5700/6750 loss=6.2954
+08/12/2026 09:57:03 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5750/6750 loss=3.4381
+08/12/2026 09:57:25 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5800/6750 loss=7.4686
+08/12/2026 09:57:47 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5850/6750 loss=6.8915
+08/12/2026 09:58:08 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5900/6750 loss=3.8354
+08/12/2026 09:58:29 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 5950/6750 loss=4.3253
+08/12/2026 09:58:49 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6000/6750 loss=6.0579
+08/12/2026 09:59:10 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6050/6750 loss=8.5258
+08/12/2026 09:59:30 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6100/6750 loss=4.5465
+08/12/2026 09:59:50 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6150/6750 loss=5.4498
+08/12/2026 10:00:11 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6200/6750 loss=6.9498
+08/12/2026 10:00:31 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6250/6750 loss=5.6576
+08/12/2026 10:00:51 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6300/6750 loss=3.8590
+08/12/2026 10:01:11 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6350/6750 loss=4.1914
+08/12/2026 10:01:32 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6400/6750 loss=4.4043
+08/12/2026 10:01:52 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6450/6750 loss=7.6076
+08/12/2026 10:02:12 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6500/6750 loss=4.2730
+08/12/2026 10:02:33 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6550/6750 loss=6.6881
+08/12/2026 10:02:53 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6600/6750 loss=4.8100
+08/12/2026 10:03:13 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6650/6750 loss=5.9254
+08/12/2026 10:03:34 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6700/6750 loss=3.9409
+08/12/2026 10:03:54 - INFO - __main__ - [vELECTRA + CRF] epoch 8 step 6750/6750 loss=6.0038
+08/12/2026 10:03:54 - INFO - __main__ - [vELECTRA + CRF] Epoch 8 xong sau 2796.5s, avg_loss=5.4900
+08/12/2026 10:07:44 - INFO - __main__ - [vELECTRA + CRF] Epoch 8 - Valid macro F1 = 0.5372
+              precision    recall  f1-score   support
+
+      PERIOD     0.8367    0.8440    0.8404    140170
+       COMMA     0.7215    0.6794    0.6998    162056
+       COLON     0.6154    0.5120    0.5589     10825
+       QMARK     0.7087    0.6740    0.6909      4884
+      EXCLAM     0.4294    0.1428    0.2143      2556
+   SEMICOLON     0.3811    0.1533    0.2186      1944
+
+   micro avg     0.7692    0.7378    0.7532    322435
+   macro avg     0.6155    0.5009    0.5372    322435
+weighted avg     0.7635    0.7378    0.7493    322435
+
+08/12/2026 10:07:46 - INFO - __main__ - [vELECTRA + CRF] Train xong. Best macro F1 = 0.5384. Checkpoint tại outputs/velectra_news

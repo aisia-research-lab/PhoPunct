@@ -1,0 +1,1278 @@
+08/12/2026 10:50:50 - INFO - __main__ - === mBERT + CRF | backbone=bert-base-multilingual-cased ===
+08/12/2026 10:50:50 - INFO - __main__ - {
+  "model_key": "mbert",
+  "use_bilstm": false,
+  "data_dir": "data/punctuation/News",
+  "output_dir": "outputs/mbert_news",
+  "max_seq_length": 256,
+  "lstm_hidden_size": 128,
+  "train_batch_size": 16,
+  "eval_batch_size": 32,
+  "num_train_epochs": 8.0,
+  "learning_rate": 2e-05,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "seed": 42,
+  "device": "cuda",
+  "fp16": true,
+  "max_train_examples": null,
+  "max_eval_examples": null,
+  "logging_steps": 50
+}
+08/12/2026 10:50:50 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/12/2026 10:50:50 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+08/12/2026 10:50:50 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/12/2026 10:50:51 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+08/12/2026 10:50:51 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+08/12/2026 10:50:51 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+08/12/2026 10:50:52 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/bert-base-multilingual-cased "HTTP/1.1 307 Temporary Redirect"
+08/12/2026 10:50:52 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/google-bert/bert-base-multilingual-cased "HTTP/1.1 200 OK"
+08/12/2026 10:50:52 - INFO - __main__ - Đang nạp dữ liệu train...
+08/12/2026 10:52:35 - INFO - punc_dataset_word - convert_examples_to_features: 108000 examples -> 108000 features (0 rỗng bị bỏ, 30 bị truncate)
+08/12/2026 10:52:43 - INFO - __main__ - Đang nạp dữ liệu valid...
+08/12/2026 10:53:17 - INFO - punc_dataset_word - convert_examples_to_features: 36191 examples -> 36191 features (0 rỗng bị bỏ, 11 bị truncate)
+08/12/2026 10:53:20 - INFO - __main__ - Train: 108000 features | Valid: 36191 features
+08/12/2026 10:53:20 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/config.json "HTTP/1.1 200 OK"
+08/12/2026 10:53:21 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/bert-base-multilingual-cased/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3894.69it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/root/phopunct/baseline_lstm_crf.py:247: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+/root/phopunct/baseline_lstm_crf.py:274: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+08/12/2026 10:53:42 - INFO - __main__ - [mBERT + CRF] epoch 1 step 50/6750 loss=179.2416
+08/12/2026 10:54:02 - INFO - __main__ - [mBERT + CRF] epoch 1 step 100/6750 loss=75.8276
+08/12/2026 10:54:22 - INFO - __main__ - [mBERT + CRF] epoch 1 step 150/6750 loss=46.8584
+08/12/2026 10:54:42 - INFO - __main__ - [mBERT + CRF] epoch 1 step 200/6750 loss=43.7723
+08/12/2026 10:55:02 - INFO - __main__ - [mBERT + CRF] epoch 1 step 250/6750 loss=32.7546
+08/12/2026 10:55:23 - INFO - __main__ - [mBERT + CRF] epoch 1 step 300/6750 loss=29.3096
+08/12/2026 10:55:43 - INFO - __main__ - [mBERT + CRF] epoch 1 step 350/6750 loss=24.7640
+08/12/2026 10:56:03 - INFO - __main__ - [mBERT + CRF] epoch 1 step 400/6750 loss=25.4711
+08/12/2026 10:56:23 - INFO - __main__ - [mBERT + CRF] epoch 1 step 450/6750 loss=25.3695
+08/12/2026 10:56:42 - INFO - __main__ - [mBERT + CRF] epoch 1 step 500/6750 loss=25.9557
+08/12/2026 10:57:02 - INFO - __main__ - [mBERT + CRF] epoch 1 step 550/6750 loss=22.0648
+08/12/2026 10:57:22 - INFO - __main__ - [mBERT + CRF] epoch 1 step 600/6750 loss=25.3556
+08/12/2026 10:57:42 - INFO - __main__ - [mBERT + CRF] epoch 1 step 650/6750 loss=15.6770
+08/12/2026 10:58:02 - INFO - __main__ - [mBERT + CRF] epoch 1 step 700/6750 loss=22.3345
+08/12/2026 10:58:22 - INFO - __main__ - [mBERT + CRF] epoch 1 step 750/6750 loss=20.5440
+08/12/2026 10:58:42 - INFO - __main__ - [mBERT + CRF] epoch 1 step 800/6750 loss=16.8449
+08/12/2026 10:59:01 - INFO - __main__ - [mBERT + CRF] epoch 1 step 850/6750 loss=20.0165
+08/12/2026 10:59:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 900/6750 loss=22.1875
+08/12/2026 10:59:41 - INFO - __main__ - [mBERT + CRF] epoch 1 step 950/6750 loss=21.2143
+08/12/2026 11:00:01 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1000/6750 loss=19.7319
+08/12/2026 11:00:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1050/6750 loss=28.0614
+08/12/2026 11:00:41 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1100/6750 loss=15.2962
+08/12/2026 11:01:01 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1150/6750 loss=23.0770
+08/12/2026 11:01:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1200/6750 loss=18.1369
+08/12/2026 11:01:41 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1250/6750 loss=19.9382
+08/12/2026 11:02:01 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1300/6750 loss=17.0373
+08/12/2026 11:02:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1350/6750 loss=16.1637
+08/12/2026 11:02:41 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1400/6750 loss=16.5008
+08/12/2026 11:03:01 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1450/6750 loss=14.7981
+08/12/2026 11:03:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1500/6750 loss=14.9595
+08/12/2026 11:03:42 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1550/6750 loss=18.8624
+08/12/2026 11:04:02 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1600/6750 loss=11.5451
+08/12/2026 11:04:22 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1650/6750 loss=18.4258
+08/12/2026 11:04:42 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1700/6750 loss=18.0782
+08/12/2026 11:05:03 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1750/6750 loss=19.0581
+08/12/2026 11:05:23 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1800/6750 loss=17.6012
+08/12/2026 11:05:43 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1850/6750 loss=18.3644
+08/12/2026 11:06:04 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1900/6750 loss=16.0601
+08/12/2026 11:06:24 - INFO - __main__ - [mBERT + CRF] epoch 1 step 1950/6750 loss=17.9614
+08/12/2026 11:06:45 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2000/6750 loss=20.0809
+08/12/2026 11:07:05 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2050/6750 loss=14.1828
+08/12/2026 11:07:25 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2100/6750 loss=19.1933
+08/12/2026 11:07:45 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2150/6750 loss=16.9125
+08/12/2026 11:08:06 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2200/6750 loss=16.6447
+08/12/2026 11:08:26 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2250/6750 loss=15.6766
+08/12/2026 11:08:46 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2300/6750 loss=18.8879
+08/12/2026 11:09:07 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2350/6750 loss=18.8789
+08/12/2026 11:09:27 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2400/6750 loss=13.3925
+08/12/2026 11:09:47 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2450/6750 loss=14.5655
+08/12/2026 11:10:08 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2500/6750 loss=16.9857
+08/12/2026 11:10:28 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2550/6750 loss=14.8236
+08/12/2026 11:10:49 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2600/6750 loss=19.6425
+08/12/2026 11:11:10 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2650/6750 loss=18.3458
+08/12/2026 11:11:31 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2700/6750 loss=18.1550
+08/12/2026 11:11:51 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2750/6750 loss=14.0552
+08/12/2026 11:12:11 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2800/6750 loss=20.3791
+08/12/2026 11:12:32 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2850/6750 loss=17.0502
+08/12/2026 11:12:53 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2900/6750 loss=13.5471
+08/12/2026 11:13:13 - INFO - __main__ - [mBERT + CRF] epoch 1 step 2950/6750 loss=18.4928
+08/12/2026 11:13:34 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3000/6750 loss=11.4934
+08/12/2026 11:13:54 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3050/6750 loss=10.5098
+08/12/2026 11:14:14 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3100/6750 loss=17.0939
+08/12/2026 11:14:35 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3150/6750 loss=14.3314
+08/12/2026 11:14:55 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3200/6750 loss=15.9603
+08/12/2026 11:15:15 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3250/6750 loss=12.6095
+08/12/2026 11:15:36 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3300/6750 loss=13.4440
+08/12/2026 11:15:56 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3350/6750 loss=14.8274
+08/12/2026 11:16:17 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3400/6750 loss=13.1982
+08/12/2026 11:16:38 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3450/6750 loss=12.7382
+08/12/2026 11:16:58 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3500/6750 loss=13.8246
+08/12/2026 11:17:19 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3550/6750 loss=13.2996
+08/12/2026 11:17:39 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3600/6750 loss=15.8351
+08/12/2026 11:18:00 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3650/6750 loss=12.7145
+08/12/2026 11:18:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3700/6750 loss=12.5636
+08/12/2026 11:18:41 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3750/6750 loss=13.9142
+08/12/2026 11:19:02 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3800/6750 loss=17.4722
+08/12/2026 11:19:23 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3850/6750 loss=11.9164
+08/12/2026 11:19:43 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3900/6750 loss=16.1157
+08/12/2026 11:20:04 - INFO - __main__ - [mBERT + CRF] epoch 1 step 3950/6750 loss=13.2655
+08/12/2026 11:20:25 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4000/6750 loss=18.3233
+08/12/2026 11:20:46 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4050/6750 loss=18.0401
+08/12/2026 11:21:07 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4100/6750 loss=14.1063
+08/12/2026 11:21:27 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4150/6750 loss=12.9562
+08/12/2026 11:21:48 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4200/6750 loss=12.7985
+08/12/2026 11:22:09 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4250/6750 loss=13.2661
+08/12/2026 11:22:29 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4300/6750 loss=13.8655
+08/12/2026 11:22:50 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4350/6750 loss=15.0528
+08/12/2026 11:23:10 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4400/6750 loss=13.5228
+08/12/2026 11:23:30 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4450/6750 loss=14.2262
+08/12/2026 11:23:51 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4500/6750 loss=15.4219
+08/12/2026 11:24:12 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4550/6750 loss=13.1525
+08/12/2026 11:24:33 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4600/6750 loss=16.0372
+08/12/2026 11:24:53 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4650/6750 loss=9.6316
+08/12/2026 11:25:14 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4700/6750 loss=12.8693
+08/12/2026 11:25:34 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4750/6750 loss=12.3456
+08/12/2026 11:25:54 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4800/6750 loss=15.0245
+08/12/2026 11:26:14 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4850/6750 loss=16.8897
+08/12/2026 11:26:34 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4900/6750 loss=12.2016
+08/12/2026 11:26:54 - INFO - __main__ - [mBERT + CRF] epoch 1 step 4950/6750 loss=10.3844
+08/12/2026 11:27:14 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5000/6750 loss=11.7493
+08/12/2026 11:27:34 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5050/6750 loss=13.1786
+08/12/2026 11:27:55 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5100/6750 loss=12.0443
+08/12/2026 11:28:16 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5150/6750 loss=12.7904
+08/12/2026 11:28:36 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5200/6750 loss=12.9572
+08/12/2026 11:28:57 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5250/6750 loss=11.5751
+08/12/2026 11:29:17 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5300/6750 loss=16.0866
+08/12/2026 11:29:37 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5350/6750 loss=10.6180
+08/12/2026 11:29:58 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5400/6750 loss=15.5556
+08/12/2026 11:30:18 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5450/6750 loss=14.5460
+08/12/2026 11:30:38 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5500/6750 loss=13.9764
+08/12/2026 11:30:59 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5550/6750 loss=13.8126
+08/12/2026 11:31:19 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5600/6750 loss=13.6183
+08/12/2026 11:31:40 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5650/6750 loss=13.7085
+08/12/2026 11:32:00 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5700/6750 loss=11.3663
+08/12/2026 11:32:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5750/6750 loss=10.9858
+08/12/2026 11:32:41 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5800/6750 loss=12.0149
+08/12/2026 11:33:01 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5850/6750 loss=13.5042
+08/12/2026 11:33:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5900/6750 loss=15.6307
+08/12/2026 11:33:41 - INFO - __main__ - [mBERT + CRF] epoch 1 step 5950/6750 loss=14.6608
+08/12/2026 11:34:01 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6000/6750 loss=9.3064
+08/12/2026 11:34:21 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6050/6750 loss=13.5206
+08/12/2026 11:34:42 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6100/6750 loss=12.1800
+08/12/2026 11:35:03 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6150/6750 loss=12.8469
+08/12/2026 11:35:23 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6200/6750 loss=14.0594
+08/12/2026 11:35:44 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6250/6750 loss=10.1255
+08/12/2026 11:36:04 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6300/6750 loss=13.5490
+08/12/2026 11:36:25 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6350/6750 loss=9.9069
+08/12/2026 11:36:45 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6400/6750 loss=14.3073
+08/12/2026 11:37:06 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6450/6750 loss=12.6834
+08/12/2026 11:37:27 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6500/6750 loss=12.9351
+08/12/2026 11:37:47 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6550/6750 loss=13.7799
+08/12/2026 11:38:07 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6600/6750 loss=9.8120
+08/12/2026 11:38:27 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6650/6750 loss=11.2439
+08/12/2026 11:38:47 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6700/6750 loss=8.6551
+08/12/2026 11:39:07 - INFO - __main__ - [mBERT + CRF] epoch 1 step 6750/6750 loss=9.4729
+08/12/2026 11:39:07 - INFO - __main__ - [mBERT + CRF] Epoch 1 xong sau 2745.8s, avg_loss=18.3588
+08/12/2026 11:42:48 - INFO - __main__ - [mBERT + CRF] Epoch 1 - Valid macro F1 = 0.4284
+              precision    recall  f1-score   support
+
+      PERIOD     0.7954    0.8110    0.8031    140159
+       COMMA     0.7132    0.6069    0.6558    162055
+       COLON     0.5925    0.3494    0.4396     10825
+       QMARK     0.6455    0.4783    0.5495      4884
+      EXCLAM     0.5357    0.0469    0.0863      2556
+   SEMICOLON     0.6207    0.0185    0.0360      1944
+
+   micro avg     0.7499    0.6770    0.7116    322423
+   macro avg     0.6505    0.3852    0.4284    322423
+weighted avg     0.7419    0.6770    0.7027    322423
+
+08/12/2026 11:42:52 - INFO - __main__ - -> [mBERT + CRF] best checkpoint mới, macro F1 = 0.4284
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 11:43:11 - INFO - __main__ - [mBERT + CRF] epoch 2 step 50/6750 loss=11.5858
+08/12/2026 11:43:31 - INFO - __main__ - [mBERT + CRF] epoch 2 step 100/6750 loss=12.6780
+08/12/2026 11:43:51 - INFO - __main__ - [mBERT + CRF] epoch 2 step 150/6750 loss=10.5287
+08/12/2026 11:44:11 - INFO - __main__ - [mBERT + CRF] epoch 2 step 200/6750 loss=11.8893
+08/12/2026 11:44:30 - INFO - __main__ - [mBERT + CRF] epoch 2 step 250/6750 loss=8.7763
+08/12/2026 11:44:50 - INFO - __main__ - [mBERT + CRF] epoch 2 step 300/6750 loss=13.4766
+08/12/2026 11:45:10 - INFO - __main__ - [mBERT + CRF] epoch 2 step 350/6750 loss=11.3973
+08/12/2026 11:45:30 - INFO - __main__ - [mBERT + CRF] epoch 2 step 400/6750 loss=11.6254
+08/12/2026 11:45:50 - INFO - __main__ - [mBERT + CRF] epoch 2 step 450/6750 loss=15.0014
+08/12/2026 11:46:09 - INFO - __main__ - [mBERT + CRF] epoch 2 step 500/6750 loss=13.3017
+08/12/2026 11:46:29 - INFO - __main__ - [mBERT + CRF] epoch 2 step 550/6750 loss=11.0236
+08/12/2026 11:46:49 - INFO - __main__ - [mBERT + CRF] epoch 2 step 600/6750 loss=13.6122
+08/12/2026 11:47:09 - INFO - __main__ - [mBERT + CRF] epoch 2 step 650/6750 loss=10.1021
+08/12/2026 11:47:29 - INFO - __main__ - [mBERT + CRF] epoch 2 step 700/6750 loss=10.3337
+08/12/2026 11:47:49 - INFO - __main__ - [mBERT + CRF] epoch 2 step 750/6750 loss=11.5580
+08/12/2026 11:48:09 - INFO - __main__ - [mBERT + CRF] epoch 2 step 800/6750 loss=11.4116
+08/12/2026 11:48:28 - INFO - __main__ - [mBERT + CRF] epoch 2 step 850/6750 loss=12.4798
+08/12/2026 11:48:49 - INFO - __main__ - [mBERT + CRF] epoch 2 step 900/6750 loss=10.9127
+08/12/2026 11:49:09 - INFO - __main__ - [mBERT + CRF] epoch 2 step 950/6750 loss=12.1688
+08/12/2026 11:49:28 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1000/6750 loss=12.1494
+08/12/2026 11:49:49 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1050/6750 loss=14.5630
+08/12/2026 11:50:08 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1100/6750 loss=13.0327
+08/12/2026 11:50:28 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1150/6750 loss=11.3734
+08/12/2026 11:50:48 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1200/6750 loss=11.4428
+08/12/2026 11:51:08 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1250/6750 loss=9.9056
+08/12/2026 11:51:28 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1300/6750 loss=9.8960
+08/12/2026 11:51:48 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1350/6750 loss=13.4845
+08/12/2026 11:52:08 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1400/6750 loss=15.4599
+08/12/2026 11:52:27 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1450/6750 loss=8.0620
+08/12/2026 11:52:47 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1500/6750 loss=13.2830
+08/12/2026 11:53:07 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1550/6750 loss=12.9924
+08/12/2026 11:53:27 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1600/6750 loss=12.6436
+08/12/2026 11:53:46 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1650/6750 loss=12.7703
+08/12/2026 11:54:06 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1700/6750 loss=16.3104
+08/12/2026 11:54:26 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1750/6750 loss=12.6197
+08/12/2026 11:54:46 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1800/6750 loss=8.9754
+08/12/2026 11:55:06 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1850/6750 loss=10.4401
+08/12/2026 11:55:26 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1900/6750 loss=14.0886
+08/12/2026 11:55:45 - INFO - __main__ - [mBERT + CRF] epoch 2 step 1950/6750 loss=10.4541
+08/12/2026 11:56:06 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2000/6750 loss=9.2849
+08/12/2026 11:56:25 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2050/6750 loss=11.8874
+08/12/2026 11:56:45 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2100/6750 loss=11.0480
+08/12/2026 11:57:05 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2150/6750 loss=8.4528
+08/12/2026 11:57:26 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2200/6750 loss=11.0928
+08/12/2026 11:57:45 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2250/6750 loss=11.0419
+08/12/2026 11:58:05 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2300/6750 loss=10.3294
+08/12/2026 11:58:25 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2350/6750 loss=11.3277
+08/12/2026 11:58:44 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2400/6750 loss=12.0372
+08/12/2026 11:59:05 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2450/6750 loss=11.3366
+08/12/2026 11:59:25 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2500/6750 loss=11.7389
+08/12/2026 11:59:45 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2550/6750 loss=11.8072
+08/12/2026 12:00:05 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2600/6750 loss=9.3167
+08/12/2026 12:00:24 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2650/6750 loss=9.0665
+08/12/2026 12:00:44 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2700/6750 loss=11.8637
+08/12/2026 12:01:04 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2750/6750 loss=7.3095
+08/12/2026 12:01:24 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2800/6750 loss=12.9530
+08/12/2026 12:01:44 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2850/6750 loss=15.1577
+08/12/2026 12:02:04 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2900/6750 loss=10.7937
+08/12/2026 12:02:24 - INFO - __main__ - [mBERT + CRF] epoch 2 step 2950/6750 loss=16.2840
+08/12/2026 12:02:43 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3000/6750 loss=9.1991
+08/12/2026 12:03:03 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3050/6750 loss=10.4247
+08/12/2026 12:03:23 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3100/6750 loss=12.1094
+08/12/2026 12:03:43 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3150/6750 loss=12.9497
+08/12/2026 12:04:03 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3200/6750 loss=11.3370
+08/12/2026 12:04:23 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3250/6750 loss=8.1086
+08/12/2026 12:04:42 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3300/6750 loss=11.0643
+08/12/2026 12:05:02 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3350/6750 loss=10.2988
+08/12/2026 12:05:22 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3400/6750 loss=11.8412
+08/12/2026 12:05:42 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3450/6750 loss=11.4618
+08/12/2026 12:06:02 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3500/6750 loss=10.8329
+08/12/2026 12:06:22 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3550/6750 loss=9.0262
+08/12/2026 12:06:42 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3600/6750 loss=9.9448
+08/12/2026 12:07:02 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3650/6750 loss=10.5173
+08/12/2026 12:07:22 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3700/6750 loss=9.2848
+08/12/2026 12:07:43 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3750/6750 loss=9.6032
+08/12/2026 12:08:03 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3800/6750 loss=12.4133
+08/12/2026 12:08:23 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3850/6750 loss=11.0453
+08/12/2026 12:08:43 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3900/6750 loss=8.4428
+08/12/2026 12:09:03 - INFO - __main__ - [mBERT + CRF] epoch 2 step 3950/6750 loss=11.7951
+08/12/2026 12:09:24 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4000/6750 loss=16.1311
+08/12/2026 12:09:44 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4050/6750 loss=16.0772
+08/12/2026 12:10:04 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4100/6750 loss=10.0299
+08/12/2026 12:10:24 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4150/6750 loss=12.9262
+08/12/2026 12:10:44 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4200/6750 loss=9.8572
+08/12/2026 12:11:04 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4250/6750 loss=11.7065
+08/12/2026 12:11:24 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4300/6750 loss=10.8195
+08/12/2026 12:11:44 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4350/6750 loss=8.4518
+08/12/2026 12:12:05 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4400/6750 loss=11.9491
+08/12/2026 12:12:25 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4450/6750 loss=11.3126
+08/12/2026 12:12:46 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4500/6750 loss=9.1368
+08/12/2026 12:13:06 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4550/6750 loss=11.5633
+08/12/2026 12:13:27 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4600/6750 loss=8.8890
+08/12/2026 12:13:47 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4650/6750 loss=9.7431
+08/12/2026 12:14:08 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4700/6750 loss=9.4874
+08/12/2026 12:14:28 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4750/6750 loss=10.5539
+08/12/2026 12:14:49 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4800/6750 loss=9.1629
+08/12/2026 12:15:09 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4850/6750 loss=12.7720
+08/12/2026 12:15:30 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4900/6750 loss=12.8281
+08/12/2026 12:15:50 - INFO - __main__ - [mBERT + CRF] epoch 2 step 4950/6750 loss=7.8771
+08/12/2026 12:16:11 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5000/6750 loss=10.2438
+08/12/2026 12:16:31 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5050/6750 loss=12.7401
+08/12/2026 12:16:51 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5100/6750 loss=8.6608
+08/12/2026 12:17:11 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5150/6750 loss=12.8748
+08/12/2026 12:17:31 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5200/6750 loss=9.2319
+08/12/2026 12:17:51 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5250/6750 loss=12.8253
+08/12/2026 12:18:12 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5300/6750 loss=8.7152
+08/12/2026 12:18:32 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5350/6750 loss=11.0855
+08/12/2026 12:18:53 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5400/6750 loss=9.7998
+08/12/2026 12:19:13 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5450/6750 loss=15.3003
+08/12/2026 12:19:34 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5500/6750 loss=17.0049
+08/12/2026 12:19:55 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5550/6750 loss=10.9783
+08/12/2026 12:20:15 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5600/6750 loss=11.2919
+08/12/2026 12:20:36 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5650/6750 loss=9.8417
+08/12/2026 12:20:57 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5700/6750 loss=10.1655
+08/12/2026 12:21:17 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5750/6750 loss=10.9572
+08/12/2026 12:21:37 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5800/6750 loss=9.0092
+08/12/2026 12:21:58 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5850/6750 loss=10.6034
+08/12/2026 12:22:18 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5900/6750 loss=9.4001
+08/12/2026 12:22:39 - INFO - __main__ - [mBERT + CRF] epoch 2 step 5950/6750 loss=10.7476
+08/12/2026 12:22:59 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6000/6750 loss=11.4857
+08/12/2026 12:23:20 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6050/6750 loss=10.6158
+08/12/2026 12:23:40 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6100/6750 loss=10.9740
+08/12/2026 12:24:00 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6150/6750 loss=9.3008
+08/12/2026 12:24:21 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6200/6750 loss=11.8480
+08/12/2026 12:24:42 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6250/6750 loss=10.3020
+08/12/2026 12:25:02 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6300/6750 loss=11.2564
+08/12/2026 12:25:23 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6350/6750 loss=13.7622
+08/12/2026 12:25:44 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6400/6750 loss=13.5455
+08/12/2026 12:26:04 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6450/6750 loss=10.4276
+08/12/2026 12:26:25 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6500/6750 loss=10.9313
+08/12/2026 12:26:46 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6550/6750 loss=10.3470
+08/12/2026 12:27:06 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6600/6750 loss=11.7868
+08/12/2026 12:27:26 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6650/6750 loss=9.8178
+08/12/2026 12:27:46 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6700/6750 loss=10.6134
+08/12/2026 12:28:07 - INFO - __main__ - [mBERT + CRF] epoch 2 step 6750/6750 loss=9.6186
+08/12/2026 12:28:07 - INFO - __main__ - [mBERT + CRF] Epoch 2 xong sau 2715.0s, avg_loss=11.1607
+08/12/2026 12:31:51 - INFO - __main__ - [mBERT + CRF] Epoch 2 - Valid macro F1 = 0.4852
+              precision    recall  f1-score   support
+
+      PERIOD     0.8216    0.8287    0.8251    140159
+       COMMA     0.7400    0.6301    0.6806    162055
+       COLON     0.6570    0.3945    0.4930     10825
+       QMARK     0.7318    0.5039    0.5968      4884
+      EXCLAM     0.6396    0.0771    0.1376      2556
+   SEMICOLON     0.4420    0.1116    0.1782      1944
+
+   micro avg     0.7772    0.6991    0.7361    322423
+   macro avg     0.6720    0.4243    0.4852    322423
+weighted avg     0.7699    0.6991    0.7285    322423
+
+08/12/2026 12:31:57 - INFO - __main__ - -> [mBERT + CRF] best checkpoint mới, macro F1 = 0.4852
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 12:32:17 - INFO - __main__ - [mBERT + CRF] epoch 3 step 50/6750 loss=11.7493
+08/12/2026 12:32:38 - INFO - __main__ - [mBERT + CRF] epoch 3 step 100/6750 loss=10.1923
+08/12/2026 12:32:59 - INFO - __main__ - [mBERT + CRF] epoch 3 step 150/6750 loss=8.6863
+08/12/2026 12:33:19 - INFO - __main__ - [mBERT + CRF] epoch 3 step 200/6750 loss=10.1779
+08/12/2026 12:33:41 - INFO - __main__ - [mBERT + CRF] epoch 3 step 250/6750 loss=11.8982
+08/12/2026 12:34:02 - INFO - __main__ - [mBERT + CRF] epoch 3 step 300/6750 loss=8.1217
+08/12/2026 12:34:23 - INFO - __main__ - [mBERT + CRF] epoch 3 step 350/6750 loss=9.7202
+08/12/2026 12:34:44 - INFO - __main__ - [mBERT + CRF] epoch 3 step 400/6750 loss=10.2275
+08/12/2026 12:35:04 - INFO - __main__ - [mBERT + CRF] epoch 3 step 450/6750 loss=10.1013
+08/12/2026 12:35:25 - INFO - __main__ - [mBERT + CRF] epoch 3 step 500/6750 loss=7.5208
+08/12/2026 12:35:45 - INFO - __main__ - [mBERT + CRF] epoch 3 step 550/6750 loss=9.1735
+08/12/2026 12:36:05 - INFO - __main__ - [mBERT + CRF] epoch 3 step 600/6750 loss=7.7646
+08/12/2026 12:36:25 - INFO - __main__ - [mBERT + CRF] epoch 3 step 650/6750 loss=8.6273
+08/12/2026 12:36:46 - INFO - __main__ - [mBERT + CRF] epoch 3 step 700/6750 loss=11.4781
+08/12/2026 12:37:07 - INFO - __main__ - [mBERT + CRF] epoch 3 step 750/6750 loss=9.1861
+08/12/2026 12:37:27 - INFO - __main__ - [mBERT + CRF] epoch 3 step 800/6750 loss=11.4837
+08/12/2026 12:37:48 - INFO - __main__ - [mBERT + CRF] epoch 3 step 850/6750 loss=8.1532
+08/12/2026 12:38:09 - INFO - __main__ - [mBERT + CRF] epoch 3 step 900/6750 loss=10.0058
+08/12/2026 12:38:30 - INFO - __main__ - [mBERT + CRF] epoch 3 step 950/6750 loss=11.0101
+08/12/2026 12:38:51 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1000/6750 loss=11.4817
+08/12/2026 12:39:11 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1050/6750 loss=7.7564
+08/12/2026 12:39:32 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1100/6750 loss=8.5884
+08/12/2026 12:39:53 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1150/6750 loss=11.2004
+08/12/2026 12:40:13 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1200/6750 loss=8.8733
+08/12/2026 12:40:34 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1250/6750 loss=10.4128
+08/12/2026 12:40:54 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1300/6750 loss=11.5418
+08/12/2026 12:41:15 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1350/6750 loss=9.0823
+08/12/2026 12:41:36 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1400/6750 loss=7.8707
+08/12/2026 12:41:57 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1450/6750 loss=7.5295
+08/12/2026 12:42:18 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1500/6750 loss=9.0245
+08/12/2026 12:42:38 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1550/6750 loss=9.4107
+08/12/2026 12:42:59 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1600/6750 loss=8.0054
+08/12/2026 12:43:19 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1650/6750 loss=9.7086
+08/12/2026 12:43:40 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1700/6750 loss=8.9853
+08/12/2026 12:44:00 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1750/6750 loss=16.4122
+08/12/2026 12:44:20 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1800/6750 loss=8.4173
+08/12/2026 12:44:40 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1850/6750 loss=10.3702
+08/12/2026 12:45:00 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1900/6750 loss=9.1125
+08/12/2026 12:45:20 - INFO - __main__ - [mBERT + CRF] epoch 3 step 1950/6750 loss=9.8257
+08/12/2026 12:45:40 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2000/6750 loss=10.0063
+08/12/2026 12:46:01 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2050/6750 loss=10.0478
+08/12/2026 12:46:21 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2100/6750 loss=10.4381
+08/12/2026 12:46:40 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2150/6750 loss=11.7402
+08/12/2026 12:47:00 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2200/6750 loss=13.2147
+08/12/2026 12:47:22 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2250/6750 loss=11.7116
+08/12/2026 12:47:42 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2300/6750 loss=12.2937
+08/12/2026 12:48:02 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2350/6750 loss=16.3851
+08/12/2026 12:48:24 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2400/6750 loss=10.2882
+08/12/2026 12:48:45 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2450/6750 loss=11.2764
+08/12/2026 12:49:06 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2500/6750 loss=8.7173
+08/12/2026 12:49:27 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2550/6750 loss=9.4709
+08/12/2026 12:49:48 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2600/6750 loss=9.4581
+08/12/2026 12:50:09 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2650/6750 loss=5.0197
+08/12/2026 12:50:29 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2700/6750 loss=11.5846
+08/12/2026 12:50:49 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2750/6750 loss=14.5498
+08/12/2026 12:51:10 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2800/6750 loss=10.9247
+08/12/2026 12:51:29 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2850/6750 loss=9.7099
+08/12/2026 12:51:49 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2900/6750 loss=12.6425
+08/12/2026 12:52:09 - INFO - __main__ - [mBERT + CRF] epoch 3 step 2950/6750 loss=9.0875
+08/12/2026 12:52:29 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3000/6750 loss=10.9450
+08/12/2026 12:52:50 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3050/6750 loss=12.2071
+08/12/2026 12:53:11 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3100/6750 loss=9.9372
+08/12/2026 12:53:32 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3150/6750 loss=7.5306
+08/12/2026 12:53:53 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3200/6750 loss=11.5292
+08/12/2026 12:54:13 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3250/6750 loss=9.3015
+08/12/2026 12:54:34 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3300/6750 loss=11.2222
+08/12/2026 12:54:54 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3350/6750 loss=12.1739
+08/12/2026 12:55:14 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3400/6750 loss=8.7672
+08/12/2026 12:55:34 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3450/6750 loss=9.0375
+08/12/2026 12:55:55 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3500/6750 loss=9.3705
+08/12/2026 12:56:15 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3550/6750 loss=10.6054
+08/12/2026 12:56:35 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3600/6750 loss=7.9783
+08/12/2026 12:56:55 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3650/6750 loss=8.3392
+08/12/2026 12:57:15 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3700/6750 loss=8.5990
+08/12/2026 12:57:35 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3750/6750 loss=9.3355
+08/12/2026 12:57:55 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3800/6750 loss=7.5048
+08/12/2026 12:58:16 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3850/6750 loss=13.9026
+08/12/2026 12:58:35 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3900/6750 loss=13.4151
+08/12/2026 12:58:57 - INFO - __main__ - [mBERT + CRF] epoch 3 step 3950/6750 loss=7.7765
+08/12/2026 12:59:17 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4000/6750 loss=7.1725
+08/12/2026 12:59:38 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4050/6750 loss=9.3097
+08/12/2026 12:59:59 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4100/6750 loss=9.3217
+08/12/2026 13:00:20 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4150/6750 loss=11.3519
+08/12/2026 13:00:41 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4200/6750 loss=8.9325
+08/12/2026 13:01:02 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4250/6750 loss=7.2504
+08/12/2026 13:01:22 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4300/6750 loss=10.7852
+08/12/2026 13:01:43 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4350/6750 loss=8.1020
+08/12/2026 13:02:04 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4400/6750 loss=11.4876
+08/12/2026 13:02:25 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4450/6750 loss=10.3954
+08/12/2026 13:02:46 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4500/6750 loss=8.6230
+08/12/2026 13:03:07 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4550/6750 loss=9.6946
+08/12/2026 13:03:28 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4600/6750 loss=9.2047
+08/12/2026 13:03:50 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4650/6750 loss=9.5775
+08/12/2026 13:04:11 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4700/6750 loss=9.6974
+08/12/2026 13:04:32 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4750/6750 loss=9.7109
+08/12/2026 13:04:53 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4800/6750 loss=8.7312
+08/12/2026 13:05:14 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4850/6750 loss=5.5265
+08/12/2026 13:05:35 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4900/6750 loss=9.9899
+08/12/2026 13:05:55 - INFO - __main__ - [mBERT + CRF] epoch 3 step 4950/6750 loss=7.9428
+08/12/2026 13:06:17 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5000/6750 loss=9.0054
+08/12/2026 13:06:38 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5050/6750 loss=8.7991
+08/12/2026 13:06:59 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5100/6750 loss=15.0163
+08/12/2026 13:07:20 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5150/6750 loss=11.5181
+08/12/2026 13:07:41 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5200/6750 loss=13.9149
+08/12/2026 13:08:01 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5250/6750 loss=9.2316
+08/12/2026 13:08:22 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5300/6750 loss=9.5085
+08/12/2026 13:08:42 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5350/6750 loss=8.2484
+08/12/2026 13:09:03 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5400/6750 loss=13.2371
+08/12/2026 13:09:23 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5450/6750 loss=9.1401
+08/12/2026 13:09:43 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5500/6750 loss=9.1983
+08/12/2026 13:10:04 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5550/6750 loss=8.9920
+08/12/2026 13:10:24 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5600/6750 loss=8.5142
+08/12/2026 13:10:44 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5650/6750 loss=10.1488
+08/12/2026 13:11:05 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5700/6750 loss=10.0091
+08/12/2026 13:11:25 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5750/6750 loss=8.7028
+08/12/2026 13:11:46 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5800/6750 loss=8.1391
+08/12/2026 13:12:06 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5850/6750 loss=8.6481
+08/12/2026 13:12:26 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5900/6750 loss=7.0290
+08/12/2026 13:12:47 - INFO - __main__ - [mBERT + CRF] epoch 3 step 5950/6750 loss=8.8197
+08/12/2026 13:13:07 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6000/6750 loss=11.3821
+08/12/2026 13:13:29 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6050/6750 loss=8.1222
+08/12/2026 13:13:49 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6100/6750 loss=7.6664
+08/12/2026 13:14:10 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6150/6750 loss=10.3484
+08/12/2026 13:14:30 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6200/6750 loss=9.5411
+08/12/2026 13:14:51 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6250/6750 loss=8.5065
+08/12/2026 13:15:12 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6300/6750 loss=10.7014
+08/12/2026 13:15:32 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6350/6750 loss=8.7892
+08/12/2026 13:15:53 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6400/6750 loss=7.3379
+08/12/2026 13:16:13 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6450/6750 loss=9.8979
+08/12/2026 13:16:35 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6500/6750 loss=7.0180
+08/12/2026 13:16:55 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6550/6750 loss=8.0165
+08/12/2026 13:17:15 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6600/6750 loss=9.7434
+08/12/2026 13:17:35 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6650/6750 loss=7.6977
+08/12/2026 13:17:55 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6700/6750 loss=11.9279
+08/12/2026 13:18:15 - INFO - __main__ - [mBERT + CRF] epoch 3 step 6750/6750 loss=7.4539
+08/12/2026 13:18:15 - INFO - __main__ - [mBERT + CRF] Epoch 3 xong sau 2778.3s, avg_loss=9.5935
+08/12/2026 13:22:02 - INFO - __main__ - [mBERT + CRF] Epoch 3 - Valid macro F1 = 0.5146
+              precision    recall  f1-score   support
+
+      PERIOD     0.8238    0.8428    0.8332    140159
+       COMMA     0.7339    0.6650    0.6977    162055
+       COLON     0.6421    0.4429    0.5242     10825
+       QMARK     0.6854    0.6249    0.6537      4884
+      EXCLAM     0.4779    0.1056    0.1730      2556
+   SEMICOLON     0.4027    0.1384    0.2060      1944
+
+   micro avg     0.7722    0.7266    0.7487    322423
+   macro avg     0.6276    0.4699    0.5146    322423
+weighted avg     0.7651    0.7266    0.7430    322423
+
+08/12/2026 13:22:08 - INFO - __main__ - -> [mBERT + CRF] best checkpoint mới, macro F1 = 0.5146
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 13:22:27 - INFO - __main__ - [mBERT + CRF] epoch 4 step 50/6750 loss=8.3133
+08/12/2026 13:22:47 - INFO - __main__ - [mBERT + CRF] epoch 4 step 100/6750 loss=8.6580
+08/12/2026 13:23:08 - INFO - __main__ - [mBERT + CRF] epoch 4 step 150/6750 loss=10.4995
+08/12/2026 13:23:29 - INFO - __main__ - [mBERT + CRF] epoch 4 step 200/6750 loss=8.7362
+08/12/2026 13:23:50 - INFO - __main__ - [mBERT + CRF] epoch 4 step 250/6750 loss=7.9899
+08/12/2026 13:24:11 - INFO - __main__ - [mBERT + CRF] epoch 4 step 300/6750 loss=8.4128
+08/12/2026 13:24:32 - INFO - __main__ - [mBERT + CRF] epoch 4 step 350/6750 loss=9.5616
+08/12/2026 13:24:53 - INFO - __main__ - [mBERT + CRF] epoch 4 step 400/6750 loss=4.5579
+08/12/2026 13:25:14 - INFO - __main__ - [mBERT + CRF] epoch 4 step 450/6750 loss=11.5008
+08/12/2026 13:25:34 - INFO - __main__ - [mBERT + CRF] epoch 4 step 500/6750 loss=8.5844
+08/12/2026 13:25:55 - INFO - __main__ - [mBERT + CRF] epoch 4 step 550/6750 loss=7.4084
+08/12/2026 13:26:16 - INFO - __main__ - [mBERT + CRF] epoch 4 step 600/6750 loss=9.3569
+08/12/2026 13:26:38 - INFO - __main__ - [mBERT + CRF] epoch 4 step 650/6750 loss=8.0181
+08/12/2026 13:26:58 - INFO - __main__ - [mBERT + CRF] epoch 4 step 700/6750 loss=8.1825
+08/12/2026 13:27:18 - INFO - __main__ - [mBERT + CRF] epoch 4 step 750/6750 loss=10.6694
+08/12/2026 13:27:38 - INFO - __main__ - [mBERT + CRF] epoch 4 step 800/6750 loss=10.0716
+08/12/2026 13:27:58 - INFO - __main__ - [mBERT + CRF] epoch 4 step 850/6750 loss=9.6699
+08/12/2026 13:28:19 - INFO - __main__ - [mBERT + CRF] epoch 4 step 900/6750 loss=6.4399
+08/12/2026 13:28:39 - INFO - __main__ - [mBERT + CRF] epoch 4 step 950/6750 loss=8.0276
+08/12/2026 13:28:59 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1000/6750 loss=8.2422
+08/12/2026 13:29:19 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1050/6750 loss=9.1472
+08/12/2026 13:29:40 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1100/6750 loss=8.1022
+08/12/2026 13:30:01 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1150/6750 loss=6.8191
+08/12/2026 13:30:21 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1200/6750 loss=7.7205
+08/12/2026 13:30:41 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1250/6750 loss=12.5094
+08/12/2026 13:31:02 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1300/6750 loss=10.1965
+08/12/2026 13:31:21 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1350/6750 loss=7.7186
+08/12/2026 13:31:41 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1400/6750 loss=6.6718
+08/12/2026 13:32:01 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1450/6750 loss=10.6711
+08/12/2026 13:32:20 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1500/6750 loss=7.3992
+08/12/2026 13:32:40 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1550/6750 loss=10.5768
+08/12/2026 13:33:00 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1600/6750 loss=6.7931
+08/12/2026 13:33:20 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1650/6750 loss=8.4737
+08/12/2026 13:33:40 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1700/6750 loss=9.8427
+08/12/2026 13:34:00 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1750/6750 loss=11.4991
+08/12/2026 13:34:20 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1800/6750 loss=9.4095
+08/12/2026 13:34:40 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1850/6750 loss=9.7098
+08/12/2026 13:34:59 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1900/6750 loss=7.5142
+08/12/2026 13:35:19 - INFO - __main__ - [mBERT + CRF] epoch 4 step 1950/6750 loss=9.2998
+08/12/2026 13:35:39 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2000/6750 loss=8.0072
+08/12/2026 13:35:59 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2050/6750 loss=7.9871
+08/12/2026 13:36:19 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2100/6750 loss=7.2077
+08/12/2026 13:36:39 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2150/6750 loss=8.5687
+08/12/2026 13:36:59 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2200/6750 loss=10.5447
+08/12/2026 13:37:19 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2250/6750 loss=9.3742
+08/12/2026 13:37:40 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2300/6750 loss=7.3148
+08/12/2026 13:38:00 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2350/6750 loss=8.2326
+08/12/2026 13:38:21 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2400/6750 loss=8.4556
+08/12/2026 13:38:41 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2450/6750 loss=6.3370
+08/12/2026 13:39:02 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2500/6750 loss=7.9998
+08/12/2026 13:39:22 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2550/6750 loss=9.9311
+08/12/2026 13:39:43 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2600/6750 loss=6.8155
+08/12/2026 13:40:04 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2650/6750 loss=9.5442
+08/12/2026 13:40:24 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2700/6750 loss=5.6287
+08/12/2026 13:40:45 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2750/6750 loss=7.5462
+08/12/2026 13:41:05 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2800/6750 loss=9.3088
+08/12/2026 13:41:26 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2850/6750 loss=7.8750
+08/12/2026 13:41:46 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2900/6750 loss=8.0867
+08/12/2026 13:42:06 - INFO - __main__ - [mBERT + CRF] epoch 4 step 2950/6750 loss=7.7838
+08/12/2026 13:42:27 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3000/6750 loss=6.9934
+08/12/2026 13:42:47 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3050/6750 loss=7.3744
+08/12/2026 13:43:07 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3100/6750 loss=9.1625
+08/12/2026 13:43:27 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3150/6750 loss=8.5211
+08/12/2026 13:43:47 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3200/6750 loss=7.0351
+08/12/2026 13:44:07 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3250/6750 loss=8.9487
+08/12/2026 13:44:26 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3300/6750 loss=9.9894
+08/12/2026 13:44:46 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3350/6750 loss=6.6919
+08/12/2026 13:45:07 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3400/6750 loss=9.2574
+08/12/2026 13:45:27 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3450/6750 loss=6.6211
+08/12/2026 13:45:47 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3500/6750 loss=8.9654
+08/12/2026 13:46:07 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3550/6750 loss=10.7709
+08/12/2026 13:46:27 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3600/6750 loss=10.4326
+08/12/2026 13:46:47 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3650/6750 loss=10.0917
+08/12/2026 13:47:07 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3700/6750 loss=9.1756
+08/12/2026 13:47:27 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3750/6750 loss=6.5831
+08/12/2026 13:47:47 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3800/6750 loss=11.3998
+08/12/2026 13:48:07 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3850/6750 loss=7.6244
+08/12/2026 13:48:27 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3900/6750 loss=8.1424
+08/12/2026 13:48:48 - INFO - __main__ - [mBERT + CRF] epoch 4 step 3950/6750 loss=9.9748
+08/12/2026 13:49:09 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4000/6750 loss=8.8655
+08/12/2026 13:49:29 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4050/6750 loss=6.6175
+08/12/2026 13:49:49 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4100/6750 loss=8.2235
+08/12/2026 13:50:09 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4150/6750 loss=8.4490
+08/12/2026 13:50:29 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4200/6750 loss=10.3193
+08/12/2026 13:50:49 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4250/6750 loss=8.6881
+08/12/2026 13:51:10 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4300/6750 loss=6.3682
+08/12/2026 13:51:31 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4350/6750 loss=6.4032
+08/12/2026 13:51:51 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4400/6750 loss=6.4658
+08/12/2026 13:52:12 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4450/6750 loss=7.0687
+08/12/2026 13:52:33 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4500/6750 loss=8.5235
+08/12/2026 13:52:53 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4550/6750 loss=6.7592
+08/12/2026 13:53:14 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4600/6750 loss=9.4252
+08/12/2026 13:53:34 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4650/6750 loss=6.5880
+08/12/2026 13:53:55 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4700/6750 loss=6.4252
+08/12/2026 13:54:16 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4750/6750 loss=11.1689
+08/12/2026 13:54:36 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4800/6750 loss=9.2361
+08/12/2026 13:54:56 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4850/6750 loss=6.7801
+08/12/2026 13:55:16 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4900/6750 loss=9.0794
+08/12/2026 13:55:36 - INFO - __main__ - [mBERT + CRF] epoch 4 step 4950/6750 loss=6.8179
+08/12/2026 13:55:56 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5000/6750 loss=7.2252
+08/12/2026 13:56:15 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5050/6750 loss=9.6316
+08/12/2026 13:56:35 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5100/6750 loss=8.3400
+08/12/2026 13:56:55 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5150/6750 loss=8.4735
+08/12/2026 13:57:15 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5200/6750 loss=7.4253
+08/12/2026 13:57:35 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5250/6750 loss=8.8862
+08/12/2026 13:57:55 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5300/6750 loss=7.5986
+08/12/2026 13:58:15 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5350/6750 loss=7.9079
+08/12/2026 13:58:34 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5400/6750 loss=11.1698
+08/12/2026 13:58:54 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5450/6750 loss=5.5022
+08/12/2026 13:59:14 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5500/6750 loss=6.7528
+08/12/2026 13:59:33 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5550/6750 loss=5.9589
+08/12/2026 13:59:53 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5600/6750 loss=6.9444
+08/12/2026 14:00:13 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5650/6750 loss=7.5318
+08/12/2026 14:00:33 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5700/6750 loss=5.9543
+08/12/2026 14:00:53 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5750/6750 loss=8.5342
+08/12/2026 14:01:13 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5800/6750 loss=9.3035
+08/12/2026 14:01:33 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5850/6750 loss=12.5135
+08/12/2026 14:01:53 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5900/6750 loss=8.0513
+08/12/2026 14:02:14 - INFO - __main__ - [mBERT + CRF] epoch 4 step 5950/6750 loss=8.3836
+08/12/2026 14:02:34 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6000/6750 loss=9.5721
+08/12/2026 14:02:54 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6050/6750 loss=6.7386
+08/12/2026 14:03:14 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6100/6750 loss=7.9215
+08/12/2026 14:03:34 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6150/6750 loss=10.6540
+08/12/2026 14:03:55 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6200/6750 loss=8.8205
+08/12/2026 14:04:14 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6250/6750 loss=7.1812
+08/12/2026 14:04:34 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6300/6750 loss=6.4079
+08/12/2026 14:04:54 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6350/6750 loss=8.2429
+08/12/2026 14:05:14 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6400/6750 loss=8.5128
+08/12/2026 14:05:34 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6450/6750 loss=7.2712
+08/12/2026 14:05:54 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6500/6750 loss=8.5228
+08/12/2026 14:06:14 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6550/6750 loss=8.9764
+08/12/2026 14:06:35 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6600/6750 loss=7.9611
+08/12/2026 14:06:55 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6650/6750 loss=9.3191
+08/12/2026 14:07:16 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6700/6750 loss=7.6590
+08/12/2026 14:07:36 - INFO - __main__ - [mBERT + CRF] epoch 4 step 6750/6750 loss=8.5654
+08/12/2026 14:07:36 - INFO - __main__ - [mBERT + CRF] Epoch 4 xong sau 2728.3s, avg_loss=8.5329
+08/12/2026 14:11:16 - INFO - __main__ - [mBERT + CRF] Epoch 4 - Valid macro F1 = 0.5147
+              precision    recall  f1-score   support
+
+      PERIOD     0.8273    0.8443    0.8357    140159
+       COMMA     0.7194    0.6948    0.7069    162055
+       COLON     0.6096    0.4991    0.5489     10825
+       QMARK     0.6701    0.6472    0.6585      4884
+      EXCLAM     0.6487    0.0896    0.1574      2556
+   SEMICOLON     0.4572    0.1127    0.1808      1944
+
+   micro avg     0.7642    0.7442    0.7541    322423
+   macro avg     0.6554    0.4813    0.5147    322423
+weighted avg     0.7597    0.7442    0.7493    322423
+
+08/12/2026 14:11:21 - INFO - __main__ - -> [mBERT + CRF] best checkpoint mới, macro F1 = 0.5147
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 14:11:42 - INFO - __main__ - [mBERT + CRF] epoch 5 step 50/6750 loss=5.9079
+08/12/2026 14:12:02 - INFO - __main__ - [mBERT + CRF] epoch 5 step 100/6750 loss=6.4301
+08/12/2026 14:12:22 - INFO - __main__ - [mBERT + CRF] epoch 5 step 150/6750 loss=9.7493
+08/12/2026 14:12:42 - INFO - __main__ - [mBERT + CRF] epoch 5 step 200/6750 loss=8.2419
+08/12/2026 14:13:02 - INFO - __main__ - [mBERT + CRF] epoch 5 step 250/6750 loss=8.3746
+08/12/2026 14:13:23 - INFO - __main__ - [mBERT + CRF] epoch 5 step 300/6750 loss=7.9771
+08/12/2026 14:13:43 - INFO - __main__ - [mBERT + CRF] epoch 5 step 350/6750 loss=6.6942
+08/12/2026 14:14:03 - INFO - __main__ - [mBERT + CRF] epoch 5 step 400/6750 loss=7.4975
+08/12/2026 14:14:24 - INFO - __main__ - [mBERT + CRF] epoch 5 step 450/6750 loss=6.8386
+08/12/2026 14:14:44 - INFO - __main__ - [mBERT + CRF] epoch 5 step 500/6750 loss=7.8882
+08/12/2026 14:15:04 - INFO - __main__ - [mBERT + CRF] epoch 5 step 550/6750 loss=7.3310
+08/12/2026 14:15:24 - INFO - __main__ - [mBERT + CRF] epoch 5 step 600/6750 loss=7.3140
+08/12/2026 14:15:45 - INFO - __main__ - [mBERT + CRF] epoch 5 step 650/6750 loss=8.2426
+08/12/2026 14:16:05 - INFO - __main__ - [mBERT + CRF] epoch 5 step 700/6750 loss=6.8389
+08/12/2026 14:16:25 - INFO - __main__ - [mBERT + CRF] epoch 5 step 750/6750 loss=8.8503
+08/12/2026 14:16:46 - INFO - __main__ - [mBERT + CRF] epoch 5 step 800/6750 loss=8.2183
+08/12/2026 14:17:06 - INFO - __main__ - [mBERT + CRF] epoch 5 step 850/6750 loss=8.2955
+08/12/2026 14:17:26 - INFO - __main__ - [mBERT + CRF] epoch 5 step 900/6750 loss=9.4650
+08/12/2026 14:17:46 - INFO - __main__ - [mBERT + CRF] epoch 5 step 950/6750 loss=7.4963
+08/12/2026 14:18:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1000/6750 loss=6.6262
+08/12/2026 14:18:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1050/6750 loss=8.0780
+08/12/2026 14:18:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1100/6750 loss=8.7849
+08/12/2026 14:19:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1150/6750 loss=7.5172
+08/12/2026 14:19:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1200/6750 loss=9.9497
+08/12/2026 14:19:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1250/6750 loss=7.7175
+08/12/2026 14:20:08 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1300/6750 loss=7.6238
+08/12/2026 14:20:28 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1350/6750 loss=6.7214
+08/12/2026 14:20:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1400/6750 loss=7.5107
+08/12/2026 14:21:08 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1450/6750 loss=8.8774
+08/12/2026 14:21:28 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1500/6750 loss=6.2747
+08/12/2026 14:21:48 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1550/6750 loss=9.3591
+08/12/2026 14:22:08 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1600/6750 loss=7.7263
+08/12/2026 14:22:28 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1650/6750 loss=9.1269
+08/12/2026 14:22:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1700/6750 loss=7.0935
+08/12/2026 14:23:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1750/6750 loss=10.9558
+08/12/2026 14:23:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1800/6750 loss=8.0376
+08/12/2026 14:23:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1850/6750 loss=7.2946
+08/12/2026 14:24:08 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1900/6750 loss=7.6742
+08/12/2026 14:24:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 1950/6750 loss=6.0868
+08/12/2026 14:24:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2000/6750 loss=5.0150
+08/12/2026 14:25:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2050/6750 loss=7.5615
+08/12/2026 14:25:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2100/6750 loss=8.9685
+08/12/2026 14:25:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2150/6750 loss=7.8552
+08/12/2026 14:26:08 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2200/6750 loss=7.5667
+08/12/2026 14:26:28 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2250/6750 loss=8.0356
+08/12/2026 14:26:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2300/6750 loss=6.3324
+08/12/2026 14:27:08 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2350/6750 loss=9.6123
+08/12/2026 14:27:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2400/6750 loss=10.3294
+08/12/2026 14:27:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2450/6750 loss=6.8704
+08/12/2026 14:28:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2500/6750 loss=8.1156
+08/12/2026 14:28:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2550/6750 loss=8.2617
+08/12/2026 14:28:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2600/6750 loss=11.8354
+08/12/2026 14:29:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2650/6750 loss=7.3537
+08/12/2026 14:29:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2700/6750 loss=7.7690
+08/12/2026 14:29:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2750/6750 loss=7.3066
+08/12/2026 14:30:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2800/6750 loss=6.2980
+08/12/2026 14:30:28 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2850/6750 loss=7.2163
+08/12/2026 14:30:48 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2900/6750 loss=3.8745
+08/12/2026 14:31:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 2950/6750 loss=8.2603
+08/12/2026 14:31:27 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3000/6750 loss=7.0496
+08/12/2026 14:31:47 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3050/6750 loss=6.4940
+08/12/2026 14:32:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3100/6750 loss=8.7971
+08/12/2026 14:32:26 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3150/6750 loss=6.2847
+08/12/2026 14:32:46 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3200/6750 loss=9.2561
+08/12/2026 14:33:05 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3250/6750 loss=8.0322
+08/12/2026 14:33:25 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3300/6750 loss=6.1023
+08/12/2026 14:33:45 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3350/6750 loss=8.5737
+08/12/2026 14:34:04 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3400/6750 loss=5.6717
+08/12/2026 14:34:24 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3450/6750 loss=6.3239
+08/12/2026 14:34:43 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3500/6750 loss=6.8526
+08/12/2026 14:35:03 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3550/6750 loss=7.0129
+08/12/2026 14:35:22 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3600/6750 loss=6.5822
+08/12/2026 14:35:42 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3650/6750 loss=11.1866
+08/12/2026 14:36:01 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3700/6750 loss=5.9220
+08/12/2026 14:36:21 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3750/6750 loss=9.0979
+08/12/2026 14:36:40 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3800/6750 loss=8.1099
+08/12/2026 14:37:00 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3850/6750 loss=12.4692
+08/12/2026 14:37:19 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3900/6750 loss=6.3342
+08/12/2026 14:37:39 - INFO - __main__ - [mBERT + CRF] epoch 5 step 3950/6750 loss=9.8323
+08/12/2026 14:37:59 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4000/6750 loss=8.0736
+08/12/2026 14:38:19 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4050/6750 loss=8.3495
+08/12/2026 14:38:39 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4100/6750 loss=8.8586
+08/12/2026 14:38:59 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4150/6750 loss=7.4318
+08/12/2026 14:39:19 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4200/6750 loss=7.8140
+08/12/2026 14:39:39 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4250/6750 loss=6.4211
+08/12/2026 14:39:59 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4300/6750 loss=6.2765
+08/12/2026 14:40:20 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4350/6750 loss=10.5691
+08/12/2026 14:40:40 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4400/6750 loss=6.9027
+08/12/2026 14:41:00 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4450/6750 loss=8.4978
+08/12/2026 14:41:20 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4500/6750 loss=7.8876
+08/12/2026 14:41:40 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4550/6750 loss=6.3386
+08/12/2026 14:42:01 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4600/6750 loss=8.9337
+08/12/2026 14:42:21 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4650/6750 loss=8.6803
+08/12/2026 14:42:42 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4700/6750 loss=8.5493
+08/12/2026 14:43:02 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4750/6750 loss=7.0668
+08/12/2026 14:43:23 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4800/6750 loss=8.9123
+08/12/2026 14:43:43 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4850/6750 loss=7.7954
+08/12/2026 14:44:03 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4900/6750 loss=6.7994
+08/12/2026 14:44:24 - INFO - __main__ - [mBERT + CRF] epoch 5 step 4950/6750 loss=10.5699
+08/12/2026 14:44:44 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5000/6750 loss=7.6221
+08/12/2026 14:45:04 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5050/6750 loss=9.9588
+08/12/2026 14:45:25 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5100/6750 loss=5.4499
+08/12/2026 14:45:46 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5150/6750 loss=6.4350
+08/12/2026 14:46:07 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5200/6750 loss=8.2523
+08/12/2026 14:46:28 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5250/6750 loss=6.6601
+08/12/2026 14:46:48 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5300/6750 loss=6.6172
+08/12/2026 14:47:08 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5350/6750 loss=6.2447
+08/12/2026 14:47:28 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5400/6750 loss=8.5376
+08/12/2026 14:47:49 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5450/6750 loss=8.5437
+08/12/2026 14:48:09 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5500/6750 loss=7.4141
+08/12/2026 14:48:30 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5550/6750 loss=8.6846
+08/12/2026 14:48:50 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5600/6750 loss=9.2903
+08/12/2026 14:49:10 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5650/6750 loss=5.9091
+08/12/2026 14:49:31 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5700/6750 loss=5.7206
+08/12/2026 14:49:51 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5750/6750 loss=6.0844
+08/12/2026 14:50:12 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5800/6750 loss=7.4142
+08/12/2026 14:50:32 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5850/6750 loss=6.9149
+08/12/2026 14:50:53 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5900/6750 loss=10.2810
+08/12/2026 14:51:13 - INFO - __main__ - [mBERT + CRF] epoch 5 step 5950/6750 loss=8.7880
+08/12/2026 14:51:34 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6000/6750 loss=6.0357
+08/12/2026 14:51:54 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6050/6750 loss=7.3956
+08/12/2026 14:52:15 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6100/6750 loss=7.3081
+08/12/2026 14:52:36 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6150/6750 loss=7.7919
+08/12/2026 14:52:57 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6200/6750 loss=12.0527
+08/12/2026 14:53:18 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6250/6750 loss=6.7502
+08/12/2026 14:53:38 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6300/6750 loss=6.1809
+08/12/2026 14:53:59 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6350/6750 loss=7.3168
+08/12/2026 14:54:19 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6400/6750 loss=11.8050
+08/12/2026 14:54:40 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6450/6750 loss=7.3401
+08/12/2026 14:55:00 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6500/6750 loss=8.1775
+08/12/2026 14:55:21 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6550/6750 loss=7.0020
+08/12/2026 14:55:41 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6600/6750 loss=7.8815
+08/12/2026 14:56:02 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6650/6750 loss=5.2678
+08/12/2026 14:56:21 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6700/6750 loss=6.0024
+08/12/2026 14:56:41 - INFO - __main__ - [mBERT + CRF] epoch 5 step 6750/6750 loss=8.5845
+08/12/2026 14:56:41 - INFO - __main__ - [mBERT + CRF] Epoch 5 xong sau 2720.1s, avg_loss=7.7050
+08/12/2026 15:00:26 - INFO - __main__ - [mBERT + CRF] Epoch 5 - Valid macro F1 = 0.5301
+              precision    recall  f1-score   support
+
+      PERIOD     0.8256    0.8515    0.8384    140159
+       COMMA     0.7327    0.6845    0.7078    162055
+       COLON     0.6502    0.4624    0.5405     10825
+       QMARK     0.6606    0.6708    0.6657      4884
+      EXCLAM     0.5102    0.1373    0.2164      2556
+   SEMICOLON     0.4011    0.1440    0.2120      1944
+
+   micro avg     0.7716    0.7418    0.7564    322423
+   macro avg     0.6301    0.4918    0.5301    322423
+weighted avg     0.7655    0.7418    0.7514    322423
+
+08/12/2026 15:00:32 - INFO - __main__ - -> [mBERT + CRF] best checkpoint mới, macro F1 = 0.5301
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 15:00:51 - INFO - __main__ - [mBERT + CRF] epoch 6 step 50/6750 loss=6.5589
+08/12/2026 15:01:11 - INFO - __main__ - [mBERT + CRF] epoch 6 step 100/6750 loss=5.2772
+08/12/2026 15:01:32 - INFO - __main__ - [mBERT + CRF] epoch 6 step 150/6750 loss=8.8326
+08/12/2026 15:01:53 - INFO - __main__ - [mBERT + CRF] epoch 6 step 200/6750 loss=7.0882
+08/12/2026 15:02:14 - INFO - __main__ - [mBERT + CRF] epoch 6 step 250/6750 loss=6.4789
+08/12/2026 15:02:35 - INFO - __main__ - [mBERT + CRF] epoch 6 step 300/6750 loss=6.7053
+08/12/2026 15:02:55 - INFO - __main__ - [mBERT + CRF] epoch 6 step 350/6750 loss=4.6433
+08/12/2026 15:03:15 - INFO - __main__ - [mBERT + CRF] epoch 6 step 400/6750 loss=7.6821
+08/12/2026 15:03:36 - INFO - __main__ - [mBERT + CRF] epoch 6 step 450/6750 loss=8.0620
+08/12/2026 15:03:56 - INFO - __main__ - [mBERT + CRF] epoch 6 step 500/6750 loss=6.0587
+08/12/2026 15:04:17 - INFO - __main__ - [mBERT + CRF] epoch 6 step 550/6750 loss=7.4973
+08/12/2026 15:04:37 - INFO - __main__ - [mBERT + CRF] epoch 6 step 600/6750 loss=7.7577
+08/12/2026 15:04:57 - INFO - __main__ - [mBERT + CRF] epoch 6 step 650/6750 loss=6.9090
+08/12/2026 15:05:17 - INFO - __main__ - [mBERT + CRF] epoch 6 step 700/6750 loss=6.2769
+08/12/2026 15:05:37 - INFO - __main__ - [mBERT + CRF] epoch 6 step 750/6750 loss=7.1084
+08/12/2026 15:05:58 - INFO - __main__ - [mBERT + CRF] epoch 6 step 800/6750 loss=8.5662
+08/12/2026 15:06:19 - INFO - __main__ - [mBERT + CRF] epoch 6 step 850/6750 loss=4.4687
+08/12/2026 15:06:39 - INFO - __main__ - [mBERT + CRF] epoch 6 step 900/6750 loss=6.2158
+08/12/2026 15:07:00 - INFO - __main__ - [mBERT + CRF] epoch 6 step 950/6750 loss=9.8543
+08/12/2026 15:07:21 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1000/6750 loss=7.4874
+08/12/2026 15:07:41 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1050/6750 loss=8.9633
+08/12/2026 15:08:02 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1100/6750 loss=7.0267
+08/12/2026 15:08:22 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1150/6750 loss=8.6120
+08/12/2026 15:08:42 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1200/6750 loss=6.5480
+08/12/2026 15:09:03 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1250/6750 loss=5.0753
+08/12/2026 15:09:23 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1300/6750 loss=7.3727
+08/12/2026 15:09:43 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1350/6750 loss=8.6592
+08/12/2026 15:10:04 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1400/6750 loss=5.1620
+08/12/2026 15:10:24 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1450/6750 loss=5.4091
+08/12/2026 15:10:44 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1500/6750 loss=8.0409
+08/12/2026 15:11:03 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1550/6750 loss=6.4761
+08/12/2026 15:11:23 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1600/6750 loss=5.9456
+08/12/2026 15:11:43 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1650/6750 loss=7.3098
+08/12/2026 15:12:03 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1700/6750 loss=6.7504
+08/12/2026 15:12:23 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1750/6750 loss=7.2083
+08/12/2026 15:12:43 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1800/6750 loss=7.6525
+08/12/2026 15:13:03 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1850/6750 loss=7.5132
+08/12/2026 15:13:24 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1900/6750 loss=6.3035
+08/12/2026 15:13:43 - INFO - __main__ - [mBERT + CRF] epoch 6 step 1950/6750 loss=4.4627
+08/12/2026 15:14:03 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2000/6750 loss=8.4958
+08/12/2026 15:14:23 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2050/6750 loss=6.2052
+08/12/2026 15:14:43 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2100/6750 loss=6.1817
+08/12/2026 15:15:03 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2150/6750 loss=6.0146
+08/12/2026 15:15:24 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2200/6750 loss=6.3889
+08/12/2026 15:15:44 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2250/6750 loss=7.7391
+08/12/2026 15:16:04 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2300/6750 loss=5.3086
+08/12/2026 15:16:24 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2350/6750 loss=6.5087
+08/12/2026 15:16:44 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2400/6750 loss=6.2709
+08/12/2026 15:17:04 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2450/6750 loss=6.6527
+08/12/2026 15:17:25 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2500/6750 loss=6.3850
+08/12/2026 15:17:45 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2550/6750 loss=6.6077
+08/12/2026 15:18:06 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2600/6750 loss=5.7808
+08/12/2026 15:18:26 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2650/6750 loss=6.4863
+08/12/2026 15:18:46 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2700/6750 loss=5.1746
+08/12/2026 15:19:06 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2750/6750 loss=6.2322
+08/12/2026 15:19:27 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2800/6750 loss=6.3515
+08/12/2026 15:19:47 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2850/6750 loss=6.5373
+08/12/2026 15:20:08 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2900/6750 loss=8.3442
+08/12/2026 15:20:29 - INFO - __main__ - [mBERT + CRF] epoch 6 step 2950/6750 loss=8.8327
+08/12/2026 15:20:49 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3000/6750 loss=5.5961
+08/12/2026 15:21:09 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3050/6750 loss=7.1643
+08/12/2026 15:21:30 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3100/6750 loss=8.5091
+08/12/2026 15:21:51 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3150/6750 loss=6.2365
+08/12/2026 15:22:11 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3200/6750 loss=6.5131
+08/12/2026 15:22:31 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3250/6750 loss=8.2684
+08/12/2026 15:22:51 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3300/6750 loss=7.9482
+08/12/2026 15:23:11 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3350/6750 loss=6.4501
+08/12/2026 15:23:31 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3400/6750 loss=7.4283
+08/12/2026 15:23:51 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3450/6750 loss=7.8755
+08/12/2026 15:24:11 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3500/6750 loss=5.8845
+08/12/2026 15:24:32 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3550/6750 loss=7.5598
+08/12/2026 15:24:52 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3600/6750 loss=5.6559
+08/12/2026 15:25:12 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3650/6750 loss=10.0052
+08/12/2026 15:25:32 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3700/6750 loss=5.9572
+08/12/2026 15:25:52 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3750/6750 loss=9.2227
+08/12/2026 15:26:12 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3800/6750 loss=6.5507
+08/12/2026 15:26:32 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3850/6750 loss=8.5995
+08/12/2026 15:26:52 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3900/6750 loss=5.2784
+08/12/2026 15:27:12 - INFO - __main__ - [mBERT + CRF] epoch 6 step 3950/6750 loss=6.2210
+08/12/2026 15:27:32 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4000/6750 loss=7.2404
+08/12/2026 15:27:53 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4050/6750 loss=6.4976
+08/12/2026 15:28:13 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4100/6750 loss=5.4043
+08/12/2026 15:28:33 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4150/6750 loss=6.4069
+08/12/2026 15:28:53 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4200/6750 loss=5.9434
+08/12/2026 15:29:13 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4250/6750 loss=5.4101
+08/12/2026 15:29:34 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4300/6750 loss=5.3015
+08/12/2026 15:29:54 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4350/6750 loss=8.0997
+08/12/2026 15:30:15 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4400/6750 loss=6.5282
+08/12/2026 15:30:35 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4450/6750 loss=6.7006
+08/12/2026 15:30:56 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4500/6750 loss=6.9463
+08/12/2026 15:31:16 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4550/6750 loss=6.3590
+08/12/2026 15:31:36 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4600/6750 loss=6.3541
+08/12/2026 15:31:55 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4650/6750 loss=6.8520
+08/12/2026 15:32:15 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4700/6750 loss=8.0201
+08/12/2026 15:32:35 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4750/6750 loss=7.1683
+08/12/2026 15:32:55 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4800/6750 loss=8.6284
+08/12/2026 15:33:15 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4850/6750 loss=6.4311
+08/12/2026 15:33:35 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4900/6750 loss=6.6459
+08/12/2026 15:33:56 - INFO - __main__ - [mBERT + CRF] epoch 6 step 4950/6750 loss=5.8041
+08/12/2026 15:34:16 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5000/6750 loss=6.7093
+08/12/2026 15:34:36 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5050/6750 loss=8.6155
+08/12/2026 15:34:57 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5100/6750 loss=4.1346
+08/12/2026 15:35:17 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5150/6750 loss=7.1066
+08/12/2026 15:35:37 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5200/6750 loss=7.5767
+08/12/2026 15:35:58 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5250/6750 loss=6.9201
+08/12/2026 15:36:18 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5300/6750 loss=7.7230
+08/12/2026 15:36:39 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5350/6750 loss=5.7880
+08/12/2026 15:36:59 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5400/6750 loss=6.7237
+08/12/2026 15:37:19 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5450/6750 loss=9.5126
+08/12/2026 15:37:39 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5500/6750 loss=7.1630
+08/12/2026 15:38:00 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5550/6750 loss=6.7065
+08/12/2026 15:38:21 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5600/6750 loss=6.2880
+08/12/2026 15:38:42 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5650/6750 loss=6.7796
+08/12/2026 15:39:03 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5700/6750 loss=7.1812
+08/12/2026 15:39:24 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5750/6750 loss=5.7855
+08/12/2026 15:39:44 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5800/6750 loss=5.0175
+08/12/2026 15:40:05 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5850/6750 loss=5.5162
+08/12/2026 15:40:25 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5900/6750 loss=8.0220
+08/12/2026 15:40:46 - INFO - __main__ - [mBERT + CRF] epoch 6 step 5950/6750 loss=6.9264
+08/12/2026 15:41:07 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6000/6750 loss=5.4374
+08/12/2026 15:41:27 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6050/6750 loss=5.1920
+08/12/2026 15:41:48 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6100/6750 loss=7.3349
+08/12/2026 15:42:09 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6150/6750 loss=7.2298
+08/12/2026 15:42:30 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6200/6750 loss=7.6712
+08/12/2026 15:42:50 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6250/6750 loss=8.8315
+08/12/2026 15:43:12 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6300/6750 loss=4.5068
+08/12/2026 15:43:33 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6350/6750 loss=7.5517
+08/12/2026 15:43:54 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6400/6750 loss=7.0942
+08/12/2026 15:44:15 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6450/6750 loss=5.8803
+08/12/2026 15:44:36 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6500/6750 loss=8.2204
+08/12/2026 15:44:57 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6550/6750 loss=6.6008
+08/12/2026 15:45:18 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6600/6750 loss=4.4976
+08/12/2026 15:45:38 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6650/6750 loss=6.6162
+08/12/2026 15:45:59 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6700/6750 loss=4.3319
+08/12/2026 15:46:19 - INFO - __main__ - [mBERT + CRF] epoch 6 step 6750/6750 loss=6.2465
+08/12/2026 15:46:19 - INFO - __main__ - [mBERT + CRF] Epoch 6 xong sau 2747.8s, avg_loss=7.0501
+08/12/2026 15:50:04 - INFO - __main__ - [mBERT + CRF] Epoch 6 - Valid macro F1 = 0.5284
+              precision    recall  f1-score   support
+
+      PERIOD     0.8361    0.8461    0.8411    140159
+       COMMA     0.7439    0.6752    0.7079    162055
+       COLON     0.6734    0.4457    0.5364     10825
+       QMARK     0.7022    0.6411    0.6702      4884
+      EXCLAM     0.5239    0.1158    0.1897      2556
+   SEMICOLON     0.3601    0.1636    0.2250      1944
+
+   micro avg     0.7834    0.7338    0.7578    322423
+   macro avg     0.6399    0.4813    0.5284    322423
+weighted avg     0.7769    0.7338    0.7524    322423
+
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 15:50:28 - INFO - __main__ - [mBERT + CRF] epoch 7 step 50/6750 loss=9.4438
+08/12/2026 15:50:48 - INFO - __main__ - [mBERT + CRF] epoch 7 step 100/6750 loss=5.6662
+08/12/2026 15:51:09 - INFO - __main__ - [mBERT + CRF] epoch 7 step 150/6750 loss=6.2640
+08/12/2026 15:51:30 - INFO - __main__ - [mBERT + CRF] epoch 7 step 200/6750 loss=5.7386
+08/12/2026 15:51:51 - INFO - __main__ - [mBERT + CRF] epoch 7 step 250/6750 loss=7.6958
+08/12/2026 15:52:12 - INFO - __main__ - [mBERT + CRF] epoch 7 step 300/6750 loss=5.8096
+08/12/2026 15:52:33 - INFO - __main__ - [mBERT + CRF] epoch 7 step 350/6750 loss=8.3238
+08/12/2026 15:52:53 - INFO - __main__ - [mBERT + CRF] epoch 7 step 400/6750 loss=9.7467
+08/12/2026 15:53:14 - INFO - __main__ - [mBERT + CRF] epoch 7 step 450/6750 loss=8.3786
+08/12/2026 15:53:34 - INFO - __main__ - [mBERT + CRF] epoch 7 step 500/6750 loss=5.4179
+08/12/2026 15:53:54 - INFO - __main__ - [mBERT + CRF] epoch 7 step 550/6750 loss=7.6402
+08/12/2026 15:54:15 - INFO - __main__ - [mBERT + CRF] epoch 7 step 600/6750 loss=7.0978
+08/12/2026 15:54:35 - INFO - __main__ - [mBERT + CRF] epoch 7 step 650/6750 loss=5.3722
+08/12/2026 15:54:55 - INFO - __main__ - [mBERT + CRF] epoch 7 step 700/6750 loss=6.2450
+08/12/2026 15:55:16 - INFO - __main__ - [mBERT + CRF] epoch 7 step 750/6750 loss=7.3253
+08/12/2026 15:55:36 - INFO - __main__ - [mBERT + CRF] epoch 7 step 800/6750 loss=6.5898
+08/12/2026 15:55:57 - INFO - __main__ - [mBERT + CRF] epoch 7 step 850/6750 loss=7.6765
+08/12/2026 15:56:17 - INFO - __main__ - [mBERT + CRF] epoch 7 step 900/6750 loss=4.8739
+08/12/2026 15:56:37 - INFO - __main__ - [mBERT + CRF] epoch 7 step 950/6750 loss=5.0701
+08/12/2026 15:56:57 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1000/6750 loss=5.5886
+08/12/2026 15:57:18 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1050/6750 loss=7.2705
+08/12/2026 15:57:38 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1100/6750 loss=5.2376
+08/12/2026 15:57:59 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1150/6750 loss=5.1034
+08/12/2026 15:58:20 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1200/6750 loss=5.8091
+08/12/2026 15:58:41 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1250/6750 loss=5.1063
+08/12/2026 15:59:02 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1300/6750 loss=7.9517
+08/12/2026 15:59:23 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1350/6750 loss=7.0806
+08/12/2026 15:59:44 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1400/6750 loss=5.5064
+08/12/2026 16:00:05 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1450/6750 loss=4.8977
+08/12/2026 16:00:25 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1500/6750 loss=5.4578
+08/12/2026 16:00:46 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1550/6750 loss=4.7132
+08/12/2026 16:01:06 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1600/6750 loss=7.0469
+08/12/2026 16:01:27 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1650/6750 loss=5.5662
+08/12/2026 16:01:47 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1700/6750 loss=6.1807
+08/12/2026 16:02:08 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1750/6750 loss=6.2815
+08/12/2026 16:02:29 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1800/6750 loss=8.2309
+08/12/2026 16:02:50 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1850/6750 loss=5.3315
+08/12/2026 16:03:10 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1900/6750 loss=9.1185
+08/12/2026 16:03:30 - INFO - __main__ - [mBERT + CRF] epoch 7 step 1950/6750 loss=5.4654
+08/12/2026 16:03:51 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2000/6750 loss=6.3435
+08/12/2026 16:04:11 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2050/6750 loss=5.2631
+08/12/2026 16:04:31 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2100/6750 loss=6.8866
+08/12/2026 16:04:52 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2150/6750 loss=7.3886
+08/12/2026 16:05:12 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2200/6750 loss=5.7685
+08/12/2026 16:05:32 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2250/6750 loss=6.0449
+08/12/2026 16:05:52 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2300/6750 loss=5.1174
+08/12/2026 16:06:12 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2350/6750 loss=7.4986
+08/12/2026 16:06:32 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2400/6750 loss=4.4054
+08/12/2026 16:06:52 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2450/6750 loss=7.6799
+08/12/2026 16:07:12 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2500/6750 loss=5.5329
+08/12/2026 16:07:32 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2550/6750 loss=8.6399
+08/12/2026 16:07:52 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2600/6750 loss=7.0296
+08/12/2026 16:08:12 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2650/6750 loss=6.5660
+08/12/2026 16:08:32 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2700/6750 loss=7.4171
+08/12/2026 16:08:52 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2750/6750 loss=8.0026
+08/12/2026 16:09:12 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2800/6750 loss=4.7342
+08/12/2026 16:09:32 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2850/6750 loss=6.4661
+08/12/2026 16:09:52 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2900/6750 loss=5.6075
+08/12/2026 16:10:12 - INFO - __main__ - [mBERT + CRF] epoch 7 step 2950/6750 loss=5.3726
+08/12/2026 16:10:32 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3000/6750 loss=6.0358
+08/12/2026 16:10:51 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3050/6750 loss=7.1533
+08/12/2026 16:11:11 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3100/6750 loss=6.1587
+08/12/2026 16:11:31 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3150/6750 loss=8.0419
+08/12/2026 16:11:51 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3200/6750 loss=6.5078
+08/12/2026 16:12:11 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3250/6750 loss=4.1732
+08/12/2026 16:12:31 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3300/6750 loss=9.8556
+08/12/2026 16:12:51 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3350/6750 loss=7.6054
+08/12/2026 16:13:11 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3400/6750 loss=9.4989
+08/12/2026 16:13:31 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3450/6750 loss=7.0490
+08/12/2026 16:13:51 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3500/6750 loss=6.4108
+08/12/2026 16:14:11 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3550/6750 loss=6.0830
+08/12/2026 16:14:31 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3600/6750 loss=7.6926
+08/12/2026 16:14:52 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3650/6750 loss=5.7164
+08/12/2026 16:15:11 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3700/6750 loss=5.9909
+08/12/2026 16:15:31 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3750/6750 loss=5.6410
+08/12/2026 16:15:51 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3800/6750 loss=5.0728
+08/12/2026 16:16:11 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3850/6750 loss=5.8412
+08/12/2026 16:16:31 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3900/6750 loss=8.6455
+08/12/2026 16:16:52 - INFO - __main__ - [mBERT + CRF] epoch 7 step 3950/6750 loss=5.9827
+08/12/2026 16:17:12 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4000/6750 loss=7.5177
+08/12/2026 16:17:32 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4050/6750 loss=6.4924
+08/12/2026 16:17:53 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4100/6750 loss=6.5079
+08/12/2026 16:18:14 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4150/6750 loss=6.5036
+08/12/2026 16:18:34 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4200/6750 loss=7.1506
+08/12/2026 16:18:55 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4250/6750 loss=6.3395
+08/12/2026 16:19:15 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4300/6750 loss=6.2156
+08/12/2026 16:19:35 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4350/6750 loss=9.5817
+08/12/2026 16:19:56 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4400/6750 loss=7.6070
+08/12/2026 16:20:16 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4450/6750 loss=8.1388
+08/12/2026 16:20:37 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4500/6750 loss=7.6889
+08/12/2026 16:20:58 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4550/6750 loss=5.0840
+08/12/2026 16:21:18 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4600/6750 loss=8.1442
+08/12/2026 16:21:39 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4650/6750 loss=8.1534
+08/12/2026 16:21:59 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4700/6750 loss=7.8399
+08/12/2026 16:22:19 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4750/6750 loss=5.8315
+08/12/2026 16:22:40 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4800/6750 loss=7.1414
+08/12/2026 16:23:00 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4850/6750 loss=7.3643
+08/12/2026 16:23:20 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4900/6750 loss=7.5919
+08/12/2026 16:23:40 - INFO - __main__ - [mBERT + CRF] epoch 7 step 4950/6750 loss=6.7725
+08/12/2026 16:24:00 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5000/6750 loss=7.2846
+08/12/2026 16:24:21 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5050/6750 loss=6.5838
+08/12/2026 16:24:41 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5100/6750 loss=6.9496
+08/12/2026 16:25:01 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5150/6750 loss=5.7385
+08/12/2026 16:25:21 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5200/6750 loss=6.6047
+08/12/2026 16:25:41 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5250/6750 loss=6.3511
+08/12/2026 16:26:01 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5300/6750 loss=4.2152
+08/12/2026 16:26:21 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5350/6750 loss=5.4759
+08/12/2026 16:26:42 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5400/6750 loss=5.0378
+08/12/2026 16:27:02 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5450/6750 loss=6.6174
+08/12/2026 16:27:22 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5500/6750 loss=4.6659
+08/12/2026 16:27:42 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5550/6750 loss=5.7299
+08/12/2026 16:28:02 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5600/6750 loss=6.7210
+08/12/2026 16:28:22 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5650/6750 loss=6.0176
+08/12/2026 16:28:42 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5700/6750 loss=8.1441
+08/12/2026 16:29:02 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5750/6750 loss=4.6050
+08/12/2026 16:29:22 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5800/6750 loss=5.6766
+08/12/2026 16:29:42 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5850/6750 loss=8.6251
+08/12/2026 16:30:02 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5900/6750 loss=5.4182
+08/12/2026 16:30:22 - INFO - __main__ - [mBERT + CRF] epoch 7 step 5950/6750 loss=6.8390
+08/12/2026 16:30:41 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6000/6750 loss=7.9206
+08/12/2026 16:31:01 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6050/6750 loss=4.5638
+08/12/2026 16:31:21 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6100/6750 loss=7.7881
+08/12/2026 16:31:41 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6150/6750 loss=6.7087
+08/12/2026 16:32:01 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6200/6750 loss=5.6884
+08/12/2026 16:32:20 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6250/6750 loss=6.9798
+08/12/2026 16:32:40 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6300/6750 loss=6.9906
+08/12/2026 16:33:00 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6350/6750 loss=6.5383
+08/12/2026 16:33:20 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6400/6750 loss=6.8915
+08/12/2026 16:33:40 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6450/6750 loss=6.4495
+08/12/2026 16:33:59 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6500/6750 loss=8.6458
+08/12/2026 16:34:19 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6550/6750 loss=8.1414
+08/12/2026 16:34:39 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6600/6750 loss=5.0878
+08/12/2026 16:34:59 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6650/6750 loss=4.5230
+08/12/2026 16:35:19 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6700/6750 loss=6.3414
+08/12/2026 16:35:39 - INFO - __main__ - [mBERT + CRF] epoch 7 step 6750/6750 loss=6.3915
+08/12/2026 16:35:39 - INFO - __main__ - [mBERT + CRF] Epoch 7 xong sau 2731.9s, avg_loss=6.5291
+08/12/2026 16:39:20 - INFO - __main__ - [mBERT + CRF] Epoch 7 - Valid macro F1 = 0.5376
+              precision    recall  f1-score   support
+
+      PERIOD     0.8334    0.8508    0.8420    140159
+       COMMA     0.7329    0.6913    0.7115    162055
+       COLON     0.6356    0.4988    0.5589     10825
+       QMARK     0.7016    0.6509    0.6753      4884
+      EXCLAM     0.5029    0.1373    0.2157      2556
+   SEMICOLON     0.3679    0.1590    0.2220      1944
+
+   micro avg     0.7746    0.7460    0.7600    322423
+   macro avg     0.6290    0.4980    0.5376    322423
+weighted avg     0.7688    0.7460    0.7557    322423
+
+08/12/2026 16:39:26 - INFO - __main__ - -> [mBERT + CRF] best checkpoint mới, macro F1 = 0.5376
+/root/phopunct/baseline_lstm_crf.py:261: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+08/12/2026 16:39:46 - INFO - __main__ - [mBERT + CRF] epoch 8 step 50/6750 loss=4.1439
+08/12/2026 16:40:06 - INFO - __main__ - [mBERT + CRF] epoch 8 step 100/6750 loss=8.4789
+08/12/2026 16:40:26 - INFO - __main__ - [mBERT + CRF] epoch 8 step 150/6750 loss=6.2239
+08/12/2026 16:40:46 - INFO - __main__ - [mBERT + CRF] epoch 8 step 200/6750 loss=5.9258
+08/12/2026 16:41:06 - INFO - __main__ - [mBERT + CRF] epoch 8 step 250/6750 loss=6.6990
+08/12/2026 16:41:26 - INFO - __main__ - [mBERT + CRF] epoch 8 step 300/6750 loss=9.5730
+08/12/2026 16:41:45 - INFO - __main__ - [mBERT + CRF] epoch 8 step 350/6750 loss=8.2727
+08/12/2026 16:42:05 - INFO - __main__ - [mBERT + CRF] epoch 8 step 400/6750 loss=5.0683
+08/12/2026 16:42:25 - INFO - __main__ - [mBERT + CRF] epoch 8 step 450/6750 loss=6.0445
+08/12/2026 16:42:45 - INFO - __main__ - [mBERT + CRF] epoch 8 step 500/6750 loss=5.8412
+08/12/2026 16:43:05 - INFO - __main__ - [mBERT + CRF] epoch 8 step 550/6750 loss=5.6821
+08/12/2026 16:43:24 - INFO - __main__ - [mBERT + CRF] epoch 8 step 600/6750 loss=6.2856
+08/12/2026 16:43:44 - INFO - __main__ - [mBERT + CRF] epoch 8 step 650/6750 loss=4.5371
+08/12/2026 16:44:04 - INFO - __main__ - [mBERT + CRF] epoch 8 step 700/6750 loss=8.3997
+08/12/2026 16:44:24 - INFO - __main__ - [mBERT + CRF] epoch 8 step 750/6750 loss=5.8771
+08/12/2026 16:44:45 - INFO - __main__ - [mBERT + CRF] epoch 8 step 800/6750 loss=6.0995
+08/12/2026 16:45:05 - INFO - __main__ - [mBERT + CRF] epoch 8 step 850/6750 loss=5.1257
+08/12/2026 16:45:25 - INFO - __main__ - [mBERT + CRF] epoch 8 step 900/6750 loss=4.6843
+08/12/2026 16:45:45 - INFO - __main__ - [mBERT + CRF] epoch 8 step 950/6750 loss=7.1360
+08/12/2026 16:46:05 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1000/6750 loss=5.7284
+08/12/2026 16:46:25 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1050/6750 loss=5.2817
+08/12/2026 16:46:45 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1100/6750 loss=7.4925
+08/12/2026 16:47:05 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1150/6750 loss=4.0630
+08/12/2026 16:47:26 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1200/6750 loss=5.1110
+08/12/2026 16:47:46 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1250/6750 loss=4.1179
+08/12/2026 16:48:06 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1300/6750 loss=5.3559
+08/12/2026 16:48:26 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1350/6750 loss=6.9983
+08/12/2026 16:48:47 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1400/6750 loss=7.4752
+08/12/2026 16:49:08 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1450/6750 loss=5.3359
+08/12/2026 16:49:28 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1500/6750 loss=6.4061
+08/12/2026 16:49:48 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1550/6750 loss=3.3570
+08/12/2026 16:50:09 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1600/6750 loss=5.9502
+08/12/2026 16:50:29 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1650/6750 loss=5.5081
+08/12/2026 16:50:49 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1700/6750 loss=5.5477
+08/12/2026 16:51:09 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1750/6750 loss=7.8924
+08/12/2026 16:51:30 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1800/6750 loss=6.6976
+08/12/2026 16:51:50 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1850/6750 loss=6.2544
+08/12/2026 16:52:10 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1900/6750 loss=5.1179
+08/12/2026 16:52:31 - INFO - __main__ - [mBERT + CRF] epoch 8 step 1950/6750 loss=7.0282
+08/12/2026 16:52:51 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2000/6750 loss=6.5209
+08/12/2026 16:53:12 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2050/6750 loss=6.3316
+08/12/2026 16:53:32 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2100/6750 loss=6.6680
+08/12/2026 16:53:53 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2150/6750 loss=7.2736
+08/12/2026 16:54:13 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2200/6750 loss=8.4452
+08/12/2026 16:54:33 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2250/6750 loss=7.2422
+08/12/2026 16:54:53 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2300/6750 loss=6.0335
+08/12/2026 16:55:13 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2350/6750 loss=6.3689
+08/12/2026 16:55:34 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2400/6750 loss=6.4461
+08/12/2026 16:55:54 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2450/6750 loss=6.6637
+08/12/2026 16:56:14 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2500/6750 loss=6.1690
+08/12/2026 16:56:34 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2550/6750 loss=5.0953
+08/12/2026 16:56:54 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2600/6750 loss=7.8099
+08/12/2026 16:57:15 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2650/6750 loss=5.7394
+08/12/2026 16:57:35 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2700/6750 loss=4.9447
+08/12/2026 16:57:55 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2750/6750 loss=4.9694
+08/12/2026 16:58:15 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2800/6750 loss=6.2302
+08/12/2026 16:58:35 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2850/6750 loss=6.8564
+08/12/2026 16:58:55 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2900/6750 loss=7.2363
+08/12/2026 16:59:14 - INFO - __main__ - [mBERT + CRF] epoch 8 step 2950/6750 loss=6.3696
+08/12/2026 16:59:34 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3000/6750 loss=5.7278
+08/12/2026 16:59:54 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3050/6750 loss=5.1499
+08/12/2026 17:00:14 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3100/6750 loss=6.0317
+08/12/2026 17:00:33 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3150/6750 loss=7.6852
+08/12/2026 17:00:53 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3200/6750 loss=4.1486
+08/12/2026 17:01:12 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3250/6750 loss=4.4505
+08/12/2026 17:01:32 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3300/6750 loss=5.8410
+08/12/2026 17:01:51 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3350/6750 loss=4.8854
+08/12/2026 17:02:11 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3400/6750 loss=6.4352
+08/12/2026 17:02:31 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3450/6750 loss=6.3199
+08/12/2026 17:02:50 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3500/6750 loss=4.9053
+08/12/2026 17:03:10 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3550/6750 loss=6.4720
+08/12/2026 17:03:29 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3600/6750 loss=6.7728
+08/12/2026 17:03:49 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3650/6750 loss=4.4650
+08/12/2026 17:04:08 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3700/6750 loss=6.5312
+08/12/2026 17:04:28 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3750/6750 loss=5.3659
+08/12/2026 17:04:48 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3800/6750 loss=6.6979
+08/12/2026 17:05:07 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3850/6750 loss=6.2653
+08/12/2026 17:05:27 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3900/6750 loss=8.2284
+08/12/2026 17:05:47 - INFO - __main__ - [mBERT + CRF] epoch 8 step 3950/6750 loss=4.6327
+08/12/2026 17:06:07 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4000/6750 loss=4.8159
+08/12/2026 17:06:27 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4050/6750 loss=7.8164
+08/12/2026 17:06:47 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4100/6750 loss=5.5897
+08/12/2026 17:07:07 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4150/6750 loss=6.4759
+08/12/2026 17:07:27 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4200/6750 loss=7.1073
+08/12/2026 17:07:46 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4250/6750 loss=5.2226
+08/12/2026 17:08:06 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4300/6750 loss=4.2916
+08/12/2026 17:08:25 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4350/6750 loss=5.5025
+08/12/2026 17:08:45 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4400/6750 loss=4.4584
+08/12/2026 17:09:06 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4450/6750 loss=8.2146
+08/12/2026 17:09:26 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4500/6750 loss=4.5026
+08/12/2026 17:09:46 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4550/6750 loss=7.0284
+08/12/2026 17:10:07 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4600/6750 loss=5.5825
+08/12/2026 17:10:27 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4650/6750 loss=5.6958
+08/12/2026 17:10:47 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4700/6750 loss=5.1730
+08/12/2026 17:11:07 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4750/6750 loss=8.2878
+08/12/2026 17:11:27 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4800/6750 loss=7.0884
+08/12/2026 17:11:47 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4850/6750 loss=5.0232
+08/12/2026 17:12:08 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4900/6750 loss=3.9148
+08/12/2026 17:12:28 - INFO - __main__ - [mBERT + CRF] epoch 8 step 4950/6750 loss=4.5488
+08/12/2026 17:12:48 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5000/6750 loss=6.1761
+08/12/2026 17:13:08 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5050/6750 loss=5.9958
+08/12/2026 17:13:28 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5100/6750 loss=5.8513
+08/12/2026 17:13:49 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5150/6750 loss=7.2921
+08/12/2026 17:14:09 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5200/6750 loss=7.1525
+08/12/2026 17:14:29 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5250/6750 loss=6.6481
+08/12/2026 17:14:49 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5300/6750 loss=7.7586
+08/12/2026 17:15:09 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5350/6750 loss=6.4395
+08/12/2026 17:15:29 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5400/6750 loss=5.7109
+08/12/2026 17:15:49 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5450/6750 loss=7.2449
+08/12/2026 17:16:10 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5500/6750 loss=6.2401
+08/12/2026 17:16:30 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5550/6750 loss=6.3282
+08/12/2026 17:16:51 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5600/6750 loss=6.6594
+08/12/2026 17:17:11 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5650/6750 loss=4.4927
+08/12/2026 17:17:32 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5700/6750 loss=8.8247
+08/12/2026 17:17:53 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5750/6750 loss=4.4378
+08/12/2026 17:18:13 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5800/6750 loss=7.1139
+08/12/2026 17:18:34 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5850/6750 loss=6.8004
+08/12/2026 17:18:54 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5900/6750 loss=4.5827
+08/12/2026 17:19:15 - INFO - __main__ - [mBERT + CRF] epoch 8 step 5950/6750 loss=5.4132
+08/12/2026 17:19:35 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6000/6750 loss=5.9236
+08/12/2026 17:19:56 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6050/6750 loss=7.5609
+08/12/2026 17:20:16 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6100/6750 loss=5.5465
+08/12/2026 17:20:37 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6150/6750 loss=4.8702
+08/12/2026 17:20:58 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6200/6750 loss=6.8690
+08/12/2026 17:21:19 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6250/6750 loss=6.4458
+08/12/2026 17:21:40 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6300/6750 loss=6.3770
+08/12/2026 17:22:01 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6350/6750 loss=5.1152
+08/12/2026 17:22:21 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6400/6750 loss=5.4918
+08/12/2026 17:22:42 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6450/6750 loss=8.0553
+08/12/2026 17:23:02 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6500/6750 loss=4.2643
+08/12/2026 17:23:23 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6550/6750 loss=7.5943
+08/12/2026 17:23:44 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6600/6750 loss=4.5002
+08/12/2026 17:24:04 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6650/6750 loss=7.4411
+08/12/2026 17:24:24 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6700/6750 loss=4.7954
+08/12/2026 17:24:45 - INFO - __main__ - [mBERT + CRF] epoch 8 step 6750/6750 loss=6.0557
+08/12/2026 17:24:45 - INFO - __main__ - [mBERT + CRF] Epoch 8 xong sau 2718.7s, avg_loss=6.1579
+08/12/2026 17:28:25 - INFO - __main__ - [mBERT + CRF] Epoch 8 - Valid macro F1 = 0.5363
+              precision    recall  f1-score   support
+
+      PERIOD     0.8308    0.8534    0.8420    140159
+       COMMA     0.7321    0.6937    0.7124    162055
+       COLON     0.6335    0.4929    0.5544     10825
+       QMARK     0.6914    0.6589    0.6748      4884
+      EXCLAM     0.4948    0.1291    0.2048      2556
+   SEMICOLON     0.3638    0.1677    0.2296      1944
+
+   micro avg     0.7728    0.7482    0.7603    322423
+   macro avg     0.6244    0.4993    0.5363    322423
+weighted avg     0.7670    0.7482    0.7559    322423
+
+08/12/2026 17:28:28 - INFO - __main__ - [mBERT + CRF] Train xong. Best macro F1 = 0.5376. Checkpoint tại outputs/mbert_news
